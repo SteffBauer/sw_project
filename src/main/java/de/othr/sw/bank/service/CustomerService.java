@@ -16,7 +16,7 @@ public class CustomerService {
     public Customer registerCustomer(/* @RequestParam(value = "name", defaultValue = "World") String name*/) {
 
         // Customer erzeugen, prüfen, ...
-        Customer customer =  new Customer(1234, "Max","Muster", "IN");
+        Customer customer =  new Customer("Max","Muster","street",5,1234,"Regensburg","Germany", "12345679","safest_password_ever");
 
         // Dauerhaft speichern
         customer = customerRepository.save(customer);
