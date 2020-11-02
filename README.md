@@ -1,2 +1,2 @@
-# SW_project
+# Softwaredevelopment project
 Project for the course 'Softwaredevelopment' at OTH Regensburg
