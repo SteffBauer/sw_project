@@ -1,5 +1,7 @@
 package de.othr.sw.bank.entity;
 
+import de.othr.sw.bank.utils.EncryptionUtils;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,19 +12,20 @@ public class Customer implements Serializable {
     private long customerId;
     private String forename;
     private String surname;
-    //@ManyToMany
-    //private Address address;
     private String taxNumber;
     private String iban;
     private String passwordHash;
 
+    @ManyToOne()
+    private Address address;
+
     public Customer(){}
 
-    public Customer(String forename, String surname,String street, int houseNr, Integer zipCode, String city, String country, String taxNumber, String password) {
+    public Customer(String forename, String surname, String taxNumber, String password) {
         this.forename = forename;
         this.surname = surname;
         this.taxNumber = taxNumber;
-        //this.address=new Address(forename+" "+surname,street,houseNr,zipCode,city,country);
+        this.passwordHash = EncryptionUtils.getEncryptedString(password);
     }
 
     public long getCustomerId() {
@@ -35,6 +38,15 @@ public class Customer implements Serializable {
 
     public void setForename(String forename) {
         this.forename = forename;
+    }
+
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getSurname() {

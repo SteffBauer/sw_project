@@ -1,27 +1,29 @@
-/*
 package de.othr.sw.bank.entity;
 
+import org.apache.catalina.util.CustomObjectInputStream;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
 public class Address {
     @Id
-    private Integer id;
-    private String name;
+    @GeneratedValue
+    private long id;
     private String street;
-    private Integer houseNr;
-    private Integer zipCode;
+    private int houseNr;
+    private long zipCode;
     private String city;
     private String country;
 
-    @ManyToMany(mappedBy = "address")
+    @OneToMany(mappedBy = "address")
     private List<Customer> residents;
 
-    public Address(String name, String street, Integer houseNr,Integer zipCode, String city, String country) {
-        this.name = name;
+    public Address(String street, Integer houseNr,Integer zipCode, String city, String country) {
         this.street = street;
         this.houseNr = houseNr;
         this.zipCode=zipCode;
@@ -31,12 +33,78 @@ public class Address {
 
     public Address() { }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getId() {
+    public long getId() {
         return id;
     }
+
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public int getHouseNr() {
+        return houseNr;
+    }
+
+    public void setHouseNr(int houseNr) {
+        this.houseNr = houseNr;
+    }
+
+    public long getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(long zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public List<Customer> getResidents() {
+        if(residents==null){
+            residents=new LinkedList<Customer>();
+        }
+        return residents;
+    }
+
+    public void setResidents(List<Customer> residents) {
+        this.residents = residents;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Address address = (Address) o;
+
+        return id==address.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.hashCode(id);
+    }
+
+    public void addResident(Customer c) {
+        this.getResidents().add(c);
+    }
 }
-*/
