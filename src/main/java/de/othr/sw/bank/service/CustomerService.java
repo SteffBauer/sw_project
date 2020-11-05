@@ -1,28 +1,21 @@
 package de.othr.sw.bank.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.Address;
 import de.othr.sw.bank.entity.Customer;
-import de.othr.sw.bank.entity.Message;
 import de.othr.sw.bank.repo.AccountRepository;
 import de.othr.sw.bank.repo.AddressRepository;
 import de.othr.sw.bank.repo.CustomerRepository;
 import de.othr.sw.bank.utils.StringUtils;
-import org.apache.catalina.util.CustomObjectInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedList;
 import java.util.Optional;
 
 @RestController
 public class CustomerService {
-
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -67,8 +60,8 @@ public class CustomerService {
         return new ResponseEntity(newCustomer,HttpStatus.OK);
     }
 
-    @GetMapping("api/customers")
-    public ResponseEntity<Customer> findCustomer(@RequestParam("customerId") long cId){
+    @GetMapping("api/customers/{id}")
+    public ResponseEntity<Customer> findCustomer(@PathVariable("id") long cId){
         Optional<Customer> customer = customerRepository.findById(cId);
 
         if(customer.isEmpty())
@@ -76,8 +69,8 @@ public class CustomerService {
         return new ResponseEntity<>(customer.get(),HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<Account> createAccount(@PathVariable() long cId){
+    @PutMapping("/api/customers/{id}/createaccount")
+    public ResponseEntity<Account> createAccount(@PathVariable("id") long cId){
         Optional<Customer> customer = customerRepository.findById(cId);
 
         if(customer.isEmpty())
@@ -87,6 +80,8 @@ public class CustomerService {
         account = accountRepository.save(account);
         account.createIban();
         account= accountRepository.save(account);
+
+        account.setCustomer(null);
 
         return new ResponseEntity<>(account,HttpStatus.OK);
     }
