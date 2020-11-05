@@ -7,6 +7,7 @@ import de.othr.sw.bank.repo.AccountRepository;
 import de.othr.sw.bank.repo.AddressRepository;
 import de.othr.sw.bank.repo.CustomerRepository;
 import de.othr.sw.bank.utils.StringUtils;
+import org.apache.catalina.util.CustomObjectInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@RestController
+@RestController()
+@RequestMapping("api/customers")
 public class CustomerService {
 
     @Autowired
@@ -24,7 +26,7 @@ public class CustomerService {
     @Autowired
     private AccountRepository accountRepository;
 
-    @PostMapping("api/customers")
+    @PostMapping()
     public ResponseEntity<Customer> newCustomer(@RequestBody Customer newCustomer) {
 
 
@@ -60,16 +62,18 @@ public class CustomerService {
         return new ResponseEntity(newCustomer,HttpStatus.OK);
     }
 
-    @GetMapping("api/customers/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Customer> findCustomer(@PathVariable("id") long cId){
         Optional<Customer> customer = customerRepository.findById(cId);
 
         if(customer.isEmpty())
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<>(customer.get(),HttpStatus.OK);
+        Customer c = customer.get();
+        c.getAddress().setResidents(null);
+        return new ResponseEntity<>(c,HttpStatus.OK);
     }
 
-    @PutMapping("/api/customers/{id}/createaccount")
+    @PutMapping("/{id}/createaccount")
     public ResponseEntity<Account> createAccount(@PathVariable("id") long cId){
         Optional<Customer> customer = customerRepository.findById(cId);
 
