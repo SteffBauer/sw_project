@@ -34,7 +34,12 @@ public class BankingService {
     }
 
     @PutMapping("/account/transfer")
-    public ResponseEntity<Double> getAccountValue(@RequestBody TransferRequest transferRequest){
+    public ResponseEntity<Double> transferRequest(@RequestBody TransferRequest transferRequest){
+        throw new NotYetImplementedException();
+    }
+
+    @PutMapping("/account/mandate")
+    public ResponseEntity<Double> mandateRequest(@RequestBody TransferRequest transferRequest){
         throw new NotYetImplementedException();
     }
 }
