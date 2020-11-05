@@ -3,7 +3,6 @@ package de.othr.sw.bank.service;
 import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.Session;
 import de.othr.sw.bank.entity.SessionRequest;
-import de.othr.sw.bank.entity.TransferRequest;
 import de.othr.sw.bank.repo.AccountRepository;
 import de.othr.sw.bank.repo.AddressRepository;
 import de.othr.sw.bank.repo.CustomerRepository;
@@ -18,7 +17,7 @@ import java.util.UUID;
 
 @RestController()
 @RequestMapping("api/banking")
-public class BankingService {
+public class SessionService {
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -27,14 +26,13 @@ public class BankingService {
     @Autowired
     private AccountRepository accountRepository;
 
+    @GetMapping("/session")
+    public ResponseEntity<UUID> openSession(@RequestBody SessionRequest sessionRequest){
+        Iterable<Account> accounts= accountRepository.findAccountByIban(sessionRequest.getIban());
+        if(!accounts.iterator().hasNext())
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-    @GetMapping("/account")
-    public ResponseEntity<Double> getAccountValue(@RequestBody UUID sessionUuid){
-        throw new NotYetImplementedException();
-    }
-
-    @PutMapping("/account/transfer")
-    public ResponseEntity<Double> getAccountValue(@RequestBody TransferRequest transferRequest){
-        throw new NotYetImplementedException();
+        Session session = new Session(accounts.iterator().next());
+        return new ResponseEntity<UUID>(session.getSessionUuid(),HttpStatus.OK);
     }
 }
