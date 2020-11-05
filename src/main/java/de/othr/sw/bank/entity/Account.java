@@ -5,20 +5,11 @@ import java.io.Serializable;
 
 @Entity
 public class Account implements Serializable {
-    @TableGenerator(name = "BLZ_Gen", table = "ID_GEN", pkColumnName = "GEN_NAME",
-            valueColumnName = "GEN_VAL", pkColumnValue = "Iban_Gen", initialValue = 100000,
-            allocationSize = 1)
-    @TableGenerator(name = "ACC_Id_Gen", table = "ID_GEN", pkColumnName = "GEN_NAME",
-            valueColumnName = "GEN_VAL", pkColumnValue = "ACC_Id_Gen", initialValue = 100000,
-            allocationSize = 1)
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long accountId;
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "BLZ_Gen")
-    private long blz;
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "ACC_Id_Gen")
-    private long acc_Id;
+    private final long blz = 100100100;
     private String iban;
 
 
@@ -38,14 +29,6 @@ public class Account implements Serializable {
 
     public long getBlz() {
         return blz;
-    }
-
-    public void setBlz(long blz) {
-        this.blz = blz;
-    }
-
-    public long getAcc_Id() {
-        return acc_Id;
     }
 
     public String getIban() {
@@ -76,5 +59,12 @@ public class Account implements Serializable {
     @Override
     public int hashCode(){
         return Long.hashCode(this.accountId);
+    }
+
+    public void createIban() {
+        //todo stellen auffüllen...
+        String country= customer.getAddress().getCountry().substring(0,2).toUpperCase();
+        String account = String.format("%010d", getAccountId());
+        setIban(country+getBlz()+account);
     }
 }
