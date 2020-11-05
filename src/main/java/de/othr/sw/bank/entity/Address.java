@@ -1,19 +1,14 @@
 package de.othr.sw.bank.entity;
 
-import org.apache.catalina.util.CustomObjectInputStream;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 
 @Entity
 public class Address {
     @Id
-    @GeneratedValue
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long addressId;
     private String street;
     private int houseNr;
     private long zipCode;
@@ -33,8 +28,8 @@ public class Address {
 
     public Address() { }
 
-    public long getId() {
-        return id;
+    public long getAddressId() {
+        return addressId;
     }
 
 
@@ -96,12 +91,12 @@ public class Address {
 
         Address address = (Address) o;
 
-        return id==address.id;
+        return addressId ==address.addressId;
     }
 
     @Override
     public int hashCode() {
-        return Long.hashCode(id);
+        return Long.hashCode(addressId);
     }
 
     public void addResident(Customer c) {

@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Entity
 public class Customer implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long customerId;
     private String forename;
     private String surname;
@@ -17,6 +17,7 @@ public class Customer implements Serializable {
     private String passwordHash;
 
     @ManyToOne()
+    @JoinColumn(name="addressId")
     private Address address;
 
     public Customer(){}
