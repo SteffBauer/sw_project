@@ -68,25 +68,27 @@ public class CustomerService {
     }
 
     @GetMapping("api/customers")
-    public Customer findCustomer(@RequestParam("customerId") long cId){
+    public ResponseEntity<Customer> findCustomer(@RequestParam("customerId") long cId){
         Optional<Customer> customer = customerRepository.findById(cId);
 
         if(customer.isEmpty())
-            return null;
-        return customer.get();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(customer.get(),HttpStatus.OK);
     }
 
     @PutMapping
-    public Account createAccount(@PathVariable() long cId){
+    public ResponseEntity<Account> createAccount(@PathVariable() long cId){
         Optional<Customer> customer = customerRepository.findById(cId);
 
         if(customer.isEmpty())
-            return null;
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         Account account = new Account(customer.get());
         account = accountRepository.save(account);
+        account.createIban();
+        account= accountRepository.save(account);
 
-        return account;
+        return new ResponseEntity<>(account,HttpStatus.OK);
     }
 
 }
