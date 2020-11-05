@@ -2,9 +2,11 @@ package de.othr.sw.bank.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.Address;
 import de.othr.sw.bank.entity.Customer;
 import de.othr.sw.bank.entity.Message;
+import de.othr.sw.bank.repo.AccountRepository;
 import de.othr.sw.bank.repo.AddressRepository;
 import de.othr.sw.bank.repo.CustomerRepository;
 import de.othr.sw.bank.utils.StringUtils;
@@ -26,6 +28,8 @@ public class CustomerService {
     private CustomerRepository customerRepository;
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private AccountRepository accountRepository;
 
     @PostMapping("api/customers")
     public ResponseEntity<Customer> newCustomer(@RequestBody Customer newCustomer) {
@@ -52,6 +56,7 @@ public class CustomerService {
         newCustomer.setAddress(address);
         newCustomer = customerRepository.save(newCustomer);
 
+
         // Update residents for the address
         address.addResident(newCustomer);
         addressRepository.save(address);
@@ -62,13 +67,26 @@ public class CustomerService {
         return new ResponseEntity(newCustomer,HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("api/customers")
     public Customer findCustomer(@RequestParam("customerId") long cId){
         Optional<Customer> customer = customerRepository.findById(cId);
 
         if(customer.isEmpty())
             return null;
         return customer.get();
+    }
+
+    @PutMapping
+    public Account createAccount(@PathVariable() long cId){
+        Optional<Customer> customer = customerRepository.findById(cId);
+
+        if(customer.isEmpty())
+            return null;
+
+        Account account = new Account(customer.get());
+        account = accountRepository.save(account);
+
+        return account;
     }
 
 }

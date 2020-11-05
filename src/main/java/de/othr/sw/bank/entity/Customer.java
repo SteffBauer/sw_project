@@ -4,6 +4,7 @@ import de.othr.sw.bank.utils.EncryptionUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class Customer implements Serializable {
@@ -13,12 +14,14 @@ public class Customer implements Serializable {
     private String forename;
     private String surname;
     private String taxNumber;
-    private String iban;
     private String passwordHash;
 
     @ManyToOne()
     @JoinColumn(name="addressId")
     private Address address;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Account> accounts;
 
     public Customer(){}
 
@@ -64,14 +67,6 @@ public class Customer implements Serializable {
 
     public void setTaxNumber(String taxNumber) {
         this.taxNumber = taxNumber;
-    }
-
-    public String getIban() {
-        return iban;
-    }
-
-    public void setIban(String iban) {
-        this.iban = iban;
     }
 
     public String getPasswordHash() {
