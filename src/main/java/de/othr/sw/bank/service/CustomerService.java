@@ -40,24 +40,26 @@ public class CustomerService {
         }
 
         Address address = newCustomer.getAddress();
-        /*
         Iterable<Address> addresses = addressRepository.findByCountryAndCityAndZipCodeAndStreetAndHouseNr(address.getCountry(),address.getCity(),address.getZipCode(), address.getStreet(),address.getHouseNr());
-
         if(addresses.iterator().hasNext()){
             address = addresses.iterator().next();
         }
-*/
-         address = addressRepository.save(address);
-         newCustomer.setAddress(address);
+        else {
+            address = addressRepository.save(address);
+        }
 
-
-        // Dauerhaft speichern
+        // Set the address of the customer
+        newCustomer.setAddress(address);
         newCustomer = customerRepository.save(newCustomer);
+
+        // Update residents for the address
         address.addResident(newCustomer);
-        address= addressRepository.save(address);
+        addressRepository.save(address);
 
+        // Do not return the residents for the customer address
+        newCustomer.getAddress().setResidents(null);
 
-        return ResponseEntity.status(HttpStatus.OK).body(newCustomer);
+        return new ResponseEntity(newCustomer,HttpStatus.OK);
     }
 
     @GetMapping
