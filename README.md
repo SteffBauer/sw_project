@@ -20,7 +20,7 @@ To make banking related api calls, you have to open a session. With the returned
 
 ### Banking Service
 
-Foreach banking request, you have to provide a session string. 
+For each banking request, you have to provide a session string. 
 
 * [Get account value](documentation/banking/getAccountValue.md) : `GET /api/banking/account/value`
 * [Get account transfers](documentation/banking/getAccountTransfers.md) : `GET /api/banking/account/transfers`
