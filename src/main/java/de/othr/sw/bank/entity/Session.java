@@ -12,7 +12,7 @@ public class Session implements Serializable {
     @Id
     @GeneratedValue
     private long sessionId;
-    private UUID sessionUuid;
+    private UUID uuid;
 
     @ManyToOne
     @JoinColumn(name="account_id")
@@ -23,7 +23,7 @@ public class Session implements Serializable {
 
     public Session(Account account) {
         this.date = new Date();
-        this.sessionUuid =UUID.randomUUID();
+        this.uuid =UUID.randomUUID();
         this.account = account;
     }
 
@@ -31,12 +31,12 @@ public class Session implements Serializable {
         return sessionId;
     }
 
-    public UUID getSessionUuid() {
-        return sessionUuid;
+    public UUID getUuid() {
+        return uuid;
     }
 
-    public void setSessionUuid(UUID sessionUuid) {
-        this.sessionUuid = sessionUuid;
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public Account getAccount() {

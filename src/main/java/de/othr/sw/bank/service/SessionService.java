@@ -28,6 +28,6 @@ public class SessionService {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         Session session = new Session(accounts.iterator().next());
-        return new ResponseEntity<>(session.getSessionUuid(), HttpStatus.OK);
+        return new ResponseEntity<>(session.getUuid(), HttpStatus.OK);
     }
 }
