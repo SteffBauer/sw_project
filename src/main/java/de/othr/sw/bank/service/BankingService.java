@@ -28,8 +28,13 @@ public class BankingService {
     private AccountRepository accountRepository;
 
 
-    @GetMapping("/account")
+    @GetMapping("/account/value")
     public ResponseEntity<Double> getAccountValue(@RequestBody UUID sessionUuid){
+        throw new NotYetImplementedException();
+    }
+
+    @GetMapping("/account/transfers")
+    public ResponseEntity<Double> getTransfers(@RequestBody UUID sessionUuid){
         throw new NotYetImplementedException();
     }
 
