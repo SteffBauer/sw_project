@@ -17,6 +17,6 @@ public class Transfer {
     private Account payerAccount;
 
     @ManyToOne
-    @JoinColumn(name="recever_account_id")
+    @JoinColumn(name="receiver_account_id")
     private Account receiverAccount;
 }

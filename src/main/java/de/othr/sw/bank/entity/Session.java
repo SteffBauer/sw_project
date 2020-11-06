@@ -15,7 +15,7 @@ public class Session implements Serializable {
     private UUID sessionUuid;
 
     @ManyToOne
-    @JoinColumn(name="accout_id")
+    @JoinColumn(name="account_id")
     private Account account;
     private Date date;
 
