@@ -31,7 +31,7 @@ public class CustomerService {
 
         if(StringUtils.isNullOrEmpty(newCustomer.getForename()) ||
             StringUtils.isNullOrEmpty(newCustomer.getSurname()) ||
-            StringUtils.isNullOrEmpty(newCustomer.getPasswordHash()) ||
+            StringUtils.isNullOrEmpty(newCustomer.getPassword()) ||
             StringUtils.isNullOrEmpty(newCustomer.getTaxNumber()) ||
             newCustomer.getAddress() == null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(newCustomer);
@@ -57,6 +57,8 @@ public class CustomerService {
 
         // Do not return the residents for the customer address
         newCustomer.getAddress().setResidents(null);
+        newCustomer.setPassword(null);
+        newCustomer.setPasswordHash(null);
 
         return new ResponseEntity<>(newCustomer,HttpStatus.OK);
     }
@@ -69,6 +71,8 @@ public class CustomerService {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         Customer c = customer.get();
         c.getAddress().setResidents(null);
+        c.setPassword(null);
+        c.setPasswordHash(null);
         return new ResponseEntity<>(c,HttpStatus.OK);
     }
 

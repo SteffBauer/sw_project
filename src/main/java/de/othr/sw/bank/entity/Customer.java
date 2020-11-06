@@ -15,6 +15,8 @@ public class Customer implements Serializable {
     private String surname;
     private String taxNumber;
     private String passwordHash;
+    @Transient
+    private String password;
 
     @ManyToOne()
     @JoinColumn(name="address_id")
@@ -29,6 +31,7 @@ public class Customer implements Serializable {
         this.forename = forename;
         this.surname = surname;
         this.taxNumber = taxNumber;
+        this.password = password;
         this.passwordHash = EncryptionUtils.getEncryptedString(password);
     }
 
@@ -91,4 +94,11 @@ public class Customer implements Serializable {
         return Long.hashCode(this.customerId);
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
