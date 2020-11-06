@@ -10,7 +10,6 @@ public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long accountId;
-    private final long blz = 100100100;
     private String iban;
 
 
@@ -40,6 +39,7 @@ public class Account implements Serializable {
     }
 
     public long getBlz() {
+        long blz = 100100100;
         return blz;
     }
 
