@@ -7,7 +7,6 @@ import de.othr.sw.bank.repo.AccountRepository;
 import de.othr.sw.bank.repo.AddressRepository;
 import de.othr.sw.bank.repo.CustomerRepository;
 import de.othr.sw.bank.utils.StringUtils;
-import org.apache.catalina.util.CustomObjectInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,7 +58,7 @@ public class CustomerService {
         // Do not return the residents for the customer address
         newCustomer.getAddress().setResidents(null);
 
-        return new ResponseEntity(newCustomer,HttpStatus.OK);
+        return new ResponseEntity<>(newCustomer,HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
