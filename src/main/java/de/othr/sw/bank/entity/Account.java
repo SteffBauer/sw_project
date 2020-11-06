@@ -74,7 +74,6 @@ public class Account implements Serializable {
     }
 
     public void createIban() {
-        //todo stellen auffüllen...
         String country= customer.getAddress().getCountry().substring(0,2).toUpperCase();
         String account = String.format("%010d", getAccountId());
         setIban(country+getBlz()+account);
