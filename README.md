@@ -26,3 +26,7 @@ For each banking request, you have to provide a session string.
 * [Get account transfers](documentation/banking/getAccountTransfers.md) : `GET /api/banking/account/transfers`
 * [Transfer money](documentation/banking/transferMoney.md) : `PUT /api/banking/account/transfer`
 * [Mandate money](documentation/banking/mandateMoney.md) : `PUT /api/banking/account/mandate`
+
+
+## Links
+[HTTP Status Codes](https://de.wikipedia.org/wiki/HTTP-Statuscode)
