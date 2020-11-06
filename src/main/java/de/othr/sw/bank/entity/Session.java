@@ -1,8 +1,6 @@
 package de.othr.sw.bank.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
@@ -15,6 +13,9 @@ public class Session implements Serializable {
     @GeneratedValue
     private long sessionId;
     private UUID sessionUuid;
+
+    @ManyToOne
+    @JoinColumn(name="accout_id")
     private Account account;
     private Date date;
 

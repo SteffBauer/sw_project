@@ -2,6 +2,7 @@ package de.othr.sw.bank.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class Account implements Serializable {
@@ -13,9 +14,20 @@ public class Account implements Serializable {
     private String iban;
 
 
+    @OneToMany(mappedBy="session", fetch = FetchType.EAGER)
+    private List<Session> sessions;
+
+
     @ManyToOne()
-    @JoinColumn(name="customerId")
+    @JoinColumn(name="customer_id")
     private Customer customer;
+
+
+    @OneToMany(mappedBy="payerAccount", fetch = FetchType.EAGER)
+    private List<Transfer> payers;
+
+    @OneToMany(mappedBy="receiverAccount", fetch = FetchType.EAGER)
+    private List<Transfer> receivers;
 
     public Account(){}
 

@@ -8,18 +8,20 @@ public class TransferRequest {
     private String surname;
     private String forename;
     private String iban;
-    private double value;
+    private double amount;
     private Date date;
+    private String description;
 
     public TransferRequest(){}
 
-    public TransferRequest(UUID sessionUuid, String surname, String forename, String iban, double value, Date date) {
+    public TransferRequest(UUID sessionUuid, String surname, String forename, String iban, double amount, Date date, String description) {
         this.sessionUuid = sessionUuid;
         this.surname = surname;
         this.forename = forename;
         this.iban = iban;
-        this.value = value;
+        this.amount = amount;
         this.date = date;
+        this.description= description;
     }
 
     public UUID getSessionUuid() {
@@ -54,12 +56,12 @@ public class TransferRequest {
         this.iban = iban;
     }
 
-    public double getValue() {
-        return value;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setValue(double value) {
-        this.value = value;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     public Date getDate() {
@@ -81,7 +83,15 @@ public class TransferRequest {
 
     @Override
     public int hashCode(){
-        String s = this.iban+this.value+this.date;
+        String s = this.iban+this.amount +this.date;
         return s.hashCode();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

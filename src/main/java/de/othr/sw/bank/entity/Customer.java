@@ -17,7 +17,7 @@ public class Customer implements Serializable {
     private String passwordHash;
 
     @ManyToOne()
-    @JoinColumn(name="addressId")
+    @JoinColumn(name="address_id")
     private Address address;
 
     @OneToMany(mappedBy = "customer")
