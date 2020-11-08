@@ -80,6 +80,14 @@ public class Customer implements Serializable {
         this.passwordHash = passwordHash;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if(!o.getClass().equals(Customer.class))
@@ -94,11 +102,4 @@ public class Customer implements Serializable {
         return Long.hashCode(this.customerId);
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
