@@ -5,10 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Entity
-public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long addressId;
+public class Address extends BaseEntity{
     private String street;
     private int houseNr;
     private long zipCode;
@@ -27,10 +24,6 @@ public class Address {
     }
 
     public Address() { }
-
-    public long getAddressId() {
-        return addressId;
-    }
 
 
     public String getStreet() {
@@ -82,21 +75,6 @@ public class Address {
 
     public void setResidents(List<Customer> residents) {
         this.residents = residents;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Address address = (Address) o;
-
-        return addressId ==address.addressId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Long.hashCode(addressId);
     }
 
     public void addResident(Customer c) {

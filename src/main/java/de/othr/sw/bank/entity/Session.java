@@ -7,11 +7,7 @@ import java.util.UUID;
 
 
 @Entity
-public class Session implements Serializable {
-
-    @Id
-    @GeneratedValue
-    private long sessionId;
+public class Session extends BaseEntity implements Serializable {
     private UUID uuid;
 
     @ManyToOne
@@ -25,10 +21,6 @@ public class Session implements Serializable {
         this.date = new Date();
         this.uuid =UUID.randomUUID();
         this.account = account;
-    }
-
-    public long getSessionId() {
-        return sessionId;
     }
 
     public UUID getUuid() {
@@ -55,17 +47,4 @@ public class Session implements Serializable {
         this.date = date;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if(!o.getClass().equals(Session.class))
-            return false;
-        Session other=(Session) o;
-
-        return this.sessionId==other.sessionId;
-    }
-
-    @Override
-    public int hashCode(){
-        return Long.hashCode(this.sessionId);
-    }
 }

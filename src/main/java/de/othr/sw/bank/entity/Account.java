@@ -5,11 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Account implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long accountId;
+public class Account extends BaseEntity implements Serializable {
     private String iban;
 
 
@@ -34,10 +30,6 @@ public class Account implements Serializable {
         this.customer = customer;
     }
 
-    public long getAccountId() {
-        return accountId;
-    }
-
     public long getBlz() {
         long blz = 100100100;
         return blz;
@@ -59,23 +51,9 @@ public class Account implements Serializable {
         this.customer = customer;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if(!o.getClass().equals(Account.class))
-            return false;
-        Account other=(Account) o;
-
-        return this.accountId==other.accountId;
-    }
-
-    @Override
-    public int hashCode(){
-        return Long.hashCode(this.accountId);
-    }
-
     public void createIban() {
         String country= customer.getAddress().getCountry().substring(0,2).toUpperCase();
-        String account = String.format("%010d", getAccountId());
+        String account = String.format("%010d", this.getId());
         setIban(country+getBlz()+account);
     }
 }

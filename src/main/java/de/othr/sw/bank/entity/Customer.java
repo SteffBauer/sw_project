@@ -7,10 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Customer implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long customerId;
+public class Customer extends BaseEntity implements Serializable {
     private String forename;
     private String surname;
     private String taxNumber;
@@ -33,10 +30,6 @@ public class Customer implements Serializable {
         this.taxNumber = taxNumber;
         this.password = password;
         this.passwordHash = EncryptionUtils.getEncryptedString(password);
-    }
-
-    public long getCustomerId() {
-        return customerId;
     }
 
     public String getForename() {
@@ -86,20 +79,6 @@ public class Customer implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if(!o.getClass().equals(Customer.class))
-            return false;
-        Customer other=(Customer)o;
-
-        return this.customerId==other.customerId;
-    }
-
-    @Override
-    public int hashCode(){
-        return Long.hashCode(this.customerId);
     }
 
 }

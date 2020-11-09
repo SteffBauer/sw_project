@@ -4,10 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Transfer {
-    @Id
-    @GeneratedValue
-    private long transferId;
+public class Transfer extends BaseEntity{
     private double amount;
     private Date date;
     private String description;
@@ -29,10 +26,6 @@ public class Transfer {
         this.payerAccount = payerAccount;
         this.receiverAccount = receiverAccount;
         this.date = new Date();
-    }
-
-    public long getTransferId() {
-        return transferId;
     }
 
     public double getAmount() {
@@ -75,17 +68,4 @@ public class Transfer {
         this.receiverAccount = receiverAccount;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (!o.getClass().equals(Transfer.class))
-            return false;
-        Transfer other = (Transfer) o;
-
-        return this.hashCode() == other.hashCode();
-    }
-
-    @Override
-    public int hashCode() {
-        return Long.hashCode(transferId);
-    }
 }
