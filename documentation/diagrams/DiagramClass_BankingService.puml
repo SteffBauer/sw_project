@@ -1,0 +1,45 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+' Declare Classes
+abstract class BaseEntity{
+   - id: long
+   - getId(): long
+   + equals(object: Object): boolean
+   + hashCode(): int
+}
+
+class Account{
+}
+
+class Address{
+}
+
+class Customer{
+}
+
+class Session{
+}
+
+class Transfer{
+}
+
+
+' Declare relationship of classes
+Session "0..*" -- "1" Customer
+Customer "1" --* "o..*" Account
+Address "1" - "1..*" Account
+Transfer "0..*" - "1" Account
+Transfer "0..*" - "1" Account
+
+BaseEntity <|-- Account
+BaseEntity <|-- Address
+BaseEntity <|-- Customer
+BaseEntity <|-- Session
+BaseEntity <|-- Transfer
+
+Transfer -[hidden]> BaseEntity
+Transfer -[hidden]> Address
+
+@enduml
