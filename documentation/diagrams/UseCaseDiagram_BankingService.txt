@@ -1,23 +1,24 @@
 @startuml
 left to right direction
+
 actor "Customer" as c
 actor "Employee" as e
+
+entity "Chat System" as chat
+
 rectangle Banking {
   usecase "Register Customer" as uc1
   usecase "Find Customer" as uc2
   usecase "Create Account" as uc3
-  
-  usecase "Support Customer" as uc4
+
   
   usecase "Open Session" as uc5
   usecase "Get Account Value" as uc6
   usecase "Transfer Money" as uc7
   usecase "Mandate Money" as uc8
-  usecase "Ask for Support" as uc9
-  
-  ' todo Bedinungen modellieren
-  note "User has to be registered" as n1
-  (n1) .. (uc5)
+
+  usecase "Use Support" as uc4
+
 }
 c --> uc1
 c --> uc2
@@ -26,11 +27,18 @@ c --> uc5
 c --> uc6
 c --> uc7
 c --> uc8
-c --> uc9
 
-uc1 --> e
-uc2 --> e
-uc3 --> e
-uc4 --> e
+e --> uc1
+e --> uc2
+e --> uc3
+
+c --> uc4 : Ask\nQuestion
+e --> uc4 : Answer\nQuestion
+uc4 --> chat
+
+'uc1 --> e
+'uc2 --> e
+'uc3 --> e
+'uc4 --> e
 
 @enduml
