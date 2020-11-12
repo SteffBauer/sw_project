@@ -11,6 +11,8 @@ rectangle Banking {
   usecase "Register Customer" as uc1
   usecase "Find Customer" as uc2
   usecase "Create Account" as uc3
+  usecase "Mange Customers" as uc9
+  usecase "Mange Accounts" as uc10
 
   
   usecase "Open Session" as uc5
@@ -36,11 +38,13 @@ c --> uc8
 'e --> uc3
 
 c --> uc4 : Ask\nQuestion
-uc4 -down-> chat
+uc4 .down.> chat
 
 uc1 <-- e
 uc2 <-- e
 uc3 <-- e
 uc4 <-- e : Answer\nQuestion
+uc9 <-- e
+uc10 <-- e
 
 @enduml
