@@ -1,50 +1,55 @@
 @startuml
 left to right direction
 
+entity "Chat" as chat
+
 actor "Customer" as c
 actor "Employee" as e
 
-entity "Chat System" as chat
 
 
 rectangle Banking {
+  usecase "Use Support" as uc4
+
   usecase "Register Customer" as uc1
   usecase "Find Customer" as uc2
   usecase "Create Account" as uc3
   usecase "Mange Customers" as uc9
   usecase "Mange Accounts" as uc10
 
-  
+
   usecase "Open Session" as uc5
   usecase "Get Account Value" as uc6
   usecase "Transfer Money" as uc7
   usecase "Mandate Money" as uc8
 
-  usecase "Use Support" as uc4
+
 
 }
+
+chat --> uc4
 
 
 c --> uc1
 c --> uc2
 c --> uc3
+uc1 <-- e
+uc2 <-- e
+uc3 <-- e
+
 c --> uc5
 c --> uc6
 c --> uc7
 c --> uc8
 
-'e --> uc1
-'e --> uc2
-'e --> uc3
 
-c --> uc4 : Ask\nQuestion
-uc4 .down.> chat
-
-uc1 <-- e
-uc2 <-- e
-uc3 <-- e
-uc4 <-- e : Answer\nQuestion
 uc9 <-- e
 uc10 <-- e
+
+uc6 -[hidden]- uc9
+uc5 -[hidden]- uc10
+
+c --> uc4 : Ask\nQuestion
+uc4 <-- e : Answer\nQuestion
 
 @enduml
