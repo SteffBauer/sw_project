@@ -6,6 +6,7 @@ actor "Employee" as e
 
 entity "Chat System" as chat
 
+
 rectangle Banking {
   usecase "Register Customer" as uc1
   usecase "Find Customer" as uc2
@@ -20,6 +21,8 @@ rectangle Banking {
   usecase "Use Support" as uc4
 
 }
+
+
 c --> uc1
 c --> uc2
 c --> uc3
@@ -28,17 +31,16 @@ c --> uc6
 c --> uc7
 c --> uc8
 
-e --> uc1
-e --> uc2
-e --> uc3
+'e --> uc1
+'e --> uc2
+'e --> uc3
 
 c --> uc4 : Ask\nQuestion
-e --> uc4 : Answer\nQuestion
-uc4 --> chat
+uc4 -down-> chat
 
-'uc1 --> e
-'uc2 --> e
-'uc3 --> e
-'uc4 --> e
+uc1 <-- e
+uc2 <-- e
+uc3 <-- e
+uc4 <-- e : Answer\nQuestion
 
 @enduml
