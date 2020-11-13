@@ -6,7 +6,8 @@ Register customer to have access to bank accounts
 
 **Method** : `POST`
 
-**Auth required** : No
+**Authentication required** : No
+**Registration required** : No
 
 **Data example**
 
