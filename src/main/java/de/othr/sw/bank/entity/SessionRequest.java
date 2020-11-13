@@ -2,21 +2,21 @@ package de.othr.sw.bank.entity;
 
 public class SessionRequest {
     private String password;
-    private String iban;
+    private String username;
 
     public SessionRequest() {}
 
-    public SessionRequest(String password, String iban) {
+    public SessionRequest(String password, String username) {
         this.password = password;
-        this.iban = iban;
+        this.username = username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public String getIban() {
-        return iban;
+    public String getUsername() {
+        return username;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class SessionRequest {
 
     @Override
     public int hashCode(){
-        String s = this.iban+this.password;
+        String s = this.username +this.password;
         return s.hashCode();
     }
 }

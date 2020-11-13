@@ -1,9 +1,9 @@
 package de.othr.sw.bank.service;
 
-import de.othr.sw.bank.entity.Account;
+import de.othr.sw.bank.entity.Customer;
 import de.othr.sw.bank.entity.Session;
 import de.othr.sw.bank.entity.SessionRequest;
-import de.othr.sw.bank.repo.AccountRepository;
+import de.othr.sw.bank.repo.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +16,15 @@ import java.util.UUID;
 public class SessionService {
 
     @Autowired
-    private AccountRepository accountRepository;
+    private CustomerRepository customerRepository;
 
     @PostMapping("/session")
     public ResponseEntity<UUID> openSession(@RequestBody SessionRequest sessionRequest){
-        Iterable<Account> accounts= accountRepository.findAccountByIban(sessionRequest.getIban());
-        if(!accounts.iterator().hasNext())
+        Iterable<Customer> customers= customerRepository.finCustomerByUsername(sessionRequest.getUsername());
+        if(!customers.iterator().hasNext())
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-        Session session = new Session(accounts.iterator().next());
+        Session session = new Session(customers.iterator().next());
         return new ResponseEntity<>(session.getUuid(), HttpStatus.OK);
     }
 }

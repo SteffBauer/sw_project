@@ -11,16 +11,16 @@ public class Session extends BaseEntity implements Serializable {
     private UUID uuid;
 
     @ManyToOne
-    @JoinColumn(name="account_id")
-    private Account account;
+    @JoinColumn(name="customer_id")
+    private Customer customer;
     private Date date;
 
     public Session(){}
 
-    public Session(Account account) {
+    public Session(Customer customer) {
         this.date = new Date();
         this.uuid =UUID.randomUUID();
-        this.account = account;
+        this.customer = customer;
     }
 
     public UUID getUuid() {
@@ -31,12 +31,12 @@ public class Session extends BaseEntity implements Serializable {
         this.uuid = uuid;
     }
 
-    public Account getAccount() {
-        return account;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setAccount(Account iban) {
-        this.account = iban;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Date getDate() {
