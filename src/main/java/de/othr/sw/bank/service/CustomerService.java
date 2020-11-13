@@ -31,11 +31,14 @@ public class CustomerService {
 
         if(StringUtils.isNullOrEmpty(newCustomer.getForename()) ||
             StringUtils.isNullOrEmpty(newCustomer.getSurname()) ||
+                StringUtils.isNullOrEmpty(newCustomer.getUsername()) ||
             StringUtils.isNullOrEmpty(newCustomer.getPassword()) ||
             StringUtils.isNullOrEmpty(newCustomer.getTaxNumber()) ||
             newCustomer.getAddress() == null){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(newCustomer);
         }
+
+        // todo check if username is already in use
 
         Address address = newCustomer.getAddress();
         Iterable<Address> addresses = addressRepository.findByCountryAndCityAndZipCodeAndStreetAndHouseNr(address.getCountry(),address.getCity(),address.getZipCode(), address.getStreet(),address.getHouseNr());

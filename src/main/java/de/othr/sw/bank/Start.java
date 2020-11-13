@@ -12,7 +12,7 @@ public class Start {
 
     public static void main(String[] args) throws JsonProcessingException {
 
-        Customer c = new Customer("Vorname", "Nachname", "123456", "safest_password_ever");
+        Customer c = new Customer("Vorname", "Nachname", "unique_Nutzername", "123456", "safest_password_ever");
         Address a = new Address("Straße", 5,1234,"Stadt","Land");
         c.setAddress(a);
         ObjectMapper mapper = new ObjectMapper();

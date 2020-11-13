@@ -10,6 +10,8 @@ import java.util.List;
 public class Customer extends BaseEntity implements Serializable {
     private String forename;
     private String surname;
+    @Column(unique=true)
+    private String username;
     private String taxNumber;
     private String passwordHash;
     @Transient
@@ -24,9 +26,10 @@ public class Customer extends BaseEntity implements Serializable {
 
     public Customer(){}
 
-    public Customer(String forename, String surname, String taxNumber, String password) {
+    public Customer(String forename, String surname, String username, String taxNumber, String password) {
         this.forename = forename;
         this.surname = surname;
+        this.username = username;
         this.taxNumber = taxNumber;
         this.password = password;
         this.passwordHash = EncryptionUtils.getEncryptedString(password);
@@ -81,4 +84,11 @@ public class Customer extends BaseEntity implements Serializable {
         this.password = password;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }
