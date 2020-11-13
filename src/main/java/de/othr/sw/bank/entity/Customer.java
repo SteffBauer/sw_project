@@ -24,6 +24,9 @@ public class Customer extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "customer")
     private List<Account> accounts;
 
+    @OneToMany(mappedBy="customer")
+    private List<Session> sessions;
+
     public Customer(){}
 
     public Customer(String forename, String surname, String username, String taxNumber, String password) {

@@ -8,11 +8,6 @@ import java.util.List;
 public class Account extends BaseEntity implements Serializable {
     private String iban;
 
-
-    @OneToMany(mappedBy="account")
-    private List<Session> sessions;
-
-
     @ManyToOne
     @JoinColumn(name="customer_id")
     private Customer customer;
