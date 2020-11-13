@@ -4,31 +4,41 @@ package "Presentation tier" {
   HTTP - [Web Application]
 }
 
-package "Application tier" {
-  IFBankingService - [BankingService]
-  IFSessionService - [SessionService]
-  IFCustomerService - [CustomerService]
+package "Logic tier" {
+  IFBankingService -down- [BankingService]
+  IFSessionService -down- [SessionService]
+  IFCustomerService -down- [CustomerService]
   
-  [Web Application] --> IFBankingService
-  [Web Application] --> IFSessionService
-  [Web Application] --> IFCustomerService
+  [Web Application] ..> IFBankingService
+  [Web Application] ..> IFSessionService
+  [Web Application] ..> IFCustomerService
+
+
+  [BankingService] -[hidden] [SessionService]
+  [BankingService] -[hidden] [CustomerService]
+  ' used Services
+  [Chat Service] -[hidden] [Paypal]
+  [Paypal] ..> IFBankingService
+
+  [Chat Service] -- IFChatService
+  IFCustomerService .> IFChatService
 }
 
 package "Data tier" {
-  CustomerRepo - [CustomerRepository]
-  AccountRepo - [AccountRepository]
-  AddressRepo - [AddressRepository]
-  SessionRepo - [SessionRepository]
+  CustomerRepo -down- [CustomerRepository]
+  AccountRepo -down- [AccountRepository]
+  AddressRepo -down- [AddressRepository]
+  SessionRepo -down- [SessionRepository]
+
+  [BankingService] .> CustomerRepo
+  [SessionService] .> CustomerRepo
   
-  [BankingService] --> CustomerRepo
-  [CustomerService] --> CustomerRepo
+  [BankingService] .> AddressRepo
+  [CustomerService] .> AddressRepo
   
-  [BankingService] --> AddressRepo
-  [CustomerService] --> AddressRepo
-  
-  [BankingService] --> AccountRepo
-  [CustomerService] --> AccountRepo
-  [SessionService] --> AccountRepo
+  [BankingService] .> AccountRepo
+
+  [SessionService] -..> SessionRepo
 }
 
 
