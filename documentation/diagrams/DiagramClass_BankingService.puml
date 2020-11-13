@@ -11,25 +11,44 @@ abstract class BaseEntity{
 }
 
 class Account{
+  - iban: String
 }
 
 class Address{
+  - street: String
+  - houseNr: int
+  - zipCode: long
+  - city: String
+  - country: String
+  + getResidents(): List<Customer>
+  + addResident(customer: Customer): void
 }
 
 class Customer{
+  - forename: String
+  - surname: String
+  - username: String
+  - taxNumber: String
+  - passwordHash: String
+  - password: String
 }
 
 class Session{
+  - uuid: UUID
+  - date: Date
 }
 
 class Transfer{
+  - amount: double
+  - date: Date
+  - description: String
 }
 
 
 ' Declare relationship of classes
 Session "0..*" -- "1" Customer
 Customer "1" --* "o..*" Account
-Address "1" - "1..*" Account
+Address "1" - "1..*" Customer
 Transfer "0..*" - "1" Account
 Transfer "0..*" - "1" Account
 
@@ -39,7 +58,7 @@ BaseEntity <|-- Customer
 BaseEntity <|-- Session
 BaseEntity <|-- Transfer
 
-Transfer -[hidden]> BaseEntity
+BaseEntity -[hidden]> Session
 Transfer -[hidden]> Address
 
 @enduml
