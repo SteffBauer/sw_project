@@ -20,7 +20,7 @@ public class SessionService {
 
     @PostMapping("/session")
     public ResponseEntity<UUID> openSession(@RequestBody SessionRequest sessionRequest){
-        Iterable<Customer> customers= customerRepository.finCustomerByUsername(sessionRequest.getUsername());
+        Iterable<Customer> customers= customerRepository.findCustomerByUsername(sessionRequest.getUsername());
         if(!customers.iterator().hasNext())
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
