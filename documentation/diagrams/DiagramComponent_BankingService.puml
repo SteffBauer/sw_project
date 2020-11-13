@@ -8,20 +8,21 @@ package "Logic tier" {
   IFBankingService -down- [BankingService]
   IFSessionService -down- [SessionService]
   IFCustomerService -down- [CustomerService]
+  IFSupportService -down- [SupportService]
   
   [Web Application] ..> IFBankingService
   [Web Application] ..> IFSessionService
   [Web Application] ..> IFCustomerService
 
-
+  [SupportService] -[hidden] [BankingService]
   [BankingService] -[hidden] [SessionService]
   [BankingService] -[hidden] [CustomerService]
   ' used Services
   [Chat Service] -[hidden] [Paypal]
   [Paypal] ..> IFBankingService
 
-  [Chat Service] -- IFChatService
-  IFCustomerService .> IFChatService
+  IFChatService - [Chat Service]
+  IFSupportService .> IFChatService
 }
 
 package "Data tier" {
