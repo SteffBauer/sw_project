@@ -1,5 +1,6 @@
 package de.othr.sw.bank.service;
 
+import de.othr.sw.bank.entity.AccountRequest;
 import de.othr.sw.bank.entity.TransferRequest;
 import de.othr.sw.bank.repo.AccountRepository;
 import de.othr.sw.bank.repo.AddressRepository;
@@ -24,12 +25,12 @@ public class BankingService {
 
 
     @GetMapping("/account/value")
-    public ResponseEntity<Double> getAccountValue(@RequestBody UUID sessionUuid){
+    public ResponseEntity<Double> getAccountValue(@RequestBody AccountRequest accountRequest){
         throw new NotYetImplementedException();
     }
 
     @GetMapping("/account/transfers")
-    public ResponseEntity<Double> getTransfers(@RequestBody UUID sessionUuid){
+    public ResponseEntity<Double> getTransfers(@RequestBody AccountRequest accountRequest){
         throw new NotYetImplementedException();
     }
 
