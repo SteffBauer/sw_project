@@ -64,7 +64,7 @@ BaseEntity <|-- Customer
 BaseEntity <|-- Session
 BaseEntity <|-- Transfer
 
-Customer <|.. Employee
+Customer <|-- Employee
 
 BaseEntity -[hidden]> Session
 Transfer -[hidden]> Address
