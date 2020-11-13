@@ -6,8 +6,9 @@ Used to get a valid session string for a specific bank account.
 
 **Method** : `POST`
 
-**Authentication required** : NO
-**Registration required** : YES
+**Authentication required** : No
+
+**Registration required** : Yes
 
 **Data constraints**
 
