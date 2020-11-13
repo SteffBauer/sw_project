@@ -1,28 +1,25 @@
 @startuml
 
-package "Presentation tier" {
+package "Presentation tier" as presentation {
   HTTP - [Web Application]
 }
 
-package "Logic tier" {
-  IFBankingService -down- [BankingService]
-  IFSessionService -down- [SessionService]
-  IFCustomerService -down- [CustomerService]
-  IFSupportService -down- [SupportService]
+package "Logic tier" as logic {
+  IFSupportService -- [SupportService]
+  IFBankingService -- [BankingService]
+  IFSessionService -- [SessionService]
+  IFCustomerService -- [CustomerService]
   
   [Web Application] ..> IFBankingService
   [Web Application] ..> IFSessionService
   [Web Application] ..> IFCustomerService
 
-  [SupportService] -[hidden] [BankingService]
-  [BankingService] -[hidden] [SessionService]
-  [BankingService] -[hidden] [CustomerService]
   ' used Services
-  [Chat Service] -[hidden] [Paypal]
   [Paypal] ..> IFBankingService
 
-  IFChatService - [Chat Service]
+  [Chat Service] - IFChatService
   IFSupportService .> IFChatService
+
 }
 
 package "Data tier" {
@@ -41,6 +38,8 @@ package "Data tier" {
 
   [SessionService] -..> SessionRepo
 }
+
+presentation -[hidden]-> logic
 
 
 
