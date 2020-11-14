@@ -16,7 +16,7 @@ Customer related calls can be made without opening a session.
 
 To make banking related api calls, you have to open a session. With the returned session string, you can make account related transfers or other requests.
 
-* [Open session](documentation/session/openSession.md) : `POST /api/banking/session`
+* [Open session](documentation/session/openSession.md) : `POST /api/session`
 
 ### Banking Service
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController()
-@RequestMapping("api/banking")
+@RequestMapping("api")
 public class SessionService {
 
     @Autowired
