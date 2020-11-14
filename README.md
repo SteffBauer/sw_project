@@ -27,6 +27,15 @@ With the returned session string, you can make account related transfers or othe
 * [Open session](documentation/session/openSession.md) : `POST /api/session`
 
 
+### Support Service
+
+Support can be given by an employee and can be used by an customer, no matter if he is logged
+in or not.
+
+* [Ask for support](documentation/support/useSupport.md) : `POST /api/support`
+* [Conversation](documentation/support/conversation.md) : `PUT /api/support/{id}`
+
+
 ### Banking Service
 
 For each banking request, you have to provide a valid session, which is not older than ten minutes. 
