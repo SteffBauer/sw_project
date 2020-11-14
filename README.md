@@ -12,6 +12,7 @@ The calls "Delete Customer", "Delete Account" and "Find Customer" can only be ma
 * [Register customer](documentation/customer/registerCustomer.md) : `POST /api/customers`
 * [Find customer](documentation/customer/findCustomer.md) : `GET /api/customers/:id`
 * [Delete customer](documentation/customer/deleteCustomer.md) : `Delete /api/customers/:id`
+* [Get address of customer](documentation/customer/getaddress.md) : `Delete /api/customers/:id/address`
 * [Create account](documentation/customer/createAccount.md) : `Put /api/customers/:id/createAccount`
 * [Delete account](documentation/customer/deleteAccount.md) : `Delete /api/customers/:id/deleteAccount`
 
