@@ -6,14 +6,15 @@ Project for the course 'Softwaredevelopment' at OTH Regensburg
 ### Customer Service
 
 The customer related call "Register Customer" can be made without opening a session.
-To create an account, the customer or the employee have to be logged in.
-The calls "Delete Customer", "Delete Account" and "Find Customer" can only be made by an employee of the bank.
+To create an account the customer or the employee have to be logged in.
+The calls "Delete Customer", "Delete Account", "Get address of customer",
+"Update address of customer" and "Find Customer" can only be made by an employee of the bank.
 
 * [Register customer](documentation/customer/registerCustomer.md) : `POST /api/customers`
 * [Find customer](documentation/customer/findCustomer.md) : `GET /api/customers/:id`
 * [Delete customer](documentation/customer/deleteCustomer.md) : `DELETE /api/customers/:id`
 * [Get address of customer](documentation/customer/getAddress.md) : `GET /api/customers/:id/address`
-* [Get address of customer](documentation/customer/updateAddress.md) : `PUT /api/customers/:id/address`
+* [Update address of customer](documentation/customer/updateAddress.md) : `PUT /api/customers/:id/address`
 * [Create account](documentation/customer/createAccount.md) : `PUT /api/customers/:id/createAccount`
 * [Delete account](documentation/customer/deleteAccount.md) : `DELETE /api/customers/:id/deleteAccount`
 
