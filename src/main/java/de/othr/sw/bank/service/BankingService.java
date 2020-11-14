@@ -24,22 +24,22 @@ public class BankingService {
     private AccountRepository accountRepository;
 
 
-    @GetMapping("/account/value")
+    @GetMapping("/value")
     public ResponseEntity<Double> getAccountValue(@RequestBody AccountRequest accountRequest){
         throw new NotYetImplementedException();
     }
 
-    @GetMapping("/account/transfers")
+    @GetMapping("/transfers")
     public ResponseEntity<Double> getTransfers(@RequestBody AccountRequest accountRequest){
         throw new NotYetImplementedException();
     }
 
-    @PutMapping("/account/transfer")
+    @PutMapping("/transfer")
     public ResponseEntity<Double> transferRequest(@RequestBody TransferRequest transferRequest){
         throw new NotYetImplementedException();
     }
 
-    @PutMapping("/account/mandate")
+    @PutMapping("/mandate")
     public ResponseEntity<Double> mandateRequest(@RequestBody TransferRequest transferRequest){
         throw new NotYetImplementedException();
     }
