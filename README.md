@@ -10,6 +10,7 @@ Customer related calls can be made without opening a session.
 * [Register customer](documentation/customer/registerCustomer.md) : `POST /api/customers`
 * [Find customer](documentation/customer/findCustomer.md) : `GET /api/customers/:id`
 * [Create account](documentation/customer/createAccount.md) : `Put /api/customers/:id/createAccount`
+* [Delete account](documentation/customer/deleteAccount.md) : `Delete /api/customers/:id/deleteAccount`
 
 
 ### Session Service
