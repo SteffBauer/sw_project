@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="777px" preserveAspectRatio="none" style="width:873px;height:777px;" version="1.1" viewBox="0 0 873 777" width="873px" zoomAndPan="magnify"><defs><filter height="300%" id="f1sunduel9431z" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[3dcf69e4e87a10af00fce8354034ba4c]
+cluster presentation--><polygon fill="#FFFFFF" filter="url(#f1sunduel9431z)" points="139,6,263,6,270,29.6094,401,29.6094,401,122,139,122,139,6" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="139" x2="270" y1="29.6094" y2="29.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="118" x="143" y="22.5332">Presentation tier</text><!--MD5=[cbbcdfd2ff286cf453505908e439d9c0]
+cluster logic--><polygon fill="#FFFFFF" filter="url(#f1sunduel9431z)" points="111,162,183,162,190,185.6094,855,185.6094,855,518,111,518,111,162" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="111" x2="190" y1="185.6094" y2="185.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="66" x="115" y="178.5332">Logic tier</text><!--MD5=[73865fb9f71d25bcac5066aa2aa9c8b8]
+cluster Data tier--><polygon fill="#FFFFFF" filter="url(#f1sunduel9431z)" points="16,550,81,550,88,573.6094,800,573.6094,800,770,16,770,16,550" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="16" x2="88" y1="573.6094" y2="573.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="59" x="20" y="566.5332">Data tier</text><!--MD5=[96f7e1299d4a43069e6ed32352fcac20]
+entity HTTP--><ellipse cx="191" cy="74" fill="#FEFECE" filter="url(#f1sunduel9431z)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="36" x="173" y="105.5332">HTTP</text><!--MD5=[5f72b1e1b6bcd2ac922e89c6c0b5c71b]
+entity Web Application--><rect fill="#FEFECE" filter="url(#f1sunduel9431z)" height="47.6094" style="stroke: #A80036; stroke-width: 1.5;" width="142" x="235" y="50"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="357" y="55"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="355" y="57"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="355" y="61"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="102" x="250" y="84.5332">Web Application</text><!--MD5=[dd48e2b1ec5bbad274ef16ba535c017d]
+entity IFSupportService--><ellipse cx="612" cy="236" fill="#FEFECE" filter="url(#f1sunduel9431z)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="109" x="557.5" y="267.5332">IFSupportService</text><!--MD5=[e0dbcdd0b6f6a8c0a95380b7bdd4cfaa]
+entity SupportService--><rect fill="#FEFECE" filter="url(#f1sunduel9431z)" height="47.6094" style="stroke: #A80036; stroke-width: 1.5;" width="137" x="671.5" y="332"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="788.5" y="337"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="786.5" y="339"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="786.5" y="343"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="97" x="686.5" y="366.5332">SupportService</text><!--MD5=[ec3e7e2aa057a364e097610d2bd1153b]
+entity IFBankingService--><ellipse cx="217" cy="356" fill="#FEFECE" filter="url(#f1sunduel9431z)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="110" x="162" y="387.5332">IFBankingService</text><!--MD5=[ba723757ffde46ba429618d659790656]
+entity BankingService--><rect fill="#FEFECE" filter="url(#f1sunduel9431z)" height="47.6094" style="stroke: #A80036; stroke-width: 1.5;" width="138" x="173" y="446"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="291" y="451"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="289" y="453"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="289" y="457"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="188" y="480.5332">BankingService</text><!--MD5=[363f5c16e87f4383546ac8b7af3bf0de]
+entity IFSessionService--><ellipse cx="335" cy="236" fill="#FEFECE" filter="url(#f1sunduel9431z)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="109" x="280.5" y="267.5332">IFSessionService</text><!--MD5=[d2f5cb2edd50ea0698f8feadbed97ba1]
+entity SessionService--><rect fill="#FEFECE" filter="url(#f1sunduel9431z)" height="47.6094" style="stroke: #A80036; stroke-width: 1.5;" width="137" x="315.5" y="332"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="432.5" y="337"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="430.5" y="339"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="430.5" y="343"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="97" x="330.5" y="366.5332">SessionService</text><!--MD5=[5d230ed10d1fc6f00878a9a2f934a889]
+entity IFCustomerService--><ellipse cx="500" cy="236" fill="#FEFECE" filter="url(#f1sunduel9431z)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="120" x="440" y="267.5332">IFCustomerService</text><!--MD5=[76d0c25527896f67cb6aa4ccab7e7ab8]
+entity CustomerService--><rect fill="#FEFECE" filter="url(#f1sunduel9431z)" height="47.6094" style="stroke: #A80036; stroke-width: 1.5;" width="148" x="488" y="332"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="616" y="337"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="614" y="339"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="614" y="343"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="108" x="503" y="366.5332">CustomerService</text><!--MD5=[f0a7f7bc3851169264de734ff3b80211]
+entity Paypal--><rect fill="#FEFECE" filter="url(#f1sunduel9431z)" height="47.6094" style="stroke: #A80036; stroke-width: 1.5;" width="83" x="154.5" y="212"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="217.5" y="217"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="215.5" y="219"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="215.5" y="223"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="43" x="169.5" y="246.5332">Paypal</text><!--MD5=[2ad210d0050c3676223433bfb12892e1]
+entity Chat Service--><rect fill="#FEFECE" filter="url(#f1sunduel9431z)" height="47.6094" style="stroke: #A80036; stroke-width: 1.5;" width="121" x="656.5" y="212"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="757.5" y="217"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="755.5" y="219"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="755.5" y="223"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="81" x="671.5" y="246.5332">Chat Service</text><!--MD5=[ca956e10d9e7934e8af57a0a7daea155]
+entity IFChatService--><ellipse cx="822" cy="236" fill="#FEFECE" filter="url(#f1sunduel9431z)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="89" x="777.5" y="267.5332">IFChatService</text><!--MD5=[8f00b82b5d8db756626ca20348204bf7]
+entity CustomerRepo--><ellipse cx="311" cy="616" fill="#FEFECE" filter="url(#f1sunduel9431z)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="95" x="263.5" y="647.5332">CustomerRepo</text><!--MD5=[b3990cbb38841f9d8fcdaf5297d6dc08]
+entity CustomerRepository--><rect fill="#FEFECE" filter="url(#f1sunduel9431z)" height="47.6094" style="stroke: #A80036; stroke-width: 1.5;" width="169" x="226.5" y="706"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="375.5" y="711"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="373.5" y="713"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="373.5" y="717"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="241.5" y="740.5332">CustomerRepository</text><!--MD5=[9a93cbfaa13b410297ce7f2a21ca8600]
+entity AccountRepo--><ellipse cx="177" cy="616" fill="#FEFECE" filter="url(#f1sunduel9431z)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="85" x="134.5" y="647.5332">AccountRepo</text><!--MD5=[5cc9ac11a3f0b123b98e0809612ba330]
+entity AccountRepository--><rect fill="#FEFECE" filter="url(#f1sunduel9431z)" height="47.6094" style="stroke: #A80036; stroke-width: 1.5;" width="159" x="32.5" y="706"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="171.5" y="711"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="169.5" y="713"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="169.5" y="717"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="47.5" y="740.5332">AccountRepository</text><!--MD5=[da8edd1c03438c7def6f252922db0850]
+entity AddressRepo--><ellipse cx="511" cy="616" fill="#FEFECE" filter="url(#f1sunduel9431z)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="86" x="468" y="647.5332">AddressRepo</text><!--MD5=[dba78d1918f1bbe6079f47e9b7a97428]
+entity AddressRepository--><rect fill="#FEFECE" filter="url(#f1sunduel9431z)" height="47.6094" style="stroke: #A80036; stroke-width: 1.5;" width="160" x="431" y="706"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="571" y="711"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="569" y="713"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="569" y="717"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="120" x="446" y="740.5332">AddressRepository</text><!--MD5=[a0161680b77bca079bf695f1d554d9c8]
+entity SessionRepo--><ellipse cx="655" cy="616" fill="#FEFECE" filter="url(#f1sunduel9431z)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="613" y="647.5332">SessionRepo</text><!--MD5=[cc33ee68753cc2405ee06b12bde22df7]
+entity SessionRepository--><rect fill="#FEFECE" filter="url(#f1sunduel9431z)" height="47.6094" style="stroke: #A80036; stroke-width: 1.5;" width="158" x="626" y="706"/><rect fill="#FEFECE" height="10" style="stroke: #A80036; stroke-width: 1.5;" width="15" x="764" y="711"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="762" y="713"/><rect fill="#FEFECE" height="2" style="stroke: #A80036; stroke-width: 1.5;" width="4" x="762" y="717"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="641" y="740.5332">SessionRepository</text><!--MD5=[99d0499ea58cdc2f64f8969b709c1dca]
+link HTTP to Web Application--><path d="M200.43,74 C211.84,74 223.25,74 234.66,74 " fill="none" id="HTTP-Web Application" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[5e453f200dc756354ab45e055b2b41ce]
+link IFSupportService to SupportService--><path d="M619.13,245.08 C624.46,251.01 632,259.19 639,266 C662.95,289.31 691.66,314.35 712.34,331.91 " fill="none" id="IFSupportService-SupportService" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[d86d3bb6aece21acd13d5dafa20bd9c4]
+link IFBankingService to BankingService--><path d="M218.8,365.05 C222.51,381.71 231.17,420.47 236.79,445.67 " fill="none" id="IFBankingService-BankingService" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[0adcaafa4c22125a6ad619e07717e669]
+link IFSessionService to SessionService--><path d="M338.37,245.11 C345.68,262.71 363.22,304.96 374.3,331.65 " fill="none" id="IFSessionService-SessionService" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[7f1f49a09eb55e9213ceeb235d37460a]
+link IFCustomerService to CustomerService--><path d="M504.26,245.11 C513.51,262.71 535.71,304.96 549.73,331.65 " fill="none" id="IFCustomerService-CustomerService" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[ccfd00048727cd5f497e4ae8d5c87fa4]
+link Web Application to IFBankingService--><path d="M281.6,98.16 C265.03,112.36 241.87,129.41 218,138 C205.95,142.34 111.74,136.63 103,146 C66.62,185 79.61,218.07 103,266 C124.16,309.37 177.8,337.78 203.23,349.25 " fill="none" id="Web Application-to-IFBankingService" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="207.92,351.32,201.2969,344.0306,203.3445,349.3039,198.0712,351.3515,207.92,351.32" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[2fd54bf6f614f46a8d244bdf27a211cc]
+link Web Application to IFSessionService--><path d="M310.22,98.27 C316.38,132.25 327.64,194.38 332.57,221.61 " fill="none" id="Web Application-to-IFSessionService" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="333.53,226.87,335.875,217.3044,332.6456,221.9488,328.0012,218.7194,333.53,226.87" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[59ebb05dfeaa686d3d9a18b15b729369]
+link Web Application to IFCustomerService--><path d="M346.13,98.05 C367.42,111.03 393.54,128.18 415,146 C444.55,170.53 474.51,204.5 489.74,222.55 " fill="none" id="Web Application-to-IFCustomerService" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="493.28,226.78,490.5566,217.3152,490.065,222.9506,484.4296,222.4591,493.28,226.78" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[8e863e5f15f67baefe25286bbec05525]
+link Paypal to IFBankingService--><path d="M200.1,260.03 C204.44,284.43 211.15,322.1 214.66,341.87 " fill="none" id="Paypal-to-IFBankingService" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="215.57,346.94,217.9102,337.3732,214.6831,342.0193,210.0371,338.7922,215.57,346.94" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[dcd6837fafe8e5e7cfac30b11506d3e6]
+link Chat Service to IFChatService--><path d="M777.7,236 C789.35,236 801.01,236 812.66,236 " fill="none" id="Chat Service-IFChatService" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[851091a892807f6e32fad71a9555e443]
+link IFSupportService to IFChatService--><path d="M611.91,226.81 C612.26,208.58 615.77,167.73 639,146 C644.83,140.55 648.57,142.89 656.5,142 C671.8,140.27 783.76,135.48 795,146 C816.23,165.86 820.99,201.7 821.92,221.63 " fill="none" id="IFSupportService-to-IFChatService" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="822.09,226.81,825.7793,217.6782,821.9187,221.8129,817.784,217.9523,822.09,226.81" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[82462e0f5fb06176f95aa9dc5c0cbe93]
+link CustomerRepo to CustomerRepository--><path d="M311,625.05 C311,641.71 311,680.47 311,705.67 " fill="none" id="CustomerRepo-CustomerRepository" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[534fa58eed276944da3448396035762e]
+link AccountRepo to AccountRepository--><path d="M172.33,625.05 C162.66,641.71 140.17,680.47 125.54,705.67 " fill="none" id="AccountRepo-AccountRepository" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[d08bbb9ffbfc7e1972c45af233c1f707]
+link AddressRepo to AddressRepository--><path d="M511,625.05 C511,641.71 511,680.47 511,705.67 " fill="none" id="AddressRepo-AddressRepository" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[3a0497f2d68db5aff44f0b2f97811cd2]
+link SessionRepo to SessionRepository--><path d="M658.6,625.05 C666.03,641.71 683.33,680.47 694.58,705.67 " fill="none" id="SessionRepo-SessionRepository" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[52b800ac4be7430d91b8794978eb2c4a]
+link BankingService to CustomerRepo--><path d="M253.09,494.14 C267.74,524.72 293.06,577.56 304.75,601.96 " fill="none" id="BankingService-to-CustomerRepo" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="307.03,606.72,306.7587,596.8749,304.8742,602.2086,299.5405,600.3241,307.03,606.72" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[48b8e5472dfa3ad495fdf6685d289581]
+link SessionService to CustomerRepo--><path d="M377.39,380.35 C362.45,433.17 326.44,560.42 314.74,601.77 " fill="none" id="SessionService-to-CustomerRepo" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="313.38,606.6,319.6778,599.0278,314.7404,601.7886,311.9795,596.8512,313.38,606.6" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[9de9ee403c23975fd0a96839d821ba25]
+link BankingService to AddressRepo--><path d="M285.22,494.14 C347.19,527.31 458.11,586.69 497.04,607.52 " fill="none" id="BankingService-to-AddressRepo" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="501.83,610.09,495.7751,602.3222,497.4194,607.7348,492.0068,609.3792,501.83,610.09" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[fd065f9b0fb9fbd3aeb945f70e136d5d]
+link CustomerService to AddressRepo--><path d="M557.38,380.35 C546.97,433.06 521.89,559.9 513.66,601.52 " fill="none" id="CustomerService-to-AddressRepo" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="512.66,606.6,518.3294,598.5465,513.6296,601.6949,510.4812,596.9952,512.66,606.6" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[e9ca94a4bf200c294d17f75b8bab4d0d]
+link BankingService to AccountRepo--><path d="M231.56,494.14 C217.75,524.72 193.9,577.56 182.89,601.96 " fill="none" id="BankingService-to-AccountRepo" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="180.74,606.72,188.0887,600.1628,182.7972,602.1628,180.7971,596.8713,180.74,606.72" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[bdf1e82c9af14f521784cdb83eb95f61]
+link SessionService to SessionRepo--><path d="M408.53,380.35 C464.57,433.7 600.4,563.02 642.41,603.01 " fill="none" id="SessionService-to-SessionRepo" style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#A80036" points="646.17,606.6,642.3944,597.5036,642.5429,603.1585,636.888,603.307,646.17,606.6" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[0c58043e63b44432a8f5adb464c3c905]
+link presentation to logic--><!--MD5=[4c4060fa677c83a7772698a681adc3a1]
+@startuml
+
+package "Presentation tier" as presentation {
+  HTTP - [Web Application]
+}
+
+package "Logic tier" as logic {
+  IFSupportService - - [SupportService]
+  IFBankingService - - [BankingService]
+  IFSessionService - - [SessionService]
+  IFCustomerService - - [CustomerService]
+  
+  [Web Application] ..> IFBankingService
+  [Web Application] ..> IFSessionService
+  [Web Application] ..> IFCustomerService
+
+  ' used Services
+  [Paypal] ..> IFBankingService
+
+  [Chat Service] - IFChatService
+  IFSupportService .> IFChatService
+
+}
+
+package "Data tier" {
+  CustomerRepo -down- [CustomerRepository]
+  AccountRepo -down- [AccountRepository]
+  AddressRepo -down- [AddressRepository]
+  SessionRepo -down- [SessionRepository]
+
+  [BankingService] .> CustomerRepo
+  [SessionService] .> CustomerRepo
+  
+  [BankingService] .> AddressRepo
+  [CustomerService] .> AddressRepo
+  
+  [BankingService] .> AccountRepo
+
+  [SessionService] -..> SessionRepo
+}
+
+presentation -[hidden]-> logic
+
+
+
+
+@enduml
+
+@startuml
+
+package "Presentation tier" as presentation {
+  HTTP - [Web Application]
+}
+
+package "Logic tier" as logic {
+  IFSupportService - - [SupportService]
+  IFBankingService - - [BankingService]
+  IFSessionService - - [SessionService]
+  IFCustomerService - - [CustomerService]
+  
+  [Web Application] ..> IFBankingService
+  [Web Application] ..> IFSessionService
+  [Web Application] ..> IFCustomerService
+
+  [Paypal] ..> IFBankingService
+
+  [Chat Service] - IFChatService
+  IFSupportService .> IFChatService
+
+}
+
+package "Data tier" {
+  CustomerRepo -down- [CustomerRepository]
+  AccountRepo -down- [AccountRepository]
+  AddressRepo -down- [AddressRepository]
+  SessionRepo -down- [SessionRepository]
+
+  [BankingService] .> CustomerRepo
+  [SessionService] .> CustomerRepo
+  
+  [BankingService] .> AddressRepo
+  [CustomerService] .> AddressRepo
+  
+  [BankingService] .> AccountRepo
+
+  [SessionService] -..> SessionRepo
+}
+
+presentation -[hidden]-> logic
+
+
+
+
+@enduml
+
+PlantUML version 1.2020.19(Mon Oct 12 17:10:01 CEST 2020)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: de
+Country: DE
+--></g></svg>
