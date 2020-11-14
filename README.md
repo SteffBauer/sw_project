@@ -35,4 +35,5 @@ For each banking request, you have to provide a valid session, which is not olde
 
 
 ## Links
-[HTTP Status Codes](https://de.wikipedia.org/wiki/HTTP-Statuscode)
+[HTTP Status Codes](https://de.wikipedia.org/wiki/HTTP-Statuscode) \
+[HTTP Methods Explained](https://restfulapi.net/http-methods/#delete)
