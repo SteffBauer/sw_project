@@ -1,23 +1,32 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="672px" preserveAspectRatio="none" style="width:845px;height:672px;" version="1.1" viewBox="0 0 845 672" width="845px" zoomAndPan="magnify"><defs><filter height="300%" id="fp9avkfpt7f17" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[88ca6809156eb879dc8ea75d9b4ec4d1]
-cluster Banking--><rect fill="#FFFFFF" filter="url(#fp9avkfpt7f17)" height="561" style="stroke: #000000; stroke-width: 1.5;" width="666" x="167" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="57" x="471.5" y="23.5332">Banking</text><ellipse cx="259.6543" cy="58.9517" fill="#FEFECE" filter="url(#fp9avkfpt7f17)" rx="58.1543" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="78" x="220.6543" y="64.2564">Use Support</text><ellipse cx="259.6143" cy="127.2229" fill="#FEFECE" filter="url(#fp9avkfpt7f17)" rx="76.6143" ry="17.7229" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="200.6143" y="132.5275">Register Customer</text><ellipse cx="259.5337" cy="195.8067" fill="#FEFECE" filter="url(#fp9avkfpt7f17)" rx="67.0337" ry="15.8067" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="93" x="213.0337" y="201.1114">Find Customer</text><ellipse cx="259.3716" cy="263.1743" fill="#FEFECE" filter="url(#fp9avkfpt7f17)" rx="68.8716" ry="16.1743" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="210.3716" y="268.479">Create Account</text><ellipse cx="528.6328" cy="497.1266" fill="#FEFECE" filter="url(#fp9avkfpt7f17)" rx="78.6328" ry="18.1266" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="123" x="467.1328" y="502.4312">Manage Customers</text><ellipse cx="742.6262" cy="515.8252" fill="#FEFECE" filter="url(#fp9avkfpt7f17)" rx="74.6262" ry="17.3252" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="113" x="686.1262" y="521.1299">Manage Accounts</text><ellipse cx="259.5964" cy="330.0193" fill="#FEFECE" filter="url(#fp9avkfpt7f17)" rx="65.5964" ry="15.5193" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="89" x="215.0964" y="335.324">Open Session</text><ellipse cx="259.6143" cy="398.2229" fill="#FEFECE" filter="url(#fp9avkfpt7f17)" rx="76.6143" ry="17.7229" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="200.6143" y="403.5275">Get Account Value</text><ellipse cx="259.6188" cy="466.8238" fill="#FEFECE" filter="url(#fp9avkfpt7f17)" rx="69.6188" ry="16.3238" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="100" x="209.6188" y="472.1284">Transfer Money</text><ellipse cx="259.4949" cy="534.899" fill="#FEFECE" filter="url(#fp9avkfpt7f17)" rx="69.9949" ry="16.399" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="101" x="208.9949" y="540.2037">Mandate Money</text><!--MD5=[8e9b2d9d80e066cced8e5d90e9bdea61]
-entity c--><ellipse cx="36.5" cy="298" fill="#FEFECE" filter="url(#fp9avkfpt7f17)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M36.5,306 L36.5,333 M23.5,314 L49.5,314 M36.5,333 L23.5,348 M36.5,333 L49.5,348 " fill="none" filter="url(#fp9avkfpt7f17)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="61" x="6" y="368.0332">Customer</text><!--MD5=[e32773a0da76c445e84e5885468a4484]
-entity e--><ellipse cx="528.5" cy="594" fill="#FEFECE" filter="url(#fp9avkfpt7f17)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M528.5,602 L528.5,629 M515.5,610 L541.5,610 M528.5,629 L515.5,644 M528.5,629 L541.5,644 " fill="none" filter="url(#fp9avkfpt7f17)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="62" x="497.5" y="664.0332">Employee</text><!--MD5=[570597a2b6eaab3b76b5cf13edca2979]
-entity chat--><ellipse cx="36.5" cy="50" fill="#FEFECE" filter="url(#fp9avkfpt7f17)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 1.5;"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="24.5" x2="48.5" y1="64" y2="64"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="30" x="21.5" y="80.5332">Chat</text><!--MD5=[e0cd3719b49abd01bc252a9e1b27f632]
-reverse link c to e--><path d="M48.38,391.51 C62.49,449.91 93.53,533.7 159,568 C272.88,627.66 431.71,629.67 497.31,627.57 " fill="none" id="c-backto-e" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="41.48,392.7,44,371.66,55.15,389.68,41.48,392.7" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[15c4dc93c78efe8becd308b26406d2bf]
-reverse link chat to uc4--><path d="M57.97,59 C90.28,59 154.27,59 201.31,59 " fill="none" id="chat-backto-uc4" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="52.69,59,61.69,63,57.69,59,61.69,55,52.69,59" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[3c606492c29b74b00d31f87552f6a2ae]
-link c to uc1--><path d="M56.47,288.19 C76.37,249.27 111.38,192.77 159,162 C172.13,153.52 187.56,146.8 202.31,141.62 " fill="none" id="c-to-uc1" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="207.27,139.92,197.4603,139.0422,202.5381,141.5354,200.045,146.6132,207.27,139.92" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[07faa7dd901701ace33ff341e6445a43]
-link c to uc2--><path d="M67.05,298.55 C76.3,289.3 86.78,279.41 97,271 C122.71,249.86 129.14,243.71 159,229 C174.68,221.27 192.61,214.7 208.88,209.5 " fill="none" id="c-to-uc2" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="213.87,207.93,204.0847,206.8132,209.1001,209.4295,206.4839,214.445,213.87,207.93" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[305be19579e4ad2221f87eea56e8d2d0]
-link c to uc3--><path d="M67.09,315.94 C76.52,311.76 87.08,307.4 97,304 C131.55,292.16 171.3,282.02 202.71,274.79 " fill="none" id="c-to-uc3" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="207.68,273.66,198.0147,271.7675,202.8059,274.7749,199.7985,279.5661,207.68,273.66" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[9ddb51eeb1c2e13fe060e726f380f4ba]
-link c to uc5--><path d="M67.31,330 C98.2,330 147.6,330 188.45,330 " fill="none" id="c-to-uc5" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="193.9,330,184.9,326,188.9,330,184.9,334,193.9,330" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[09c881439216d870ce1b16a7bd2e1375]
-link c to uc6--><path d="M67.31,339.17 C103.38,350.27 164.69,369.14 208.15,382.51 " fill="none" id="c-to-uc6" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="213.09,384.03,205.663,377.5617,208.3108,382.5606,203.3119,385.2084,213.09,384.03" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[ce8566b5c168ca79eb3384365bcff1a8]
-link c to uc7--><path d="M67.03,360.61 C90.25,383.21 124.37,413.34 159,433 C173.75,441.37 190.89,448.14 206.75,453.37 " fill="none" id="c-to-uc7" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="211.63,454.95,204.2851,448.3885,206.8697,453.4204,201.8378,456.005,211.63,454.95" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[50832f2a726acd87987753090374d244]
-link c to uc8--><path d="M55.65,371.53 C75.26,411.25 110.34,469.61 159,501 C172.64,509.8 188.82,516.59 204.12,521.71 " fill="none" id="c-to-uc8" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="209.27,523.38,201.943,516.7986,204.5139,521.8375,199.475,524.4083,209.27,523.38" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[786b17f107f57b538ded79f3de4a8b2f]
-reverse link uc9 to e--><path d="M528.5,520.25 C528.5,541.64 528.5,563.03 528.5,584.43 " fill="none" id="uc9-backto-e" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="528.5,515.1,524.5,524.1,528.5,520.1,532.5,524.1,528.5,515.1" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[2efe57bae26ac9ec849410074cb059b6]
-link e to uc10--><path d="M559.87,610.24 C598.49,590.2 665.05,555.67 705.98,534.43 " fill="none" id="e-to-uc10" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="710.84,531.91,701.0101,532.5203,706.4056,534.2199,704.7059,539.6154,710.84,531.91" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[a6c9dc11dab6ff4ec0d1d8b630c8d7ec]
-link uc8 to uc9--><!--MD5=[bc4f0b2397e2db47129ef9576e0ca909]
-link uc9 to uc10--><!--MD5=[df74fdc9c7a4f5e8d9b4275987d95f64]
-link c to uc4--><path d="M48.82,288.36 C58.87,254.86 75.31,207.23 97,169 C98.35,166.61 156.74,93.57 159,92 C173.5,81.94 191.29,74.77 207.8,69.74 " fill="none" id="c-to-uc4" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="212.88,68.24,203.12,66.92,208.08,69.64,205.36,74.6,212.88,68.24" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="23" x="112.5" y="82.4951">Ask</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="98" y="98.8467">Question</text><!--MD5=[fba59dba38b289a97849855e1e677eeb]
-link e to uc4--><path d="M497.23,610.24 C480.89,600.25 461.73,585.83 450,568 C330.48,386.24 475.63,258.82 336,92 C328.45,82.98 317.96,76.35 307.19,71.5 " fill="none" id="e-to-uc4" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="302.57,69.53,309.2856,76.7342,307.1709,71.4875,312.4176,69.3728,302.57,69.53" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="43" x="371.5" y="121.4951">Answer</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="367" y="137.8467">Question</text><!--MD5=[bdc2b9108e83ee22dc6666eef2f57461]
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="614px" preserveAspectRatio="none" style="width:587px;height:614px;" version="1.1" viewBox="0 0 587 614" width="587px" zoomAndPan="magnify"><defs><filter height="300%" id="fhvetubmty5q2" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[88ca6809156eb879dc8ea75d9b4ec4d1]
+cluster Banking--><rect fill="#FFFFFF" filter="url(#fhvetubmty5q2)" height="503" style="stroke: #000000; stroke-width: 1.5;" width="411" x="7" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="57" x="184" y="23.5332">Banking</text><ellipse cx="110.1143" cy="263.2229" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="76.6143" ry="17.7229" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="51.1143" y="268.5275">Register Customer</text><ellipse cx="330.0337" cy="329.8067" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="67.0337" ry="15.8067" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="93" x="283.5337" y="335.1114">Find Customer</text><ellipse cx="329.8989" cy="194.7798" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="71.8989" ry="16.7798" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="106" x="276.8989" y="200.0845">Delete Customer</text><ellipse cx="329.8614" cy="58.9517" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="58.8614" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="79" x="290.3614" y="64.2564">Get Address</text><ellipse cx="329.9949" cy="125.899" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="69.9949" ry="16.399" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="101" x="279.4949" y="131.2037">Update Address</text><ellipse cx="109.8716" cy="332.1743" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="68.8716" ry="16.1743" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="60.8716" y="337.479">Create Account</text><ellipse cx="330.1311" cy="263.0262" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="68.1311" ry="16.0262" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="96" x="282.1311" y="268.3309">Delete Account</text><ellipse cx="110.0964" cy="59.0193" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="65.5964" ry="15.5193" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="89" x="65.5964" y="64.324">Open Session</text><ellipse cx="330.1543" cy="407.9517" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="58.1543" ry="15.4517" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="78" x="291.1543" y="413.2564">Use Support</text><ellipse cx="110.1143" cy="401.2229" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="76.6143" ry="17.7229" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="51.1143" y="406.5275">Get Account Value</text><ellipse cx="109.9661" cy="473.7932" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="86.9661" ry="19.7932" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="143" x="38.4661" y="479.0979">Get Account Transfers</text><ellipse cx="110.1188" cy="125.8238" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="69.6188" ry="16.3238" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="100" x="60.1188" y="131.1284">Transfer Money</text><ellipse cx="109.9949" cy="193.899" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="69.9949" ry="16.399" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="101" x="59.4949" y="199.2037">Mandate Money</text><!--MD5=[8e9b2d9d80e066cced8e5d90e9bdea61]
+entity c--><ellipse cx="330" cy="536" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M330,544 L330,571 M317,552 L343,552 M330,571 L317,586 M330,571 L343,586 " fill="none" filter="url(#fhvetubmty5q2)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="61" x="299.5" y="606.0332">Customer</text><!--MD5=[e32773a0da76c445e84e5885468a4484]
+entity e--><ellipse cx="549" cy="252" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 1.5;"/><path d="M549,260 L549,287 M536,268 L562,268 M549,287 L536,302 M549,287 L562,302 " fill="none" filter="url(#fhvetubmty5q2)" style="stroke: #A80036; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="62" x="518" y="322.0332">Employee</text><!--MD5=[570597a2b6eaab3b76b5cf13edca2979]
+entity chat--><ellipse cx="549" cy="410" fill="#FEFECE" filter="url(#fhvetubmty5q2)" rx="12" ry="12" style="stroke: #A80036; stroke-width: 1.5;"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="537" x2="561" y1="424" y2="424"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="30" x="534" y="440.5332">Chat</text><!--MD5=[a7735e767aa86eebe444b5075fc993c7]
+link c to e--><path d="M360.81,554.94 C381.1,544.92 407.52,529.49 426,510 C438.71,496.59 486.11,405.81 517.94,343.46 " fill="none" id="c-to-e" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="511.75,340.19,527.07,325.54,524.23,346.54,511.75,340.19" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[0750bae649bba517013f6d2ddc00b20a]
+reverse link uc11 to c--><path d="M167.53,277.74 C178.44,282.72 188.95,289.31 197,298 C263.6,369.95 205.05,427.48 258,510 C268.4,526.21 284.83,540.05 299.27,550.15 " fill="none" id="uc11-backto-c" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="162.84,275.71,169.4987,282.9668,167.4254,277.7036,172.6885,275.6303,162.84,275.71" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[a8502da0e2a97a807084b55d93e49e30]
+reverse link uc16 to c--><path d="M163.87,345.33 C175.86,350.29 187.77,356.99 197,366 C246.74,414.55 216.31,454.39 258,510 C269.27,525.03 285.23,538.52 299.17,548.71 " fill="none" id="uc16-backto-c" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="159.1,343.45,165.9968,350.4809,163.7492,345.2897,168.9404,343.0421,159.1,343.45" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[74af7b9beac97157247d54ba03b4303d]
+link e to uc12--><path d="M517.84,290.39 C483.79,297.61 427.68,309.51 385.82,318.38 " fill="none" id="e-to-uc12" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="380.78,319.45,390.4167,321.4831,385.6698,318.4063,388.7467,313.6594,380.78,319.45" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[01f852f723579516bb24f51b3c7cae60]
+link e to uc13--><path d="M517.72,265.45 C508.37,260.1 497.92,254.5 488,250 C452.93,234.07 411.79,219.82 380.42,209.81 " fill="none" id="e-to-uc13" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="375.48,208.24,382.8484,214.7751,380.2458,209.7525,385.2683,207.1499,375.48,208.24" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[874f875b7411d5015c8041a196a73f46]
+link e to uc14--><path d="M533.24,242.21 C515.17,197.54 480.14,128.26 426,92 C412.06,82.67 395.21,75.69 379.59,70.62 " fill="none" id="e-to-uc14" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="374.79,69.1,382.1761,75.615,379.5599,70.5995,384.5753,67.9832,374.79,69.1" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[3dd15030e115705e631dc42ba8291197]
+link e to uc15--><path d="M517.78,243.57 C495.31,216.21 462.35,181.3 426,160 C412.29,151.96 396.36,145.35 381.51,140.16 " fill="none" id="e-to-uc15" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="376.52,138.46,383.7269,145.1727,381.2475,140.0882,386.332,137.6088,376.52,138.46" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[877e6b803e7c8512c543cff1734550b7]
+link e to uc17--><path d="M517.71,281.07 C486.99,278.1 438.41,273.39 398.5,269.53 " fill="none" id="e-to-uc17" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="393.18,269.02,401.7484,273.8762,398.1563,269.5062,402.5263,265.9141,393.18,269.02" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[3a6f16a45b1ed29d18f2f8f7f333ad37]
+reverse link uc21 to c--><path d="M166.18,70.59 C177.85,75.43 189.03,82.29 197,92 C256.57,164.55 212.53,427.87 258,510 C267.56,527.27 284.52,541.41 299.46,551.41 " fill="none" id="uc21-backto-c" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="161.51,68.76,168.4181,75.7798,166.1622,70.5922,171.3497,68.3363,161.51,68.76" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[aa48d0553ccaadd9c1af3d605ce6903b]
+link uc31 to chat--><path d="M387.17,410.85 C433.22,413.18 495.83,416.36 527.64,417.97 " fill="none" id="uc31-to-chat" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="532.84,418.23,524.0573,413.773,527.8466,417.9732,523.6464,421.7625,532.84,418.23" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[ccf5115888626c19bdf9395eb3cffc68]
+reverse link uc31 to c--><path d="M330,428.79 C330,453.42 330,495.05 330,526.38 " fill="none" id="uc31-backto-c" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="330,423.51,326,432.51,330,428.51,334,432.51,330,423.51" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="23" x="298.5" y="472.4951">Ask</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="284" y="488.8467">Question</text><!--MD5=[2788e32d678298093f8e0b0bebbd177d]
+link e to uc31--><path d="M517.95,322.5 C509.08,332.1 498.83,341.71 488,349 C454.64,371.46 411.58,386.85 378.99,396.27 " fill="none" id="e-to-uc31" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="373.86,397.73,383.6077,399.138,378.6724,396.3734,381.4371,391.4381,373.86,397.73" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="43" x="439.5" y="329.4951">Answer</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="435" y="345.8467">Question</text><!--MD5=[7e5d90e345fffe4640844c8dff94e79c]
+reverse link uc41 to c--><path d="M161.77,416.82 C173.94,421.89 186.45,428.25 197,436 C231.34,461.25 227.79,479.93 258,510 C270.75,522.69 286.07,535.48 299.22,545.8 " fill="none" id="uc41-backto-c" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="156.95,414.87,163.802,421.9446,161.5874,416.7392,166.7928,414.5247,156.95,414.87" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[9c85be515a50f0533800359627e7fff6]
+reverse link uc42 to c--><path d="M156.36,493.56 C199.27,512.06 262.45,539.3 299.29,555.19 " fill="none" id="uc42-backto-c" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="151.75,491.57,158.4466,498.7919,156.3457,493.5396,161.598,491.4387,151.75,491.57" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[fe14c2cffb9021b682dc15d7777411a0]
+reverse link uc43 to c--><path d="M166.95,139 C178.24,143.93 189.06,150.71 197,160 C238.11,208.13 216.65,236.73 228,299 C244.99,392.18 211.47,427.5 258,510 C267.62,527.05 284.38,541.11 299.21,551.11 " fill="none" id="uc43-backto-c" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="162.09,137,168.8891,144.1255,166.7134,138.9037,171.9351,136.728,162.09,137" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[9b84724ed79cf4350ad9e775071c2505]
+reverse link uc44 to c--><path d="M165.98,207.36 C177.43,212.28 188.57,218.96 197,228 C228.15,261.42 217.41,281.56 228,326 C247.21,406.6 216.56,438.25 258,510 C267.79,526.95 284.56,541 299.35,551.03 " fill="none" id="uc44-backto-c" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="161.05,205.36,167.8944,212.4419,165.6854,207.2342,170.8932,205.0252,161.05,205.36" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[faad59fa2d204daa29ded518a206a487]
+link uc21 to uc12--><!--MD5=[c924391a7c8d710a3199196920068c2f]
+link uc21 to uc13--><!--MD5=[a8914b31170e3e6fffc817d76af440c0]
+link uc21 to uc14--><!--MD5=[6eaba2ed186f22d3e3c92b2100f55c0f]
+link uc21 to uc15--><!--MD5=[aaa57c62f38c7b4b378e409e8c73ed6b]
+link uc21 to uc17--><!--MD5=[462420572a7be8566dcf534dba64f37f]
+link uc31 to uc17--><!--MD5=[fd2895cd4cc37f0c724b9a14591f03ad]
+link e to chat--><!--MD5=[1764e1d26c8b28f7976ad61a9b357eef]
+link chat to c--><!--MD5=[de76299dc17947a6417ab0f3c8dda860]
 @startuml
 left to right direction
 
@@ -25,59 +34,71 @@ left to right direction
 actor "Customer" as c
 actor "Employee" as e
 
-c <|- - e
+e <|-up- c
 
 entity "Chat" as chat
 
 
 rectangle Banking {
-  usecase "Use Support" as uc4
 
-  usecase "Register Customer" as uc1
-  usecase "Find Customer" as uc2
-  usecase "Create Account" as uc3
-  usecase "Manage Customers" as uc9
-  usecase "Manage Accounts" as uc10
+  usecase "Register Customer" as uc11
+  usecase "Find Customer" as uc12
+  usecase "Delete Customer" as uc13
+  usecase "Get Address" as uc14
+  usecase "Update Address" as uc15
+  usecase "Create Account" as uc16
+  usecase "Delete Account" as uc17
+
+  usecase "Open Session" as uc21
+
+  usecase "Use Support" as uc31
 
 
-  usecase "Open Session" as uc5
-  usecase "Get Account Value" as uc6
-  usecase "Transfer Money" as uc7
-  usecase "Mandate Money" as uc8
+  usecase "Get Account Value" as uc41
+  usecase "Get Account Transfers" as uc42
+  usecase "Transfer Money" as uc43
+  usecase "Mandate Money" as uc44
 
 
 
 }
 
-chat <- - uc4
+' Customer Service
+uc11 <- - c
+uc16 <- - c
+
+e - -> uc12
+e - -> uc13
+e - -> uc14
+e - -> uc15
+e - -> uc17
 
 
-c - -> uc1
-c - -> uc2
-c - -> uc3
-'uc1 <- e
-'uc2 <- e
-'uc3 <- e
+' Session Service
+uc21 <- - c
 
 
-c - -> uc5
-c - -> uc6
-c - -> uc7
-c - -> uc8
+' Support Service
+uc31 - -> chat
+uc31 <- - c : Ask\nQuestion
+e - -> uc31 : Answer\nQuestion
 
 
-'uc9 <- - e
-'uc10 <- - e
+' Banking Service
+uc41 <- - c
+uc42 <- - c
+uc43 <- - c
+uc44 <- - c
 
-e-up->uc9
-e- ->uc10
-
-
-uc8 -[hidden]- uc9
-uc9 -[hidden]- uc10
-
-c - -> uc4 : Ask\nQuestion
-e - -> uc4 : Answer\nQuestion
+' Layout
+uc21 -[hidden]-> uc12
+uc21 -[hidden]-> uc13
+uc21 -[hidden]-> uc14
+uc21 -[hidden]-> uc15
+uc21 -[hidden]-> uc17
+uc31 -[hidden]> uc17
+e -[hidden]> chat
+chat -[hidden]> c
 
 @enduml
 
@@ -88,54 +109,66 @@ left to right direction
 actor "Customer" as c
 actor "Employee" as e
 
-c <|- - e
+e <|-up- c
 
 entity "Chat" as chat
 
 
 rectangle Banking {
-  usecase "Use Support" as uc4
 
-  usecase "Register Customer" as uc1
-  usecase "Find Customer" as uc2
-  usecase "Create Account" as uc3
-  usecase "Manage Customers" as uc9
-  usecase "Manage Accounts" as uc10
+  usecase "Register Customer" as uc11
+  usecase "Find Customer" as uc12
+  usecase "Delete Customer" as uc13
+  usecase "Get Address" as uc14
+  usecase "Update Address" as uc15
+  usecase "Create Account" as uc16
+  usecase "Delete Account" as uc17
+
+  usecase "Open Session" as uc21
+
+  usecase "Use Support" as uc31
 
 
-  usecase "Open Session" as uc5
-  usecase "Get Account Value" as uc6
-  usecase "Transfer Money" as uc7
-  usecase "Mandate Money" as uc8
+  usecase "Get Account Value" as uc41
+  usecase "Get Account Transfers" as uc42
+  usecase "Transfer Money" as uc43
+  usecase "Mandate Money" as uc44
 
 
 
 }
 
-chat <- - uc4
+uc11 <- - c
+uc16 <- - c
+
+e - -> uc12
+e - -> uc13
+e - -> uc14
+e - -> uc15
+e - -> uc17
 
 
-c - -> uc1
-c - -> uc2
-c - -> uc3
+uc21 <- - c
 
 
-c - -> uc5
-c - -> uc6
-c - -> uc7
-c - -> uc8
+uc31 - -> chat
+uc31 <- - c : Ask\nQuestion
+e - -> uc31 : Answer\nQuestion
 
 
+uc41 <- - c
+uc42 <- - c
+uc43 <- - c
+uc44 <- - c
 
-e-up->uc9
-e- ->uc10
-
-
-uc8 -[hidden]- uc9
-uc9 -[hidden]- uc10
-
-c - -> uc4 : Ask\nQuestion
-e - -> uc4 : Answer\nQuestion
+uc21 -[hidden]-> uc12
+uc21 -[hidden]-> uc13
+uc21 -[hidden]-> uc14
+uc21 -[hidden]-> uc15
+uc21 -[hidden]-> uc17
+uc31 -[hidden]> uc17
+e -[hidden]> chat
+chat -[hidden]> c
 
 @enduml
 
