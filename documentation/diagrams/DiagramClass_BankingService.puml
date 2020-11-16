@@ -57,6 +57,7 @@ Customer "1" --* "o..*" Account
 Address "1" - "1..*" Customer
 Transfer "0..*" - "1" Account
 Transfer "0..*" - "1" Account
+Customer "0..*" -- "1" Employee
 
 BaseEntity <|-- Account
 BaseEntity <|-- Address
