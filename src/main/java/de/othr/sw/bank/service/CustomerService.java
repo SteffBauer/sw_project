@@ -39,6 +39,7 @@ public class CustomerService {
         }
 
         // todo check if username is already in use
+        // todo check if customer is already registered (taxnumber)
 
         Address address = newCustomer.getAddress();
         Iterable<Address> addresses = addressRepository.findByCountryAndCityAndZipCodeAndStreetAndHouseNr(address.getCountry(),address.getCity(),address.getZipCode(), address.getStreet(),address.getHouseNr());
