@@ -29,8 +29,10 @@ package "Data tier" as data {
   AccountRepo -down- [AccountRepository]
   AddressRepo -down- [AddressRepository]
   SessionRepo -down- [SessionRepository]
+  TransferRepo -down- [TransferRepository]
 
   [BankingService] ...> CustomerRepo
+  [CustomerService] ...> CustomerRepo
   [SessionService] ...> CustomerRepo
   
   [BankingService] .> AddressRepo
@@ -39,7 +41,9 @@ package "Data tier" as data {
   [BankingService] .> AccountRepo
   [CustomerService] .> AccountRepo
 
-  [SessionService] -..> SessionRepo
+  [SessionService] ..> SessionRepo
+
+  [BankingService] ...> TransferRepo
 }
 
 presentation -[hidden]-> logic
