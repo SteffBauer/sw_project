@@ -5,41 +5,45 @@ package "Presentation tier" as presentation {
 }
 
 package "Logic tier" as logic {
-  IFSupportService -- [SupportService]
-  IFBankingService -- [BankingService]
-  IFSessionService -- [SessionService]
-  IFCustomerService -- [CustomerService]
+  IFSupportService -down- [SupportService]
+  IFBankingService -down- [BankingService]
+  IFSessionService -down- [SessionService]
+  IFCustomerService -down- [CustomerService]
   
-  [Web Application] ..> IFBankingService
-  [Web Application] ..> IFSessionService
-  [Web Application] ..> IFCustomerService
+  [Web Application] .> IFBankingService
+  [Web Application] ...> IFSessionService
+  [Web Application] .> IFCustomerService
+  [Web Application] .> IFSupportService
 
   ' used Services
-  [Paypal] ..> IFBankingService
+  [Paypal\n(Gorbatschow)] .down.> IFBankingService
+  [Paypal\n(Gorbatschow)] .down.> IFCustomerService
+  [Paypal\n(Gorbatschow)] .down.> IFSessionService
 
-  [Chat Service] - IFChatService
-  IFSupportService .> IFChatService
+  IFSupportService .up.> [Chat Service\n(Bielmeier)]
 
 }
 
-package "Data tier" {
+package "Data tier" as data {
   CustomerRepo -down- [CustomerRepository]
   AccountRepo -down- [AccountRepository]
   AddressRepo -down- [AddressRepository]
   SessionRepo -down- [SessionRepository]
 
-  [BankingService] .> CustomerRepo
-  [SessionService] .> CustomerRepo
+  [BankingService] ...> CustomerRepo
+  [SessionService] ...> CustomerRepo
   
   [BankingService] .> AddressRepo
   [CustomerService] .> AddressRepo
   
   [BankingService] .> AccountRepo
+  [CustomerService] .> AccountRepo
 
   [SessionService] -..> SessionRepo
 }
 
 presentation -[hidden]-> logic
+logic -[hidden]-> data
 
 
 
