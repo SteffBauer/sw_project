@@ -33,7 +33,7 @@ package "Control" as logic {
 
 }
 
-package "Entity" as data {
+package "Entity" as entity {
   interface " " as IF1
   interface " " as IF2
   interface " " as IF3
@@ -57,8 +57,8 @@ package "Entity" as data {
 }
 
 presentation -[hidden]-> logic
-presentation -[hidden]-> data
-logic -[hidden]-> data
+presentation -[hidden]-> entity
+logic -[hidden]-> entity
 
 
 
