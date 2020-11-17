@@ -8,18 +8,18 @@ actor "Employee" as e
 
 e <|-up- c
 
-entity "Chat" as chat
+'entity "Chat" as chat
 
 
-rectangle Banking {
+rectangle "Banking Service" as Banking {
 
   usecase "Register Customer" as uc11
   usecase "Find Customer" as uc12
   usecase "Delete Customer" as uc13
-  usecase "Get Address" as uc14
-  usecase "Update Address" as uc15
-  usecase "Create Account" as uc16
-  usecase "Delete Account" as uc17
+  usecase "Get Address of Customer" as uc14
+  usecase "Update Address of Customer" as uc15
+  usecase "Create Customer Account" as uc16
+  usecase "Delete Customer Account" as uc17
 
   usecase "Open Session" as uc21
 
@@ -51,7 +51,7 @@ uc21 <-- c
 
 
 ' Support Service
-uc31 --> chat
+'uc31 --> chat
 uc31 <-- c : Ask\nQuestion
 e --> uc31 : Answer\nQuestion
 
@@ -68,8 +68,8 @@ uc21 -[hidden]-> uc13
 uc21 -[hidden]-> uc14
 uc21 -[hidden]-> uc15
 uc21 -[hidden]-> uc17
-uc31 -[hidden]> uc17
-e -[hidden]> chat
-chat -[hidden]> c
+uc44 -[hidden]-> uc31
+'e -[hidden]> chat
+'chat -[hidden]> c
 
 @enduml
