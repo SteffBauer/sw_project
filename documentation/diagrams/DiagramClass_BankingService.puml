@@ -55,7 +55,7 @@ class Transfer{
 ' Declare relationship of classes
 Session "0..*" -- "1" Customer
 Customer "1" --* "0..*" Account
-Address "1" - "1..*" Customer
+Address "1" o- "1..*" Customer
 Transfer "0..*" - "1" Account
 Transfer "0..*" - "1" Account
 Customer "0..*" -- "1" Employee
