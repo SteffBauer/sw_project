@@ -1,6 +1,7 @@
 @startuml
 skinparam classAttributeIconSize 0
 skinparam linetype ortho
+skinparam monochrome true
 
 ' Declare Classes
 abstract class BaseEntity{

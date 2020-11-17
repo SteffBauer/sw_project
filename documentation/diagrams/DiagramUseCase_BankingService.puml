@@ -1,6 +1,7 @@
 @startuml
-left to right direction
 
+left to right direction
+skinparam monochrome true
 
 actor "Customer" as c
 actor "Employee" as e
