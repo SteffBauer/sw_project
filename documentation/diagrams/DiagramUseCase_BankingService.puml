@@ -6,10 +6,7 @@ skinparam monochrome true
 actor "Customer" as c
 actor "Employee" as e
 
-e <|-up- c
-
-'entity "Chat" as chat
-
+c <|-- e
 
 rectangle "Banking Service" as Banking {
 
@@ -25,14 +22,10 @@ rectangle "Banking Service" as Banking {
 
   usecase "Use Support" as uc31
 
-
   usecase "Get Account Value" as uc41
   usecase "Get Account Transfers" as uc42
   usecase "Transfer Money" as uc43
   usecase "Mandate Money" as uc44
-
-
-
 }
 
 ' Customer Service
@@ -69,7 +62,5 @@ uc21 -[hidden]-> uc14
 uc21 -[hidden]-> uc15
 uc21 -[hidden]-> uc17
 uc44 -[hidden]-> uc31
-'e -[hidden]> chat
-'chat -[hidden]> c
 
 @enduml
