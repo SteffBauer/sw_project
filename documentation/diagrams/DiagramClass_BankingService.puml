@@ -46,30 +46,31 @@ class Session{
 }
 
 class Transfer{
-  - amount: double
+  - euro: int
+  - cent: int
   - date: Date
   - description: String
 }
 
+BaseEntity <|-- Account
+BaseEntity <|-- Address
+BaseEntity <|-- Customer
+BaseEntity <|-left- Session
+BaseEntity <|-right- Transfer
 
 ' Declare relationship of classes
 Session "0..*" -- "1" Customer
 Customer "1" --* "0..*" Account
-Address "1" o- "1..*" Customer
-Transfer "0..*" - "1" Account
-Transfer "0..*" - "1" Account
+Address "1" -- "1..*" Customer
+Transfer "0..*" -- "1" Account : pays
+Transfer "0..*" -- "1" Account : receives
 Customer "0..*" -- "1" Employee
 
-BaseEntity <|-- Account
-BaseEntity <|-- Address
-BaseEntity <|-- Customer
-BaseEntity <|-- Session
-BaseEntity <|-- Transfer
 
-Customer <|-- Employee
+Customer <|-down- Employee
 
-BaseEntity -[hidden]> Session
-Transfer -[hidden]> Address
-Transfer -[hidden]-> Account
+'BaseEntity -[hidden]> Transfer
+'Transfer -[hidden]-> Address
+'Transfer -[hidden]> Account
 
 @enduml

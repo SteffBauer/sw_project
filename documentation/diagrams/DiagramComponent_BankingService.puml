@@ -1,39 +1,39 @@
 @startuml
 
-
 skinparam monochrome true
 
-package "Boundary" as presentation {
+[Paypal\n(Gorbatschow)] as paypal
+[Chat Service\n(Bielmeier)] as chat
+
+package "Presentation" as presentation {
   HTTP - [Web Application]
 }
 
-package "Control" as logic {
-  [Paypal\n(Gorbatschow)] as paypal
-  [Chat Service\n(Bielmeier)] as chat
+
+package "Logic" as logic {
 
   [SessionService] -up-() SessionServiceIF
   SessionServiceIF )-up- [Web Application]
-  SessionServiceIF )-up- paypal
 
   [CustomerService] -up-() CustomerServiceIF
   CustomerServiceIF )-up- [Web Application]
-  CustomerServiceIF )-up- paypal
+  CustomerServiceIF )-- paypal
 
   [BankingService] -up-() BankingServiceIF
-  BankingServiceIF )-up- [Web Application]
-  BankingServiceIF )-up- paypal
+  BankingServiceIF )-- [Web Application]
+  BankingServiceIF )-- paypal
 
   [SupportService] -up-() SupportServiceIF
   SupportServiceIF )-up- [Web Application]
-  SupportServiceIF )-up- chat
+  SupportServiceIF )-- chat
 
-  chat -[hidden]-> [SupportService]
+  'chat -[hidden]-> [SupportService]
 
 
 
 }
 
-package "Entity" as entity {
+package "Persistence" as persistence {
   interface " " as IF1
   interface " " as IF2
   interface " " as IF3
@@ -57,8 +57,11 @@ package "Entity" as entity {
 }
 
 presentation -[hidden]-> logic
-presentation -[hidden]-> entity
-logic -[hidden]-> entity
+presentation -[hidden]-> persistence
+logic -[hidden]-> persistence
+
+logic -[hidden]> chat
+paypal -[hidden]> logic
 
 
 

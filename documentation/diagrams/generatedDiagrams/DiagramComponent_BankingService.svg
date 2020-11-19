@@ -1,92 +1,92 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="782px" preserveAspectRatio="none" style="width:1065px;height:782px;" version="1.1" viewBox="0 0 1065 782" width="1065px" zoomAndPan="magnify"><defs><filter height="300%" id="ft3v78dnh1sgs" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[3dcf69e4e87a10af00fce8354034ba4c]
-cluster presentation--><polygon fill="#FFFFFF" filter="url(#ft3v78dnh1sgs)" points="398,6,471,6,478,29.6094,660,29.6094,660,122,398,122,398,6" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="398" x2="478" y1="29.6094" y2="29.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="67" x="402" y="22.5332">Boundary</text><!--MD5=[cbbcdfd2ff286cf453505908e439d9c0]
-cluster logic--><polygon fill="#FFFFFF" filter="url(#ft3v78dnh1sgs)" points="246,162,304,162,311,185.6094,968,185.6094,968,523,246,523,246,162" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="246" x2="311" y1="185.6094" y2="185.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="52" x="250" y="178.5332">Control</text><!--MD5=[bc1b6a63fef26b0dbe93a6a9270e3b0e]
-cluster entity--><polygon fill="#FFFFFF" filter="url(#ft3v78dnh1sgs)" points="16,563,61,563,68,586.6094,1022,586.6094,1022,775,16,775,16,563" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="16" x2="68" y1="586.6094" y2="586.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="39" x="20" y="579.5332">Entity</text><!--MD5=[96f7e1299d4a43069e6ed32352fcac20]
-entity HTTP--><ellipse cx="431" cy="74" fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="36" x="413" y="105.5332">HTTP</text><!--MD5=[5f72b1e1b6bcd2ac922e89c6c0b5c71b]
-entity Web Application--><rect fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="142" x="475" y="50"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="597" y="55"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="595" y="57"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="595" y="61"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="102" x="490" y="84.5332">Web Application</text><!--MD5=[4662bc22cd1a5219d3b09b73e91a55ce]
-entity paypal--><rect fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" height="65.2188" style="stroke: #383838; stroke-width: 1.5;" width="133" x="635.5" y="206"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="748.5" y="211"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="746.5" y="213"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="746.5" y="217"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="43" x="650.5" y="240.5332">Paypal</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="93" x="650.5" y="258.1426">(Gorbatschow)</text><!--MD5=[570597a2b6eaab3b76b5cf13edca2979]
-entity chat--><rect fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" height="65.2188" style="stroke: #383838; stroke-width: 1.5;" width="121" x="803.5" y="206"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="904.5" y="211"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="902.5" y="213"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="902.5" y="217"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="81" x="818.5" y="240.5332">Chat Service</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="68" x="818.5" y="258.1426">(Bielmeier)</text><!--MD5=[d2f5cb2edd50ea0698f8feadbed97ba1]
-entity SessionService--><rect fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="137" x="626.5" y="451"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="743.5" y="456"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="741.5" y="458"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="741.5" y="462"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="97" x="641.5" y="485.5332">SessionService</text><!--MD5=[a631d6567d8dd234ffb888032849242d]
-entity SessionServiceIF--><ellipse cx="678" cy="361" fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="109" x="623.5" y="392.5332">SessionServiceIF</text><!--MD5=[76d0c25527896f67cb6aa4ccab7e7ab8]
-entity CustomerService--><rect fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="148" x="443" y="451"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="571" y="456"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="569" y="458"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="569" y="462"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="108" x="458" y="485.5332">CustomerService</text><!--MD5=[5566f6f4b3f002cfd9abc05aa20a8f06]
-entity CustomerServiceIF--><ellipse cx="513" cy="361" fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="120" x="453" y="392.5332">CustomerServiceIF</text><!--MD5=[ba723757ffde46ba429618d659790656]
-entity BankingService--><rect fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="138" x="270" y="451"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="388" y="456"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="386" y="458"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="386" y="462"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="285" y="485.5332">BankingService</text><!--MD5=[74d1d086c912edf19e2fe8e565a7e7ff]
-entity BankingServiceIF--><ellipse cx="347" cy="361" fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="110" x="292" y="392.5332">BankingServiceIF</text><!--MD5=[e0dbcdd0b6f6a8c0a95380b7bdd4cfaa]
-entity SupportService--><rect fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="137" x="798.5" y="451"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="915.5" y="456"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="913.5" y="458"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="913.5" y="462"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="97" x="813.5" y="485.5332">SupportService</text><!--MD5=[a3e93cdb79a1999521bbbf4acc8f9bf6]
-entity SupportServiceIF--><ellipse cx="837" cy="361" fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="109" x="782.5" y="392.5332">SupportServiceIF</text><!--MD5=[96949bab5c81bdcb09aed95ef177eaf4]
-entity IF1--><ellipse cx="830" cy="625" fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[e8d73f926623c6a4f73b0854fa679a99]
-entity IF2--><ellipse cx="185" cy="625" fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[25260a715962a01155005ddcd5495a88]
-entity IF3--><ellipse cx="328" cy="625" fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[2396bdf90cac695aadc7a209d4e74ed4]
-entity IF4--><ellipse cx="517" cy="625" fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[9aea221644c2df2b6f73de2b0e108e2e]
-entity IF5--><ellipse cx="661" cy="625" fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[cc33ee68753cc2405ee06b12bde22df7]
-entity SessionRepository--><rect fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="158" x="832" y="703"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="970" y="708"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="968" y="710"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="968" y="714"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="847" y="737.5332">SessionRepository</text><!--MD5=[5cc9ac11a3f0b123b98e0809612ba330]
-entity AccountRepository--><rect fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="159" x="40.5" y="703"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="179.5" y="708"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="177.5" y="710"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="177.5" y="714"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="55.5" y="737.5332">AccountRepository</text><!--MD5=[e7bc3a3fa62c1df21bef3869c0c37950]
-entity TransferRepository--><rect fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="162" x="235" y="703"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="377" y="708"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="375" y="710"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="375" y="714"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="122" x="250" y="737.5332">TransferRepository</text><!--MD5=[b3990cbb38841f9d8fcdaf5297d6dc08]
-entity CustomerRepository--><rect fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="169" x="432.5" y="703"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="581.5" y="708"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="579.5" y="710"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="579.5" y="714"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="447.5" y="737.5332">CustomerRepository</text><!--MD5=[dba78d1918f1bbe6079f47e9b7a97428]
-entity AddressRepository--><rect fill="#F8F8F8" filter="url(#ft3v78dnh1sgs)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="160" x="637" y="703"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="777" y="708"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="775" y="710"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="775" y="714"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="120" x="652" y="737.5332">AddressRepository</text><!--MD5=[99d0499ea58cdc2f64f8969b709c1dca]
-link HTTP to Web Application--><path d="M440.43,74 C451.84,74 463.25,74 474.66,74 " fill="none" id="HTTP-Web Application" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[fc226dc9b77288bbf0408d8c4b2c8847]
-link SessionServiceIF to SessionService--><path d="M679.22,370.05 C681.75,386.71 687.63,425.47 691.46,450.67 " fill="none" id="SessionServiceIF-SessionService" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[94cb2be6564b3818166a3f279d1d73cf]
-link Web Application to SessionServiceIF--><path d="M541.13,98.14 C534.28,136.63 525.77,215.11 556,271 C578.78,313.12 631.17,340.45 659.31,352.64 " fill="none" id="Web Application-to-SessionServiceIF" style="stroke: #383838; stroke-width: 1.0;"/><path d="M669.1926,347.5886 A9,9 0 0 0 662.7197 363.2155" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[345e67e9b89db1f3c643240576a4cc39]
-link paypal to SessionServiceIF--><path d="M695.69,271.16 C691.21,293.67 685.35,323.11 681.63,341.8 " fill="none" id="paypal-to-SessionServiceIF" style="stroke: #383838; stroke-width: 1.0;"/><path d="M688.5559,350.2852 A9,9 0 0 0 671.9681 346.9773" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[b8c269d75471c9234d9dbe75e9c0858b]
-link CustomerServiceIF to CustomerService--><path d="M513.29,370.05 C513.88,386.71 515.27,425.47 516.17,450.67 " fill="none" id="CustomerServiceIF-CustomerService" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[73e4159f538ab447a78d5176e3c7b516]
-link Web Application to CustomerServiceIF--><path d="M518.7,98.03 C505.83,110.69 491.83,127.56 485,146 C459.28,215.39 489.91,305.09 505.25,342.46 " fill="none" id="Web Application-to-CustomerServiceIF" style="stroke: #383838; stroke-width: 1.0;"/><path d="M515.857,345.7765 A9,9 0 0 0 500.2927 352.3986" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[b7a4177f005e04bcb7ef38f45f7f268d]
-link paypal to CustomerServiceIF--><path d="M652.34,271.16 C612.23,296.73 558.09,331.26 530.59,348.78 " fill="none" id="paypal-to-CustomerServiceIF" style="stroke: #383838; stroke-width: 1.0;"/><path d="M529.1868,359.7132 A9,9 0 0 0 520.1074 345.4421" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[2da2f9c21c05087eb502daaeaaa1e29b]
-link BankingServiceIF to BankingService--><path d="M346.42,370.05 C345.24,386.71 342.47,425.47 340.67,450.67 " fill="none" id="BankingServiceIF-BankingService" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[2ac747bdea84b6ecd9bf0ecf21c63a9e]
-link Web Application to BankingServiceIF--><path d="M515.66,98.24 C499.96,111.21 481.17,128.29 467,146 C414.21,211.97 371.19,304.18 354.48,342.37 " fill="none" id="Web Application-to-BankingServiceIF" style="stroke: #383838; stroke-width: 1.0;"/><path d="M359.475,352.159 A9,9 0 0 0 343.9407 345.4669" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[84a0d355776489a713196d16031f7abe]
-link paypal to BankingServiceIF--><path d="M635.42,261.29 C579.85,279.58 498.62,306.57 428,331 C406.69,338.37 382.35,347.13 365.96,353.08 " fill="none" id="paypal-to-BankingServiceIF" style="stroke: #383838; stroke-width: 1.0;"/><path d="M362.2398,363.4305 A9,9 0 0 0 356.4439 347.54" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[880938a235d0da089e04b7aa2937496c]
-link SupportServiceIF to SupportService--><path d="M839.16,370.05 C843.62,386.71 854,425.47 860.75,450.67 " fill="none" id="SupportServiceIF-SupportService" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[46f0b5ed647fb037920e20fa160e829c]
-link Web Application to SupportServiceIF--><path d="M551.94,98.04 C564.22,144.13 593.31,245.46 618,271 C625.46,278.71 766.87,333.22 818.41,352.92 " fill="none" id="Web Application-to-SupportServiceIF" style="stroke: #383838; stroke-width: 1.0;"/><path d="M828.1045,347.5612 A9,9 0 0 0 822.065 363.3606" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[2ecf1f15a44317e029134adc7c37f52e]
-link chat to SupportServiceIF--><path d="M856.91,271.16 C851.86,293.67 845.26,323.11 841.08,341.8 " fill="none" id="chat-to-SupportServiceIF" style="stroke: #383838; stroke-width: 1.0;"/><path d="M847.7956,350.495 A9,9 0 0 0 831.2902 346.7976" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[98cb1b446e13e0bc41ec0086ac4d082e]
-link chat to SupportService--><!--MD5=[c22e27395cb36ddffc84a9a51754be31]
-link IF1 to SessionRepository--><path d="M836.63,634.18 C848.64,649.02 874.42,680.84 892.23,702.83 " fill="none" id="IF1-SessionRepository" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[1d664451de222963e7ffb318cdb39843]
-link SessionService to IF1--><path d="M716.09,499.12 C743.8,529.5 791.71,582.03 815.6,608.21 " fill="none" id="SessionService-to-IF1" style="stroke: #383838; stroke-width: 1.0;"/><path d="M826.6204,607.7545 A9,9 0 0 0 814.1288 619.1589" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[fc68055896bfddcdcad2a1f1b59e7010]
-link IF2 to AccountRepository--><path d="M179.68,634.18 C170.04,649.02 149.35,680.84 135.06,702.83 " fill="none" id="IF2-AccountRepository" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[cc158b8c26f6f1d4f86a5c7769849562]
-link BankingService to IF2--><path d="M314.94,499.12 C283.2,529.63 228.2,582.48 201.08,608.55 " fill="none" id="BankingService-to-IF2" style="stroke: #383838; stroke-width: 1.0;"/><path d="M201.6924,619.6892 A9,9 0 0 0 189.9635 607.5018" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[fc44de56ffcc237b2cdfd17bb1168158]
-link IF3 to TransferRepository--><path d="M327.02,634.18 C325.24,649.02 321.42,680.84 318.78,702.83 " fill="none" id="IF3-TransferRepository" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[accaeb773c120abe7ae03c01d5cf2479]
-link BankingService to IF3--><path d="M337.28,499.12 C335.1,528.44 331.39,578.41 329.38,605.4 " fill="none" id="BankingService-to-IF3" style="stroke: #383838; stroke-width: 1.0;"/><path d="M337.2725,613.2886 A9,9 0 0 0 320.4048 612.032" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[b3a337f14674d60cd4507df9af8dfb9d]
-link IF4 to CustomerRepository--><path d="M517,634.18 C517,649.02 517,680.84 517,702.83 " fill="none" id="IF4-CustomerRepository" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[de4b5685896f66131986cc2d78191d58]
-link CustomerService to IF4--><path d="M517,499.12 C517,528.44 517,578.41 517,605.4 " fill="none" id="CustomerService-to-IF4" style="stroke: #383838; stroke-width: 1.0;"/><path d="M525.4572,612.6518 A9,9 0 0 0 508.5428 612.6518" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[c65efcb2a6a0a054d4e8c40c534aef56]
-link IF5 to AddressRepository--><path d="M665.58,634.18 C673.89,649.02 691.71,680.84 704.03,702.83 " fill="none" id="IF5-AddressRepository" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[90a19ce40c3f1ca1bdd8207be7fb78a3]
-link CustomerService to IF5--><path d="M539.5,499.12 C569.18,529.63 620.6,582.48 645.97,608.55 " fill="none" id="CustomerService-to-IF5" style="stroke: #383838; stroke-width: 1.0;"/><path d="M656.8604,607.6239 A9,9 0 0 0 644.7439 619.426" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[0c58043e63b44432a8f5adb464c3c905]
-link presentation to logic--><!--MD5=[e01baf3ed3754ed38ef172b8100b84dd]
-link presentation to entity--><!--MD5=[91b9811c3cad3913a74581599e9f4b2c]
-link logic to entity--><!--MD5=[0894fad001c1cce0ea6016d0db31e3c6]
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="665px" preserveAspectRatio="none" style="width:1163px;height:665px;" version="1.1" viewBox="0 0 1163 665" width="1163px" zoomAndPan="magnify"><defs><filter height="300%" id="flncm9rye7pej" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[3dcf69e4e87a10af00fce8354034ba4c]
+cluster presentation--><polygon fill="#FFFFFF" filter="url(#flncm9rye7pej)" points="430,6,526,6,533,29.6094,692,29.6094,692,122,430,122,430,6" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="430" x2="533" y1="29.6094" y2="29.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="90" x="434" y="22.5332">Presentation</text><!--MD5=[cbbcdfd2ff286cf453505908e439d9c0]
+cluster logic--><polygon fill="#FFFFFF" filter="url(#flncm9rye7pej)" points="47,162,91,162,98,185.6094,770,185.6094,770,406.5,47,406.5,47,162" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="47" x2="98" y1="185.6094" y2="185.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="38" x="51" y="178.5332">Logic</text><!--MD5=[0334151241c2df87d13997940bbf650c]
+cluster persistence--><polygon fill="#FFFFFF" filter="url(#flncm9rye7pej)" points="16,446.5,106,446.5,113,470.1094,1022,470.1094,1022,658.5,16,658.5,16,446.5" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="16" x2="113" y1="470.1094" y2="470.1094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="84" x="20" y="463.0332">Persistence</text><!--MD5=[96f7e1299d4a43069e6ed32352fcac20]
+entity HTTP--><ellipse cx="463" cy="74" fill="#F8F8F8" filter="url(#flncm9rye7pej)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="36" x="445" y="105.5332">HTTP</text><!--MD5=[5f72b1e1b6bcd2ac922e89c6c0b5c71b]
+entity Web Application--><rect fill="#F8F8F8" filter="url(#flncm9rye7pej)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="142" x="507" y="50"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="629" y="55"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="627" y="57"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="627" y="61"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="102" x="522" y="84.5332">Web Application</text><!--MD5=[d2f5cb2edd50ea0698f8feadbed97ba1]
+entity SessionService--><rect fill="#F8F8F8" filter="url(#flncm9rye7pej)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="137" x="71.5" y="334.5"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="188.5" y="339.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="186.5" y="341.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="186.5" y="345.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="97" x="86.5" y="369.0332">SessionService</text><!--MD5=[a631d6567d8dd234ffb888032849242d]
+entity SessionServiceIF--><ellipse cx="157" cy="236" fill="#F8F8F8" filter="url(#flncm9rye7pej)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="109" x="102.5" y="267.5332">SessionServiceIF</text><!--MD5=[76d0c25527896f67cb6aa4ccab7e7ab8]
+entity CustomerService--><rect fill="#F8F8F8" filter="url(#flncm9rye7pej)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="148" x="417" y="334.5"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="545" y="339.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="543" y="341.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="543" y="345.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="108" x="432" y="369.0332">CustomerService</text><!--MD5=[5566f6f4b3f002cfd9abc05aa20a8f06]
+entity CustomerServiceIF--><ellipse cx="500" cy="236" fill="#F8F8F8" filter="url(#flncm9rye7pej)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="120" x="440" y="267.5332">CustomerServiceIF</text><!--MD5=[ba723757ffde46ba429618d659790656]
+entity BankingService--><rect fill="#F8F8F8" filter="url(#flncm9rye7pej)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="138" x="244" y="334.5"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="362" y="339.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="360" y="341.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="360" y="345.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="259" y="369.0332">BankingService</text><!--MD5=[74d1d086c912edf19e2fe8e565a7e7ff]
+entity BankingServiceIF--><ellipse cx="334" cy="236" fill="#F8F8F8" filter="url(#flncm9rye7pej)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="110" x="279" y="267.5332">BankingServiceIF</text><!--MD5=[e0dbcdd0b6f6a8c0a95380b7bdd4cfaa]
+entity SupportService--><rect fill="#F8F8F8" filter="url(#flncm9rye7pej)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="137" x="600.5" y="334.5"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="717.5" y="339.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="715.5" y="341.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="715.5" y="345.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="97" x="615.5" y="369.0332">SupportService</text><!--MD5=[a3e93cdb79a1999521bbbf4acc8f9bf6]
+entity SupportServiceIF--><ellipse cx="665" cy="236" fill="#F8F8F8" filter="url(#flncm9rye7pej)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="109" x="610.5" y="267.5332">SupportServiceIF</text><!--MD5=[96949bab5c81bdcb09aed95ef177eaf4]
+entity IF1--><ellipse cx="130" cy="508.5" fill="#F8F8F8" filter="url(#flncm9rye7pej)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[e8d73f926623c6a4f73b0854fa679a99]
+entity IF2--><ellipse cx="313" cy="508.5" fill="#F8F8F8" filter="url(#flncm9rye7pej)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[25260a715962a01155005ddcd5495a88]
+entity IF3--><ellipse cx="455" cy="508.5" fill="#F8F8F8" filter="url(#flncm9rye7pej)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[2396bdf90cac695aadc7a209d4e74ed4]
+entity IF4--><ellipse cx="809" cy="508.5" fill="#F8F8F8" filter="url(#flncm9rye7pej)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[9aea221644c2df2b6f73de2b0e108e2e]
+entity IF5--><ellipse cx="624" cy="508.5" fill="#F8F8F8" filter="url(#flncm9rye7pej)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[cc33ee68753cc2405ee06b12bde22df7]
+entity SessionRepository--><rect fill="#F8F8F8" filter="url(#flncm9rye7pej)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="158" x="40" y="586.5"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="178" y="591.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="176" y="593.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="176" y="597.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="55" y="621.0332">SessionRepository</text><!--MD5=[5cc9ac11a3f0b123b98e0809612ba330]
+entity AccountRepository--><rect fill="#F8F8F8" filter="url(#flncm9rye7pej)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="159" x="233.5" y="586.5"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="372.5" y="591.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="370.5" y="593.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="370.5" y="597.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="119" x="248.5" y="621.0332">AccountRepository</text><!--MD5=[e7bc3a3fa62c1df21bef3869c0c37950]
+entity TransferRepository--><rect fill="#F8F8F8" filter="url(#flncm9rye7pej)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="162" x="428" y="586.5"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="570" y="591.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="568" y="593.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="568" y="597.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="122" x="443" y="621.0332">TransferRepository</text><!--MD5=[b3990cbb38841f9d8fcdaf5297d6dc08]
+entity CustomerRepository--><rect fill="#F8F8F8" filter="url(#flncm9rye7pej)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="169" x="820.5" y="586.5"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="969.5" y="591.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="967.5" y="593.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="967.5" y="597.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="129" x="835.5" y="621.0332">CustomerRepository</text><!--MD5=[dba78d1918f1bbe6079f47e9b7a97428]
+entity AddressRepository--><rect fill="#F8F8F8" filter="url(#flncm9rye7pej)" height="47.6094" style="stroke: #383838; stroke-width: 1.5;" width="160" x="625" y="586.5"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="765" y="591.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="763" y="593.5"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="763" y="597.5"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="120" x="640" y="621.0332">AddressRepository</text><!--MD5=[4662bc22cd1a5219d3b09b73e91a55ce]
+entity paypal--><rect fill="#F8F8F8" filter="url(#flncm9rye7pej)" height="65.2188" style="stroke: #383838; stroke-width: 1.5;" width="133" x="794.5" y="326"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="907.5" y="331"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="905.5" y="333"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="905.5" y="337"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="43" x="809.5" y="360.5332">Paypal</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="93" x="809.5" y="378.1426">(Gorbatschow)</text><!--MD5=[570597a2b6eaab3b76b5cf13edca2979]
+entity chat--><rect fill="#F8F8F8" filter="url(#flncm9rye7pej)" height="65.2188" style="stroke: #383838; stroke-width: 1.5;" width="121" x="962.5" y="326"/><rect fill="#F8F8F8" height="10" style="stroke: #383838; stroke-width: 1.5;" width="15" x="1063.5" y="331"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="1061.5" y="333"/><rect fill="#F8F8F8" height="2" style="stroke: #383838; stroke-width: 1.5;" width="4" x="1061.5" y="337"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="81" x="977.5" y="360.5332">Chat Service</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="68" x="977.5" y="378.1426">(Bielmeier)</text><!--MD5=[99d0499ea58cdc2f64f8969b709c1dca]
+link HTTP to Web Application--><path d="M472.43,74 C483.84,74 495.25,74 506.66,74 " fill="none" id="HTTP-Web Application" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[fc226dc9b77288bbf0408d8c4b2c8847]
+link SessionServiceIF to SessionService--><path d="M155.83,245.28 C153.28,263.36 147.14,306.91 143.3,334.14 " fill="none" id="SessionServiceIF-SessionService" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[94cb2be6564b3818166a3f279d1d73cf]
+link Web Application to SessionServiceIF--><path d="M553.75,98.13 C536.99,112.51 513.4,129.78 489,138 C439.27,154.75 301.52,126.01 253,146 C216.04,161.22 184.55,197.54 168.46,218.78 " fill="none" id="Web Application-to-SessionServiceIF" style="stroke: #383838; stroke-width: 1.0;"/><path d="M171.1812,229.3657 A9,9 0 0 0 157.5375 219.3684" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[b8c269d75471c9234d9dbe75e9c0858b]
+link CustomerServiceIF to CustomerService--><path d="M499.38,245.28 C498.03,263.36 494.78,306.91 492.74,334.14 " fill="none" id="CustomerServiceIF-CustomerService" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[73e4159f538ab447a78d5176e3c7b516]
+link Web Application to CustomerServiceIF--><path d="M566.66,98.27 C550.85,130.69 522.56,188.72 508.47,217.63 " fill="none" id="Web Application-to-CustomerServiceIF" style="stroke: #383838; stroke-width: 1.0;"/><path d="M512.9116,227.8017 A9,9 0 0 0 497.7016 220.4022" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[000171fd176f7281bbf2624e77c310eb]
+reverse link CustomerServiceIF to paypal--><path d="M519.37,243.66 C536.59,249.57 562.45,258.42 585,266 C656.41,290.02 738.37,317.13 794.3,335.57 " fill="none" id="CustomerServiceIF-backto-paypal" style="stroke: #383838; stroke-width: 1.0;"/><path d="M509.5764,249.2486 A9,9 0 0 0 515.0844 233.2561" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[2da2f9c21c05087eb502daaeaaa1e29b]
+link BankingServiceIF to BankingService--><path d="M332.56,245.28 C329.41,263.36 321.82,306.91 317.07,334.14 " fill="none" id="BankingServiceIF-BankingService" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[59f839ceb75337f8f72ca5552e00e4b2]
+reverse link BankingServiceIF to Web Application--><path d="M343.76,218.03 C356.81,197.11 382.06,162.32 414,146 C443.85,130.75 457.64,149.84 489,138 C512.73,129.04 536,112.2 552.8,98.18 " fill="none" id="BankingServiceIF-backto-Web Application" style="stroke: #383838; stroke-width: 1.0;"/><path d="M347.3357,228.5117 A9,9 0 0 0 332.8317 219.8093" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[a2699a85a2209aff875986e60a373f42]
+reverse link BankingServiceIF to paypal--><path d="M352.48,244.73 C368.51,251.19 392.46,260.24 414,266 C562.24,305.63 604.61,290.94 754,326 C767.1,329.07 780.98,332.8 794.24,336.6 " fill="none" id="BankingServiceIF-backto-paypal" style="stroke: #383838; stroke-width: 1.0;"/><path d="M342.8379,249.9231 A9,9 0 0 0 349.2404 234.2672" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[880938a235d0da089e04b7aa2937496c]
+link SupportServiceIF to SupportService--><path d="M665.27,245.28 C665.88,263.36 667.32,306.91 668.22,334.14 " fill="none" id="SupportServiceIF-SupportService" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[46f0b5ed647fb037920e20fa160e829c]
+link Web Application to SupportServiceIF--><path d="M590.65,98.27 C608.36,130.83 640.11,189.23 655.76,218.01 " fill="none" id="Web Application-to-SupportServiceIF" style="stroke: #383838; stroke-width: 1.0;"/><path d="M666.5429,220.1288 A9,9 0 0 0 651.679 228.2012" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[5840e6ff15ab51390666f9ade1e19b2b]
+reverse link SupportServiceIF to chat--><path d="M683.53,245.98 C696.6,252.11 714.64,260.14 731,266 C824,299.28 851.51,294.12 945,326 C950.67,327.93 956.52,330.05 962.35,332.25 " fill="none" id="SupportServiceIF-backto-chat" style="stroke: #383838; stroke-width: 1.0;"/><path d="M673.3841,250.5102 A9,9 0 0 0 680.6375 235.2298" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[c22e27395cb36ddffc84a9a51754be31]
+link IF1 to SessionRepository--><path d="M129.1,517.68 C127.47,532.52 123.97,564.34 121.55,586.33 " fill="none" id="IF1-SessionRepository" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[1d664451de222963e7ffb318cdb39843]
+link SessionService to IF1--><path d="M138.44,382.62 C136.46,411.94 133.08,461.91 131.26,488.9 " fill="none" id="SessionService-to-IF1" style="stroke: #383838; stroke-width: 1.0;"/><path d="M139.2047,496.7261 A9,9 0 0 0 122.3283 495.5914" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[fc68055896bfddcdcad2a1f1b59e7010]
+link IF2 to AccountRepository--><path d="M313,517.68 C313,532.52 313,564.34 313,586.33 " fill="none" id="IF2-AccountRepository" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[cc158b8c26f6f1d4f86a5c7769849562]
+link BankingService to IF2--><path d="M313,382.62 C313,411.94 313,461.91 313,488.9 " fill="none" id="BankingService-to-IF2" style="stroke: #383838; stroke-width: 1.0;"/><path d="M321.4572,496.1518 A9,9 0 0 0 304.5428 496.1518" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[fc44de56ffcc237b2cdfd17bb1168158]
+link IF3 to TransferRepository--><path d="M459.42,517.68 C467.43,532.52 484.62,564.34 496.49,586.33 " fill="none" id="IF3-TransferRepository" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[accaeb773c120abe7ae03c01d5cf2479]
+link BankingService to IF3--><path d="M335.19,382.62 C364.33,413 414.73,465.53 439.85,491.71 " fill="none" id="BankingService-to-IF3" style="stroke: #383838; stroke-width: 1.0;"/><path d="M451.0359,491.1558 A9,9 0 0 0 438.8243 502.8595" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[b3a337f14674d60cd4507df9af8dfb9d]
+link IF4 to CustomerRepository--><path d="M816.86,517.68 C831.1,532.52 861.65,564.34 882.76,586.33 " fill="none" id="IF4-CustomerRepository" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[de4b5685896f66131986cc2d78191d58]
+link CustomerService to IF4--><path d="M517.15,382.77 C534.54,396.83 558.61,413.67 583,422.5 C618.68,435.41 631.71,419.4 668,430.5 C715.75,445.1 765.66,476.94 791.37,494.76 " fill="none" id="CustomerService-to-IF4" style="stroke: #383838; stroke-width: 1.0;"/><path d="M802.0546,491.9535 A9,9 0 0 0 792.3127 505.7808" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[c65efcb2a6a0a054d4e8c40c534aef56]
+link IF5 to AddressRepository--><path d="M630.63,517.68 C642.64,532.52 668.42,564.34 686.23,586.33 " fill="none" id="IF5-AddressRepository" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[90a19ce40c3f1ca1bdd8207be7fb78a3]
+link CustomerService to IF5--><path d="M511.78,382.62 C539.07,413 586.28,465.53 609.81,491.71 " fill="none" id="CustomerService-to-IF5" style="stroke: #383838; stroke-width: 1.0;"/><path d="M620.787,491.2844 A9,9 0 0 0 608.2146 502.5996" fill="none" style="stroke: #383838; stroke-width: 1.5;"/><!--MD5=[0c58043e63b44432a8f5adb464c3c905]
+link presentation to logic--><!--MD5=[19cf1190ca52af90fce53ca995832556]
+link presentation to persistence--><!--MD5=[117fea87984e9a5cf2665c1f246bd17c]
+link logic to persistence--><!--MD5=[76b902ebd6bee2125a6db6e4731da8f8]
+link logic to chat--><!--MD5=[f43a067c2cb7cf733a2e73a6565a556e]
+link paypal to logic--><!--MD5=[abcc219c4351ea51a12b440917407ec5]
 @startuml
-
 
 skinparam monochrome true
 
-package "Boundary" as presentation {
+[Paypal\n(Gorbatschow)] as paypal
+[Chat Service\n(Bielmeier)] as chat
+
+package "Presentation" as presentation {
   HTTP - [Web Application]
 }
 
-package "Control" as logic {
-  [Paypal\n(Gorbatschow)] as paypal
-  [Chat Service\n(Bielmeier)] as chat
+
+package "Logic" as logic {
 
   [SessionService] -up-() SessionServiceIF
   SessionServiceIF )-up- [Web Application]
-  SessionServiceIF )-up- paypal
 
   [CustomerService] -up-() CustomerServiceIF
   CustomerServiceIF )-up- [Web Application]
-  CustomerServiceIF )-up- paypal
+  CustomerServiceIF )- - paypal
 
   [BankingService] -up-() BankingServiceIF
-  BankingServiceIF )-up- [Web Application]
-  BankingServiceIF )-up- paypal
+  BankingServiceIF )- - [Web Application]
+  BankingServiceIF )- - paypal
 
   [SupportService] -up-() SupportServiceIF
   SupportServiceIF )-up- [Web Application]
-  SupportServiceIF )-up- chat
+  SupportServiceIF )- - chat
 
-  chat -[hidden]-> [SupportService]
+  'chat -[hidden]-> [SupportService]
 
 
 
 }
 
-package "Entity" as entity {
+package "Persistence" as persistence {
   interface " " as IF1
   interface " " as IF2
   interface " " as IF3
@@ -110,8 +110,80 @@ package "Entity" as entity {
 }
 
 presentation -[hidden]-> logic
-presentation -[hidden]-> entity
-logic -[hidden]-> entity
+presentation -[hidden]-> persistence
+logic -[hidden]-> persistence
+
+logic -[hidden]> chat
+paypal -[hidden]> logic
+
+
+
+
+@enduml
+
+@startuml
+
+skinparam monochrome true
+
+[Paypal\n(Gorbatschow)] as paypal
+[Chat Service\n(Bielmeier)] as chat
+
+package "Presentation" as presentation {
+  HTTP - [Web Application]
+}
+
+
+package "Logic" as logic {
+
+  [SessionService] -up-() SessionServiceIF
+  SessionServiceIF )-up- [Web Application]
+
+  [CustomerService] -up-() CustomerServiceIF
+  CustomerServiceIF )-up- [Web Application]
+  CustomerServiceIF )- - paypal
+
+  [BankingService] -up-() BankingServiceIF
+  BankingServiceIF )- - [Web Application]
+  BankingServiceIF )- - paypal
+
+  [SupportService] -up-() SupportServiceIF
+  SupportServiceIF )-up- [Web Application]
+  SupportServiceIF )- - chat
+
+
+
+
+}
+
+package "Persistence" as persistence {
+  interface " " as IF1
+  interface " " as IF2
+  interface " " as IF3
+  interface " " as IF4
+  interface " " as IF5
+
+  [SessionRepository] -up-() IF1
+  IF1 )-up- [SessionService]
+
+  [AccountRepository] -up-() IF2
+  IF2 )-up- [BankingService]
+
+  [TransferRepository] -up-() IF3
+  IF3 )-up- [BankingService]
+
+  [CustomerRepository] -up-() IF4
+  IF4 )-up- [CustomerService]
+
+  [AddressRepository] -up-() IF5
+  IF5 )-up- [CustomerService]
+}
+
+presentation -[hidden]-> logic
+presentation -[hidden]-> persistence
+logic -[hidden]-> persistence
+
+logic -[hidden]> chat
+paypal -[hidden]> logic
 
 
 
