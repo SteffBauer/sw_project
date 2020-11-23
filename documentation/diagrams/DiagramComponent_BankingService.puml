@@ -5,6 +5,9 @@ skinparam monochrome true
 [Paypal\n(Gorbatschow)] as paypal
 [Chat Service\n(Bielmeier)] as chat
 
+interface " " as IFChat
+chat -right-() IFChat
+
 package "Presentation" as presentation {
   HTTP - [Web Application]
 }
@@ -12,8 +15,8 @@ package "Presentation" as presentation {
 
 package "Logic" as logic {
 
-  [SessionService] -up-() SessionServiceIF
-  SessionServiceIF )-up- [Web Application]
+  '[SessionService] -up-() SessionServiceIF
+  'SessionServiceIF )-up- [Web Application]
 
   [CustomerService] -up-() CustomerServiceIF
   CustomerServiceIF )-up- [Web Application]
@@ -25,7 +28,7 @@ package "Logic" as logic {
 
   [SupportService] -up-() SupportServiceIF
   SupportServiceIF )-up- [Web Application]
-  SupportServiceIF )-- chat
+  IFChat )-- SupportService
 
   'chat -[hidden]-> [SupportService]
 
@@ -34,14 +37,14 @@ package "Logic" as logic {
 }
 
 package "Persistence" as persistence {
-  interface " " as IF1
+  'interface " " as IF1
   interface " " as IF2
   interface " " as IF3
   interface " " as IF4
   interface " " as IF5
 
-  [SessionRepository] -up-() IF1
-  IF1 )-up- [SessionService]
+  '[SessionRepository] -up-() IF1
+  'IF1 )-up- [SessionService]
 
   [AccountRepository] -up-() IF2
   IF2 )-up- [BankingService]
