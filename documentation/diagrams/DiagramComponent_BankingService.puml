@@ -37,26 +37,18 @@ package "Logic" as logic {
 }
 
 package "Persistence" as persistence {
-  'interface " " as IF1
-  interface " " as IF2
-  interface " " as IF3
-  interface " " as IF4
-  interface " " as IF5
 
-  '[SessionRepository] -up-() IF1
-  'IF1 )-up- [SessionService]
+  [AccountRepository] -up-() AccountRepositoryIF
+  AccountRepositoryIF )-up- [BankingService]
 
-  [AccountRepository] -up-() IF2
-  IF2 )-up- [BankingService]
+  [TransferRepository] -up-() TransferRepositoryIF
+  TransferRepositoryIF )-up- [BankingService]
 
-  [TransferRepository] -up-() IF3
-  IF3 )-up- [BankingService]
+  [CustomerRepository] -up-() CustomerRepositoryIF
+  CustomerRepositoryIF )-up- [CustomerService]
 
-  [CustomerRepository] -up-() IF4
-  IF4 )-up- [CustomerService]
-
-  [AddressRepository] -up-() IF5
-  IF5 )-up- [CustomerService]
+  [AddressRepository] -up-() AddressRepositoryIF
+  AddressRepositoryIF )-up- [CustomerService]
 }
 
 presentation -[hidden]-> logic
