@@ -13,6 +13,7 @@ abstract class BaseEntity{
 
 class Account{
   - iban: String
+  - balance: long
 }
 
 class Address{
@@ -37,7 +38,7 @@ class Customer{
 
 class Employee{
    - designation: String
-   - salary: double
+   - salary: long
 }
 
 class Session{
@@ -46,8 +47,7 @@ class Session{
 }
 
 class Transfer{
-  - euro: int
-  - cent: int
+  - amount: long
   - date: Date
   - description: String
 }
