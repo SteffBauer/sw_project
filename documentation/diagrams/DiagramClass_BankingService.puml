@@ -53,21 +53,21 @@ class Transfer{
 }
 
 BaseEntity <|-- Account
-BaseEntity <|-- Address
+BaseEntity <|-left- Address
 BaseEntity <|-- Customer
-BaseEntity <|-left- Session
-BaseEntity <|-right- Transfer
+BaseEntity <|-- Session
+BaseEntity <|-- Transfer
 
 ' Declare relationship of classes
-Session "0..*" -- "1" Customer
-Customer "1" --* "0..*" Account
-Address "1" -- "1..*" Customer
-Transfer "0..*" -- "1" Account : pays
-Transfer "0..*" -- "1" Account : receives
-Customer "0..*" -- "1" Employee
+Session "0..*\nsessions" --- "customer\n1" Customer
+Customer "1" ---* "accounts\n0..*" Account
+Address "1\naddress" --- "residents\n1..*" Customer
+Transfer "0..*" --- "payerAccount\n1" Account
+Transfer "0..*" --- "receiverAccount\n1" Account
+Customer "0..*\ncustomers" --- "attendant\n1" Employee
 
 
-Customer <|-down- Employee
+Customer <|-- Employee
 
 'BaseEntity -[hidden]> Transfer
 'Transfer -[hidden]-> Address
