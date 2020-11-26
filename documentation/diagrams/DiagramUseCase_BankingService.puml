@@ -10,13 +10,13 @@ c <|-- e
 
 rectangle "Banking Service" as Banking {
 
-  usecase "Create Customer Account" as uc11
+  usecase "Create Account" as uc11
   usecase "Find Customer" as uc12
   usecase "Delete Customer" as uc13
   usecase "Get Address of Customer" as uc14
   usecase "Update Address of Customer" as uc15
   usecase "Mandate Money" as uc16
-  usecase "Delete Customer Account" as uc17
+  usecase "Delete Account" as uc17
 
   usecase "Login User" as uc21
 
@@ -24,7 +24,7 @@ rectangle "Banking Service" as Banking {
 
   usecase "Transfer Money" as uc41
   usecase "Get Account Transfers" as uc42
-  usecase "Get Account Value" as uc43
+  usecase "Get Account Balance" as uc43
   usecase "Register Customer" as uc44
 }
 

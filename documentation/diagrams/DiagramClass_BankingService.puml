@@ -59,18 +59,18 @@ BaseEntity <|-- Session
 BaseEntity <|-- Transfer
 
 ' Declare relationship of classes
-Session "0..*\nsessions" --- "customer\n1" Customer
+Session "0..*\nsessions" --- "1" Customer
 Customer "1" ---* "accounts\n0..*" Account
 Address "1\naddress" --- "residents\n1..*" Customer
-Transfer "0..*" --- "payerAccount\n1" Account
-Transfer "0..*" --- "receiverAccount\n1" Account
+Transfer "0..*" --- "payer\n1" Account
+Transfer "0..*" --- "receiver\n1" Account
 Customer "0..*\ncustomers" --- "attendant\n1" Employee
 
 
 Customer <|-- Employee
 
-'BaseEntity -[hidden]> Transfer
-'Transfer -[hidden]-> Address
+Address -[hidden]-> Customer
+'Session -[hidden]> Transfer
 'Transfer -[hidden]> Account
 
 @enduml
