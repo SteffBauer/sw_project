@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Banking Service</title>
+</head>
+<body>
+<h1>Welcome to THE bank of your trust</h1>
+    Today is <span th:text="${today}"/>
+    <form th:action="@{/login}" method="get"/>
+        <button type="submit">Login</button>
+    </form>
+    <form th:action="@{/register}" method="get"/>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
