@@ -3,28 +3,29 @@
 left to right direction
 skinparam monochrome true
 
+actor "Person" as p
 actor "Customer" as c
 actor "Employee" as e
 
-c <|-- e
+c -|> p
+p <|-up- e
 
 rectangle "Banking Service" as Banking {
 
   usecase "Create Account" as uc11
   usecase "Find Customer" as uc12
   usecase "Delete Customer" as uc13
-  usecase "Get Address of Customer" as uc14
-  usecase "Update Address of Customer" as uc15
+  usecase "Get Address" as uc14
+  usecase "Update Address" as uc15
   usecase "Mandate Money" as uc16
   usecase "Delete Account" as uc17
 
-  usecase "Login User" as uc21
+  usecase "Login Person" as uc21
 
   usecase "Use Support" as uc31
 
   usecase "Transfer Money" as uc41
-  usecase "Get Account Transfers" as uc42
-  usecase "Get Account Balance" as uc43
+  usecase "View Account" as uc42
   usecase "Register Customer" as uc44
 }
 
@@ -40,7 +41,7 @@ e --> uc17
 
 
 ' Session Service
-uc21 <-- c
+uc21 <- p
 
 
 ' Support Service
@@ -52,15 +53,15 @@ e --> uc31 : Answer\nQuestion
 ' Banking Service
 uc41 <-- c
 uc42 <-- c
-uc43 <-- c
 uc44 <-- c
 
 ' Layout
-uc21 -[hidden]-> uc12
-uc21 -[hidden]-> uc13
-uc21 -[hidden]-> uc14
-uc21 -[hidden]-> uc15
-uc21 -[hidden]-> uc17
-uc44 -[hidden]-> uc31
+uc12 -[hidden]-> uc11
+uc13 -[hidden]-> uc42
+uc14 -[hidden]-> uc41
+uc15 -[hidden]-> uc16
+uc17 -[hidden]-> uc44
+'uc12 -[hidden]-> uc21
+'uc31 -[hidden]> uc21
 
 @enduml
