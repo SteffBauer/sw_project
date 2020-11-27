@@ -49,10 +49,10 @@ class Transfer{
 
 
 ' Declare relationship of classes
-Customer "1\n\t\taccountOwner" ---* "accounts\n\t0..*" Account
+Customer "1\n\t\taccountOwner" *--- "accounts\n\t0..*" Account
 Address "\t1\naddress" <-- "residents\n\t1..*" Customer
-Transfer "0..*" <-- "payer\n\n\t1" Account
-Transfer "0..*" <-- "receiver\n\t1" Account
+Transfer "0..*" --> "payer\n\n\t1" Account
+Transfer "0..*" --> "receiver\n\t1" Account
 Customer "0..*\ncustomers\t  " --- "attendant\n         1" Employee
 
 
