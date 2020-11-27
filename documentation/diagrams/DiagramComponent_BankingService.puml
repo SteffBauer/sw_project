@@ -5,7 +5,7 @@ skinparam monochrome true
 [Paypal\n(Gorbatschow)] as paypal
 [Chat Service\n(Bielmeier)] as chat
 
-interface " " as IFChat
+interface "IFSendMessage" as IFChat
 chat -right-() IFChat
 
 package "Presentation" as presentation {
