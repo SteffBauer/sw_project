@@ -18,9 +18,14 @@ public class HomeController {
 
     @RequestMapping("/login")
     public String showLoginPage(Model model, @ModelAttribute("username") String username, @ModelAttribute("password") String password) {
-        //todo login user
         model.addAttribute("today", new Date().toString());
         return "login";
+    }
+    @RequestMapping("/login/customer")
+    public String showOnlineBankingSite(Model model) {
+        //todo login user
+        model.addAttribute("today", new Date().toString());
+        return "customerIndex";
     }
 
     @RequestMapping("/register")
@@ -28,15 +33,4 @@ public class HomeController {
         model.addAttribute("today", new Date().toString());
         return "register";
     }
-
-/*
-    @RequestMapping("/customer/{id}")
-    public String prepareStudentPage(Model model, @PathVariable("id") long cId) {
-
-        ResponseEntity<Customer> customer = customerService.findCustomer(cId);
-        model.addAttribute("studentslist", customer.getBody());
-
-        return "showCustomer";
-    }
-*/
 }
