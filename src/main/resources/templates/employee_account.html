@@ -21,5 +21,40 @@
 <h3>Login Success</h3>
 <p>Today is <span th:text="${today}"/></p>
 <p>Todo: Account balance, Transactions, Überweisung ... </p>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+    </tr>
+    <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+    </tr>
+    <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+    </tr>
+    </tbody>
+</table>
+
+<button type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-transfer" aria-hidden="true" th:href="@{/customer/account/transfer/new}"></span> Make transfer
+</button>
+
 </body>
 </html>
