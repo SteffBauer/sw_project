@@ -38,9 +38,9 @@ public class AccountRequest {
 
     @Override
     public boolean equals(Object o) {
-        if(!o.getClass().equals(SessionRequest.class))
+        if(!o.getClass().equals(AccountRequest.class))
             return false;
-        SessionRequest other=(SessionRequest)o;
+        AccountRequest other=(AccountRequest)o;
 
         return this.hashCode()==other.hashCode();
     }

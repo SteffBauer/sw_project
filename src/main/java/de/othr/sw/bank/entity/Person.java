@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Person extends BaseEntity implements Serializable {
     private String forename;
     private String surname;
@@ -16,14 +16,6 @@ public abstract class Person extends BaseEntity implements Serializable {
     private String username;
     private Date birthDate;
     private String password;
-
-    @ManyToOne()
-    @JoinColumn(name="address_id")
-    private Address address;
-
-    @OneToMany(mappedBy = "customer")
-    private List<Account> accounts;
-
 
     public Person(){}
 
@@ -41,15 +33,6 @@ public abstract class Person extends BaseEntity implements Serializable {
 
     public void setForename(String forename) {
         this.forename = forename;
-    }
-
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public String getSurname() {

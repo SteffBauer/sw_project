@@ -1,7 +1,9 @@
 package de.othr.sw.bank.entity;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
+@Entity
 public class Employee extends Person {
     private long salary;
     private String designation;
