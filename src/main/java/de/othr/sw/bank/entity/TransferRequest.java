@@ -8,13 +8,13 @@ public class TransferRequest {
     private String surname;
     private String forename;
     private String iban;
-    private double amount;
+    private long amount;
     private Date date;
     private String description;
 
     public TransferRequest(){}
 
-    public TransferRequest(UUID sessionUuid, String surname, String forename, String iban, double amount, Date date, String description) {
+    public TransferRequest(UUID sessionUuid, String surname, String forename, String iban, long amount, Date date, String description) {
         this.sessionUuid = sessionUuid;
         this.surname = surname;
         this.forename = forename;
@@ -56,11 +56,11 @@ public class TransferRequest {
         this.iban = iban;
     }
 
-    public double getAmount() {
+    public long getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(long amount) {
         this.amount = amount;
     }
 

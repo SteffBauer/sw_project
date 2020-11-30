@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 public class Transfer extends BaseEntity{
-    private double amount;
+    private long amount;
     private Date date;
     private String description;
 
@@ -20,7 +20,7 @@ public class Transfer extends BaseEntity{
     public Transfer() {
     }
 
-    public Transfer(double amount, String description, Account payerAccount, Account receiverAccount) {
+    public Transfer(long amount, String description, Account payerAccount, Account receiverAccount) {
         this.amount = amount;
         this.description = description;
         this.payerAccount = payerAccount;
@@ -28,11 +28,11 @@ public class Transfer extends BaseEntity{
         this.date = new Date();
     }
 
-    public double getAmount() {
+    public long getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(long amount) {
         this.amount = amount;
     }
 

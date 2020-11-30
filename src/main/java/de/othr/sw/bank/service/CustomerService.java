@@ -3,9 +3,9 @@ package de.othr.sw.bank.service;
 import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.Address;
 import de.othr.sw.bank.entity.Customer;
-import de.othr.sw.bank.repo.AccountRepository;
-import de.othr.sw.bank.repo.AddressRepository;
-import de.othr.sw.bank.repo.CustomerRepository;
+import de.othr.sw.bank.repo.AccountRepositoryIF;
+import de.othr.sw.bank.repo.AddressRepositoryIF;
+import de.othr.sw.bank.repo.CustomerRepositoryIF;
 import de.othr.sw.bank.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,11 +19,12 @@ import java.util.Optional;
 public class CustomerService {
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private CustomerRepositoryIF customerRepositoryIF;
     @Autowired
-    private AddressRepository addressRepository;
+    private AddressRepositoryIF addressRepositoryIF;
     @Autowired
-    private AccountRepository accountRepository;
+    // todo refactor usage in Banking Service
+    private AccountRepositoryIF accountRepositoryIF;
 
     @PostMapping()
     public ResponseEntity<Customer> newCustomer(@RequestBody Customer newCustomer) {
@@ -42,55 +43,53 @@ public class CustomerService {
         // todo check if customer is already registered (taxnumber)
 
         Address address = newCustomer.getAddress();
-        Iterable<Address> addresses = addressRepository.findByCountryAndCityAndZipCodeAndStreetAndHouseNr(address.getCountry(),address.getCity(),address.getZipCode(), address.getStreet(),address.getHouseNr());
+        Iterable<Address> addresses = addressRepositoryIF.findByCountryAndCityAndZipCodeAndStreetAndHouseNr(address.getCountry(),address.getCity(),address.getZipCode(), address.getStreet(),address.getHouseNr());
         if(addresses.iterator().hasNext()){
             address = addresses.iterator().next();
         }
         else {
-            address = addressRepository.save(address);
+            address = addressRepositoryIF.save(address);
         }
 
         // Set the address of the customer
         newCustomer.setAddress(address);
-        newCustomer = customerRepository.save(newCustomer);
+        newCustomer = customerRepositoryIF.save(newCustomer);
 
 
         // Update residents for the address
         address.addResident(newCustomer);
-        addressRepository.save(address);
+        addressRepositoryIF.save(address);
 
         // Do not return the residents for the customer address
         newCustomer.getAddress().setResidents(null);
         newCustomer.setPassword(null);
-        newCustomer.setPasswordHash(null);
 
         return new ResponseEntity<>(newCustomer,HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Customer> findCustomer(@PathVariable("id") long cId){
-        Optional<Customer> customer = customerRepository.findById(cId);
+        Optional<Customer> customer = customerRepositoryIF.findById(cId);
 
         if(customer.isEmpty())
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         Customer c = customer.get();
         c.getAddress().setResidents(null);
         c.setPassword(null);
-        c.setPasswordHash(null);
         return new ResponseEntity<>(c,HttpStatus.OK);
     }
 
     @PutMapping("/{id}/createaccount")
     public ResponseEntity<Account> createAccount(@PathVariable("id") long cId){
-        Optional<Customer> customer = customerRepository.findById(cId);
+        Optional<Customer> customer = customerRepositoryIF.findById(cId);
 
         if(customer.isEmpty())
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         Account account = new Account(customer.get());
-        account = accountRepository.save(account);
+        account = accountRepositoryIF.save(account);
         account.createIban();
-        account= accountRepository.save(account);
+        account= accountRepositoryIF.save(account);
 
         account.setCustomer(null);
 

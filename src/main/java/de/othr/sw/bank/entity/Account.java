@@ -19,9 +19,15 @@ public class Account extends BaseEntity implements Serializable {
     @OneToMany(mappedBy="receiverAccount")
     private List<Transfer> receivers;
 
-    public Account(){}
+    private long balance;
+
+    public Account(){
+        // Set default balance to 1.000,00 €
+        this.balance = 100000L;
+    }
 
     public Account(Customer customer) {
+        super();
         this.customer = customer;
     }
 
@@ -44,6 +50,14 @@ public class Account extends BaseEntity implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public long getBalance() {
+        return balance;
+    }
+
+    public void setBalance(long balance) {
+        this.balance = balance;
     }
 
     public void createIban() {

@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface AddressRepository extends CrudRepository<Address,Long> {
+public interface AddressRepositoryIF extends CrudRepository<Address,Long> {
     List<Address> findByCountryAndCityAndZipCodeAndStreetAndHouseNr(String country, String city,long zipCode, String street, int houseNr);
 }

@@ -1,22 +1,26 @@
 package de.othr.sw.bank.entity;
 
-public class Employee extends Customer {
-    private double salary;
+import java.util.Date;
+
+public class Employee extends Person {
+    private long salary;
     private String designation;
 
     public Employee() { }
 
-    public Employee(String forename, String surname, String username, String taxNumber, String password, double salary, String designation) {
-        super(forename, surname, username, taxNumber, password);
+    public Employee(String forename, String surname, String username,
+                    String password, Date birthDate, long salary,
+                    String designation) {
+        super(forename, surname, username, birthDate, password);
         this.salary = salary;
         this.designation = designation;
     }
 
-    public double getSalary() {
+    public long getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(long salary) {
         this.salary = salary;
     }
 
