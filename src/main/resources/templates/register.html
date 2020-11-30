@@ -8,7 +8,7 @@
 
 
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Register</title>
 </head>
 <body>
 
@@ -18,45 +18,46 @@
     </div>
 </nav>
 
-<form>
+<form th:action="@{/register}" method="post">
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-2">
             <label for="inputForename">Forename</label>
             <input type="text" class="form-control" id="inputForename" required>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-2">
             <label for="inputSurname">Surname</label>
             <input type="text" class="form-control" id="inputSurname" required>
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="inputTaxNr">Tax Number</label>
             <input type="text" class="form-control" id="inputTaxNr" required>
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-2">
             <label for="inputBirthDate">Date of Birth</label>
-            <input type="text" class="form-control" id="inputBirthDate" required>
+            <input type="date" class="form-control" id="inputBirthDate" required>
         </div>
     </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-2">
             <label for="inputUsername">Username</label>
             <input type="text" class="form-control" id="inputUsername" required>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-2">
             <label for="inputPassword">Password</label>
             <input type="password" class="form-control" id="inputPassword" required>
         </div>
-        <div class="form-row  col-md-6">
+    </div>
+        <div class="form-row">
             <div class="form-group col-md-2">
                 <label for="inputStreet">Street</label>
                 <input type="text" class="form-control" id="inputStreet" required>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-1">
                 <label for="inputHouseNr">House Number</label>
                 <input type="number" class="form-control" id="inputHouseNr" required>
             </div>
@@ -67,7 +68,7 @@
             <label for="inputZip">Zip</label>
             <input type="text" class="form-control" id="inputZip" required>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="inputCity">City</label>
             <input type="text" class="form-control" id="inputCity" required>
         </div>
