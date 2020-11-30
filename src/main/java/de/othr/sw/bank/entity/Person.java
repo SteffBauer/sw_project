@@ -1,23 +1,27 @@
 package de.othr.sw.bank.entity;
 
-import de.othr.sw.bank.utils.EncryptionUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Person extends BaseEntity implements Serializable {
     private String forename;
     private String surname;
-    @Column(unique=true)
+    @Column(unique = true)
     private String username;
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Date birthDate;
     private String password;
 
-    public Person(){}
+    public Person() {
+    }
 
     public Person(String forename, String surname, String username, Date birthDate, String password) {
         this.forename = forename;
@@ -57,5 +61,13 @@ public abstract class Person extends BaseEntity implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 }

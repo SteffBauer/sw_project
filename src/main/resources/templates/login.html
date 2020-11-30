@@ -17,6 +17,13 @@
         </div>
     </nav>
 
+    <!-- show notification on error -->
+    <div th:if="${error}" th:text="${error}">
+        Invalid username or password.
+    </div>
+    <!-- show notification of logout -->
+    <span th:if="${message}" th:text="${message}"></span>
+
     <form th:action="@{/login/customer}" method="get">
         <div class="form-group col-md-2">
             <label for="exampleInputUsername">Username</label>
