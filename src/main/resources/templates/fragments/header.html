@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<div th:fragment="navCustomer">
+<div th:fragment="navLogout">
     <nav class="navbar navbar-dark bg-dark">
         <div class="navbar-header mr-auto">
             <a class="navbar-brand" th:href="@{/login/customer}">The Bank of Trust</a>
         </div>
         <div class="navbar-nav my-2 my-lg-0">
             <li><a th:href="@{/logout}" method="post" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="navEmpty">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="navbar-header mr-auto">
+            <a class="navbar-brand" th:href="@{/login/customer}">The Bank of Trust</a>
         </div>
     </nav>
 </div>

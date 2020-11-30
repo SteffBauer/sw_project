@@ -12,6 +12,6 @@ public class CustomerController {
     @RequestMapping("/")
     public String showStartPage(Model model) {
         model.addAttribute("today", new Date().toString());
-        return "customerIndex";
+        return "customer_index";
     }
 }

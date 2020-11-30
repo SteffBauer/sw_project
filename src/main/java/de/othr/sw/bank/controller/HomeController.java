@@ -34,7 +34,7 @@ public class HomeController {
     public String showOnlineBankingSite(Model model, String error, String logout) {
         //todo login user
         model.addAttribute("today", new Date().toString());
-        return "customerIndex";
+        return "customer_index";
     }
 
     @RequestMapping("/customer/new")

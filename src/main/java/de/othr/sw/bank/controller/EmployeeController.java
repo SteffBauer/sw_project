@@ -11,6 +11,6 @@ public class EmployeeController {
     @RequestMapping("/")
     public String showStartPage(Model model) {
         model.addAttribute("today", new Date().toString());
-        return "employeeIndex";
+        return "employee_index";
     }
 }
