@@ -26,7 +26,7 @@
 </nav>
 
 <div style="max-width: 1000px; margin: 100px auto auto;">
-    <form th:action="@{/customer}" th:object="${customer}" method="post">
+    <form th:action="@{/register}" th:object="${customer}" method="post">
         <div class="form-row justify-content-center">
             <div class="form-group col-md-3">
                 <label for="inputForename">Forename</label>
@@ -94,7 +94,7 @@
             </div>
         </div>
         <div class="form-row justify-content-center">
-        <button type="submit" class="btn btn-primary" th:href="@{/customer}">Register</button>
+        <button type="submit" class="btn btn-primary" th:href="@{/register}">Register</button>
         </div>
 
     </form>
