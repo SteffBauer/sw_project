@@ -8,15 +8,21 @@ import de.othr.sw.bank.repo.AddressRepositoryIF;
 import de.othr.sw.bank.repo.CustomerRepositoryIF;
 import de.othr.sw.bank.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController()
 @RequestMapping("api/customers")
-public class CustomerService {
+@Qualifier("labresources")
+public class CustomerService implements UserDetailsService {
 
     @Autowired
     private CustomerRepositoryIF customerRepositoryIF;
@@ -25,6 +31,9 @@ public class CustomerService {
     @Autowired
     // todo refactor usage in Banking Service
     private AccountRepositoryIF accountRepositoryIF;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @PostMapping()
     public ResponseEntity<Customer> newCustomer(@RequestBody Customer newCustomer) {
@@ -53,6 +62,8 @@ public class CustomerService {
 
         // Set the address of the customer
         newCustomer.setAddress(address);
+        // Set the password of the customer
+        newCustomer.setPassword(passwordEncoder.encode(newCustomer.getPassword()));
         newCustomer = customerRepositoryIF.save(newCustomer);
 
 
@@ -77,6 +88,16 @@ public class CustomerService {
         c.getAddress().setResidents(null);
         c.setPassword(null);
         return new ResponseEntity<>(c,HttpStatus.OK);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+        Customer customer = customerRepositoryIF.findById(Long.parseLong((id)))
+                .orElseThrow(() -> {
+                            throw new UsernameNotFoundException("Kunde mit Nr. " + id + " existiert nicht");
+                        }
+                );
+        return customer;
     }
 
     @PutMapping("/{id}/createaccount")
