@@ -1,6 +1,7 @@
 package de.othr.sw.bank.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +12,7 @@ import java.util.Date;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Person extends BaseEntity implements Serializable {
+public abstract class Person extends BaseEntity implements Serializable, UserDetails {
     private String forename;
     private String surname;
     @Column(unique = true)
