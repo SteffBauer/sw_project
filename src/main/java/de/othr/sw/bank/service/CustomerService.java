@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +22,7 @@ import java.util.Optional;
 @RestController()
 @RequestMapping("api/customers")
 @Qualifier("labresources")
-public class CustomerService {
+public class CustomerService implements UserDetailsService {
 
     @Autowired
     private CustomerRepositoryIF customerRepositoryIF;
@@ -85,6 +88,16 @@ public class CustomerService {
         c.getAddress().setResidents(null);
         c.setPassword(null);
         return new ResponseEntity<>(c,HttpStatus.OK);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+        Customer customer = customerRepositoryIF.findById(Long.parseLong((id)))
+                .orElseThrow(() -> {
+                            throw new UsernameNotFoundException("Kunde mit Nr. " + id + " existiert nicht");
+                        }
+                );
+        return customer;
     }
 
     @PutMapping("/{id}/createaccount")

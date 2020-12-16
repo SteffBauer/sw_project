@@ -26,7 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return encryptionUtils.passwordEncoder();
     }
     private static final String[] ALLOW_ACCESS_WITHOUT_AUTHENTICATION = {
-            "/css/**", "/image/**", "/fonts/**", "/", "/login", "/forgotPassword", "/register" };
+            "/css/**", "/images/**", "/fonts/**", "/", "/login", "/forgotPassword", "/register" };
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

@@ -37,7 +37,7 @@ public class HomeController {
         return "customer_index";
     }
 
-    @RequestMapping("/customer/new")
+    @RequestMapping("/register")
     public String showRegisterPage(Model model) {
         Customer c = new Customer();
         model.addAttribute("customer", c);
