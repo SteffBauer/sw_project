@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 import java.util.List;
@@ -30,7 +31,9 @@ public class HomeController {
     }
 
     @RequestMapping("/dashboard")
-    public String showDashboard(Model model) {
+    public String showDashboard(Model model,
+                                @RequestParam(value = "error", required = false) String error,
+                                @RequestParam(value = "info", required = false) String info) {
         model.addAttribute("today", new Date().toString());
 
 
@@ -42,6 +45,11 @@ public class HomeController {
             List<Account> accounts = customerService.getAccountsForUser(customer.getId());
             model.addAttribute("accounts", accounts);
 
+
+            if (error != null)
+                model.addAttribute("error", error);
+            else if(info != null)
+                model.addAttribute("info", info);
 
             return "dashboard";
 

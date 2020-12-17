@@ -23,6 +23,8 @@
 <p>Today is <span th:text="${today}"/></p>
 <p>Todo: Konten, ... </p>
 <h3 th:if="${ #lists.isEmpty(accounts)}">There are no accounts yet.</h3>
+<h3 th:if="${info}" th:text="${info}"></h3>
+<h3 th:if="${error}" th:text="${error}"></h3>
 <table class="table table-hover" th:if="${not #lists.isEmpty(accounts)}">
     <tr>
         <th>No</th>
@@ -35,6 +37,9 @@
         <td th:text="${account.balance}">Doe</td>
     </tr>
 </table>
+
+
+<a class="btn" href="/accounts/opening"><span class="glyphicon glyphicon-plus" aria-hidden="true" th:href="@{/accounts/opening}"></span> Apply for an account</a>
 
 <button type="button" class="btn btn-default btn-lg">
     <span class="glyphicon glyphicon-plus" aria-hidden="true" th:href="@{/accounts/opening}"></span> Apply for an account

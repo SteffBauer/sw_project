@@ -4,14 +4,14 @@ import java.util.UUID;
 
 public class AccountRequest {
 
-    private UUID uuid;
     private String username;
     private String iban;
+    private String reason;
+    private long monthlyIncome;
 
     public AccountRequest() {}
 
-    public AccountRequest(UUID uuid, String username,String iban) {
-        this.uuid = uuid;
+    public AccountRequest(String username,String iban) {
         this.username = username;
         this.iban = iban;
     }
@@ -20,12 +20,16 @@ public class AccountRequest {
         return username;
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
+    public long getMonthlyIncome() {
+        return monthlyIncome;
+    }
+
+    public void setMonthlyIncome(long monthlyIncome) {
+        this.monthlyIncome = monthlyIncome;
     }
 
     public String getIban() {
@@ -47,7 +51,15 @@ public class AccountRequest {
 
     @Override
     public int hashCode(){
-        String s = this.username +this.uuid;
+        String s = this.username +this.iban;
         return s.hashCode();
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }

@@ -1,6 +1,7 @@
 package de.othr.sw.bank.service;
 
 import de.othr.sw.bank.entity.Account;
+import de.othr.sw.bank.entity.AccountRequest;
 import de.othr.sw.bank.entity.Address;
 import de.othr.sw.bank.entity.Customer;
 import de.othr.sw.bank.repo.AccountRepositoryIF;
@@ -107,7 +108,7 @@ public class CustomerService implements UserDetailsService {
     }
 
     @PutMapping("/{id}/createaccount")
-    public ResponseEntity<Account> createAccount(@PathVariable("id") long cId){
+    public ResponseEntity<Account> createAccount(@PathVariable("id") long cId, @RequestBody AccountRequest accountRequest){
         Optional<Customer> customer = customerRepositoryIF.findById(cId);
 
         if(customer.isEmpty())
@@ -120,7 +121,7 @@ public class CustomerService implements UserDetailsService {
 
         account.setCustomer(null);
 
-        return new ResponseEntity<>(account,HttpStatus.OK);
+        return new ResponseEntity<>(account,HttpStatus.CREATED);
     }
 
     public List<Account> getAccountsForUser(long id) {
