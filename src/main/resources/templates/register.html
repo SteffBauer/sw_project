@@ -19,11 +19,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
-    <div class="navbar-header mr-auto">
-        <a class="navbar-brand" th:href="@{/}">The Bank of Trust</a>
-    </div>
-</nav>
+<div th:replace="fragments/header :: navEmpty"/>
 
 <div style="max-width: 1000px; margin: 100px auto auto;">
     <form th:action="@{/register}" th:object="${customer}" method="post">

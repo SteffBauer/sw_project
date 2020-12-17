@@ -19,6 +19,7 @@ public class Customer extends Person {
     @JoinColumn(name="address_id")
     private Address address;
 
+
     @OneToMany(mappedBy = "customer")
     private List<Account> accounts;
 
@@ -46,6 +47,15 @@ public class Customer extends Person {
         this.address = address;
     }
 
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -70,4 +80,6 @@ public class Customer extends Person {
     public boolean isEnabled() {
         return true;
     }
+
+
 }

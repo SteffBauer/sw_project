@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<div  th:fragment="navRegisterLogin">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="navbar-header mr-auto">
+            <a class="navbar-brand" th:href="@{/}">The Bank of Trust</a>
+        </div>
+        <div class="navbar-nav my-2 my-lg-0">
+            <li><a th:href="@{/register}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+        </div>
+        <div style="height:100%; width:1em; clear:both;"></div>
+        <div class="navbar-nav my-2 my-lg-0">
+            <li><a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </div>
+    </nav>
+</div>
+
 <div th:fragment="navLogout">
     <nav class="navbar navbar-dark bg-dark">
         <div class="navbar-header mr-auto">
@@ -19,5 +34,6 @@
         </div>
     </nav>
 </div>
+
 
 </html>

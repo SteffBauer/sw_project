@@ -11,18 +11,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController()
 @RequestMapping("api/customers")
 @Qualifier("labresources")
 public class CustomerService implements UserDetailsService {
+
 
     @Autowired
     private CustomerRepositoryIF customerRepositoryIF;
@@ -117,4 +123,8 @@ public class CustomerService implements UserDetailsService {
         return new ResponseEntity<>(account,HttpStatus.OK);
     }
 
+    public List<Account> getAccountsForUser(long id) {
+        List<Account> accounts = customerRepositoryIF.findById(id).get().getAccounts();
+        return accounts;
+    }
 }

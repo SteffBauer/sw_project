@@ -22,35 +22,18 @@
 <p th:if="${username}">Your username is <span th:text="${username}"/></p>
 <p>Today is <span th:text="${today}"/></p>
 <p>Todo: Konten, ... </p>
-
-<table class="table table-hover">
-    <thead>
+<h3 th:if="${ #lists.isEmpty(accounts)}">There are no accounts yet.</h3>
+<table class="table table-hover" th:if="${not #lists.isEmpty(accounts)}">
     <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th>No</th>
+        <th>IBAN</th>
+        <th>Balance</th>
     </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+    <tr th:each="account, custStat : ${accounts}">
+        <td th:text="${custStat.count}">1</td>
+        <td th:text="${account.iban}">John</td>
+        <td th:text="${account.balance}">Doe</td>
     </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-    </tr>
-    </tbody>
 </table>
 
 <button type="button" class="btn btn-default btn-lg">

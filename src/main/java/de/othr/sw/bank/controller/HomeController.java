@@ -1,5 +1,12 @@
 package de.othr.sw.bank.controller;
 
+import de.othr.sw.bank.entity.Account;
+import de.othr.sw.bank.entity.Customer;
+import de.othr.sw.bank.repo.AccountRepositoryIF;
+import de.othr.sw.bank.repo.CustomerRepositoryIF;
+import de.othr.sw.bank.service.BankingService;
+import de.othr.sw.bank.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,9 +15,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    CustomerService customerService;
 
     @RequestMapping("/")
     public String showStartPage(Model model) {
@@ -19,20 +30,22 @@ public class HomeController {
     }
 
     @RequestMapping("/dashboard")
-    public String showDashboard(Model model){
+    public String showDashboard(Model model) {
         model.addAttribute("today", new Date().toString());
-
 
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            String currentUserName = authentication.getName();
+            Customer customer = (Customer) authentication.getPrincipal();
 
-            model.addAttribute("username", currentUserName);
+
+            List<Account> accounts = customerService.getAccountsForUser(customer.getId());
+            model.addAttribute("accounts", accounts);
+
+
+            return "dashboard";
+
         }
-
-
-
-        return "dashboard";
+        return "login";
     }
 }
