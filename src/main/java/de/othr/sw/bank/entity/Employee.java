@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import java.util.Collection;
 import java.util.Date;
 
-@Entity
+@Entity(name = "employee")
 public class Employee extends Person {
     private long salary;
     private String designation;

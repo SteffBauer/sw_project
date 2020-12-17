@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+@Entity(name = "customer")
 public class Customer extends Person {
 
     private String taxNumber;

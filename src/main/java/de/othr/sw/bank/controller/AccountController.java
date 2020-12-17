@@ -19,6 +19,6 @@ public class AccountController {
             model.addAttribute("username", currentUserName);
         }
 
-        return "employee_account_new";
+        return "/customer/account_apply";
     }
 }
