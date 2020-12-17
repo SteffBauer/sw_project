@@ -24,40 +24,36 @@
 <p>Todo: Neuen Account beantragen ... </p>
 
 
-<div th:replace="fragments/header :: navLogout"/>
-
 <div style="max-width: 1000px; margin: 100px auto auto;">
     <form th:action="@{/accounts}" th:object="${accountRequest}" method="post">
         <div class="form-row justify-content-center">
-            <div class="form-group col-md-3">
-                <label for="inputForename">Reason</label>
-                <input type="text" th:field="*{reason}" class="form-control" id="inputForename" required>
-            </div>
-        </div>
-        <div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <label for="inputSurname">Monthly Income</label>
                 <input type="number" th:field="*{monthlyIncome}" class="form-control" id="inputSurname" required>
             </div>
-        </div>
-
-        <div class="form-group form-row justify-content-center">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck" required>
-                <label class="form-check-label" for="gridCheck">
-                    Agree to terms and conditions
-                </label>
-            </div>
+            <div class="form-group col-md-4"></div>
         </div>
         <div class="form-row justify-content-center">
-            <button type="reset" class="btn" th:href="@{/dashboard}">Cancel</button>
-            <button type="submit" class="btn btn-primary" th:href="@{/register}">Register</button>
+            <div class="form-group col-md-6">
+                <label for="inputReason">Reason</label>
+                <textarea class="form-control" id="inputReason" rows="3" th:field="*{reason}" required></textarea>
+            </div>
+        </div>
+
+        <div class="form-row justify-content-center">
+            <button class="btn" onclick="goBack()">Cancel</button>
+            <button type="submit" class="btn btn-primary" th:href="@{/accounts}">Register</button>
         </div>
 
     </form>
 </div>
 
 
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 
 </body>
 </html>

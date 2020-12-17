@@ -52,7 +52,7 @@ public class AccountController {
             ResponseEntity<Account> responseEntity = customerService.createAccount(customer.getId(), accountRequest);
 
             if (responseEntity.getStatusCode() == HttpStatus.CREATED)
-                return homeController.showDashboard(model, null, "Your request for an account has been sent.\nYour request will be proved by our employees.");
+                return homeController.showDashboard(model, null, "Your request for an account has been sent. It will be verified by our employees.");
             else
                 return homeController.showDashboard(model, "An error occurred while sending your request.", null);
 
