@@ -42,23 +42,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         http
                 .authorizeRequests()
                     .antMatchers(ALLOW_ACCESS_WITHOUT_AUTHENTICATION)
-                    .permitAll()
-                .and()
+                    .permitAll().anyRequest().authenticated();
+       http
                 .formLogin()
-                    .loginPage("/login")
-                    .successHandler(new AuthenticationSuccessHandler() {
-                        @Override
-                        public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                                        Authentication authentication) throws IOException, ServletException {
-                            redirectStrategy.sendRedirect(request, response, "/dashboard");
-                        }
-                    })
+                    .loginPage("/login").permitAll()
+                    .successHandler((request, response, authentication) -> redirectStrategy.sendRedirect(request, response, "/dashboard"))
                     .failureUrl("/login?error=true")
-                    .permitAll()
                 .and()
                 .logout()
                     .logoutSuccessUrl("/login?logout=true")
@@ -66,6 +58,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .clearAuthentication(true)
                     .deleteCookies("JSESSIONID")
                     .permitAll()
+                .and()
+                    .rememberMe()
                 .and()
                     .csrf()
                     .disable();
