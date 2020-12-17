@@ -9,9 +9,18 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
@@ -27,6 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return encryptionUtils.passwordEncoder();
     }
 
+    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
     private static final String[] ALLOW_ACCESS_WITHOUT_AUTHENTICATION = {
             "/css/**", "/images/**", "/fonts/**", "/", "/login", "/forgotPassword", "/register"};
 
@@ -40,7 +50,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                     .loginPage("/login")
-                    .successForwardUrl("/dashboard")
+                    .successHandler(new AuthenticationSuccessHandler() {
+                        @Override
+                        public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                                        Authentication authentication) throws IOException, ServletException {
+                            redirectStrategy.sendRedirect(request, response, "/dashboard");
+                        }
+                    })
                     .failureUrl("/login?error=true")
                     .permitAll()
                 .and()
