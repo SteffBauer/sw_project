@@ -3,10 +3,17 @@
 <head>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
     <!-- Glyphicons -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -22,28 +29,59 @@
 <p th:if="${username}">Your username is <span th:text="${username}"/></p>
 <p>Today is <span th:text="${today}"/></p>
 <p>Todo: Konten, ... </p>
+
 <h3 th:if="${ #lists.isEmpty(accounts)}">There are no accounts yet.</h3>
 <h3 th:if="${info}" th:text="${info}"></h3>
 <h3 th:if="${error}" th:text="${error}"></h3>
-<table class="table table-hover" th:if="${not #lists.isEmpty(accounts)}">
+
+<table class="table table-hover" style="max-width: 800px" th:if="${not #lists.isEmpty(accounts)}">
     <tr>
         <th>No</th>
         <th>IBAN</th>
         <th>Balance</th>
+        <th style="text-align: center;">Actions</th>
     </tr>
-    <tr th:each="account, custStat : ${accounts}">
+    <tr th:each="account, custStat : ${accounts}"
+        th:onclick="'javascript:rowClicked(\'' + ${account.id} + '\');'"
+        style="cursor: pointer">
         <td th:text="${custStat.count}">1</td>
-        <td th:text="${account.iban}">John</td>
-        <td th:text="${account.balance}">Doe</td>
+        <td th:text="${account.iban}" style="text-align: right;">123456789</td>
+        <td th:text="${#numbers.formatDecimal(account.balance, 1, 'DEFAULT', 2, 'DEFAULT')}"
+            style="text-align: right;">1000
+        </td>
+        <td style="text-align: right;">
+            <div class="row align-items-center justify-content-center">
+
+                <form th:action="@{/accounts/opening}" method="GET">
+                    <button type="submit" class="btn" th:href="@{/accounts/opening}">
+                            <span class="glyphicon glyphicon-transfer" aria-hidden="true"
+                                  style="max-height:100%;"></span>
+                    </button>
+                </form>
+                <div style="width: 5px"></div>
+                <form th:action="@{/accounts/opening}" method="GET">
+                    <button type="submit" class="btn" th:href="@{/accounts/opening}">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"
+                                      style="max-height:100%;"></span>
+                    </button>
+                </form>
+            </div>
+        </td>
     </tr>
 </table>
 
-<form  th:action="@{/accounts/opening}" method="GET">
+<form th:action="@{/accounts/opening}" method="GET">
     <button type="submit" class="btn btn-primary" th:href="@{/accounts/opening}">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Apply for an account
     </button>
 </form>
 
+
+<script>
+    function rowClicked(value) {
+        location.href = "/accounts/" + value;
+    }
+</script>
 
 </body>
 </html>

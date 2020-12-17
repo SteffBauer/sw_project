@@ -27,7 +27,7 @@ public class Account extends BaseEntity implements Serializable {
     }
 
     public Account(Customer customer) {
-        super();
+        this();
         this.customer = customer;
     }
 
