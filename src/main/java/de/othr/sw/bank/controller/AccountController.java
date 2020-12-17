@@ -1,9 +1,8 @@
 package de.othr.sw.bank.controller;
 
-import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.AccountRequest;
 import de.othr.sw.bank.entity.Customer;
-import de.othr.sw.bank.service.CustomerService;
+import de.othr.sw.bank.service.CustomerServiceIF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,16 +14,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @Controller
 @RequestMapping
 public class AccountController {
 
     @Autowired
-    private CustomerService customerService;
+    CustomerServiceIF customerService;
     @Autowired
     HomeController homeController;
 
@@ -48,8 +44,9 @@ public class AccountController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             Customer customer = (Customer) authentication.getPrincipal();
+            accountRequest.setUsername(customer.getUsername());
 
-            ResponseEntity<Account> responseEntity = customerService.createAccount(customer.getId(), accountRequest);
+            ResponseEntity<AccountRequest> responseEntity = customerService.createAccount(accountRequest);
 
             if (responseEntity.getStatusCode() == HttpStatus.CREATED)
                 return homeController.showDashboard(model, null, "Your request for an account has been sent. It will be verified by our employees.");

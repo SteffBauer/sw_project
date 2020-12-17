@@ -4,46 +4,44 @@ import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.AccountRequest;
 import de.othr.sw.bank.entity.Address;
 import de.othr.sw.bank.entity.Customer;
-import de.othr.sw.bank.repo.AccountRepositoryIF;
 import de.othr.sw.bank.repo.AddressRepositoryIF;
 import de.othr.sw.bank.repo.CustomerRepositoryIF;
+import de.othr.sw.bank.service.BankingServiceIF;
+import de.othr.sw.bank.service.CustomerServiceIF;
 import de.othr.sw.bank.utils.StringUtils;
+import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+
 @RestController()
 @RequestMapping("api/customers")
-@Qualifier("labresources")
-public class CustomerService implements UserDetailsService {
+public class CustomerService implements CustomerServiceIF,UserDetailsService {
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private BankingServiceIF bankingServiceIF;
 
     @Autowired
     private CustomerRepositoryIF customerRepositoryIF;
     @Autowired
     private AddressRepositoryIF addressRepositoryIF;
-    @Autowired
-    // todo refactor usage in Banking Service
-    private AccountRepositoryIF accountRepositoryIF;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
 
+    @Override
     @PostMapping()
-    public ResponseEntity<Customer> newCustomer(@RequestBody Customer newCustomer) {
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) {
 
 
         if(StringUtils.isNullOrEmpty(newCustomer.getForename()) ||
@@ -85,6 +83,7 @@ public class CustomerService implements UserDetailsService {
         return new ResponseEntity(newCustomer,HttpStatus.CREATED);
     }
 
+    /*
     @GetMapping("/{id}")
     public ResponseEntity<Customer> findCustomer(@PathVariable("id") long cId){
         Optional<Customer> customer = customerRepositoryIF.findById(cId);
@@ -96,10 +95,10 @@ public class CustomerService implements UserDetailsService {
         c.setPassword(null);
         return new ResponseEntity<>(c,HttpStatus.OK);
     }
-
+*/
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Customer customer = customerRepositoryIF.findDistinctByUsername(username)
+        Customer customer = getCustomerByUsername(username)
                 .orElseThrow(() -> {
                             throw new UsernameNotFoundException("Customer with name " + username + " not found.");
                         }
@@ -107,23 +106,24 @@ public class CustomerService implements UserDetailsService {
         return customer;
     }
 
-    @PutMapping("/{id}/createaccount")
-    public ResponseEntity<Account> createAccount(@PathVariable("id") long cId, @RequestBody AccountRequest accountRequest){
-        Optional<Customer> customer = customerRepositoryIF.findById(cId);
-
-        if(customer.isEmpty())
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
-        Account account = new Account(customer.get());
-        account = accountRepositoryIF.save(account);
-        account.createIban();
-        account= accountRepositoryIF.save(account);
-
-        account.setCustomer(null);
-
-        return new ResponseEntity<>(account,HttpStatus.CREATED);
+    @Override
+    public Optional<Customer> getCustomerByUsername(String username){
+        return customerRepositoryIF.findDistinctByUsername(username);
     }
 
+    @Override
+    public ResponseEntity<Customer> findCustomer(String taxnumber) {
+        //todo implement;
+        throw new NotYetImplementedException();
+    }
+
+    @Override
+    @PostMapping("/account")
+    public ResponseEntity<AccountRequest> createAccount(@RequestBody AccountRequest accountRequest){
+        return bankingServiceIF.createAccount(accountRequest);
+    }
+
+    @Override
     public List<Account> getAccountsForUser(long id) {
         List<Account> accounts = customerRepositoryIF.findById(id).get().getAccounts();
         return accounts;

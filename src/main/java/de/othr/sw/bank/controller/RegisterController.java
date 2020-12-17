@@ -1,13 +1,12 @@
 package de.othr.sw.bank.controller;
 
 import de.othr.sw.bank.entity.Customer;
-import de.othr.sw.bank.service.CustomerService;
+import de.othr.sw.bank.service.CustomerServiceIF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class RegisterController {
     @Autowired
-    CustomerService customerService;
+    CustomerServiceIF customerServiceIF;
     @Autowired
     LoginController loginController;
 
@@ -29,7 +28,7 @@ public class RegisterController {
 
     @PostMapping("/register")
     public String registerCustomer(Model model,@ModelAttribute Customer customer) {
-        ResponseEntity responseEntity = customerService.newCustomer(customer);
+        ResponseEntity responseEntity = customerServiceIF.createCustomer(customer);
         if(responseEntity.getStatusCode() == HttpStatus.CREATED) {
             return loginController.showLoginPage(model,null,null,"registered");
         }

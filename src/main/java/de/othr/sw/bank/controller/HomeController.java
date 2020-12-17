@@ -2,10 +2,7 @@ package de.othr.sw.bank.controller;
 
 import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.Customer;
-import de.othr.sw.bank.repo.AccountRepositoryIF;
-import de.othr.sw.bank.repo.CustomerRepositoryIF;
-import de.othr.sw.bank.service.BankingService;
-import de.othr.sw.bank.service.CustomerService;
+import de.othr.sw.bank.service.CustomerServiceIF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,7 +19,7 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    CustomerService customerService;
+    CustomerServiceIF customerServiceIF;
 
     @RequestMapping("/")
     public String showStartPage(Model model) {
@@ -42,7 +39,7 @@ public class HomeController {
             Customer customer = (Customer) authentication.getPrincipal();
 
 
-            List<Account> accounts = customerService.getAccountsForUser(customer.getId());
+            List<Account> accounts = customerServiceIF.getAccountsForUser(customer.getId());
             model.addAttribute("accounts", accounts);
 
 

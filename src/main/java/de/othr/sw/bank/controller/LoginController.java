@@ -1,8 +1,6 @@
 package de.othr.sw.bank.controller;
 
 import de.othr.sw.bank.entity.Customer;
-import de.othr.sw.bank.entity.Employee;
-import de.othr.sw.bank.entity.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

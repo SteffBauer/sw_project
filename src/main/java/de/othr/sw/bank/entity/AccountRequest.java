@@ -1,7 +1,5 @@
 package de.othr.sw.bank.entity;
 
-import java.util.UUID;
-
 public class AccountRequest {
 
     private String username;
