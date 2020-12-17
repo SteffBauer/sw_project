@@ -7,23 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Date;
-
 @Controller
-public class HomeController {
-
-    @RequestMapping("/")
-    public String showStartPage(Model model) {
-        model.addAttribute("today", new Date().toString());
-        return "index";
-    }
-
-    @RequestMapping("/dashboard")
-    public String showDashboard(Model model){
-        model.addAttribute("today", new Date().toString());
-
-
-
+@RequestMapping
+public class AccountController {
+    @RequestMapping("/accounts/opening")
+    public String getFormForNewAccount(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserName = authentication.getName();
@@ -31,8 +19,6 @@ public class HomeController {
             model.addAttribute("username", currentUserName);
         }
 
-
-
-        return "dashboard";
+        return "employee_account_new";
     }
 }

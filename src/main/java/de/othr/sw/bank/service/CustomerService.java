@@ -91,10 +91,10 @@ public class CustomerService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-        Customer customer = customerRepositoryIF.findDistinctByUsername(id)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Customer customer = customerRepositoryIF.findDistinctByUsername(username)
                 .orElseThrow(() -> {
-                            throw new UsernameNotFoundException("Kunde mit Nr. " + id + " existiert nicht");
+                            throw new UsernameNotFoundException("Customer with name " + username + " not found.");
                         }
                 );
         return customer;
