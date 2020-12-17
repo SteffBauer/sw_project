@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RegisterController {
     @Autowired
     CustomerService customerService;
+    @Autowired
+    LoginController loginController;
 
     @RequestMapping("/register")
     public String showRegisterPage(Model model) {
@@ -28,8 +30,9 @@ public class RegisterController {
     @PostMapping("/register")
     public String registerCustomer(Model model,@ModelAttribute Customer customer) {
         ResponseEntity responseEntity = customerService.newCustomer(customer);
-        if(responseEntity.getStatusCode() == HttpStatus.CREATED)
-            return "registration_success";
+        if(responseEntity.getStatusCode() == HttpStatus.CREATED) {
+            return loginController.showLoginPage(model,null,null,"registered");
+        }
         else
             return "registration_error";
     }

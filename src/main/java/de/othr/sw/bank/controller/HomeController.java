@@ -17,4 +17,10 @@ public class HomeController {
         model.addAttribute("today", new Date().toString());
         return "index";
     }
+
+    @RequestMapping("/dashboard")
+    public String showDashboard(Model model){
+        model.addAttribute("today", new Date().toString());
+        return "customer_index";
+    }
 }

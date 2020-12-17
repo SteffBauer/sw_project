@@ -5,36 +5,32 @@ import de.othr.sw.bank.entity.Employee;
 import de.othr.sw.bank.entity.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
 @Controller
 public class LoginController {
+
     @RequestMapping("/login")
-    public String showLoginPage(Model model, String error, String logout) {
+    public String showLoginPage(Model model,
+                                @RequestParam(value = "error", required = false) String error,
+                                @RequestParam(value = "logout", required = false) String logout,
+                                @RequestParam(value = "registered", required = false) String registered) {
         model.addAttribute("today", new Date().toString());
+
+
 
         Customer c = new Customer();
         model.addAttribute("customer", c);
 
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
-
-        if (logout != null)
+        else if(logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
+        else if(registered != null)
+            model.addAttribute("message", "Your registration was successfull.");
 
         return "login";
-    }
-
-    @PutMapping("/login")
-    public String loginPerson(Model model, Customer customer){
-        System.out.println("success");
-
-        // Login data is incorrect
-        return showLoginPage(model,"error", null);
-
     }
 }

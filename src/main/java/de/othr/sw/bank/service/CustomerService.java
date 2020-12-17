@@ -75,7 +75,7 @@ public class CustomerService implements UserDetailsService {
         newCustomer.getAddress().setResidents(null);
         newCustomer.setPassword(null);
 
-        return new ResponseEntity<>(newCustomer,HttpStatus.OK);
+        return new ResponseEntity(newCustomer,HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
@@ -92,7 +92,7 @@ public class CustomerService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-        Customer customer = customerRepositoryIF.findById(Long.parseLong((id)))
+        Customer customer = customerRepositoryIF.findDistinctByUsername(id)
                 .orElseThrow(() -> {
                             throw new UsernameNotFoundException("Kunde mit Nr. " + id + " existiert nicht");
                         }
