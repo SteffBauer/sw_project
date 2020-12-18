@@ -1,11 +1,9 @@
 package de.othr.sw.bank.service;
 
-import de.othr.sw.bank.entity.Account;
-import de.othr.sw.bank.entity.AccountRequest;
-import de.othr.sw.bank.entity.Address;
-import de.othr.sw.bank.entity.Customer;
+import de.othr.sw.bank.entity.*;
 import de.othr.sw.bank.repo.AddressRepositoryIF;
 import de.othr.sw.bank.repo.CustomerRepositoryIF;
+import de.othr.sw.bank.repo.EmployeeRepositoryIF;
 import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.CustomerServiceIF;
 import de.othr.sw.bank.utils.StringUtils;
@@ -20,12 +18,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 
 @RestController()
 @RequestMapping("api/customers")
+@Qualifier("customerUserDetailsService")
 public class CustomerService implements CustomerServiceIF,UserDetailsService {
 
     @Autowired
@@ -42,7 +43,6 @@ public class CustomerService implements CustomerServiceIF,UserDetailsService {
     @Override
     @PostMapping()
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) {
-
 
         if(StringUtils.isNullOrEmpty(newCustomer.getForename()) ||
             StringUtils.isNullOrEmpty(newCustomer.getSurname()) ||

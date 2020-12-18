@@ -2,6 +2,7 @@ package de.othr.sw.bank.controller;
 
 import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.Customer;
+import de.othr.sw.bank.entity.Employee;
 import de.othr.sw.bank.service.CustomerServiceIF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -25,6 +26,8 @@ public class HomeController {
     public String showStartPage(Model model) {
         model.addAttribute("today", new Date().toString());
         return "index";
+
+
     }
 
     @RequestMapping("/dashboard")
@@ -48,6 +51,34 @@ public class HomeController {
             }
 
             model.addAttribute("totalBalance", sum);
+
+            if (error != null)
+                model.addAttribute("error", error);
+            else if(info != null)
+                model.addAttribute("info", info);
+
+            return "/customer/dashboard";
+
+        }
+        return "login";
+    }
+
+    @RequestMapping("/admin/dashboard")
+    public String showAdminDashboard(Model model,
+                                @RequestParam(value = "error", required = false) String error,
+                                @RequestParam(value = "info", required = false) String info) {
+        model.addAttribute("today", new Date().toString());
+
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            Employee employee = (Employee) authentication.getPrincipal();
+            model.addAttribute("name", employee.getForename());
+
+            model.addAttribute("accounts", null);
+
+
+            model.addAttribute("totalBalance", 0);
 
             if (error != null)
                 model.addAttribute("error", error);

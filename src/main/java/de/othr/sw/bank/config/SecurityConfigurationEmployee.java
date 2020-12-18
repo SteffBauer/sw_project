@@ -1,9 +1,12 @@
+/*
 package de.othr.sw.bank.config;
 
 
 import de.othr.sw.bank.utils.EncryptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,9 +20,11 @@ import org.springframework.security.web.RedirectStrategy;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+@Order(2)
+public class SecurityConfigurationEmployee extends WebSecurityConfigurerAdapter {
     @Autowired
-    private UserDetailsService customerService;
+    @Qualifier("employeeUserDetailsService")
+    private UserDetailsService employeeService;
     @Autowired
     private EncryptionUtils encryptionUtils;
 
@@ -40,7 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
        http
                 .formLogin()
                     .loginPage("/login").permitAll()
-                    .successHandler((request, response, authentication) -> redirectStrategy.sendRedirect(request, response, "/dashboard"))
+                    .successHandler((request, response, authentication) -> redirectStrategy.sendRedirect(request, response, "/admin/dashboard"))
                     .failureUrl("/login?error=true")
                 .and()
                 .logout()
@@ -60,6 +65,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customerService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(employeeService).passwordEncoder(passwordEncoder());
     }
-}
+}*/
