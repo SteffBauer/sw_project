@@ -3,6 +3,7 @@ package de.othr.sw.bank.controller;
 import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.AccountRequest;
 import de.othr.sw.bank.entity.Customer;
+import de.othr.sw.bank.entity.Transfer;
 import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.CustomerServiceIF;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,12 @@ public class AccountController {
             if(account.getCustomer().getId() != customer.getId())
                 return homeController.showDashboard(model,"Error while accessing account info.",null);
 
+            ResponseEntity<List<Transfer>> responseEntityTransfers = bankingService.getTransfersByAccountId(account.getId());
+
+            if(responseEntityTransfers.getStatusCode() == HttpStatus.OK)
+                model.addAttribute("transfers", responseEntityTransfers.getBody());
+            else
+                model.addAttribute("transfers", null);
             model.addAttribute("account",account);
             return "/customer/account";
 

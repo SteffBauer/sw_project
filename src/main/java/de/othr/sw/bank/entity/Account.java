@@ -12,7 +12,6 @@ public class Account extends BaseEntity implements Serializable {
     @JoinColumn(name="customer_id")
     private Customer customer;
 
-
     @OneToMany(mappedBy="payerAccount")
     private List<Transfer> payers;
 
@@ -58,6 +57,23 @@ public class Account extends BaseEntity implements Serializable {
 
     public void setBalance(long balance) {
         this.balance = balance;
+    }
+
+
+    public List<Transfer> getPayers() {
+        return payers;
+    }
+
+    public void setPayers(List<Transfer> payers) {
+        this.payers = payers;
+    }
+
+    public List<Transfer> getReceivers() {
+        return receivers;
+    }
+
+    public void setReceivers(List<Transfer> receivers) {
+        this.receivers = receivers;
     }
 
     public void createIban() {

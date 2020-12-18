@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController()
@@ -20,9 +21,9 @@ public class BankingService implements BankingServiceIF {
 
 
     @Autowired
-    private AccountRepositoryIF accountRepositoryIF;
+    private AccountRepositoryIF accountRepository;
     @Autowired
-    private TransferRepositoryIF transferRepositoryIF;
+    private TransferRepositoryIF transferRepository;
 
     @Override
     public ResponseEntity<AccountRequest> createAccount(AccountRequest accountRequest) {
@@ -34,9 +35,9 @@ public class BankingService implements BankingServiceIF {
 
             Account account = new Account(customer.get());
 
-            account = accountRepositoryIF.save(account);
+            account = accountRepository.save(account);
             account.createIban();
-            account = accountRepositoryIF.save(account);
+            account = accountRepository.save(account);
 
             accountRequest.setIban(account.getIban());
 
@@ -65,12 +66,24 @@ public class BankingService implements BankingServiceIF {
 
     @Override
     public ResponseEntity<Account> getAccountById(long id) {
-        Optional<Account> account = accountRepositoryIF.findById(id);
+        Optional<Account> account = accountRepository.findById(id);
 
         if(account.isEmpty())
             return new ResponseEntity(account.get(),HttpStatus.NOT_FOUND);
 
         return new ResponseEntity(account.get(),HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<Transfer>> getTransfersByAccountId(long id) {
+        try {
+            List<Transfer> transfers = transferRepository.findTransfersByPayerAccountIdAndReceiverAccountIdOrderByDateDesc(id,id);
+            return new ResponseEntity(transfers, HttpStatus.OK);
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
 
 

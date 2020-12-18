@@ -3,10 +3,17 @@
 <head>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
     <!-- Glyphicons -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -17,45 +24,79 @@
 <body>
 <div th:replace="fragments/header :: navLogout"/>
 
-<h1>Welcome to The Bank of your Trust</h1>
-<h3>Login Success</h3>
-<p>Account IBAN <span th:text="${account.getIban()}"/></p>
-<p>Account Balance <span th:text="${account.getBalance()}"/></p>
-<p>Todo: Account balance, Transactions, Überweisung ... </p>
 
-<table class="table table-hover">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-    </tr>
-    </tbody>
-</table>
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="row">
+            <div class="col">
+                <h1>Welcome to The Bank of your Trust</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2 th:if="${name}">Hello <span th:text="${name}"/>, have a nice day! </h2>
+            </div>
+        </div>
 
-<button type="button" class="btn btn-default btn-lg">
-    <span class="glyphicon glyphicon-transfer" aria-hidden="true" th:href="@{/customer/account/transfer/new}"></span> Make transfer
-</button>
+        <div class="row">
+            <div class="col">
+                <h3 th:if="${account.getIban()}">Account IBAN: <span th:text="${account.getIban()}"/></h3>
+                <h3 style="color: forestgreen;" th:if="${info}" th:text="${info}"></h3>
+                <h3 style="color: firebrick; " th:if="${error}" th:text="${error}"></h3>
+            </div>
+            <div class="col.auto">
+                <h3 th:text="${#numbers.formatDecimal(account.getBalance()/100, 1, 'DEFAULT', 2, 'DEFAULT')}">100</h3>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <form th:action="@{/accounts/opening}" method="GET">
+                <button type="submit" class="btn" th:href="@{/accounts/opening}">
+                            <span class="glyphicon glyphicon-transfer" aria-hidden="true"
+                                  style="max-height:100%;"></span>
+                </button>
+            </form>
+
+            <form th:action="@{/accounts/opening}" method="GET">
+                <button type="submit" class="btn" id="btnDelete">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"
+                                      style="max-height:100%;"></span>
+                </button>
+            </form>
+        </div>
+
+        <div class="row">
+            <table class="table table-hover" style="margin-top: 50px" th:if="${not #lists.isEmpty(transfers)}">
+                <tr>
+                    <th>No</th>
+                    <th style="text-align: center;">IBAN</th>
+                    <th style="text-align: center;">Balance</th>
+                    <!--<th style="text-align: center;">Actions</th>-->
+                </tr>
+                <tr th:each="transfer, custStat : ${transfers}"
+                    style="cursor: pointer">
+                    <td th:text="${custStat.count}">1</td>
+                    <td th:text="${transfer.getId()}" style="text-align: right;">DE123456789</td>
+                    <td th:text="${#numbers.formatDecimal(transfer.amount/100, 1, 'DEFAULT', 2, 'DEFAULT')}"
+                        style="text-align: right;">1000
+                    </td>
+                    <!--
+                    <td style="text-align: right;">
+                        <div class="row align-items-center justify-content-center">
+
+                            <div th:replace="fragments/buttons :: btnAccountTransfer"/>
+                            <div style="width: 5px"></div>
+                            <div th:replace="fragments/buttons :: btnDeleteAccount"/>
+                        </div>
+                    </td>
+                    -->
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>

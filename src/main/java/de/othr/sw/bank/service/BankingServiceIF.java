@@ -2,8 +2,11 @@ package de.othr.sw.bank.service;
 
 import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.AccountRequest;
+import de.othr.sw.bank.entity.Transfer;
 import de.othr.sw.bank.entity.TransferRequest;
 import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 public interface BankingServiceIF {
 
@@ -12,5 +15,6 @@ public interface BankingServiceIF {
     ResponseEntity<Long> transferMoney(TransferRequest transferRequest);
     ResponseEntity<Long> mandateMoney(TransferRequest transferRequest);
     ResponseEntity<Account> getAccountById(long id);
+    ResponseEntity<List<Transfer>> getTransfersByAccountId(long id);
 
 }
