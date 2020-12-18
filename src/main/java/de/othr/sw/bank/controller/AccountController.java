@@ -45,7 +45,7 @@ public class AccountController {
     }
 
     @PostMapping("/accounts")
-    public String getFormForNewAccount(Model model, @ModelAttribute AccountRequest accountRequest) {
+    public String applyForNewAccount(Model model, @ModelAttribute AccountRequest accountRequest) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             Customer customer = (Customer) authentication.getPrincipal();
@@ -85,6 +85,51 @@ public class AccountController {
                 model.addAttribute("transfers", null);
             model.addAttribute("account",account);
             return "/customer/account";
+
+        }
+
+        return homeController.showDashboard(model,"Error while accessing account info.",null);
+
+    }
+
+
+    @GetMapping("/accounts/{id}/transfers/new")
+    public String getTransferView(Model model, @PathVariable long id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserName = authentication.getName();
+
+            model.addAttribute("username", currentUserName);
+
+            Transfer transfer = new Transfer();
+            model.addAttribute("transfer",transfer);
+
+            //todo z.B. überweisung nur bis 500 € im Minus möglich?
+            return "/customer/account_transfer";
+        }
+
+        return homeController.showDashboard(model,"Error while trying to make new transfer.",null);
+
+
+    }
+
+    @DeleteMapping("/accounts/{id}")
+    public String deleteAccount(Model model, @PathVariable long id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            Customer customer = (Customer) authentication.getPrincipal();
+            ResponseEntity responseEntity = bankingService.getAccountById(id);
+
+            if(responseEntity.getStatusCode()!=HttpStatus.OK)
+                return homeController.showDashboard(model,"Error while accessing account info.",null);
+
+            Account account = (Account) responseEntity.getBody();
+
+            if(account.getCustomer().getId() != customer.getId())
+                return homeController.showDashboard(model,"Error while accessing account info.",null);
+
+            //todo check balance, delete..
+            return homeController.showDashboard(model,null, "Delete account is not implemented yet");
 
         }
 

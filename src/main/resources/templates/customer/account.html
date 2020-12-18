@@ -41,6 +41,7 @@
         <div class="row">
             <div class="col">
                 <h3 th:if="${account.getIban()}">Account IBAN: <span th:text="${account.getIban()}"/></h3>
+                <h3 th:if="${ #lists.isEmpty(transfers)}" style="float: left">There are no transfers for this account yet.</h3>
                 <h3 style="color: forestgreen;" th:if="${info}" th:text="${info}"></h3>
                 <h3 style="color: firebrick; " th:if="${error}" th:text="${error}"></h3>
             </div>
@@ -51,14 +52,14 @@
 
 
         <div class="row">
-            <form th:action="@{/accounts/opening}" method="GET">
-                <button type="submit" class="btn" th:href="@{/accounts/opening}">
+            <form th:action="@{/accounts/{accountId}/transfers/new(accountId=${account.id})}" method="GET">
+                <button type="submit" class="btn">
                             <span class="glyphicon glyphicon-transfer" aria-hidden="true"
                                   style="max-height:100%;"></span>
                 </button>
             </form>
 
-            <form th:action="@{/accounts/opening}" method="GET">
+            <form  th:action="@{/accounts/{accountId}(accountId=${account.id})}" method="DELETE">
                 <button type="submit" class="btn" id="btnDelete">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"
                                       style="max-height:100%;"></span>
@@ -97,6 +98,8 @@
 
     </div>
 </div>
+
+
 
 </body>
 </html>
