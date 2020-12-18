@@ -53,19 +53,9 @@
                 <td style="text-align: right;">
                     <div class="row align-items-center justify-content-center">
 
-                        <form th:action="@{/accounts/opening}" method="GET">
-                            <button type="submit" class="btn" th:href="@{/accounts/opening}">
-                            <span class="glyphicon glyphicon-transfer" aria-hidden="true"
-                                  style="max-height:100%;"></span>
-                            </button>
-                        </form>
+                        <div th:replace="fragments/buttons :: btnAccountTransfer"/>
                         <div style="width: 5px"></div>
-                        <form th:action="@{/accounts/opening}" method="GET">
-                            <button type="submit" class="btn" id="btnDelete">
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true"
-                                      style="max-height:100%;"></span>
-                            </button>
-                        </form>
+                        <div th:replace="fragments/buttons :: btnDeleteAccount"/>
                     </div>
                 </td>
             </tr>
