@@ -113,7 +113,7 @@ public class AccountController {
 
     }
 
-    @DeleteMapping("/accounts/{id}")
+    @DeleteMapping("/accounts/{id}/delete")
     public String deleteAccount(Model model, @PathVariable long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
