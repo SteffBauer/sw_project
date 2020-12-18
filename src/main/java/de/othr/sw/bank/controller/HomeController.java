@@ -42,6 +42,7 @@ public class HomeController {
             List<Account> accounts = customerServiceIF.getAccountsForUser(customer.getId());
             model.addAttribute("accounts", accounts);
 
+            model.addAttribute("name", customer.getForename());
 
             if (error != null)
                 model.addAttribute("error", error);
