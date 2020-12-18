@@ -37,12 +37,17 @@ public class HomeController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             Customer customer = (Customer) authentication.getPrincipal();
-
+            model.addAttribute("name", customer.getForename());
 
             List<Account> accounts = customerServiceIF.getAccountsForUser(customer.getId());
             model.addAttribute("accounts", accounts);
 
-            model.addAttribute("name", customer.getForename());
+            long sum = 0L;
+            for (Account account : accounts){
+                sum+=account.getBalance();
+            }
+
+            model.addAttribute("totalBalance", sum);
 
             if (error != null)
                 model.addAttribute("error", error);
