@@ -19,7 +19,8 @@
 
 <h1>Welcome to The Bank of your Trust</h1>
 <h3>Login Success</h3>
-<p>Today is <span th:text="${today}"/></p>
+<p>Account IBAN <span th:text="${account.getIban()}"/></p>
+<p>Account Balance <span th:text="${account.getBalance()}"/></p>
 <p>Todo: Account balance, Transactions, Überweisung ... </p>
 
 <table class="table table-hover">

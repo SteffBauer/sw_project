@@ -49,7 +49,7 @@ public class HomeController {
             else if(info != null)
                 model.addAttribute("info", info);
 
-            return "dashboard";
+            return "/customer/dashboard";
 
         }
         return "login";

@@ -61,7 +61,7 @@
                         </form>
                         <div style="width: 5px"></div>
                         <form th:action="@{/accounts/opening}" method="GET">
-                            <button type="submit" class="btn" th:href="@{/accounts/opening}">
+                            <button type="submit" class="btn" id="btnDelete">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"
                                       style="max-height:100%;"></span>
                             </button>
@@ -85,5 +85,47 @@
         </script>
     </div>
 </div>
+
+
+
+<!-- todo button clickable without click on row event
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="myModalLabel">Warning!</h3>
+
+            </div>
+            <div class="modal-body">
+                <h4> Are you sure you want to close this account?</h4>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btnDelteYes" href="#">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('button.btnDelete').on('click', function (e) {
+        e.preventDefault();
+        var id = $(this).closest('tr').data('id');
+        var balance =  $(this).closest('tr').cells[2].innerHTML;
+        var value =  $(this).closest('tr').cells[3].innerHTML;
+        alert("Balance: "+balance)
+        alert("Value: "+value)
+        $('#myModal').data('id', id).modal('show');
+    });
+
+    $('#btnDelteYes').click(function () {
+        var id = $('#myModal').data('id');
+        $('[data-id=' + id + ']').remove();
+        $('#myModal').modal('hide');
+    });
+</script>
+-->
+
 </body>
 </html>

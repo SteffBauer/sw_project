@@ -1,7 +1,9 @@
 package de.othr.sw.bank.controller;
 
+import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.AccountRequest;
 import de.othr.sw.bank.entity.Customer;
+import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.CustomerServiceIF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,12 +15,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping
 public class AccountController {
 
     @Autowired
     CustomerServiceIF customerService;
+    @Autowired
+    BankingServiceIF bankingService;
     @Autowired
     HomeController homeController;
 
@@ -57,6 +63,25 @@ public class AccountController {
 
     @GetMapping("/accounts/{id}")
     public String getAccountView(Model model, @PathVariable long id) {
-        return "/customer/account";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            Customer customer = (Customer) authentication.getPrincipal();
+            ResponseEntity responseEntity = bankingService.getAccountById(id);
+
+            if(responseEntity.getStatusCode()!=HttpStatus.OK)
+                return homeController.showDashboard(model,"Error while accessing account info.",null);
+
+            Account account = (Account) responseEntity.getBody();
+
+            if(account.getCustomer().getId() != customer.getId())
+                return homeController.showDashboard(model,"Error while accessing account info.",null);
+
+            model.addAttribute("account",account);
+            return "/customer/account";
+
+        }
+
+        return homeController.showDashboard(model,"Error while accessing account info.",null);
+
     }
 }

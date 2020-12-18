@@ -63,5 +63,15 @@ public class BankingService implements BankingServiceIF {
         throw new NotYetImplementedException();
     }
 
+    @Override
+    public ResponseEntity<Account> getAccountById(long id) {
+        Optional<Account> account = accountRepositoryIF.findById(id);
+
+        if(account.isEmpty())
+            return new ResponseEntity(account.get(),HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity(account.get(),HttpStatus.OK);
+    }
+
 
 }
