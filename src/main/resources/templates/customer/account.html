@@ -59,12 +59,14 @@
                 </button>
             </form>
 
-            <form  th:action="@{/accounts/{accountId}(accountId=${account.id})}" method="DELETE">
+            <!-- todo nur bei employee notwendig (siehe requirements)
+            <form  th:action="@{/accounts/{accountId}/delete(accountId=${account.id})}" method="get">
                 <button type="submit" class="btn" id="btnDelete">
                                 <span class="glyphicon glyphicon-trash" aria-hidden="true"
                                       style="max-height:100%;"></span>
                 </button>
             </form>
+            -->
         </div>
 
         <div class="row">
