@@ -67,18 +67,19 @@
             </tr>
         </table>
 
-        <form th:if="${customer}" th:action="@{/accounts/opening}" method="GET">
-            <button type="submit" class="btn btn-primary" th:href="@{/accounts/opening}">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Apply for an account
-            </button>
-        </form>
-
-
         <script>
             function rowClicked(value,column) {
                 location.href = "/accounts/" + value;
             }
         </script>
+    </div>
+
+    <div class="col-md-8 mx-auto">
+        <form th:if="${customer}" th:action="@{/accounts/opening}" method="GET">
+            <button type="submit" class="btn btn-primary" th:href="@{/accounts/opening}">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Apply for an account
+            </button>
+        </form>
     </div>
 </div>
 
