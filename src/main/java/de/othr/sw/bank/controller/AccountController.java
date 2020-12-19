@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping
+@RequestMapping("accounts")
 public class AccountController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class AccountController {
     @Autowired
     HomeController homeController;
 
-    @RequestMapping("/accounts/opening")
+    @RequestMapping("/opening")
     public String getFormForNewAccount(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
@@ -44,7 +44,7 @@ public class AccountController {
         return "/customer/account_apply";
     }
 
-    @PostMapping("/accounts")
+    @PostMapping
     public String applyForNewAccount(Model model, @ModelAttribute AccountRequest accountRequest) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
@@ -62,7 +62,7 @@ public class AccountController {
         return "login";
     }
 
-    @GetMapping("/accounts/{id}")
+    @GetMapping("/{id}")
     public String getAccountView(Model model, @PathVariable long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
@@ -93,7 +93,7 @@ public class AccountController {
     }
 
 
-    @GetMapping("/accounts/{id}/transfers/new")
+    @GetMapping("/{id}/transfers/new")
     public String getTransferView(Model model, @PathVariable long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
@@ -113,7 +113,7 @@ public class AccountController {
 
     }
 
-    @DeleteMapping("/accounts/{id}/delete")
+    @DeleteMapping("/{id}/delete")
     public String deleteAccount(Model model, @PathVariable long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
