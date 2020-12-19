@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -35,7 +34,7 @@ public class MultiSecurityConfiguration {
 
         private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
         private static final String[] ALLOW_ACCESS_WITHOUT_AUTHENTICATION = {
-                "/css/**", "/images/**", "/fonts/**", "/login", "/forgotPassword", "/register","/customer/**","/"};
+                "/css/**", "/js/**", "/images/**", "/fonts/**", "/login", "/forgotPassword", "/register","/customer/**","/"};
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
@@ -83,7 +82,7 @@ public class MultiSecurityConfiguration {
 
         private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
         private static final String[] ALLOW_ACCESS_WITHOUT_AUTHENTICATION = {
-                "/css/**", "/images/**", "/fonts/**", "/login", "/forgotPassword", "/register","/employee/**","/"};
+                "/css/**", "/js/**", "/images/**", "/fonts/**", "/login", "/forgotPassword", "/register","/employee/**","/"};
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {

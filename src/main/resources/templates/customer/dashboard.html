@@ -15,9 +15,8 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 
-    <!-- Glyphicons -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <link rel="stylesheet" type="text/css" th:href="@{/css/tableCustomers.cs}"/>
 
     <meta charset="UTF-8">
     <title>Online Banking</title>
@@ -35,17 +34,76 @@
         <div style="clear: both">
             <h3 style="color: forestgreen; float: left" th:if="${info}" th:text="${info}"></h3>
             <h3 style="color: firebrick; float: left" th:if="${error}" th:text="${error}"></h3>
-            <h3 style="float: right" th:if="${customer && not #lists.isEmpty(accounts)}" th:text="${#numbers.formatDecimal(totalBalance/100, 1, 'DEFAULT', 2, 'DEFAULT')}"></h3>
+            <h3 style="float: right" th:if="${customer && not #lists.isEmpty(accounts)}"
+                th:text="${#numbers.formatDecimal(totalBalance/100, 1, 'DEFAULT', 2, 'DEFAULT')}"></h3>
         </div>
     </div>
 
 
-    <div  class="col-md-8 mx-auto" th:if="${customer}" >
+    <div class="col-md-8 mx-auto" th:if="${customer}">
         <div th:replace="fragments/table :: accountTable"/>
     </div>
 
     <div class="col-md-8 mx-auto" th:if="${not customer}">
-        <table class="table table-hover" style="margin-top: 50px" th:if="${customers != null && not #lists.isEmpty(customers)}">
+<!--
+        <script>
+            $(document).ready(function () {
+                $(".search").keyup(function () {
+                    var searchTerm = $(".search").val();
+                    var listItem = $('.results tbody').children('tr');
+                    var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+
+                    $.extend($.expr[':'], {
+                        'containsi': function (elem, i, match, array) {
+                            return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >=
+                                0;
+                        }
+                    });
+
+                    $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function (e) {
+                        $(this).attr('visible', 'false');
+                    });
+
+                    $(".results tbody tr:containsi('" + searchSplit + "')").each(function (e) {
+                        $(this).attr('visible', 'true');
+                    });
+
+                    var jobCount = $('.results tbody tr[visible="true"]').length;
+                    $('.counter').text(jobCount + ' item');
+
+                    if (jobCount == '0') {
+                        $('.no-result').show();
+                    } else {
+                        $('.no-result').hide();
+                    }
+                });
+            });
+        </script>
+        <style>
+            .results tr[visible='false'],
+            .no-result {
+                display: none;
+            }
+
+            .results tr[visible='true'] {
+                display: table-row;
+            }
+
+            .counter {
+                padding: 8px;
+                color: #ccc;
+            }
+        </style>
+-->
+        <div class="form-group float-right">
+            <input type="text" class="search form-control" placeholder="Searching..">
+        </div>
+        <span class="counter pull-right"></span>
+
+        <table class="table table-hover results" style="margin-top: 50px"
+               th:if="${customers != null && not #lists.isEmpty(customers)}"
+               id="customerTable">
+            <thead>
             <tr>
                 <th>No</th>
                 <th style="text-align: center;">Surname</th>
@@ -53,6 +111,10 @@
                 <th style="text-align: center;">Taxnumber</th>
                 <th style="text-align: center;">Accounts</th>
             </tr>
+            <tr class="warning no-result">
+                <td colspan="5"><i class="fa fa-warning"></i> No result</td>
+            </tr>
+            </thead>
             <tr th:each="c, custStat : ${customers}"
                 th:onclick="'javascript:rowCustomerClicked(\'' + ${c.id} + '\',);'"
                 style="cursor: pointer">
@@ -66,7 +128,7 @@
         </table>
 
         <script>
-            function rowCustomerClicked(value,column) {
+            function rowCustomerClicked(value, column) {
                 location.href = "/customers/" + value;
             }
         </script>
@@ -82,48 +144,8 @@
         </div>
     </div>
 
+    <script type="text/javascript" th:src="@{/js/searchInTable.js}"></script>
+
 </div>
-
-
-
-<!-- todo button clickable without click on row event
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title" id="myModalLabel">Warning!</h3>
-
-            </div>
-            <div class="modal-body">
-                <h4> Are you sure you want to close this account?</h4>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" id="btnDelteYes" href="#">Yes</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-    $('button.btnDelete').on('click', function (e) {
-        e.preventDefault();
-        var id = $(this).closest('tr').data('id');
-        var balance =  $(this).closest('tr').cells[2].innerHTML;
-        var value =  $(this).closest('tr').cells[3].innerHTML;
-        alert("Balance: "+balance)
-        alert("Value: "+value)
-        $('#myModal').data('id', id).modal('show');
-    });
-
-    $('#btnDelteYes').click(function () {
-        var id = $('#myModal').data('id');
-        $('[data-id=' + id + ']').remove();
-        $('#myModal').modal('hide');
-    });
-</script>
--->
-
 </body>
 </html>
