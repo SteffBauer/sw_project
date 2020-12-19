@@ -32,7 +32,11 @@ public class RegisterController {
         if(responseEntity.getStatusCode() == HttpStatus.CREATED) {
             return loginController.showLoginPage(model,null,null,"registered");
         }
-        else
-            return "registration_error";
+        else {
+            model.addAttribute("customer", customer);
+            model.addAttribute("invalidTaxNr", "Error from Spring");
+            model.addAttribute("invalidUsername", "Error from Spring");
+            return "register";
+        }
     }
 }
