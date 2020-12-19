@@ -39,33 +39,13 @@
         </div>
     </div>
 
-    <div class="col-md-8 mx-auto" th:if="${customer}">
-        <table class="table table-hover" style="margin-top: 50px" th:if="${not #lists.isEmpty(accounts)}">
-            <tr>
-                <th>No</th>
-                <th style="text-align: center;">IBAN</th>
-                <th style="text-align: center;">Balance</th>
-                <!--<th style="text-align: center;">Actions</th>-->
-            </tr>
-            <tr th:each="account, custStat : ${accounts}"
-                th:onclick="'javascript:rowAccountClicked(\'' + ${account.id} + '\',);'"
-                style="cursor: pointer">
-                <td th:text="${custStat.count}">1</td>
-                <td th:text="${account.iban}" style="text-align: right;">DE123456789</td>
-                <td th:text="${#numbers.formatDecimal(account.balance/100, 1, 'DEFAULT', 2, 'DEFAULT')}"
-                    style="text-align: right;">1000
-                </td>
-            </tr>
-        </table>
 
-        <script>
-            function rowAccountClicked(value,column) {
-                location.href = "/accounts/" + value;
-            }
-        </script>
+    <div  class="col-md-8 mx-auto" th:if="${customer}" >
+        <div th:replace="fragments/table :: accountTable"/>
     </div>
+
     <div class="col-md-8 mx-auto" th:if="${not customer}">
-        <table class="table table-hover" style="margin-top: 50px" th:if="${not #lists.isEmpty(customers)}">
+        <table class="table table-hover" style="margin-top: 50px" th:if="${customers != null && not #lists.isEmpty(customers)}">
             <tr>
                 <th>No</th>
                 <th style="text-align: center;">Surname</th>
@@ -73,21 +53,21 @@
                 <th style="text-align: center;">Taxnumber</th>
                 <th style="text-align: center;">Accounts</th>
             </tr>
-            <tr th:each="customer, custStat : ${customers}"
-                th:onclick="'javascript:rowAccountClicked(\'' + ${customer.id} + '\',);'"
+            <tr th:each="c, custStat : ${customers}"
+                th:onclick="'javascript:rowCustomerClicked(\'' + ${c.id} + '\',);'"
                 style="cursor: pointer">
                 <td th:text="${custStat.count}">1</td>
-                <td th:text="${customer.surname}" style="text-align: left;">Surname</td>
-                <td th:text="${customer.forename}" style="text-align: left;">Forename</td>
-                <td th:text="${customer.taxnumber}" style="text-align: right;">Taxnumber</td>
-                <td th:text="${customer.accounts.count()}" style="text-align: right;">Accounts</td>
+                <td th:text="${c.surname}" style="text-align: left;">Surname</td>
+                <td th:text="${c.forename}" style="text-align: left;">Forename</td>
+                <td th:text="${c.taxNumber}" style="text-align: right;">Taxnumber</td>
+                <td th:text="${c.accounts.size()}" style="text-align: right;">Accounts</td>
                 </td>
             </tr>
         </table>
 
         <script>
-            function rowAccountClicked(value,column) {
-                location.href = "/accounts/" + value;
+            function rowCustomerClicked(value,column) {
+                location.href = "/customer/" + value;
             }
         </script>
     </div>

@@ -18,7 +18,7 @@ public class Customer extends Person {
     private Address address;
 
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer",fetch = FetchType.EAGER)
     private List<Account> accounts;
 
     @ManyToOne

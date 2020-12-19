@@ -69,7 +69,8 @@ public class HomeController {
             model.addAttribute("customer",false);
             model.addAttribute("name", employee.getForename());
 
-            //todo List<Customer> customers =
+            List<Customer> customers = employee.getCustomers();
+            model.addAttribute("customers", customers);
         }
 
         return "/customer/dashboard";

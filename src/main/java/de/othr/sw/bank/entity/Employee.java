@@ -1,8 +1,10 @@
 package de.othr.sw.bank.entity;
 
+import org.hibernate.annotations.Fetch;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.Collection;
 import java.util.Date;
@@ -13,7 +15,7 @@ public class Employee extends Person {
     private long salary;
     private String designation;
 
-    @OneToMany(mappedBy="attendant")
+    @OneToMany(mappedBy="attendant", fetch = FetchType.EAGER)
     private List<Customer> customers;
 
     public Employee() { }
