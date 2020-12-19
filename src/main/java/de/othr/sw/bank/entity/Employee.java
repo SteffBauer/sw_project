@@ -67,4 +67,16 @@ public class Employee extends Person {
         return true;
     }
 
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
+
+    public void addCustomer(Customer customer){
+        if(!customers.contains(customer))
+            customers.add(customer);
+    }
 }

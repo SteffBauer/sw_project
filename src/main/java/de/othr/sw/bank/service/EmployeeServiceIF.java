@@ -6,4 +6,5 @@ import java.util.Optional;
 
 public interface EmployeeServiceIF {
     Optional<Employee> getEmployeeByUsername(String username);
+    Employee getEmployeeForCustomerSupport();
 }

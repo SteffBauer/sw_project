@@ -18,6 +18,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +35,8 @@ public class CustomerService implements CustomerServiceIF,UserDetailsService {
     private BCryptPasswordEncoder passwordEncoder;
     @Autowired
     private BankingServiceIF bankingServiceIF;
+    @Autowired
+    private EmployeeServiceIF employeeService;
 
     @Autowired
     private CustomerRepositoryIF customerRepositoryIF;
@@ -42,45 +46,59 @@ public class CustomerService implements CustomerServiceIF,UserDetailsService {
 
     @Override
     @PostMapping()
+    @Transactional
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) {
 
-        if(StringUtils.isNullOrEmpty(newCustomer.getForename()) ||
-            StringUtils.isNullOrEmpty(newCustomer.getSurname()) ||
+        // Check required attributes
+        if (StringUtils.isNullOrEmpty(newCustomer.getForename()) ||
+                StringUtils.isNullOrEmpty(newCustomer.getSurname()) ||
                 StringUtils.isNullOrEmpty(newCustomer.getUsername()) ||
-            StringUtils.isNullOrEmpty(newCustomer.getPassword()) ||
-            StringUtils.isNullOrEmpty(newCustomer.getTaxNumber()) ||
-            newCustomer.getAddress() == null){
+                StringUtils.isNullOrEmpty(newCustomer.getPassword()) ||
+                StringUtils.isNullOrEmpty(newCustomer.getTaxNumber()) ||
+                newCustomer.getAddress() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(newCustomer);
         }
 
-        // todo check if username is already in use
-        // todo check if customer is already registered (taxnumber)
+        try {
+            // Check if username is already in use
+            if (!customerRepositoryIF.findCustomerByUsername(newCustomer.getUsername()).isEmpty())
+                throw new SQLIntegrityConstraintViolationException("Username '" + newCustomer.getUsername() + "' already in use.");
+            // Check if customer is already registered (taxnumber)
+            if (!customerRepositoryIF.findCustomerByTaxNumber(newCustomer.getTaxNumber()).isEmpty())
+                throw new SQLIntegrityConstraintViolationException("User with taxnumber '" + newCustomer.getTaxNumber() + "' already registered.");
+        }
+        catch (SQLIntegrityConstraintViolationException ex){
+            return new ResponseEntity<>(newCustomer,HttpStatus.CONFLICT);
+        }
 
+        // Check if address already exists
         Address address = newCustomer.getAddress();
-        Iterable<Address> addresses = addressRepositoryIF.findByCountryAndCityAndZipCodeAndStreetAndHouseNr(address.getCountry(),address.getCity(),address.getZipCode(), address.getStreet(),address.getHouseNr());
-        if(addresses.iterator().hasNext()){
+        Iterable<Address> addresses = addressRepositoryIF.findByCountryAndCityAndZipCodeAndStreetAndHouseNr(address.getCountry(), address.getCity(), address.getZipCode(), address.getStreet(), address.getHouseNr());
+        if (addresses.iterator().hasNext())
             address = addresses.iterator().next();
-        }
-        else {
+        else
             address = addressRepositoryIF.save(address);
-        }
+
 
         // Set the address of the customer
         newCustomer.setAddress(address);
+        address.addResident(newCustomer);
         // Set the password of the customer
         newCustomer.setPassword(passwordEncoder.encode(newCustomer.getPassword()));
+        // Set an employee for the customer support
+        Employee employee = employeeService.getEmployeeForCustomerSupport();
+        if (employee != null) {
+            newCustomer.setAttendant(employee);
+            employee.addCustomer(newCustomer);
+        }
+        // Save the customer
         newCustomer = customerRepositoryIF.save(newCustomer);
 
 
-        // Update residents for the address
-        address.addResident(newCustomer);
-        addressRepositoryIF.save(address);
-
         // Do not return the residents for the customer address
         newCustomer.getAddress().setResidents(null);
-        newCustomer.setPassword(null);
 
-        return new ResponseEntity(newCustomer,HttpStatus.CREATED);
+        return new ResponseEntity(newCustomer, HttpStatus.CREATED);
     }
 
     /*
@@ -108,7 +126,7 @@ public class CustomerService implements CustomerServiceIF,UserDetailsService {
 
     @Override
     public Optional<Customer> getCustomerByUsername(String username){
-        return customerRepositoryIF.findDistinctByUsername(username);
+        return customerRepositoryIF.findCustomerByUsername(username);
     }
 
     @Override

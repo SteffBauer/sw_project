@@ -37,9 +37,10 @@
             <h3 style="color: firebrick; float: left" th:if="${error}" th:text="${error}"></h3>
             <h3 style="float: right" th:if="${customer}" th:text="${#numbers.formatDecimal(totalBalance/100, 1, 'DEFAULT', 2, 'DEFAULT')}"></h3>
         </div>
+    </div>
 
-
-        <table class="table table-hover" style="margin-top: 50px" th:if="${customer && not #lists.isEmpty(accounts)}">
+    <div class="col-md-8 mx-auto" th:if="${customer}">
+        <table class="table table-hover" style="margin-top: 50px" th:if="${not #lists.isEmpty(accounts)}">
             <tr>
                 <th>No</th>
                 <th style="text-align: center;">IBAN</th>
@@ -47,28 +48,45 @@
                 <!--<th style="text-align: center;">Actions</th>-->
             </tr>
             <tr th:each="account, custStat : ${accounts}"
-                th:onclick="'javascript:rowClicked(\'' + ${account.id} + '\',);'"
+                th:onclick="'javascript:rowAccountClicked(\'' + ${account.id} + '\',);'"
                 style="cursor: pointer">
                 <td th:text="${custStat.count}">1</td>
                 <td th:text="${account.iban}" style="text-align: right;">DE123456789</td>
                 <td th:text="${#numbers.formatDecimal(account.balance/100, 1, 'DEFAULT', 2, 'DEFAULT')}"
                     style="text-align: right;">1000
                 </td>
-                <!--
-                <td style="text-align: right;">
-                    <div class="row align-items-center justify-content-center">
-
-                        <div th:replace="fragments/buttons :: btnAccountTransfer"/>
-                        <div style="width: 5px"></div>
-                        <div th:replace="fragments/buttons :: btnDeleteAccount"/>
-                    </div>
-                </td>
-                -->
             </tr>
         </table>
 
         <script>
-            function rowClicked(value,column) {
+            function rowAccountClicked(value,column) {
+                location.href = "/accounts/" + value;
+            }
+        </script>
+    </div>
+    <div class="col-md-8 mx-auto" th:if="${not customer}">
+        <table class="table table-hover" style="margin-top: 50px" th:if="${not #lists.isEmpty(customers)}">
+            <tr>
+                <th>No</th>
+                <th style="text-align: center;">Surname</th>
+                <th style="text-align: center;">Forename</th>
+                <th style="text-align: center;">Taxnumber</th>
+                <th style="text-align: center;">Accounts</th>
+            </tr>
+            <tr th:each="customer, custStat : ${customers}"
+                th:onclick="'javascript:rowAccountClicked(\'' + ${customer.id} + '\',);'"
+                style="cursor: pointer">
+                <td th:text="${custStat.count}">1</td>
+                <td th:text="${customer.surname}" style="text-align: left;">Surname</td>
+                <td th:text="${customer.forename}" style="text-align: left;">Forename</td>
+                <td th:text="${customer.taxnumber}" style="text-align: right;">Taxnumber</td>
+                <td th:text="${customer.accounts.count()}" style="text-align: right;">Accounts</td>
+                </td>
+            </tr>
+        </table>
+
+        <script>
+            function rowAccountClicked(value,column) {
                 location.href = "/accounts/" + value;
             }
         </script>

@@ -6,5 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 public interface CustomerRepositoryIF extends CrudRepository<Customer,Long> {
-    Optional<Customer> findDistinctByUsername(String username);
+    Optional<Customer> findCustomerByUsername(String username);
+    Optional<Customer> findCustomerByTaxNumber(String taxnumber);
 }

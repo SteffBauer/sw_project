@@ -2,10 +2,7 @@ package de.othr.sw.bank.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +10,7 @@ import java.util.List;
 @Entity(name = "customer")
 public class Customer extends Person {
 
+    @Column(unique = true)
     private String taxNumber;
 
     @ManyToOne()
@@ -87,4 +85,11 @@ public class Customer extends Person {
     }
 
 
+    public Employee getAttendant() {
+        return attendant;
+    }
+
+    public void setAttendant(Employee attendant) {
+        this.attendant = attendant;
+    }
 }
