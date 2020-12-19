@@ -47,7 +47,7 @@ public class CustomerService implements CustomerServiceIF,UserDetailsService {
     @Override
     @PostMapping()
     @Transactional
-    public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) {
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) throws UsernameAlreadyInUserException, TaxNumberAlreadyRegisteredException {
 
         // Check required attributes
         if (StringUtils.isNullOrEmpty(newCustomer.getForename()) ||
@@ -59,17 +59,13 @@ public class CustomerService implements CustomerServiceIF,UserDetailsService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(newCustomer);
         }
 
-        try {
             // Check if username is already in use
             if (!customerRepositoryIF.findCustomerByUsername(newCustomer.getUsername()).isEmpty())
-                throw new SQLIntegrityConstraintViolationException("Username '" + newCustomer.getUsername() + "' already in use.");
+                throw new UsernameAlreadyInUserException("Username '" + newCustomer.getUsername() + "' already in use.");
             // Check if customer is already registered (taxnumber)
             if (!customerRepositoryIF.findCustomerByTaxNumber(newCustomer.getTaxNumber()).isEmpty())
-                throw new SQLIntegrityConstraintViolationException("User with taxnumber '" + newCustomer.getTaxNumber() + "' already registered.");
-        }
-        catch (SQLIntegrityConstraintViolationException ex){
-            return new ResponseEntity<>(newCustomer,HttpStatus.CONFLICT);
-        }
+                throw new TaxNumberAlreadyRegisteredException("User with taxnumber '" + newCustomer.getTaxNumber() + "' already registered.");
+
 
         // Check if address already exists
         Address address = newCustomer.getAddress();

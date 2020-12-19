@@ -2,6 +2,8 @@ package de.othr.sw.bank.controller;
 
 import de.othr.sw.bank.entity.Customer;
 import de.othr.sw.bank.service.CustomerServiceIF;
+import de.othr.sw.bank.service.TaxNumberAlreadyRegisteredException;
+import de.othr.sw.bank.service.UsernameAlreadyInUserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,15 +30,25 @@ public class RegisterController {
 
     @PostMapping("/register")
     public String registerCustomer(Model model,@ModelAttribute Customer customer) {
-        ResponseEntity responseEntity = customerServiceIF.createCustomer(customer);
+        ResponseEntity responseEntity = null;
+        try {
+            responseEntity = customerServiceIF.createCustomer(customer);
+
+        } catch (UsernameAlreadyInUserException e) {
+            model.addAttribute("customer", customer);
+            model.addAttribute("invalidUsername", customer.getUsername());
+            return "register";
+        } catch (TaxNumberAlreadyRegisteredException e) {
+            model.addAttribute("customer", customer);
+            model.addAttribute("invalidTaxNr", customer.getTaxNumber());
+            return "register";
+        }
+
         if(responseEntity.getStatusCode() == HttpStatus.CREATED) {
             return loginController.showLoginPage(model,null,null,"registered");
         }
         else {
-            model.addAttribute("customer", customer);
-            model.addAttribute("invalidTaxNr", "Error from Spring");
-            model.addAttribute("invalidUsername", "Error from Spring");
-            return "register";
+            return loginController.showLoginPage(model,"Error trying to registrate user",null,null);
         }
     }
 }
