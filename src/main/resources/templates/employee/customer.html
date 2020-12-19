@@ -3,23 +3,106 @@
 <head>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
     <!-- Glyphicons -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+
     <meta charset="UTF-8">
-    <title>Manage customer</title>
+    <title>Online Banking</title>
 </head>
 <body>
 <div th:replace="fragments/header :: navLogout"/>
 
-<h1>Welcome to The Bank of your Trust</h1>
-<h3>Login Success</h3>
-<p>Today is <span th:text="${today}"/></p>
+
 <p>Todo: Adresse, Accounts, ... </p>
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h1>Welcome to The Bank of your Trust</h1>
+        <h2>You are viewing details of the customer <span
+                th:text="${customer.getForename() + ' '+ customer.getSurname()}"/></h2>
+
+        <div style="clear: both">
+            <h3 th:if="${#lists.isEmpty(accounts)}" style="float: left">The customer has no accounts yet.</h3>
+            <h3 style="color: forestgreen; float: left" th:if="${info}" th:text="${info}"></h3>
+            <h3 style="color: firebrick; float: left" th:if="${error}" th:text="${error}"></h3>
+            <h3 th:if="${#lists.isEmpty(accounts)}" style="float: right"
+                th:text="${#numbers.formatDecimal(totalBalance/100, 1, 'DEFAULT', 2, 'DEFAULT')}"></h3>
+        </div>
+    </div>
+
+
+    <div class="col-md-8 mx-auto">
+        <div th:replace="fragments/table :: accountTable"/>
+    </div>
+
+
+    <div class="col-md-8 mx-auto"/>
+        <div class="btn-toolbar">
+            <form style="margin-bottom: 10px; margin-right: 10px" th:action="@{/customers/{id}/address(id=${customer.getId()})}" method="get">
+                <button type="submit" class="btn btn-secondary">
+                    <i class="glyphicon glyphicon-road" style="margin-right: 10px"></i> Edit address
+                </button>
+            </form>
+            <form th:action="@{/customers/{id}/delete(id=${customer.getId()})}" method="post">
+                <button type="submit" class="btn btn-danger">
+                    <i class="glyphicon glyphicon-trash" style="margin-right: 10px"></i>Delete customer
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- todo button clickable without click on row event
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="myModalLabel">Warning!</h3>
+
+            </div>
+            <div class="modal-body">
+                <h4> Are you sure you want to close this account?</h4>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btnDelteYes" href="#">Yes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('button.btnDelete').on('click', function (e) {
+        e.preventDefault();
+        var id = $(this).closest('tr').data('id');
+        var balance =  $(this).closest('tr').cells[2].innerHTML;
+        var value =  $(this).closest('tr').cells[3].innerHTML;
+        alert("Balance: "+balance)
+        alert("Value: "+value)
+        $('#myModal').data('id', id).modal('show');
+    });
+
+    $('#btnDelteYes').click(function () {
+        var id = $('#myModal').data('id');
+        $('[data-id=' + id + ']').remove();
+        $('#myModal').modal('hide');
+    });
+</script>
+-->
+
 </body>
 </html>

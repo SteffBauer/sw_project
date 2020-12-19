@@ -17,6 +17,8 @@ public interface CustomerServiceIF {
 
     Optional<Customer> getCustomerByUsername(String username);
 
+    Optional<Customer> getCustomerById(long id);
+
     ResponseEntity<Customer> findCustomer(String taxnumber);
 
     ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) throws UsernameAlreadyInUserException, TaxNumberAlreadyRegisteredException;

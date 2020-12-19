@@ -126,6 +126,11 @@ public class CustomerService implements CustomerServiceIF,UserDetailsService {
     }
 
     @Override
+    public Optional<Customer> getCustomerById(long id) {
+        return customerRepositoryIF.findById(id);
+    }
+
+    @Override
     public ResponseEntity<Customer> findCustomer(String taxnumber) {
         //todo implement;
         throw new NotYetImplementedException();
