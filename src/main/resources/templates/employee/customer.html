@@ -37,7 +37,7 @@
             <h3 th:if="${#lists.isEmpty(accounts)}" style="float: left">The customer has no accounts yet.</h3>
             <h3 style="color: forestgreen; float: left" th:if="${info}" th:text="${info}"></h3>
             <h3 style="color: firebrick; float: left" th:if="${error}" th:text="${error}"></h3>
-            <h3 th:if="${#lists.isEmpty(accounts)}" style="float: right"
+            <h3 th:if="${not #lists.isEmpty(accounts)}" style="float: right"
                 th:text="${#numbers.formatDecimal(totalBalance/100, 1, 'DEFAULT', 2, 'DEFAULT')}"></h3>
         </div>
     </div>
@@ -48,7 +48,7 @@
     </div>
 
 
-    <div class="col-md-8 mx-auto"/>
+    <div class="col-md-8 mx-auto">
         <div class="btn-toolbar">
             <form style="margin-bottom: 10px; margin-right: 10px" th:action="@{/customers/{id}/address(id=${customer.getId()})}" method="get">
                 <button type="submit" class="btn btn-secondary">

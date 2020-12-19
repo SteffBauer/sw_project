@@ -66,16 +66,12 @@ public class AccountController {
     public String getAccountView(Model model, @PathVariable long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            Customer customer = (Customer) authentication.getPrincipal();
             ResponseEntity responseEntity = bankingService.getAccountById(id);
 
             if(responseEntity.getStatusCode()!=HttpStatus.OK)
                 return homeController.showDashboard(model,"Error while accessing account info.",null);
 
             Account account = (Account) responseEntity.getBody();
-
-            if(account.getCustomer().getId() != customer.getId())
-                return homeController.showDashboard(model,"Error while accessing account info.",null);
 
             ResponseEntity<List<Transfer>> responseEntityTransfers = bankingService.getTransfersByAccountId(account.getId());
 
