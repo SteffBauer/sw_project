@@ -3,13 +3,18 @@ package de.othr.sw.bank.entity;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "employee")
 public class Employee extends Person {
     private long salary;
     private String designation;
+
+    @OneToMany(mappedBy="attendant")
+    private List<Customer> customers;
 
     public Employee() { }
 
@@ -61,4 +66,5 @@ public class Employee extends Person {
     public boolean isEnabled() {
         return true;
     }
+
 }

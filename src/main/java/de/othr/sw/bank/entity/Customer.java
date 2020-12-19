@@ -23,6 +23,11 @@ public class Customer extends Person {
     @OneToMany(mappedBy = "customer")
     private List<Account> accounts;
 
+    @ManyToOne
+    @JoinColumn(name = "attendant")
+    private Employee attendant;
+
+
     public Customer(){}
 
     public Customer(String forename, String surname, String username, Date birthDate, String password, String taxNumber) {
