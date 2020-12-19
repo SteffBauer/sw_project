@@ -38,56 +38,43 @@ public class HomeController {
 
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+        if (authentication instanceof AnonymousAuthenticationToken) {
+            return "login";
+        }
+        // Handle notifications for the dashboard
+        if (error != null)
+            model.addAttribute("error", error);
+        else if(info != null)
+            model.addAttribute("info", info);
+
+        // Logged in user is type of customer
+        if(authentication.getPrincipal() instanceof Customer) {
             Customer customer = (Customer) authentication.getPrincipal();
+            model.addAttribute("customer",true);
             model.addAttribute("name", customer.getForename());
 
             List<Account> accounts = customerServiceIF.getAccountsForUser(customer.getId());
             model.addAttribute("accounts", accounts);
 
             long sum = 0L;
-            for (Account account : accounts){
-                sum+=account.getBalance();
+            for (Account account : accounts) {
+                sum += account.getBalance();
             }
 
             model.addAttribute("totalBalance", sum);
-
-            if (error != null)
-                model.addAttribute("error", error);
-            else if(info != null)
-                model.addAttribute("info", info);
-
-            return "/customer/dashboard";
-
         }
-        return "login";
-    }
-
-    @RequestMapping("/admin/dashboard")
-    public String showAdminDashboard(Model model,
-                                @RequestParam(value = "error", required = false) String error,
-                                @RequestParam(value = "info", required = false) String info) {
-        model.addAttribute("today", new Date().toString());
-
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+        // Logged in user is type of employee
+        else if(authentication.getPrincipal() instanceof Employee){
             Employee employee = (Employee) authentication.getPrincipal();
+            model.addAttribute("customer",false);
             model.addAttribute("name", employee.getForename());
 
-            model.addAttribute("accounts", null);
-
-
-            model.addAttribute("totalBalance", 0);
-
-            if (error != null)
-                model.addAttribute("error", error);
-            else if(info != null)
-                model.addAttribute("info", info);
-
-            return "/customer/dashboard";
-
+            //todo List<Customer> customers =
         }
-        return "login";
+
+        return "/customer/dashboard";
+
     }
+
+
 }

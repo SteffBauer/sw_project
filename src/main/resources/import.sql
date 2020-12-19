@@ -1,1 +1,3 @@
-insert into employee (birth_date, forename, password, surname, username, designation, salary,id) values ('1996-9-09', 'Stefan', '$2a$15$cgpaU6ClArLV103pKmTTj.RLCrmvUI3uk5vpwGb6zNdeHi3v07isO', 'Bauer', 'admin', 'Admin', 1000000,666);
+insert into address (city, country, house_nr, street, zip_code, id) values ('Grafenwiesen','Deutschland',42,'Thenrieder Weg',93479,1);
+insert into customer (birth_date, forename, password, surname, username, tax_number, id, address_id) values ('1996-9-09', 'Stefan', '$2a$15$4wg8OtXU81nMkKTI7Pe39ejutAK.1.yWky3RcB1TG4cgslmkEVxAm', 'bauer', 'user','123456',2,1);
+insert into employee (birth_date, forename, password, surname, username, designation, salary,id) values ('1996-9-09', 'Stefan', '$2a$15$cgpaU6ClArLV103pKmTTj.RLCrmvUI3uk5vpwGb6zNdeHi3v07isO', 'Bauer', 'admin', 'Admin', 1000000,3);

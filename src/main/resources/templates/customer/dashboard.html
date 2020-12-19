@@ -32,14 +32,14 @@
         <h2 th:if="${name}">Hello <span th:text="${name}"/>, have a nice day! </h2>
 
         <div style="clear: both">
-            <h3 th:if="${ #lists.isEmpty(accounts)}" style="float: left">There are no accounts yet.</h3>
+            <h3 th:if="${customer && #lists.isEmpty(accounts)}" style="float: left">There are no accounts yet.</h3>
             <h3 style="color: forestgreen; float: left" th:if="${info}" th:text="${info}"></h3>
             <h3 style="color: firebrick; float: left" th:if="${error}" th:text="${error}"></h3>
-            <h3 style="float: right" th:text="${#numbers.formatDecimal(totalBalance/100, 1, 'DEFAULT', 2, 'DEFAULT')}"></h3>
+            <h3 style="float: right" th:if="${customer}" th:text="${#numbers.formatDecimal(totalBalance/100, 1, 'DEFAULT', 2, 'DEFAULT')}"></h3>
         </div>
 
 
-        <table class="table table-hover" style="margin-top: 50px" th:if="${not #lists.isEmpty(accounts)}">
+        <table class="table table-hover" style="margin-top: 50px" th:if="${customer && not #lists.isEmpty(accounts)}">
             <tr>
                 <th>No</th>
                 <th style="text-align: center;">IBAN</th>
@@ -67,7 +67,7 @@
             </tr>
         </table>
 
-        <form th:action="@{/accounts/opening}" method="GET">
+        <form th:if="${customer}" th:action="@{/accounts/opening}" method="GET">
             <button type="submit" class="btn btn-primary" th:href="@{/accounts/opening}">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Apply for an account
             </button>

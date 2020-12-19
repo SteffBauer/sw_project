@@ -94,7 +94,7 @@ public class MultiSecurityConfiguration {
             http
                     .formLogin()
                     .loginPage("/login").permitAll()
-                    .successHandler((request, response, authentication) -> redirectStrategy.sendRedirect(request, response, "/admin/dashboard"))
+                    .successHandler((request, response, authentication) -> redirectStrategy.sendRedirect(request, response, "/dashboard"))
                     .failureUrl("/login?error=true")
                     .and()
                     .logout()
