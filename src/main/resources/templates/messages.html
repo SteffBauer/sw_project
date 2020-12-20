@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <meta charset="UTF-8">
+    <title>Online Banking</title>
+
+    <style>
+        hr.message-inner-separator
+        {
+            clear: both;
+            margin-top: 10px;
+            margin-bottom: 13px;
+            border: 0;
+            height: 1px;
+            background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+            background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+            background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+            background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+        }
+    </style>
+</head>
+<body>
+
+
+<div th:replace="fragments/header :: navLogout"/>
+
+<div class="container" style="margin-top: 250px">
+    <div class="row align-items-center justify-content-center" th:if="${message.messageType ==  T(de.othr.sw.bank.entity.WebsiteMessageType).Success}">
+            <div class="alert alert-success" >
+                <span class="glyphicon glyphicon-ok"></span> <strong th:text="${message.title}"></strong>
+                <hr class="message-inner-separator">
+                <p  th:text="${message.message}"/>
+        </div>
+        <!--
+        <div class="col-sm-6 col-md-6">
+            <div class="alert alert-info">
+                <span class="glyphicon glyphicon-info-sign"></span> <strong>Info Message</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    This alert needs your attention, but it's not super important.</p>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <div class="alert alert-warning">
+                <span class="glyphicon glyphicon-record"></span> <strong>Warning Message</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    Best check yo self, you're not looking too good.</p>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6">
+            <div class="alert alert-danger">
+                <span class="glyphicon glyphicon-hand-right"></span> <strong>Danger Message</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    Change a few things up and try submitting again.</p>
+            </div>
+        </div>
+        -->
+    </div>
+</div>
+
+</body>
+</html>

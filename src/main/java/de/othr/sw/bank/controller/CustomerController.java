@@ -2,6 +2,8 @@ package de.othr.sw.bank.controller;
 
 import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.Customer;
+import de.othr.sw.bank.entity.WebsiteMessage;
+import de.othr.sw.bank.entity.WebsiteMessageType;
 import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.CustomerServiceIF;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,9 +68,15 @@ public class CustomerController {
         ResponseEntity<Customer> responseEntity = customerService.deleteCustomerById(cid);
         if (responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.getBody() != null) {
             Customer customer = responseEntity.getBody();
-            return homeController.showDashboard(model, null, String.format("Customer '%s %s' was deleted.", customer.getSurname(), customer.getForename()));
+
+            WebsiteMessage message= new WebsiteMessage(WebsiteMessageType.Success,"Successfully deleted customer",String.format("Customer '%s %s' was deleted.", customer.getSurname(), customer.getForename()));
+            model.addAttribute("message", message);
+            return "messages";
         }
-        return homeController.showDashboard(model, "Error trying to delete customer with the id '" + cid + "'.", null);
+
+        WebsiteMessage message= new WebsiteMessage(WebsiteMessageType.Danger,"Unable to delete customer","Error trying to delete customer with the id '" + cid + "'.");
+        model.addAttribute("message", message);
+        return "messages";
     }
 
 }
