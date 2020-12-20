@@ -3,9 +3,6 @@ package de.othr.sw.bank.service;
 import de.othr.sw.bank.entity.*;
 import de.othr.sw.bank.repo.AddressRepositoryIF;
 import de.othr.sw.bank.repo.CustomerRepositoryIF;
-import de.othr.sw.bank.repo.EmployeeRepositoryIF;
-import de.othr.sw.bank.service.BankingServiceIF;
-import de.othr.sw.bank.service.CustomerServiceIF;
 import de.othr.sw.bank.utils.StringUtils;
 import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +13,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +24,7 @@ import java.util.Optional;
 @RestController()
 @RequestMapping("api/customers")
 @Qualifier("customerUserDetailsService")
-public class CustomerService implements CustomerServiceIF,UserDetailsService {
+public class CustomerService implements CustomerServiceIF, UserDetailsService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -59,12 +54,12 @@ public class CustomerService implements CustomerServiceIF,UserDetailsService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(newCustomer);
         }
 
-            // Check if username is already in use
-            if (!customerRepositoryIF.findCustomerByUsername(newCustomer.getUsername()).isEmpty())
-                throw new UsernameAlreadyInUserException("Username '" + newCustomer.getUsername() + "' already in use.");
-            // Check if customer is already registered (taxnumber)
-            if (!customerRepositoryIF.findCustomerByTaxNumber(newCustomer.getTaxNumber()).isEmpty())
-                throw new TaxNumberAlreadyRegisteredException("User with taxnumber '" + newCustomer.getTaxNumber() + "' already registered.");
+        // Check if username is already in use
+        if (!customerRepositoryIF.findCustomerByUsername(newCustomer.getUsername()).isEmpty())
+            throw new UsernameAlreadyInUserException("Username '" + newCustomer.getUsername() + "' already in use.");
+        // Check if customer is already registered (taxnumber)
+        if (!customerRepositoryIF.findCustomerByTaxNumber(newCustomer.getTaxNumber()).isEmpty())
+            throw new TaxNumberAlreadyRegisteredException("User with taxnumber '" + newCustomer.getTaxNumber() + "' already registered.");
 
 
         // Check if address already exists
@@ -121,13 +116,16 @@ public class CustomerService implements CustomerServiceIF,UserDetailsService {
     }
 
     @Override
-    public Optional<Customer> getCustomerByUsername(String username){
+    public Optional<Customer> getCustomerByUsername(String username) {
         return customerRepositoryIF.findCustomerByUsername(username);
     }
 
     @Override
-    public Optional<Customer> getCustomerById(long id) {
-        return customerRepositoryIF.findById(id);
+    public ResponseEntity<Customer> getCustomerById(long id) {
+        Optional<Customer> customer = customerRepositoryIF.findById(id);
+        if (customer.isEmpty())
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<Customer>(customer.get(), HttpStatus.OK);
     }
 
     @Override
@@ -138,8 +136,24 @@ public class CustomerService implements CustomerServiceIF,UserDetailsService {
 
     @Override
     @PostMapping("/account")
-    public ResponseEntity<AccountRequest> createAccount(@RequestBody AccountRequest accountRequest){
+    public ResponseEntity<AccountRequest> createAccount(@RequestBody AccountRequest accountRequest) {
         return bankingServiceIF.createAccount(accountRequest);
+    }
+
+    @Override
+    public ResponseEntity<Customer> deleteCustomerById(long cid) {
+        Optional<Customer> customer = customerRepositoryIF.findById(cid);
+        if (customer.isEmpty())
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        Customer c = customer.get();
+
+        // Delete relation to employee
+        employeeService.removeCustomerFromEmployee(c);
+
+
+        customerRepositoryIF.delete(c);
+        return new ResponseEntity<Customer>(c, HttpStatus.OK);
     }
 
     @Override

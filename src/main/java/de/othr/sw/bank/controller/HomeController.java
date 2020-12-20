@@ -4,8 +4,10 @@ import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.Customer;
 import de.othr.sw.bank.entity.Employee;
 import de.othr.sw.bank.service.CustomerServiceIF;
+import de.othr.sw.bank.service.EmployeeServiceIF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,9 @@ public class HomeController {
 
     @Autowired
     CustomerServiceIF customerServiceIF;
+
+    @Autowired
+    EmployeeServiceIF employeeService;
 
     @RequestMapping("/")
     public String showStartPage(Model model) {
@@ -66,6 +71,10 @@ public class HomeController {
         // Logged in user is type of employee
         else if(authentication.getPrincipal() instanceof Employee){
             Employee employee = (Employee) authentication.getPrincipal();
+            // Update Employee in case of deleted customers
+            employee =employeeService.getEmployeeByUsername(employee.getUsername()).get();
+
+
             model.addAttribute("customer",false);
             model.addAttribute("name", employee.getForename());
 

@@ -80,4 +80,9 @@ public class Address extends BaseEntity {
         if (!this.getResidents().contains(c))
             this.getResidents().add(c);
     }
+
+    public void removeResident(Customer c){
+        if (this.getResidents().contains(c))
+            this.getResidents().remove(c);
+    }
 }

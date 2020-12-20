@@ -72,8 +72,7 @@ public class Employee extends Person {
     }
 
     public List<Customer> getCustomers() {
-        return
-                Collections.unmodifiableList(this.customers);
+        return Collections.unmodifiableList(this.customers);
     }
 
     public void setCustomers(List<Customer> customers) {
@@ -81,7 +80,12 @@ public class Employee extends Person {
     }
 
     public void addCustomer(Customer customer) {
-        if (!customers.contains(customer))
-            customers.add(customer);
+        if (!this.getCustomers().contains(customer))
+            this.getCustomers().add(customer);
+    }
+
+    public void removeCustomer(Customer c){
+        if (this.getCustomers().contains(c))
+            this.getCustomers().remove(c);
     }
 }

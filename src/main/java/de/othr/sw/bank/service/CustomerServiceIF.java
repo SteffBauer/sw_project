@@ -17,11 +17,13 @@ public interface CustomerServiceIF {
 
     Optional<Customer> getCustomerByUsername(String username);
 
-    Optional<Customer> getCustomerById(long id);
+    ResponseEntity<Customer> getCustomerById(long id);
 
     ResponseEntity<Customer> findCustomer(String taxnumber);
 
     ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) throws UsernameAlreadyInUserException, TaxNumberAlreadyRegisteredException;
 
     ResponseEntity<AccountRequest> createAccount(@RequestBody AccountRequest accountRequest);
+
+    ResponseEntity<Customer> deleteCustomerById(long cid);
 }

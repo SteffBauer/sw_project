@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,7 +44,17 @@ public class EmployeeService implements EmployeeServiceIF, UserDetailsService {
     @Override
     public Employee getEmployeeForCustomerSupport() {
         List<Employee> employees = employeeRepository.getEmployeeByDesignation(EmployeeDesignation.ACCOUNT_MANAGER.getDesignation());
-        Optional<Employee> employee = employees.stream().min(Comparator.comparingInt(x->x.getCustomers().size()));
+        Optional<Employee> employee = employees.stream().min(Comparator.comparingInt(x -> x.getCustomers().size()));
         return !employee.isEmpty() ? employee.get() : null;
+    }
+
+    @Override
+    public void removeCustomerFromEmployee(Customer customer) {
+        Optional<Employee> optionalEmployee = employeeRepository.findById(customer.getAttendant().getId());
+        optionalEmployee.ifPresent(e -> {
+                    e.removeCustomer(customer);
+                    employeeRepository.save(e);
+                }
+        );
     }
 }

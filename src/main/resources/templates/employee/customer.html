@@ -48,9 +48,9 @@
                     <i class="fa fa-road" style="margin-right: 10px"></i> Edit address
                 </button>
             </form>
-            <form th:action="@{/customers/{id}/delete(id=${customer.getId()})}" method="post">
+            <form th:action="@{/customers/delete/{id}(id=${customer.getId()})}" method="get">
                 <button type="submit" class="btn btn-danger">
-                    <i class="fa fa-trash" style="margin-right: 10px"></i>Delete customer
+                    <i class="fa fa-trash" style="margin-right: 10px"></i> Delete customer
                 </button>
             </form>
         </div>

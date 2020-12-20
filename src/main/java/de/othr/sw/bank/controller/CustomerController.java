@@ -1,9 +1,7 @@
 package de.othr.sw.bank.controller;
 
 import de.othr.sw.bank.entity.Account;
-import de.othr.sw.bank.entity.AccountRequest;
 import de.othr.sw.bank.entity.Customer;
-import de.othr.sw.bank.entity.Transfer;
 import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.CustomerServiceIF;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +12,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 //@RequestMapping("customers")
@@ -30,7 +28,7 @@ public class CustomerController {
     @Autowired
     HomeController homeController;
 
-    @RequestMapping("customers/{cid}")
+    @RequestMapping( "customers/{cid}")
     public String getCustomerView(Model model, @PathVariable long cid) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
@@ -39,10 +37,10 @@ public class CustomerController {
             model.addAttribute("username", currentUserName);
         }
 
-        Optional<Customer> optionalCustomer= customerService.getCustomerById(cid);
+        ResponseEntity<Customer> optionalCustomer = customerService.getCustomerById(cid);
 
-        if(!optionalCustomer.isEmpty()) {
-            Customer customer = optionalCustomer.get();
+        if (optionalCustomer.getStatusCode() == HttpStatus.OK && optionalCustomer.getBody() != null) {
+            Customer customer = optionalCustomer.getBody();
 
             List<Account> accounts = customerService.getAccountsForUser(customer.getId());
             model.addAttribute("accounts", accounts);
@@ -58,7 +56,19 @@ public class CustomerController {
             return "/employee/customer";
         }
 
-        return homeController.showDashboard(model,"Error trying to get view for customer.",null);
+        return homeController.showDashboard(model, "Error trying to get view for customer.", null);
+    }
+
+    @RequestMapping( "customers/delete/{cid}")
+    public String deleteCustomer(Model model, @PathVariable long cid) {
+
+        // todo check account balances, and if customer is related to logged in employee
+        ResponseEntity<Customer> responseEntity = customerService.deleteCustomerById(cid);
+        if (responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.getBody() != null) {
+            Customer customer = responseEntity.getBody();
+            return homeController.showDashboard(model, null, String.format("Customer '%s %s' was deleted.", customer.getSurname(), customer.getForename()));
+        }
+        return homeController.showDashboard(model, "Error trying to delete customer with the id '" + cid + "'.", null);
     }
 
 }
