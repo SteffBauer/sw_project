@@ -34,14 +34,14 @@ public class MultiSecurityConfiguration {
 
         private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
         private static final String[] ALLOW_ACCESS_WITHOUT_AUTHENTICATION = {
-                "/css/**", "/js/**", "/images/**", "/fonts/**", "/login", "/forgotPassword", "/register","/customer/**","/"};
+                "/css/**", "/js/**", "/images/**", "/fonts/**", "/login", "/forgotPassword", "/register","/"};
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http
                     .authorizeRequests()
-                    .antMatchers(ALLOW_ACCESS_WITHOUT_AUTHENTICATION)
-                    .permitAll().anyRequest().authenticated();
+                    .antMatchers(ALLOW_ACCESS_WITHOUT_AUTHENTICATION).permitAll()
+                    .anyRequest().authenticated();
             http
                     .formLogin()
                     .loginPage("/login").permitAll()
@@ -82,14 +82,14 @@ public class MultiSecurityConfiguration {
 
         private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
         private static final String[] ALLOW_ACCESS_WITHOUT_AUTHENTICATION = {
-                "/css/**", "/js/**", "/images/**", "/fonts/**", "/login", "/forgotPassword", "/register","/employee/**","/"};
+                "/css/**", "/js/**", "/images/**", "/fonts/**", "/login", "/forgotPassword", "/register","/"};
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http
                     .authorizeRequests()
-                    .antMatchers(ALLOW_ACCESS_WITHOUT_AUTHENTICATION)
-                    .permitAll().anyRequest().authenticated();
+                    .antMatchers(ALLOW_ACCESS_WITHOUT_AUTHENTICATION).permitAll()
+                    .anyRequest().authenticated();
             http
                     .formLogin()
                     .loginPage("/login").permitAll()
