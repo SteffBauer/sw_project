@@ -1,6 +1,8 @@
 package de.othr.sw.bank.controller;
 
 import de.othr.sw.bank.entity.Customer;
+import de.othr.sw.bank.entity.WebsiteMessage;
+import de.othr.sw.bank.entity.WebsiteMessageType;
 import de.othr.sw.bank.service.CustomerServiceIF;
 import de.othr.sw.bank.service.TaxNumberAlreadyRegisteredException;
 import de.othr.sw.bank.service.UsernameAlreadyInUserException;
@@ -18,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RegisterController {
     @Autowired
     CustomerServiceIF customerServiceIF;
-    @Autowired
-    LoginController loginController;
 
     @RequestMapping("/register")
     public String showRegisterPage(Model model) {
@@ -45,10 +45,14 @@ public class RegisterController {
         }
 
         if(responseEntity.getStatusCode() == HttpStatus.CREATED) {
-            return loginController.showLoginPage(model,null,null,"registered");
+            WebsiteMessage message= new WebsiteMessage(WebsiteMessageType.Success,"Successfully registered","You are registered and can log in now.");
+            model.addAttribute("message", message);
+            return "messages";
         }
         else {
-            return loginController.showLoginPage(model,"Error trying to registrate user",null,null);
+            WebsiteMessage message= new WebsiteMessage(WebsiteMessageType.Danger,"Registration Error","There occurred an error while trying to registrate the user.");
+            model.addAttribute("message", message);
+            return "messages";
         }
     }
 }

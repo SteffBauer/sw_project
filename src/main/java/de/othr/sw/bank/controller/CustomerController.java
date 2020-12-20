@@ -27,8 +27,6 @@ public class CustomerController {
     CustomerServiceIF customerService;
     @Autowired
     BankingServiceIF bankingService;
-    @Autowired
-    HomeController homeController;
 
     @RequestMapping( "customers/{cid}")
     public String getCustomerView(Model model, @PathVariable long cid) {
@@ -58,7 +56,10 @@ public class CustomerController {
             return "/employee/customer";
         }
 
-        return homeController.showDashboard(model, "Error trying to get view for customer.", null);
+
+        WebsiteMessage message= new WebsiteMessage(WebsiteMessageType.Danger,"Unable to view customer","Error trying to get view for customer '" + cid + "'.");
+        model.addAttribute("message", message);
+        return "messages";
     }
 
     @RequestMapping( "customers/delete/{cid}")

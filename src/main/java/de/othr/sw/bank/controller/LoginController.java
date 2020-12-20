@@ -22,6 +22,7 @@ public class LoginController {
         Customer c = new Customer();
         model.addAttribute("customer", c);
 
+        // todo request params necessary?
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
         else if(logout != null)

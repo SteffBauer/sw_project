@@ -1,9 +1,6 @@
 package de.othr.sw.bank.controller;
 
-import de.othr.sw.bank.entity.Account;
-import de.othr.sw.bank.entity.AccountRequest;
-import de.othr.sw.bank.entity.Customer;
-import de.othr.sw.bank.entity.Transfer;
+import de.othr.sw.bank.entity.*;
 import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.CustomerServiceIF;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +23,6 @@ public class AccountController {
     CustomerServiceIF customerService;
     @Autowired
     BankingServiceIF bankingService;
-    @Autowired
-    HomeController homeController;
 
     @RequestMapping("/opening")
     public String getFormForNewAccount(Model model) {
@@ -53,10 +48,15 @@ public class AccountController {
 
             ResponseEntity<AccountRequest> responseEntity = customerService.createAccount(accountRequest);
 
-            if (responseEntity.getStatusCode() == HttpStatus.CREATED)
-                return homeController.showDashboard(model, null, "Your request for an account has been sent. It will be verified by our employees.");
-            else
-                return homeController.showDashboard(model, "An error occurred while sending your request.", null);
+            if (responseEntity.getStatusCode() == HttpStatus.CREATED) {
+                WebsiteMessage message = new WebsiteMessage(WebsiteMessageType.Success, "Successfully applied", "Your request for an account has been sent. It will be verified by our employees.");
+                model.addAttribute("message", message);
+                return "messages";
+            } else {
+                WebsiteMessage message = new WebsiteMessage(WebsiteMessageType.Danger, "Error while processing your apply", "An error occurred while sending your request.");
+                model.addAttribute("message", message);
+                return "messages";
+            }
 
         }
         return "login";
@@ -68,23 +68,24 @@ public class AccountController {
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             ResponseEntity responseEntity = bankingService.getAccountById(id);
 
-            if(responseEntity.getStatusCode()!=HttpStatus.OK)
-                return homeController.showDashboard(model,"Error while accessing account info.",null);
+            if (responseEntity.getStatusCode() == HttpStatus.OK) {
 
-            Account account = (Account) responseEntity.getBody();
+                Account account = (Account) responseEntity.getBody();
 
-            ResponseEntity<List<Transfer>> responseEntityTransfers = bankingService.getTransfersByAccountId(account.getId());
+                ResponseEntity<List<Transfer>> responseEntityTransfers = bankingService.getTransfersByAccountId(account.getId());
 
-            if(responseEntityTransfers.getStatusCode() == HttpStatus.OK)
-                model.addAttribute("transfers", responseEntityTransfers.getBody());
-            else
-                model.addAttribute("transfers", null);
-            model.addAttribute("account",account);
-            return "/customer/account";
+                if (responseEntityTransfers.getStatusCode() == HttpStatus.OK)
+                    model.addAttribute("transfers", responseEntityTransfers.getBody());
+                else
+                    model.addAttribute("transfers", null);
+                model.addAttribute("account", account);
+                return "/customer/account";
+            }
 
         }
-
-        return homeController.showDashboard(model,"Error while accessing account info.",null);
+        WebsiteMessage message = new WebsiteMessage(WebsiteMessageType.Danger, "Account info not reachable", "Error while accessing your account info.");
+        model.addAttribute("message", message);
+        return "messages";
 
     }
 
@@ -98,14 +99,15 @@ public class AccountController {
             model.addAttribute("username", currentUserName);
 
             Transfer transfer = new Transfer();
-            model.addAttribute("transfer",transfer);
+            model.addAttribute("transfer", transfer);
 
             //todo z.B. überweisung nur bis 500 € im Minus möglich?
             return "/customer/account_transfer";
         }
 
-        return homeController.showDashboard(model,"Error while trying to make new transfer.",null);
-
+        WebsiteMessage message= new WebsiteMessage(WebsiteMessageType.Danger,"Could not make a transfer","Error while trying to make new transfer.");
+        model.addAttribute("message", message);
+        return "messages";
 
     }
 
@@ -116,20 +118,25 @@ public class AccountController {
             Customer customer = (Customer) authentication.getPrincipal();
             ResponseEntity responseEntity = bankingService.getAccountById(id);
 
-            if(responseEntity.getStatusCode()!=HttpStatus.OK)
-                return homeController.showDashboard(model,"Error while accessing account info.",null);
+            if (responseEntity.getStatusCode() == HttpStatus.OK) {
 
-            Account account = (Account) responseEntity.getBody();
+                Account account = (Account) responseEntity.getBody();
 
-            if(account.getCustomer().getId() != customer.getId())
-                return homeController.showDashboard(model,"Error while accessing account info.",null);
 
-            //todo check balance, delete..
-            return homeController.showDashboard(model,null, "Delete account is not implemented yet");
-
+                if (account.getCustomer().getId() != customer.getId()) {
+                    //return homeController.showDashboard(model, "Error while accessing account info.", null);
+                }
+                //todo check balance, delete..
+                WebsiteMessage message = new WebsiteMessage(WebsiteMessageType.Success, "Account deleted", "Successfully deleted the account with the iban '"+account.getIban()+"'.");
+                model.addAttribute("message", message);
+                return "messages";
+            }
         }
 
-        return homeController.showDashboard(model,"Error while accessing account info.",null);
-
+        WebsiteMessage message = new WebsiteMessage(WebsiteMessageType.Danger, "Could not delete account", "Error trying to delete your account.");
+        model.addAttribute("message", message);
+        return "messages";
     }
+
+
 }
