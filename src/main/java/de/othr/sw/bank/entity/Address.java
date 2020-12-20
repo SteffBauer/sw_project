@@ -1,11 +1,12 @@
 package de.othr.sw.bank.entity;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 @Entity
-public class Address extends BaseEntity{
+public class Address extends BaseEntity {
     private String street;
     private int houseNr;
     private long zipCode;
@@ -15,15 +16,16 @@ public class Address extends BaseEntity{
     @OneToMany(mappedBy = "address")
     private List<Customer> residents;
 
-    public Address(String street, Integer houseNr,Integer zipCode, String city, String country) {
+    public Address(String street, Integer houseNr, Integer zipCode, String city, String country) {
         this.street = street;
         this.houseNr = houseNr;
-        this.zipCode=zipCode;
-        this.city=city;
+        this.zipCode = zipCode;
+        this.city = city;
         this.country = country;
     }
 
-    public Address() { }
+    public Address() {
+    }
 
 
     public String getStreet() {
@@ -67,10 +69,7 @@ public class Address extends BaseEntity{
     }
 
     public List<Customer> getResidents() {
-        if(residents==null){
-            residents=new LinkedList<Customer>();
-        }
-        return residents;
+        return Collections.unmodifiableList(this.residents);
     }
 
     public void setResidents(List<Customer> residents) {
@@ -78,6 +77,7 @@ public class Address extends BaseEntity{
     }
 
     public void addResident(Customer c) {
-        this.getResidents().add(c);
+        if (!this.getResidents().contains(c))
+            this.getResidents().add(c);
     }
 }

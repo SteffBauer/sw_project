@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -14,11 +15,11 @@ public class Customer extends Person {
     private String taxNumber;
 
     @ManyToOne()
-    @JoinColumn(name="address_id")
+    @JoinColumn(name = "address_id")
     private Address address;
 
 
-    @OneToMany(mappedBy = "customer",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     private List<Account> accounts;
 
     @ManyToOne
@@ -26,7 +27,8 @@ public class Customer extends Person {
     private Employee attendant;
 
 
-    public Customer(){}
+    public Customer() {
+    }
 
     public Customer(String forename, String surname, String username, Date birthDate, String password, String taxNumber) {
         super(forename, surname, username, birthDate, password);
@@ -52,7 +54,7 @@ public class Customer extends Person {
 
 
     public List<Account> getAccounts() {
-        return accounts;
+        return Collections.unmodifiableList(accounts);
     }
 
     public void setAccounts(List<Account> accounts) {

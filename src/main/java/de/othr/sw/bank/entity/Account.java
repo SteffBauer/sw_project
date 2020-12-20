@@ -2,6 +2,7 @@ package de.othr.sw.bank.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -9,18 +10,18 @@ public class Account extends BaseEntity implements Serializable {
     private String iban;
 
     @ManyToOne
-    @JoinColumn(name="customer_id")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy="payerAccount")
+    @OneToMany(mappedBy = "payerAccount")
     private List<Transfer> payers;
 
-    @OneToMany(mappedBy="receiverAccount")
+    @OneToMany(mappedBy = "receiverAccount")
     private List<Transfer> receivers;
 
     private long balance;
 
-    public Account(){
+    public Account() {
         // Set default balance to 1.000,00 €
         this.balance = 100000L;
     }
@@ -61,7 +62,7 @@ public class Account extends BaseEntity implements Serializable {
 
 
     public List<Transfer> getPayers() {
-        return payers;
+        return Collections.unmodifiableList(this.payers);
     }
 
     public void setPayers(List<Transfer> payers) {
@@ -69,7 +70,8 @@ public class Account extends BaseEntity implements Serializable {
     }
 
     public List<Transfer> getReceivers() {
-        return receivers;
+        return
+                Collections.unmodifiableList(receivers);
     }
 
     public void setReceivers(List<Transfer> receivers) {
@@ -77,8 +79,8 @@ public class Account extends BaseEntity implements Serializable {
     }
 
     public void createIban() {
-        String country= customer.getAddress().getCountry().substring(0,2).toUpperCase();
+        String country = customer.getAddress().getCountry().substring(0, 2).toUpperCase();
         String account = String.format("%010d", this.getId());
-        setIban(country+getBlz()+account);
+        setIban(country + getBlz() + account);
     }
 }

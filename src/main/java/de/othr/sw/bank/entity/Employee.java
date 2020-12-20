@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -15,10 +16,11 @@ public class Employee extends Person {
     private long salary;
     private String designation;
 
-    @OneToMany(mappedBy="attendant", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "attendant", fetch = FetchType.EAGER)
     private List<Customer> customers;
 
-    public Employee() { }
+    public Employee() {
+    }
 
     public Employee(String forename, String surname, String username,
                     String password, Date birthDate, long salary,
@@ -70,15 +72,16 @@ public class Employee extends Person {
     }
 
     public List<Customer> getCustomers() {
-        return customers;
+        return
+                Collections.unmodifiableList(this.customers);
     }
 
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
     }
 
-    public void addCustomer(Customer customer){
-        if(!customers.contains(customer))
+    public void addCustomer(Customer customer) {
+        if (!customers.contains(customer))
             customers.add(customer);
     }
 }
