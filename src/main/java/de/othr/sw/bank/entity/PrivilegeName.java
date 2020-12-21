@@ -5,7 +5,7 @@ public enum PrivilegeName {
     EMPLOYEE("ROLE_EMPLOYEE"),
     ROLE("ROLE_USER");
 
-    private String privilege;
+    private final String privilege;
 
     PrivilegeName(String privilege) {
         this.privilege = privilege;

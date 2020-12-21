@@ -82,7 +82,6 @@ public class Address extends BaseEntity {
     }
 
     public void removeResident(Customer c){
-        if (this.residents.contains(c))
-            this.residents.remove(c);
+        this.residents.remove(c);
     }
 }

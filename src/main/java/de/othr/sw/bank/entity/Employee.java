@@ -85,7 +85,6 @@ public class Employee extends Person {
     }
 
     public void removeCustomer(Customer c){
-        if (this.customers.contains(c))
-            this.customers.remove(c);
+        this.customers.remove(c);
     }
 }

@@ -32,7 +32,7 @@ public class MultiSecurityConfiguration {
             return encryptionUtils.passwordEncoder();
         }
 
-        private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+        private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
         private static final String[] ALLOW_ACCESS_WITHOUT_AUTHENTICATION = {
                 "/css/**", "/js/**", "/images/**", "/fonts/**", "/login", "/forgotPassword", "/register","/"};
         private static final String[] ALLOW_ACCESS_FOR_STAFF = {
