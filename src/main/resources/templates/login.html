@@ -33,11 +33,9 @@
                     <hr>
 
                     <!-- show notification on error -->
-                    <div th:if="${error}" th:text="${error}">
-                        Invalid username or password.
-                    </div>
+                    <div class="text-danger" th:if="${error != null}"><p th:text="${error}"/></div>
                     <!-- show notification of logout -->
-                    <span th:if="${message}" th:text="${message}"></span>
+                    <div class="text-info" th:if="${message != null}"><p th:text="${message}"/></div>
 
                     <form th:action="@{/login}" method="post" th:object="${customer}">
                         <div class="form-group">

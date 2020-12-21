@@ -48,7 +48,7 @@
                     <i class="fa fa-road" style="margin-privilege: 10px"></i> Edit address
                 </button>
             </form>
-            <form th:action="@{/customers/delete/{id}(id=${customer.getId()})}" method="get">
+            <form th:action="@{/mgmt/customers/delete/{id}(id=${customer.getId()})}" method="get">
                 <button type="submit" class="btn btn-danger">
                     <i class="fa fa-trash" style="margin-privilege: 10px"></i> Delete customer
                 </button>

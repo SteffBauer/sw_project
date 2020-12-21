@@ -14,7 +14,7 @@ public class Address extends BaseEntity {
     private String country;
 
     @OneToMany(mappedBy = "address")
-    private List<Customer> residents;
+    private List<Customer> residents = new LinkedList<>();
 
     public Address(String street, Integer houseNr, Integer zipCode, String city, String country) {
         this.street = street;
@@ -77,12 +77,12 @@ public class Address extends BaseEntity {
     }
 
     public void addResident(Customer c) {
-        if (!this.getResidents().contains(c))
-            this.getResidents().add(c);
+        if (!this.residents.contains(c))
+            this.residents.add(c);
     }
 
     public void removeResident(Customer c){
-        if (this.getResidents().contains(c))
-            this.getResidents().remove(c);
+        if (this.residents.contains(c))
+            this.residents.remove(c);
     }
 }

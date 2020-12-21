@@ -6,19 +6,19 @@ import java.util.Set;
 
 @Entity
 public class Privilege extends BaseEntity{
-    private String rightName;
+    private String privilegeName;
     @OneToMany(mappedBy = "privilege", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     private Set<PersonAuthority> personAuthorities = new HashSet<>();
 
     public Privilege() {
     }
 
-    public String getRightName() {
-        return rightName;
+    public String getPrivilegeName() {
+        return privilegeName;
     }
 
-    public void setRightName(String rightName) {
-        this.rightName = rightName;
+    public void setPrivilegeName(PrivilegeName privilegeName) {
+        this.privilegeName = privilegeName.getPrivilege();
     }
 
     public Set<PersonAuthority> getPersonAuthorities() {

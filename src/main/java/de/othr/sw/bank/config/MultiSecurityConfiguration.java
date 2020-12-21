@@ -43,7 +43,7 @@ public class MultiSecurityConfiguration {
             http
                     .authorizeRequests()
                     // todo move paths for administration to /mgmt/*
-                    .antMatchers(ALLOW_ACCESS_FOR_STAFF).hasAnyRole("ROLE_ADMIN","ROLE_EMPLOYEE")
+                    .antMatchers(ALLOW_ACCESS_FOR_STAFF).hasAnyRole("ADMIN","EMPLOYEE")
                     .antMatchers(ALLOW_ACCESS_WITHOUT_AUTHENTICATION).permitAll()
                     .anyRequest().authenticated();
             http

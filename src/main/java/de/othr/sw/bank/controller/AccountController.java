@@ -3,6 +3,7 @@ package de.othr.sw.bank.controller;
 import de.othr.sw.bank.entity.*;
 import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.CustomerServiceIF;
+import de.othr.sw.bank.utils.WebsiteMessageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("accounts")
@@ -66,27 +68,26 @@ public class AccountController {
     @GetMapping("/{id}")
     public String getAccountView(Model model, @PathVariable long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            ResponseEntity responseEntity = bankingService.getAccountById(id);
+        ResponseEntity responseEntity = bankingService.getAccountById(id);
 
-            if (responseEntity.getStatusCode() == HttpStatus.OK) {
+        if (responseEntity.getStatusCode() != HttpStatus.OK)
+            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Account info not reachable", "Error while accessing your account info.");
 
-                Account account = (Account) responseEntity.getBody();
+        Account account = (Account) responseEntity.getBody();
 
-                ResponseEntity<List<Transfer>> responseEntityTransfers = bankingService.getTransfersByAccountId(account.getId());
+        // Authenticated User has to be a Employee or the owner of the account
+        if (authentication.getPrincipal() instanceof Customer && ((Customer) authentication.getPrincipal()).getId() != account.getCustomer().getId())
+            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Access denied", "You are not allowed to get information about the account.");
 
-                if (responseEntityTransfers.getStatusCode() == HttpStatus.OK)
-                    model.addAttribute("transfers", responseEntityTransfers.getBody());
-                else
-                    model.addAttribute("transfers", null);
-                model.addAttribute("account", account);
-                return "/customer/account";
-            }
+        ResponseEntity<List<Transfer>> responseEntityTransfers = bankingService.getTransfersByAccountId(account.getId());
 
-        }
-        WebsiteMessage message = new WebsiteMessage(WebsiteMessageType.Danger, "Account info not reachable", "Error while accessing your account info.");
-        model.addAttribute("message", message);
-        return "messages";
+        if (responseEntityTransfers.getStatusCode() == HttpStatus.OK)
+            model.addAttribute("transfers", responseEntityTransfers.getBody());
+        else
+            model.addAttribute("transfers", null);
+        model.addAttribute("account", account);
+        return "/customer/account";
+
 
     }
 
@@ -94,49 +95,48 @@ public class AccountController {
     @GetMapping("/{id}/transfers/new")
     public String getTransferView(Model model, @PathVariable long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            String currentUserName = authentication.getName();
 
-            model.addAttribute("username", currentUserName);
+        ResponseEntity<Account> optionalAccount = bankingService.getAccountById(id);
 
-            Transfer transfer = new Transfer();
-            model.addAttribute("transfer", transfer);
+        if (optionalAccount.getStatusCode() != HttpStatus.OK)
+            WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Wrong account", "No transfers can be made to the account with the id '" + id + "'.");
+        Account account = optionalAccount.getBody();
 
-            //todo z.B. überweisung nur bis 500 € im Minus möglich?
-            return "/customer/account_transfer";
-        }
+        // Authenticated User has to be a Employee or the owner of the account
+        if (authentication.getPrincipal() instanceof Customer && ((Customer) authentication.getPrincipal()).getId() != account.getCustomer().getId())
+            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Access denied", "You are not allowed to make transfers for the account.");
 
-        WebsiteMessage message= new WebsiteMessage(WebsiteMessageType.Danger,"Could not make a transfer","Error while trying to make new transfer.");
-        model.addAttribute("message", message);
-        return "messages";
+        String currentUserName = authentication.getName();
+
+        model.addAttribute("username", currentUserName);
+
+        Transfer transfer = new Transfer();
+        model.addAttribute("transfer", transfer);
+
+        //todo z.B. überweisung nur bis 500 € im Minus möglich?
+        return "/customer/account_transfer";
 
     }
 
     @DeleteMapping("/{id}/delete")
     public String deleteAccount(Model model, @PathVariable long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            Customer customer = (Customer) authentication.getPrincipal();
-            ResponseEntity responseEntity = bankingService.getAccountById(id);
 
-            if (responseEntity.getStatusCode() == HttpStatus.OK) {
+        ResponseEntity<Account> optionalAccount = bankingService.getAccountById(id);
 
-                Account account = (Account) responseEntity.getBody();
+        if (optionalAccount.getStatusCode() != HttpStatus.OK)
+            WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Wrong account", "Not able to delete the account with the id '" + id + "'.");
+        Account account = optionalAccount.getBody();
 
 
-                if (account.getCustomer().getId() != customer.getId()) {
-                    //return homeController.showDashboard(model, "Error while accessing account info.", null);
-                }
-                //todo check balance, delete..
-                WebsiteMessage message = new WebsiteMessage(WebsiteMessageType.Success, "Account deleted", "Successfully deleted the account with the iban '"+account.getIban()+"'.");
-                model.addAttribute("message", message);
-                return "messages";
-            }
-        }
+        // Authenticated User has to be a Employee or the owner of the account
+        if (authentication.getPrincipal() instanceof Customer && ((Customer) authentication.getPrincipal()).getId() != account.getCustomer().getId())
+            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Access denied", "You are not allowed to delete the account.");
 
-        WebsiteMessage message = new WebsiteMessage(WebsiteMessageType.Danger, "Could not delete account", "Error trying to delete your account.");
-        model.addAttribute("message", message);
-        return "messages";
+
+        //todo check balance, delete..
+        return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Success, "Account deleted", "Successfully deleted the account with the iban '" + account.getIban() + "'.");
+
     }
 
 }

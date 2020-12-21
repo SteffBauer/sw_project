@@ -24,11 +24,11 @@ public class LoginController {
 
         // todo request params necessary?
         if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
+            model.addAttribute("error", "Your username or password is invalid.");
         else if(logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
         else if(registered != null)
-            model.addAttribute("message", "Your registration was successfull.");
+            model.addAttribute("message", "Your registration was successful.");
 
         return "login";
     }

@@ -62,7 +62,7 @@ public class Customer extends Person {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<>();
         for(PersonAuthority authority : this.personAuthorities) {
-            authorities.add(new Authority(authority.getRight().getRightName()));
+            authorities.add(new Authority(authority.getRight().getPrivilegeName()));
         }
         return authorities;
     }

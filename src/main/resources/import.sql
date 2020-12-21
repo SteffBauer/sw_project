@@ -12,13 +12,14 @@ insert into customer (id, forename, surname, username, tax_number, address_id, a
 insert into customer (id, forename, surname, username, tax_number, address_id, attendant, password, birth_date) values (9205, 'Customer_Account5', 'Bauer', 'user5', '523456', 9101, 9002, '$2a$15$4wg8OtXU81nMkKTI7Pe39ejutAK.1.yWky3RcB1TG4cgslmkEVxAm', '1996-9-09');
 insert into customer (id, forename, surname, username, tax_number, address_id, attendant, password, birth_date) values (9206, 'Customer_Account6', 'Bauer', 'user6', '623456', 9101, 9002, '$2a$15$4wg8OtXU81nMkKTI7Pe39ejutAK.1.yWky3RcB1TG4cgslmkEVxAm', '1996-9-09');
 -- Privilege
-insert into privilege (id, right_name) value (9301, 'ROLE_ADMIN');
-insert into privilege (id, right_name) value (9302, 'ROLE_EMPLOYEE');
-insert into privilege (id, right_name) value (9303, 'ROLE_CUSTOMER');
+insert into privilege (id, privilege_name) value (9301, 'ROLE_ADMIN');
+insert into privilege (id, privilege_name) value (9302, 'ROLE_EMPLOYEE');
+insert into privilege (id, privilege_name) value (9303, 'ROLE_CUSTOMER');
 -- Person Authority: Admin & Employee
 insert into person_authority (id, person_id, privilege_id) values (9401, 9001, 9301);
-insert into person_authority (id, person_id, privilege_id) values (9402, 9002, 9302);
-insert into person_authority (id, person_id, privilege_id) values (9403, 9003, 9302);
+insert into person_authority (id, person_id, privilege_id) values (9402, 9001, 9302);
+insert into person_authority (id, person_id, privilege_id) values (9403, 9002, 9302);
+insert into person_authority (id, person_id, privilege_id) values (9404, 9003, 9302);
 -- Person Authority: Customer
 insert into person_authority (id, person_id, privilege_id) values (9411, 9201, 9303);
 insert into person_authority (id, person_id, privilege_id) values (9412, 9202, 9303);

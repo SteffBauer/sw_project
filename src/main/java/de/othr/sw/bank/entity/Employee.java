@@ -1,6 +1,5 @@
 package de.othr.sw.bank.entity;
 
-import org.hibernate.annotations.Fetch;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
@@ -47,7 +46,7 @@ public class Employee extends Person {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<>();
         for(PersonAuthority authority : this.personAuthorities) {
-            authorities.add(new Authority(authority.getRight().getRightName()));
+            authorities.add(new Authority(authority.getRight().getPrivilegeName()));
         }
         return authorities;
     }
@@ -81,12 +80,12 @@ public class Employee extends Person {
     }
 
     public void addCustomer(Customer customer) {
-        if (!this.getCustomers().contains(customer))
-            this.getCustomers().add(customer);
+        if (!this.customers.contains(customer))
+            this.customers.add(customer);
     }
 
     public void removeCustomer(Customer c){
-        if (this.getCustomers().contains(c))
-            this.getCustomers().remove(c);
+        if (this.customers.contains(c))
+            this.customers.remove(c);
     }
 }
