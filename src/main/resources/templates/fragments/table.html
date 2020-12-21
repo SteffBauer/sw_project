@@ -13,9 +13,9 @@
             th:onclick="'javascript:rowAccountClicked(\'' + ${account.id} + '\',);'"
             style="cursor: pointer">
             <td th:text="${custStat.count}">1</td>
-            <td th:text="${account.iban}" style="text-align: right;">DE123456789</td>
+            <td th:text="${account.iban}" style="text-align: privilege;">DE123456789</td>
             <td th:text="${#numbers.formatDecimal(account.balance/100, 1, 'DEFAULT', 2, 'DEFAULT')}"
-                style="text-align: right;">1000
+                style="text-align: privilege;">1000
             </td>
         </tr>
     </table>

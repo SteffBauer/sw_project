@@ -6,10 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity(name = "employee")
 public class Employee extends Person {
@@ -48,7 +45,11 @@ public class Employee extends Person {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        for(PersonAuthority authority : this.personAuthorities) {
+            authorities.add(new Authority(authority.getRight().getRightName()));
+        }
+        return authorities;
     }
 
     @Override

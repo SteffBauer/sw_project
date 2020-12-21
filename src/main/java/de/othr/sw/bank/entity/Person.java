@@ -3,12 +3,9 @@ package de.othr.sw.bank.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -20,6 +17,9 @@ public abstract class Person extends BaseEntity implements Serializable, UserDet
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Date birthDate;
     private String password;
+
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    protected Set<PersonAuthority> personAuthorities;
 
     public Person() {
     }

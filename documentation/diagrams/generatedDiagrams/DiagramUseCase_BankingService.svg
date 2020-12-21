@@ -24,7 +24,7 @@ link uc21 to uc41--><!--MD5=[71940278fbeb50e5258cc9d382751926]
 link uc17 to uc44--><!--MD5=[f9fbd44f7fe9bb86ab3cb359beea241d]
 @startuml
 
-left to right direction
+left to privilege direction
 skinparam monochrome true
 
 actor "Person" as p
@@ -90,7 +90,7 @@ uc17 -[hidden]-> uc44
 
 @startuml
 
-left to right direction
+left to privilege direction
 skinparam monochrome true
 
 actor "Person" as p

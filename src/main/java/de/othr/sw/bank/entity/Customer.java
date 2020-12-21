@@ -3,10 +3,7 @@ package de.othr.sw.bank.entity;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity(name = "customer")
 public class Customer extends Person {
@@ -19,7 +16,7 @@ public class Customer extends Person {
     private Address address;
 
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Account> accounts;
 
     @ManyToOne
@@ -63,7 +60,11 @@ public class Customer extends Person {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        for(PersonAuthority authority : this.personAuthorities) {
+            authorities.add(new Authority(authority.getRight().getRightName()));
+        }
+        return authorities;
     }
 
     @Override

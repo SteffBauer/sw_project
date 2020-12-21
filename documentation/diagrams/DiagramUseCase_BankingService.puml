@@ -1,6 +1,6 @@
 @startuml
 
-left to right direction
+left to privilege direction
 skinparam monochrome true
 
 actor "Person" as p

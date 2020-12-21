@@ -35,11 +35,15 @@ public class MultiSecurityConfiguration {
         private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
         private static final String[] ALLOW_ACCESS_WITHOUT_AUTHENTICATION = {
                 "/css/**", "/js/**", "/images/**", "/fonts/**", "/login", "/forgotPassword", "/register","/"};
+        private static final String[] ALLOW_ACCESS_FOR_STAFF = {
+                "/employee/**", "/mgmt/**"};
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http
                     .authorizeRequests()
+                    // todo move paths for administration to /mgmt/*
+                    .antMatchers(ALLOW_ACCESS_FOR_STAFF).hasAnyRole("ROLE_ADMIN","ROLE_EMPLOYEE")
                     .antMatchers(ALLOW_ACCESS_WITHOUT_AUTHENTICATION).permitAll()
                     .anyRequest().authenticated();
             http
@@ -80,36 +84,6 @@ public class MultiSecurityConfiguration {
             return encryptionUtils.passwordEncoder();
         }
 
-        private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
-        private static final String[] ALLOW_ACCESS_WITHOUT_AUTHENTICATION = {
-                "/css/**", "/js/**", "/images/**", "/fonts/**", "/login", "/forgotPassword", "/register","/"};
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http
-                    .authorizeRequests()
-                    .antMatchers(ALLOW_ACCESS_WITHOUT_AUTHENTICATION).permitAll()
-                    .anyRequest().authenticated();
-            http
-                    .formLogin()
-                    .loginPage("/login").permitAll()
-                    .successHandler((request, response, authentication) -> redirectStrategy.sendRedirect(request, response, "/dashboard"))
-                    .failureUrl("/login?error=true")
-                    .and()
-                    .logout()
-                    .logoutSuccessUrl("/login?logout=true")
-                    .invalidateHttpSession(true)
-                    .clearAuthentication(true)
-                    .deleteCookies("JSESSIONID")
-                    .permitAll()
-                    .and()
-                    .rememberMe()
-                    .and()
-                    .csrf()
-                    .disable();
-
-
-        }
 
         @Autowired
         public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

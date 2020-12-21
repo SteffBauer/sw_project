@@ -29,7 +29,7 @@
         <div style="clear: both">
             <h3 style="color: forestgreen; float: left" th:if="${info}" th:text="${info}"></h3>
             <h3 style="color: firebrick; float: left" th:if="${error}" th:text="${error}"></h3>
-            <h3 style="float: right" th:if="${customer && not #lists.isEmpty(accounts)}"
+            <h3 style="float: privilege" th:if="${customer && not #lists.isEmpty(accounts)}"
                 th:text="${#numbers.formatDecimal(totalBalance/100, 1, 'DEFAULT', 2, 'DEFAULT')}"></h3>
         </div>
     </div>
@@ -90,10 +90,10 @@
             }
         </style>
 -->
-        <div class="form-group float-right">
+        <div class="form-group float-privilege">
             <input type="text" class="search form-control" placeholder="Searching..">
         </div>
-        <span class="counter pull-right"></span>
+        <span class="counter pull-privilege"></span>
 
         <table class="table table-hover results" style="margin-top: 50px"
                th:if="${customers != null && not #lists.isEmpty(customers)}"
@@ -116,8 +116,8 @@
                 <td th:text="${custStat.count}">1</td>
                 <td th:text="${c.surname}" style="text-align: left;">Surname</td>
                 <td th:text="${c.forename}" style="text-align: left;">Forename</td>
-                <td th:text="${c.taxNumber}" style="text-align: right;">Taxnumber</td>
-                <td th:text="${c.accounts.size()}" style="text-align: right;">Accounts</td>
+                <td th:text="${c.taxNumber}" style="text-align: privilege;">Taxnumber</td>
+                <td th:text="${c.accounts.size()}" style="text-align: privilege;">Accounts</td>
                 </td>
             </tr>
         </table>
@@ -133,7 +133,7 @@
         <div class="btn-toolbar">
             <form th:if="${customer}" th:action="@{/accounts/opening}" method="GET">
                 <button type="submit" class="btn btn-primary" th:href="@{/accounts/opening}">
-                    <i class="fa fa-plus" style="margin-right: 10px"></i> Apply for an account
+                    <i class="fa fa-plus" style="margin-privilege: 10px"></i> Apply for an account
                 </button>
             </form>
         </div>

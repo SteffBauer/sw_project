@@ -53,7 +53,7 @@ skinparam monochrome true
 [Chat Service\n(Bielmeier)] as chat
 
 interface "IFSendMessage" as IFChat
-chat -right-() IFChat
+chat -privilege-() IFChat
 
 package "Presentation" as presentation {
   HTTP - [Web Application]
@@ -118,7 +118,7 @@ skinparam monochrome true
 [Chat Service\n(Bielmeier)] as chat
 
 interface "IFSendMessage" as IFChat
-chat -right-() IFChat
+chat -privilege-() IFChat
 
 package "Presentation" as presentation {
   HTTP - [Web Application]

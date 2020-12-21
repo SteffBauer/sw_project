@@ -74,7 +74,7 @@ Customer "0..*\ncustomers\t  " - - - "attendant\n         1" Employee
 
 
 Person <|- - Employee
-Person <|-right- - Customer
+Person <|-privilege- - Customer
 
 Address -[hidden]-> Customer
 Address -[hidden]-> Transfer
@@ -139,7 +139,7 @@ Customer "0..*\ncustomers\t  " - - - "attendant\n         1" Employee
 
 
 Person <|- - Employee
-Person <|-right- - Customer
+Person <|-privilege- - Customer
 
 Address -[hidden]-> Customer
 Address -[hidden]-> Transfer
