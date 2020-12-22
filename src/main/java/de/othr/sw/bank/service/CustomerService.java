@@ -60,7 +60,7 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
         // Check if customer is already registered (taxnumber)
         if (!customerRepositoryIF.findCustomerByTaxNumber(newCustomer.getTaxNumber()).isEmpty())
             throw new TaxNumberAlreadyRegisteredException("User with taxnumber '" + newCustomer.getTaxNumber() + "' already registered.");
-
+        // todo User older than 12 years? -> Requirements
 
         // Check if address already exists
         Address address = newCustomer.getAddress();
@@ -92,19 +92,7 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
         return new ResponseEntity(newCustomer, HttpStatus.CREATED);
     }
 
-    /*
-    @GetMapping("/{id}")
-    public ResponseEntity<Customer> findCustomer(@PathVariable("id") long cId){
-        Optional<Customer> customer = customerRepositoryIF.findById(cId);
 
-        if(customer.isEmpty())
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        Customer c = customer.get();
-        c.getAddress().setResidents(null);
-        c.setPassword(null);
-        return new ResponseEntity<>(c,HttpStatus.OK);
-    }
-*/
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Customer customer = getCustomerByUsername(username)

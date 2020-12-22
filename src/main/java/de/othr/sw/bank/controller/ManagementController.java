@@ -6,6 +6,7 @@ import de.othr.sw.bank.entity.WebsiteMessage;
 import de.othr.sw.bank.entity.WebsiteMessageType;
 import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.CustomerServiceIF;
+import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -30,10 +32,10 @@ public class ManagementController {
     BankingServiceIF bankingService;
 
 
-    @RequestMapping( "/customers/delete/{cid}")
+    @PostMapping( "/customers/delete/{cid}")
     public String deleteCustomer(Model model, @PathVariable long cid) {
 
-        // todo check account balances, and if customer is related to logged in employee
+        // todo check no open accounts -> Requirements
         ResponseEntity<Customer> responseEntity = customerService.deleteCustomerById(cid);
         if (responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.getBody() != null) {
             Customer customer = responseEntity.getBody();
@@ -46,6 +48,14 @@ public class ManagementController {
         WebsiteMessage message= new WebsiteMessage(WebsiteMessageType.Danger,"Unable to delete customer","Error trying to delete customer with the id '" + cid + "'.");
         model.addAttribute("message", message);
         return "messages";
+    }
+
+    @PostMapping( "/accounts/delete/{id}")
+    public String deleteAccount(Model model, @PathVariable long id) {
+
+        // todo logical delete account
+        //  still money on account? Tell employee -> Requirements
+        throw new NotYetImplementedException();
     }
 
 }
