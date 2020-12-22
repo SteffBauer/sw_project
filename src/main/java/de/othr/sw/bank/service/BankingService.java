@@ -83,7 +83,7 @@ public class BankingService implements BankingServiceIF {
 
         payerAccount.setBalance(payerAccount.getBalance()-transferRequest.getAmount());
         accountRepository.save(payerAccount);
-        receiverAccount.setBalance(payerAccount.getBalance()+transferRequest.getAmount());
+        receiverAccount.setBalance(receiverAccount.getBalance()+transferRequest.getAmount());
         accountRepository.save(receiverAccount);
 
         return new ResponseEntity<>(transferRequest, HttpStatus.CREATED);
@@ -109,7 +109,7 @@ public class BankingService implements BankingServiceIF {
     @Override
     public ResponseEntity<List<Transfer>> getTransfersByAccountId(long id) {
         try {
-            List<Transfer> transfers = transferRepository.findTransfersByPayerAccountIdAndReceiverAccountIdOrderByDateDesc(id, id);
+            List<Transfer> transfers = transferRepository.findTransfersByPayerAccountIdOrReceiverAccountId(id, id);
             return new ResponseEntity(transfers, HttpStatus.OK);
         } catch (Exception ex) {
             ex.printStackTrace();

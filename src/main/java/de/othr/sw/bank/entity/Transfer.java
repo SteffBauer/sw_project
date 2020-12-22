@@ -29,6 +29,7 @@ public class Transfer extends BaseEntity{
         this.description = description;
         this.payerAccount = payerAccount;
         this.receiverAccount = receiverAccount;
+        // todo set date of transfer
         this.date = new Date();
     }
 
