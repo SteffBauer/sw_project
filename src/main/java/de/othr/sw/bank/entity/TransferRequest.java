@@ -1,5 +1,6 @@
 package de.othr.sw.bank.entity;
 
+import de.othr.sw.bank.utils.DateUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -15,7 +16,9 @@ public class TransferRequest {
     private Date date;
     private String description;
 
-    public TransferRequest(){}
+    public TransferRequest(){
+        this.date= new Date();
+    }
 
     public TransferRequest(String receiverSurname, String receiverForename, String receiverIban, String iban, long amount, Date date, String description) {
         this.receiverSurname = receiverSurname;
@@ -68,11 +71,11 @@ public class TransferRequest {
     }
 
     public Date getDate() {
-        return date;
+        return DateUtils.formatDate(date);
     }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.date = DateUtils.formatDate(date);
     }
 
     @Override

@@ -61,39 +61,42 @@ public class BankingService implements BankingServiceIF {
     @Override
     @Transactional
     public ResponseEntity<TransferRequest> transferMoney(TransferRequest transferRequest) throws AccountNotFoundException {
+        return makeTransfer(transferRequest, false);
+    }
+
+    @Override
+    public ResponseEntity<TransferRequest> mandateMoney(TransferRequest transferRequest) throws AccountNotFoundException {
+        return makeTransfer(transferRequest, true);
+    }
+
+    private ResponseEntity<TransferRequest> makeTransfer(TransferRequest transferRequest, boolean isMandated) throws AccountNotFoundException {
         if (StringUtils.isNullOrEmpty(transferRequest.getReceiverSurname()) ||
                 StringUtils.isNullOrEmpty(transferRequest.getReceiverForename()) ||
                 StringUtils.isNullOrEmpty(transferRequest.getReceiverIban()) ||
                 StringUtils.isNullOrEmpty(transferRequest.getIban()) ||
                 Long.valueOf(0).equals(transferRequest.getAmount()) ||
-                DateUtils.isBefore(transferRequest.getDate(),new Date())) {
+                DateUtils.isBefore(transferRequest.getDate(), new Date())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        Account payerAccount = accountRepository.findDistinctByIban(transferRequest.getIban());
-        Account receiverAccount = accountRepository.findDistinctByIban(transferRequest.getReceiverIban());
+        Account payerAccount = isMandated ? accountRepository.findDistinctByIban(transferRequest.getReceiverIban()) : accountRepository.findDistinctByIban(transferRequest.getIban());
+        Account receiverAccount = isMandated ? accountRepository.findDistinctByIban(transferRequest.getIban()) : accountRepository.findDistinctByIban(transferRequest.getReceiverIban());
 
         if (payerAccount == null)
             throw new AccountNotFoundException(transferRequest.getIban());
         if (receiverAccount == null)
             throw new AccountNotFoundException(transferRequest.getReceiverIban());
 
-        Transfer transfer = new Transfer(transferRequest.getAmount(), transferRequest.getDescription(), payerAccount, receiverAccount);
+
+        Transfer transfer = new Transfer(transferRequest.getDate(), transferRequest.getAmount(), transferRequest.getDescription(), payerAccount, receiverAccount);
         transferRepository.save(transfer);
 
-        payerAccount.setBalance(payerAccount.getBalance()-transferRequest.getAmount());
+        payerAccount.setBalance(payerAccount.getBalance() - transferRequest.getAmount());
         accountRepository.save(payerAccount);
-        receiverAccount.setBalance(receiverAccount.getBalance()+transferRequest.getAmount());
+        receiverAccount.setBalance(receiverAccount.getBalance() + transferRequest.getAmount());
         accountRepository.save(receiverAccount);
 
         return new ResponseEntity<>(transferRequest, HttpStatus.CREATED);
-
-
-    }
-
-    @Override
-    public ResponseEntity<TransferRequest> mandateMoney(TransferRequest transferRequest) {
-        throw new NotYetImplementedException();
     }
 
     @Override
@@ -109,7 +112,7 @@ public class BankingService implements BankingServiceIF {
     @Override
     public ResponseEntity<List<Transfer>> getTransfersByAccountId(long id) {
         try {
-            List<Transfer> transfers = transferRepository.findTransfersByPayerAccountIdOrReceiverAccountId(id, id);
+            List<Transfer> transfers = transferRepository.findTransfersByPayerAccountIdOrReceiverAccountIdOrderByDateCreatedDescDateDesc(id, id);
             return new ResponseEntity(transfers, HttpStatus.OK);
         } catch (Exception ex) {
             ex.printStackTrace();

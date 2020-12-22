@@ -3,10 +3,17 @@
 <head>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
@@ -59,32 +66,55 @@
     </div>
 
 
-    <div class="row">
-        <table class="table table-hover" style="margin-top: 50px" th:if="${not #lists.isEmpty(transfers)}">
+    <div class="col-md-8 mx-auto">
+        <table class="table table-hover" style="margin-top: 50px; overflow: hidden;"
+               th:if="${not #lists.isEmpty(transfersPast)}">
+            <thead>
             <tr>
-                <th>No</th>
-                <th style="text-align: center;">IBAN</th>
-                <th style="text-align: center;">Balance</th>
-                <!--<th style="text-align: center;">Actions</th>-->
+                <th style="text-align: left;">Datum</th>
+                <th style="text-align: left;">Payer</th>
+                <th style="text-align: left;">Receiver</th>
+                <th style="text-align: center;">Amount</th>
             </tr>
-            <tr th:each="transfer, custStat : ${transfers}"
-                style="cursor: pointer">
-                <td th:text="${custStat.count}">1</td>
-                <td th:text="${transfer.getId()}" style="text-align: left;">DE123456789</td>
-                <td th:text="${#numbers.formatDecimal(transfer.amount/100, 1, 'DEFAULT', 2, 'DEFAULT')}"
-                    style="text-align: right;">1000
-                </td>
-                <!--
-                <td style="text-align: privilege;">
-                    <div class="row align-items-center justify-content-center">
-
-                        <div th:replace="fragments/buttons :: btnAccountTransfer"/>
-                        <div style="width: 5px"></div>
-                        <div th:replace="fragments/buttons :: btnDeleteAccount"/>
+            </thead>
+            <tbody>
+            <th:block th:each="transfer, rowStat: ${transfersPast}">
+                <tr data-toggle="collapse" th:attr="data-target='#accordion_'+${transfer.id}" class="clickable">
+                    <td th:text="${{#dates.format(transfer.getDate(), 'dd.MM.yyyy')}}"></td>
+                    <td th:text="${transfer.receiverAccount.customer.getFullName()}"></td>
+                    <td th:text="${transfer.payerAccount.customer.getFullName()}"></td>
+                    <div th:switch="${transfer.receiverAccount.getId()}">
+                        <td th:case="${account.id}" style="text-align: right;">
+							<span style="color: springgreen"
+                                  th:text="'+' + ${#numbers.formatDecimal(transfer.getAmount()/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Betrag</span><span> €</span>
+                        </td>
+                        <td th:case="*" style="text-align: right;">
+                            <span style="color: red"
+                                  th:text="'-' + ${#numbers.formatDecimal(transfer.getAmount()/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Betrag</span><span> €</span>
+                        </td>
                     </div>
-                </td>
-                -->
-            </tr>
+                </tr>
+
+
+                <tr th:id="'accordion_'+${transfer.id}" class="collapse" th:style="${transfer.getDateCreated() == null && transfer.getDateCreated() == ''} ? 'display:none' : ''">
+                    <td colspan="4">
+                        <div th:style="${transfer.getDateCreated() == null} ? 'display:none' : 'display:block'">
+                            <span class="text-primary"
+                                  style="font-size: 14px; font-weight: bold;">Created: </span><br>
+                            <span style="font-size: 14px;"
+                                  th:text="${{#dates.format(transfer.getDateCreated(), 'dd.MM.yyyy')}}"></span>
+                            <br>
+                        </div>
+                        <div th:style="${transfer.getDescription() == ''} ? 'display:none' : 'display:block'">
+                            <span class="text-primary" style="font-size: 14px; font-weight: bold;">Description: </span><br>
+                            <span style="font-size: 14px;" th:text="${transfer.getDescription()}"></span>
+                        </div>
+                    </td>
+                </tr>
+
+
+            </th:block>
+            </tbody>
         </table>
     </div>
 

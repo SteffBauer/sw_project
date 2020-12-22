@@ -18,7 +18,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("accounts")
@@ -83,11 +87,30 @@ public class AccountController {
 
         ResponseEntity<List<Transfer>> responseEntityTransfers = bankingService.getTransfersByAccountId(account.getId());
 
-        if (responseEntityTransfers.getStatusCode() == HttpStatus.OK)
-            model.addAttribute("transfers", responseEntityTransfers.getBody());
-        else
-            model.addAttribute("transfers", null);
-        model.addAttribute("account", account);
+
+
+        if (responseEntityTransfers.getStatusCode() == HttpStatus.OK) {
+            List<Transfer> transfers = responseEntityTransfers.getBody();
+
+            Date dt = new Date();
+            Calendar c = Calendar.getInstance();
+            c.setTime(dt);
+            c.set(Calendar.HOUR_OF_DAY, 0);
+            c.set(Calendar.MINUTE, 0);
+            c.set(Calendar.SECOND, 0);
+            c.add(Calendar.DATE, 1);
+            dt = c.getTime();
+
+            Date finalDt = dt;
+
+            List<Transfer> transfersPast = transfers.stream().filter(x -> DateUtils.isBefore(x.getDate(), finalDt)).collect(Collectors.toList());
+            List<Transfer> transfersUpcoming = transfers.stream().filter(x -> !DateUtils.isBefore(x.getDate(), finalDt)).collect(Collectors.toList());
+
+            model.addAttribute("transfersPast", transfersPast);
+            model.addAttribute("transfersUpcoming", transfersUpcoming);
+        }
+            model.addAttribute("account", account);
+
         return "/customer/account";
 
 
@@ -142,15 +165,16 @@ public class AccountController {
         transferRequest.setIban(account.getIban());
         transferRequest.setDate(DateUtils.formatDate(transferRequest.getDate()));
 
-        if (!StringUtils.isNullOrEmpty(action) && action.equals("mandate"))
-            transferRequest.setAmount(-transferRequest.getAmount());
 
 
         ResponseEntity responseEntity = null;
         String redirectString;
 
         try {
-            responseEntity = bankingService.transferMoney(transferRequest);
+            if (!StringUtils.isNullOrEmpty(action) && action.equals("mandate"))
+                responseEntity = bankingService.mandateMoney(transferRequest);
+            else
+                responseEntity = bankingService.transferMoney(transferRequest);
         } catch (AccountNotFoundException e) {
             if (account.getIban() != e.getIban())
                 model.addAttribute("invalidIban", e.getIban());

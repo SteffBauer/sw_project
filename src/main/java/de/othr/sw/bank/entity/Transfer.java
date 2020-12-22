@@ -23,14 +23,13 @@ public class Transfer extends BaseEntity{
     public Transfer() {
     }
 
-    public Transfer(long amount, String description, Account payerAccount, Account receiverAccount) {
+    public Transfer(Date date ,long amount, String description, Account payerAccount, Account receiverAccount) {
         this.dateCreated= new Date();
         this.amount = amount;
         this.description = description;
         this.payerAccount = payerAccount;
         this.receiverAccount = receiverAccount;
-        // todo set date of transfer
-        this.date = new Date();
+        this.date =date;
     }
 
     public long getAmount() {

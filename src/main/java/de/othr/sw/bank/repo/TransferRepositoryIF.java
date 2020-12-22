@@ -6,6 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface TransferRepositoryIF extends CrudRepository<Transfer,Long> {
-    List<Transfer> findTransfersByPayerAccountIdOrReceiverAccountId(long idPayerAccount, long idReceiverAccount);
-
+    List<Transfer> findTransfersByPayerAccountIdOrReceiverAccountIdOrderByDateCreatedDescDateDesc(long idPayerAccount, long idReceiverAccount);
 }

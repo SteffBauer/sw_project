@@ -95,4 +95,8 @@ public class Customer extends Person {
     public void setAttendant(Employee attendant) {
         this.attendant = attendant;
     }
+
+    public String getFullName(){
+        return getSurname()+" "+getUsername();
+    }
 }
