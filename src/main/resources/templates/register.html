@@ -18,7 +18,7 @@
 
 <div style="max-width: 1000px; margin: 100px auto auto;">
     <form th:action="@{/register}" th:object="${customer}" method="post">
-        <div class="form-row justify-content-center">
+        <div class="form-row justify-content-center"  style="max-width: 100%">
             <div class="form-group col-md-3">
                 <label for="inputForename">Forename</label>
                 <input type="text" th:field="*{forename}" class="form-control" id="inputForename" required>
@@ -28,7 +28,7 @@
                 <input type="text" th:field="*{surname}" class="form-control" id="inputSurname" required>
             </div>
         </div>
-        <div class="form-row justify-content-center">
+        <div class="form-row justify-content-center"  style="max-width: 100%">
             <div class="form-group col-md-4">
                 <label for="inputTaxNr">Tax Number</label>
                 <input type="text" th:field="*{taxNumber}" class="form-control" id="inputTaxNr" required>
@@ -39,7 +39,7 @@
                 <input type="date" th:field="*{birthDate}" class="form-control" id="inputBirthDate" required>
             </div>
         </div>
-        <div class="form-row justify-content-center">
+        <div class="form-row justify-content-center"  style="max-width: 100%">
             <div class="form-group col-md-3">
                 <label for="inputUsername">Username</label>
                 <input type="text" th:field="*{username}" class="form-control " id="inputUsername" required>
@@ -50,7 +50,7 @@
                 <input type="password" th:field="*{password}" class="form-control" id="inputPassword" required>
             </div>
         </div>
-        <div class="form-row justify-content-center">
+        <div class="form-row justify-content-center"  style="max-width: 100%">
             <div class="form-group col-md-4">
                 <label for="inputStreet">Street</label>
                 <input type="text" th:field="*{address.street}" class="form-control" id="inputStreet" required>
@@ -60,7 +60,7 @@
                 <input type="number" th:field="*{address.houseNr}" class="form-control" id="inputHouseNr" required>
             </div>
         </div>
-        <div class="form-row justify-content-center">
+        <div class="form-row justify-content-center"  style="max-width: 100%">
             <div class="form-group col-md-2">
                 <label for="inputZip">Zip</label>
                 <input type="text" th:field="*{address.zipCode}" class="form-control" id="inputZip" required>
@@ -70,7 +70,7 @@
                 <input type="text" th:field="*{address.city}" class="form-control" id="inputCity" required>
             </div>
         </div>
-        <div class="form-row justify-content-center">
+        <div class="form-row justify-content-center"  style="max-width: 100%">
             <div class="form-group col-md-4">
                 <label for="inputCountry">Country</label>
                 <input type="text" th:field="*{address.country}" class="form-control" id="inputCountry" required>
@@ -86,7 +86,7 @@
                 </label>
             </div>
         </div>
-        <div class="form-row justify-content-center">
+        <div class="form-row justify-content-center"  style="max-width: 100%">
         <button type="submit" class="btn btn-primary" th:href="@{/register}">Register</button>
         </div>
 
