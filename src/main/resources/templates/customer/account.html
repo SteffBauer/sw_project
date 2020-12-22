@@ -41,83 +41,54 @@
         <div class="row">
             <div class="col">
                 <h3 th:if="${account.getIban()}">Account IBAN: <span th:text="${account.getIban()}"/></h3>
-                <h3 th:if="${ #lists.isEmpty(transfers)}" style="float: left">There are no transfers for this account
+                <h3 th:if="${ #lists.isEmpty(transfersPast) && #lists.isEmpty(transfersUpcoming)}" style="float: left">
+                    There are no transfers for this account
                     yet.</h3>
                 <h3 style="color: forestgreen;" th:if="${info}" th:text="${info}"></h3>
                 <h3 style="color: firebrick; " th:if="${error}" th:text="${error}"></h3>
             </div>
-            <div class="col.auto">
-                <h3 th:text="${#numbers.formatDecimal(account.getBalance()/100, 1, 'DEFAULT', 2, 'DEFAULT')}">100</h3>
+
+            <div th:switch="${account.getBalance()}" class="col.auto">
+
+                <h3 th:case="${account.getBalance() lt 0}" style="color: springgreen">
+                    <span th:text="${#numbers.formatDecimal(account.getBalance()/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Betrag</span><span> €</span>
+                </h3>
+                <h3 th:case="${account.getBalance() ge 0}" style="color: red">
+                <span th:text="${#numbers.formatDecimal(account.getBalance()/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Betrag</span><span> €</span>
+            </h3>
             </div>
+
         </div>
     </div>
 
-    <div class="col-md-8 mx-auto">
-        <div class="btn-toolbar">
-            <form th:action="@{/accounts/{accountId}/transfers/new(accountId=${account.id})}" method="GET">
-                <button type="submit" class="btn btn-primary" th:name="action" th:value="transfer">
-                    <i class="fa fa-exchange" style="margin-right: 10px"></i>Transfer
-                </button>
-                <button type="submit" class="btn btn-secondary" th:name="action" th:value="mandate">
-                    <i class="fa fa-exchange" style="margin-right: 10px"></i>Mandate
-                </button>
-            </form>
-        </div>
-    </div>
+</div>
 
 
-    <div class="col-md-8 mx-auto">
-        <table class="table table-hover" style="margin-top: 50px; overflow: hidden;"
-               th:if="${not #lists.isEmpty(transfersPast)}">
-            <thead>
-            <tr>
-                <th style="text-align: left;">Datum</th>
-                <th style="text-align: left;">Payer</th>
-                <th style="text-align: left;">Receiver</th>
-                <th style="text-align: center;">Amount</th>
-            </tr>
-            </thead>
-            <tbody>
-            <th:block th:each="transfer, rowStat: ${transfersPast}">
-                <tr data-toggle="collapse" th:attr="data-target='#accordion_'+${transfer.id}" class="clickable">
-                    <td th:text="${{#dates.format(transfer.getDate(), 'dd.MM.yyyy')}}"></td>
-                    <td th:text="${transfer.receiverAccount.customer.getFullName()}"></td>
-                    <td th:text="${transfer.payerAccount.customer.getFullName()}"></td>
-                    <div th:switch="${transfer.receiverAccount.getId()}">
-                        <td th:case="${account.id}" style="text-align: right;">
-							<span style="color: springgreen"
-                                  th:text="'+' + ${#numbers.formatDecimal(transfer.getAmount()/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Betrag</span><span> €</span>
-                        </td>
-                        <td th:case="*" style="text-align: right;">
-                            <span style="color: red"
-                                  th:text="'-' + ${#numbers.formatDecimal(transfer.getAmount()/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Betrag</span><span> €</span>
-                        </td>
-                    </div>
-                </tr>
+<div class="col-md-8 mx-auto" style="margin-top: 50px; "/>
+<div class="btn-toolbar">
+    <form th:action="@{/accounts/{accountId}/transfers/new(accountId=${account.id})}" method="GET">
+        <button type="submit" class="btn btn-primary" th:name="action" th:value="transfer">
+            <i class="fa fa-exchange" style="margin-right: 10px"></i>Transfer
+        </button>
+        <button type="submit" class="btn btn-secondary" th:name="action" th:value="mandate">
+            <i class="fa fa-exchange" style="margin-right: 10px"></i>Mandate
+        </button>
+    </form>
+</div>
+</div>
 
 
-                <tr th:id="'accordion_'+${transfer.id}" class="collapse" th:style="${transfer.getDateCreated() == null && transfer.getDateCreated() == ''} ? 'display:none' : ''">
-                    <td colspan="4">
-                        <div th:style="${transfer.getDateCreated() == null} ? 'display:none' : 'display:block'">
-                            <span class="text-primary"
-                                  style="font-size: 14px; font-weight: bold;">Created: </span><br>
-                            <span style="font-size: 14px;"
-                                  th:text="${{#dates.format(transfer.getDateCreated(), 'dd.MM.yyyy')}}"></span>
-                            <br>
-                        </div>
-                        <div th:style="${transfer.getDescription() == ''} ? 'display:none' : 'display:block'">
-                            <span class="text-primary" style="font-size: 14px; font-weight: bold;">Description: </span><br>
-                            <span style="font-size: 14px;" th:text="${transfer.getDescription()}"></span>
-                        </div>
-                    </td>
-                </tr>
+<div class="col-md-8 mx-auto" style="margin-top: 30px; "
+    th:if="${not #lists.isEmpty(transfersUpcoming)}">
+    <h2>Upcoming Transactions</h2>
+    <div th:replace="fragments/table :: transferTable(transfers=${transfersUpcoming})"></div>
+</div>
 
 
-            </th:block>
-            </tbody>
-        </table>
-    </div>
-
+<div class="col-md-8 mx-auto" style="margin-top: 30px; "
+    th:if="${not #lists.isEmpty(transfersPast)}">
+    <h2>Past Transactions</h2>
+    <div th:replace="fragments/table :: transferTable(transfers=${transfersPast})"></div>
 </div>
 
 
