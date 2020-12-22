@@ -25,8 +25,8 @@
 <div th:replace="fragments/header :: navLogout"/>
 
 
-<div class="row">
-    <div class="col-md-8 mx-auto">
+<div class="row" style="max-width: 100%; margin-top: 20px;">
+    <div class="col-md-8 mx-auto" style="max-width: 100%">
         <div class="row">
             <div class="col">
                 <h2 th:if="${name}">Hello <span th:text="${name}"/>, have a nice day! </h2>
@@ -43,15 +43,13 @@
                 <h3 style="color: firebrick; " th:if="${error}" th:text="${error}"></h3>
             </div>
 
-            <div th:switch="${account.getBalance()}" class="col.auto">
 
-                <h3 th:case="${account.getBalance() lt 0}" style="color: springgreen">
-                    <span th:text="${#numbers.formatDecimal(account.getBalance()/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Betrag</span><span> €</span>
-                </h3>
-                <h3 th:case="${account.getBalance() ge 0}" style="color: red">
+            <h3 th:if="${account.getBalance() lt 0}" style="color: springgreen">
                 <span th:text="${#numbers.formatDecimal(account.getBalance()/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Betrag</span><span> €</span>
             </h3>
-            </div>
+            <h3 th:if="${account.getBalance() ge 0}" style="color: red">
+                <span th:text="${#numbers.formatDecimal(account.getBalance()/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Betrag</span><span> €</span>
+            </h3>
 
         </div>
     </div>
@@ -74,14 +72,14 @@
 
 
 <div class="col-md-8 mx-auto" style="margin-top: 30px; "
-    th:if="${not #lists.isEmpty(transfersUpcoming)}">
+     th:if="${not #lists.isEmpty(transfersUpcoming)}">
     <h2>Upcoming Transactions</h2>
     <div th:replace="fragments/table :: transferTable(transfers=${transfersUpcoming})"></div>
 </div>
 
 
 <div class="col-md-8 mx-auto" style="margin-top: 30px; "
-    th:if="${not #lists.isEmpty(transfersPast)}">
+     th:if="${not #lists.isEmpty(transfersPast)}">
     <h2>Past Transactions</h2>
     <div th:replace="fragments/table :: transferTable(transfers=${transfersPast})"></div>
 </div>

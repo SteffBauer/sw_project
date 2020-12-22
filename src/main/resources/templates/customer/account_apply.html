@@ -16,15 +16,14 @@
 <body>
 <div th:replace="fragments/header :: navLogout"/>
 
-<h1>Welcome to The Bank of your Trust</h1>
-<h3>Login Success</h3>
-<p th:if="${username}">Your username is <span th:text="${username}"/></p>
-<p>Today is <span th:text="${today}"/></p>
-<p>Todo: Neuen Account beantragen ... </p>
-
 
 <div style="max-width: 1000px; margin: 100px auto auto;">
-    <form th:action="@{/accounts}" th:object="${accountRequest}" method="post">
+
+    <div class="form-row justify-content-center" style="max-width: 100%">
+        <h1>Please fill in the application form</h1>
+    </div>
+
+    <form th:action="@{/accounts}" th:object="${accountRequest}" method="post" style="margin-top: 20px">
         <div class="form-row justify-content-center">
             <div class="form-group col-md-2">
                 <label for="inputSurname">Monthly Income</label>

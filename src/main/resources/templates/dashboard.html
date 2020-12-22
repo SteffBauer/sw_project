@@ -43,34 +43,45 @@
 <div th:replace="fragments/header :: navLogout"/>
 
 
-<div class="row">
+<div class="row" style="max-width: 100%; margin-top: 20px;">
     <div class="col-md-8 mx-auto">
         <h1>Welcome to The Bank of your Trust</h1>
         <h2 th:if="${name}">Hello <span th:text="${name}"/>, have a nice day! </h2>
         <h3 th:if="${customer && #lists.isEmpty(accounts)}">There are no accounts yet.</h3>
+        <h3 th:if="${not customer && #lists.isEmpty(customers)}">You are not responsible for any customers yet.</h3>
 
         <div style="clear: both">
             <h3 style="color: forestgreen; float: left" th:if="${info}" th:text="${info}"></h3>
             <h3 style="color: firebrick; float: left" th:if="${error}" th:text="${error}"></h3>
+            <h3 th:if="${customer && not #lists.isEmpty(accounts) && totalBalance ge 0}" style="color: forestgreen; float: right">
+                <span th:text="${#numbers.formatDecimal(totalBalance/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Amount</span><span> €</span>
+            </h3>
+            <h3 th:if="${customer && not #lists.isEmpty(accounts) && totalBalance lt 0}" style="color: red; float: right">
+                <span th:text="${#numbers.formatDecimal(totalBalance/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Amount</span><span> €</span>
+            </h3>
+            <!--
             <h3 style="float: right" th:if="${customer && not #lists.isEmpty(accounts)}"
                 th:text="${#numbers.formatDecimal(totalBalance/100, 1, 'DEFAULT', 2, 'DEFAULT')}"></h3>
+                -->
         </div>
     </div>
 
 
-    <div class="col-md-8 mx-auto" th:if="${customer}">
+    <div class="col-md-8 mx-auto" th:if="${customer} ">
         <div th:replace="fragments/table :: accountTable"/>
     </div>
 
+
     <div class="col-md-8 mx-auto" th:if="${not customer}">
-
-
-        <div class="form-group float-right">
+        <div class="form-group float-right"
+             th:if="${not #lists.isEmpty(customers) || not #lists.isEmpty(accounts)}">
             <input type="text" class="search form-control" placeholder="Searching..">
         </div>
-        <span class="counter pull-right"></span>
+        <span class="counter float-right"></span>
+    </div>
 
-        <table class="table table-hover results" style="margin-top: 50px"
+    <div class="col-md-8 mx-auto" th:if="${not customer}">
+        <table class="table table-hover results" style="margin-top: 50px; width: 100%"
                th:if="${customers != null && not #lists.isEmpty(customers)}"
                id="customerTable">
             <thead>
@@ -103,7 +114,7 @@
         </script>
     </div>
 
-    <div class="col-md-8 mx-auto">
+    <div class="col-md-8 mx-auto" >
         <div class="btn-toolbar">
             <form th:if="${customer}" th:action="@{/accounts/opening}" method="GET">
                 <button type="submit" class="btn btn-primary" th:href="@{/accounts/opening}">
