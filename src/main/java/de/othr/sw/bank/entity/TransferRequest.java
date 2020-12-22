@@ -1,59 +1,62 @@
 package de.othr.sw.bank.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
-import java.util.UUID;
 
 public class TransferRequest {
-    private UUID sessionUuid;
-    private String surname;
-    private String forename;
+    private String receiverSurname;
+    private String receiverForename;
+
+    private String receiverIban;
     private String iban;
     private long amount;
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Date date;
     private String description;
 
     public TransferRequest(){}
 
-    public TransferRequest(UUID sessionUuid, String surname, String forename, String iban, long amount, Date date, String description) {
-        this.sessionUuid = sessionUuid;
-        this.surname = surname;
-        this.forename = forename;
+    public TransferRequest(String receiverSurname, String receiverForename, String receiverIban, String iban, long amount, Date date, String description) {
+        this.receiverSurname = receiverSurname;
+        this.receiverForename = receiverForename;
+        this.receiverIban = receiverIban;
         this.iban = iban;
         this.amount = amount;
         this.date = date;
         this.description= description;
     }
 
-    public UUID getSessionUuid() {
-        return sessionUuid;
+    public String getReceiverSurname() {
+        return receiverSurname;
     }
 
-    public void setSessionUuid(UUID sessionUuid) {
-        this.sessionUuid = sessionUuid;
+    public void setReceiverSurname(String receiverSurname) {
+        this.receiverSurname = receiverSurname;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getReceiverForename() {
+        return receiverForename;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getForename() {
-        return forename;
-    }
-
-    public void setForename(String forename) {
-        this.forename = forename;
+    public void setReceiverForename(String receiverForename) {
+        this.receiverForename = receiverForename;
     }
 
     public String getIban() {
-        return iban;
+        return iban != null ? iban.toUpperCase() : null;
     }
 
     public void setIban(String iban) {
-        this.iban = iban;
+        this.iban = iban.toUpperCase();
+    }
+
+    public String getReceiverIban() {
+        return receiverIban != null ? receiverIban.toUpperCase() : null;
+    }
+
+    public void setReceiverIban(String receiverIban) {
+        this.receiverIban = receiverIban.toUpperCase();
     }
 
     public long getAmount() {

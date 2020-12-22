@@ -1,22 +1,24 @@
 package de.othr.sw.bank.controller;
 
 import de.othr.sw.bank.entity.*;
+import de.othr.sw.bank.service.AccountNotFoundException;
 import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.CustomerServiceIF;
+import de.othr.sw.bank.utils.DateUtils;
+import de.othr.sw.bank.utils.StringUtils;
 import de.othr.sw.bank.utils.WebsiteMessageUtils;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.context.support.SecurityWebApplicationContextUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("accounts")
@@ -93,13 +95,13 @@ public class AccountController {
 
 
     @GetMapping("/{id}/transfers/new")
-    public String getTransferView(Model model, @PathVariable long id) {
+    public String getTransferView(Model model, @PathVariable long id, @RequestParam(required = false, name = "action") String action) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         ResponseEntity<Account> optionalAccount = bankingService.getAccountById(id);
 
         if (optionalAccount.getStatusCode() != HttpStatus.OK)
-            WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Wrong account", "No transfers can be made to the account with the id '" + id + "'.");
+            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Wrong account", "No transfers can be made to the account with the id '" + id + "'.");
         Account account = optionalAccount.getBody();
 
         // Authenticated User has to be a Employee or the owner of the account
@@ -109,12 +111,61 @@ public class AccountController {
         String currentUserName = authentication.getName();
 
         model.addAttribute("username", currentUserName);
+        model.addAttribute("accountId", id);
 
-        Transfer transfer = new Transfer();
+        TransferRequest transfer = new TransferRequest();
         model.addAttribute("transfer", transfer);
+
+        if (!StringUtils.isNullOrEmpty(action))
+            model.addAttribute("action", action);
 
         //todo z.B. überweisung nur bis 500 € im Minus möglich?
         return "/customer/account_transfer";
+
+    }
+
+    @PostMapping("/{id}/transfers")
+    public String getTransferView(Model model, @PathVariable long id, @RequestParam(name = "action") String action, @ModelAttribute TransferRequest transferRequest) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        ResponseEntity<Account> optionalAccount = bankingService.getAccountById(id);
+
+        if (optionalAccount.getStatusCode() != HttpStatus.OK)
+            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Wrong account", "No transfers can be made to the account with the id '" + id + "'.");
+
+        Account account = optionalAccount.getBody();
+
+        // Authenticated User has to be a Employee or the owner of the account
+        if (authentication.getPrincipal() instanceof Customer && ((Customer) authentication.getPrincipal()).getId() != account.getCustomer().getId())
+            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Access denied", "You are not allowed to make transfers for the account.");
+
+        transferRequest.setIban(account.getIban());
+        transferRequest.setDate(DateUtils.formatDate(transferRequest.getDate()));
+
+        if (!StringUtils.isNullOrEmpty(action) && action.equals("mandate"))
+            transferRequest.setAmount(-transferRequest.getAmount());
+
+
+        ResponseEntity responseEntity = null;
+        String redirectString;
+
+        try {
+            responseEntity = bankingService.transferMoney(transferRequest);
+        } catch (AccountNotFoundException e) {
+            if (account.getIban() != e.getIban())
+                model.addAttribute("invalidIban", e.getIban());
+            model.addAttribute("transferRequest", transferRequest);
+            redirectString = "redirect:/register";
+        }
+
+
+        if (responseEntity.getStatusCode() == HttpStatus.CREATED) {
+            redirectString = "redirect:/accounts/" + id + "/";
+
+            return redirectString;
+        }
+
+        return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Transfer Error", "There occurred an error by making the request.");
 
     }
 
@@ -125,7 +176,7 @@ public class AccountController {
         ResponseEntity<Account> optionalAccount = bankingService.getAccountById(id);
 
         if (optionalAccount.getStatusCode() != HttpStatus.OK)
-            WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Wrong account", "Not able to delete the account with the id '" + id + "'.");
+            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Wrong account", "Not able to delete the account with the id '" + id + "'.");
         Account account = optionalAccount.getBody();
 
 

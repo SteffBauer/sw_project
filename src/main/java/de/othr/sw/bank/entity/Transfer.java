@@ -1,12 +1,15 @@
 package de.othr.sw.bank.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @Entity
 public class Transfer extends BaseEntity{
     private long amount;
     private Date date;
+    private Date dateCreated;
     private String description;
 
     @ManyToOne
@@ -21,6 +24,7 @@ public class Transfer extends BaseEntity{
     }
 
     public Transfer(long amount, String description, Account payerAccount, Account receiverAccount) {
+        this.dateCreated= new Date();
         this.amount = amount;
         this.description = description;
         this.payerAccount = payerAccount;
@@ -68,4 +72,11 @@ public class Transfer extends BaseEntity{
         this.receiverAccount = receiverAccount;
     }
 
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
 }

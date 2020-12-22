@@ -3,10 +3,17 @@
 <head>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
@@ -20,5 +27,106 @@
 <h3>Login Success</h3>
 <p>Today is <span th:text="${today}"/></p>
 <p>Todo: Tranferform ... </p>
+
+
+<div style="max-width: 1000px; margin: 100px auto auto;">
+    <form th:action="@{'/accounts/'+${accountId}+'/transfers?action='+${action}}" th:object="${transfer}" method="post">
+        <div class="form-row justify-content-center" style="max-width: 100%">
+            <div class="form-group col-md-3">
+                <label for="inputForename">Forename</label>
+                <input type="text" th:field="*{receiverForename}" class="form-control" id="inputForename" required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputSurname">Surname</label>
+                <input type="text" th:field="*{receiverSurname}" class="form-control" id="inputSurname" required>
+            </div>
+        </div>
+        <div class="form-row justify-content-center" style="width: 100%">
+            <div class="form-group col-md-4">
+                <label for="inputIban">Iban</label>
+                <input type="text" th:field="*{receiverIban}" class="form-control" id="inputIban" required>
+                <div class="text-danger" th:if="${invalidIban != null}">Invalid Iban.</div>
+            </div>
+            <div class="form-group col-md-2"/>
+        </div>
+        <div class="form-row justify-content-center" style="width: 100%">
+            <div class="form-group col-md-3">
+                <label for="inputAmount">Amount</label>
+                <!-- todo initbinder in controller klasse -->
+                <input type="number" onclick="this.select()" onfocusout="setTwoNumberDecimal(this)" step="0.01"
+                       data-decimals="2" min="0.01" max="100000" class="form-control" id="inputAmount" value="0.00"
+                       required>
+                <input type="number" min="-10000000" max="10000000" th:field="*{amount}" class="form-control"
+                       id="inputAmountHidden" style="visibility: hidden">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputDate">Date</label>
+                <input type="date" th:field="*{date}" class="form-control" id="inputDate" required>
+            </div>
+        </div>
+
+        <div class="form-row justify-content-center" style="width: 100%">
+            <div class="form-group col-md-6">
+                <label for="inputDescription">Description</label>
+                <textarea class="form-control" id="inputDescription" rows="3" th:field="*{description}"></textarea>
+            </div>
+        </div>
+
+        <div class="form-row justify-content-center" style="width: 100%">
+            <button type="submit" class="btn btn-primary">
+                <span th:if="${action == 'transfer'}">Transfer</span>
+                <span th:if="${action == 'mandate'}">Mandate</span>
+            </button>
+        </div>
+
+    </form>
+</div>
+
+
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("inputDate").setAttribute("min", today);
+    document.getElementById("inputDate").setAttribute("value", today);
+
+
+
+    var inAmount = document.getElementById('inputAmount');
+    var inAmountHidden = document.getElementById('inputAmountHidden');
+
+
+    function setTwoNumberDecimal(el) {
+        console.log("1");
+        el.value = parseFloat(el.value).toFixed(2);
+        console.log("2 "+el.value);
+        setHiddenAmountValue();
+    };
+
+
+    function setHiddenAmountValue() {
+
+        console.log("3");
+        let val = inAmount.value;
+
+        console.log("4 "+val);
+        inAmountHidden.setAttribute("value", val * 100);
+
+        console.log("5 "+inAmountHidden.value);
+        alert(inAmountHidden.value);
+    };
+
+</script>
+
+
 </body>
 </html>

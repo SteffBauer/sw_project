@@ -65,10 +65,10 @@
     <div class="col-md-8 mx-auto" th:if="${not customer}">
 
 
-        <div class="form-group float-privilege">
+        <div class="form-group float-right">
             <input type="text" class="search form-control" placeholder="Searching..">
         </div>
-        <span class="counter pull-privilege"></span>
+        <span class="counter pull-right"></span>
 
         <table class="table table-hover results" style="margin-top: 50px"
                th:if="${customers != null && not #lists.isEmpty(customers)}"

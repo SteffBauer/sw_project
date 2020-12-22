@@ -48,8 +48,11 @@
     <div class="col-md-8 mx-auto">
         <div class="btn-toolbar">
             <form th:action="@{/accounts/{accountId}/transfers/new(accountId=${account.id})}" method="GET">
-                <button type="submit" class="btn btn-secondary">
+                <button type="submit" class="btn btn-primary" th:name="action" th:value="transfer">
                     <i class="fa fa-exchange" style="margin-right: 10px"></i>Transfer
+                </button>
+                <button type="submit" class="btn btn-secondary" th:name="action" th:value="mandate">
+                    <i class="fa fa-exchange" style="margin-right: 10px"></i>Mandate
                 </button>
             </form>
         </div>
