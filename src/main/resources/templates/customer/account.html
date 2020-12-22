@@ -44,10 +44,10 @@
             </div>
 
 
-            <h3 th:if="${account.getBalance() lt 0}" style="color: springgreen">
+            <h3 th:if="${account.getBalance() ge 0}" style="color: forestgreen">
                 <span th:text="${#numbers.formatDecimal(account.getBalance()/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Betrag</span><span> €</span>
             </h3>
-            <h3 th:if="${account.getBalance() ge 0}" style="color: red">
+            <h3 th:if="${account.getBalance() lt 0}" style="color: red">
                 <span th:text="${#numbers.formatDecimal(account.getBalance()/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Betrag</span><span> €</span>
             </h3>
 

@@ -176,10 +176,12 @@ public class AccountController {
             else
                 responseEntity = bankingService.transferMoney(transferRequest);
         } catch (AccountNotFoundException e) {
-            if (account.getIban() != e.getIban())
+            if (!account.getIban().equals(e.getIban()))
                 model.addAttribute("invalidIban", e.getIban());
-            model.addAttribute("transferRequest", transferRequest);
-            redirectString = "redirect:/register";
+            model.addAttribute("transfer", transferRequest);
+            model.addAttribute("accountId", id);
+            model.addAttribute("action", action);
+            return "/customer/account_transfer";
         }
 
 
