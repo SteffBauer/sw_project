@@ -2,6 +2,7 @@ package de.othr.sw.bank.service;
 
 import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.AccountRequest;
+import de.othr.sw.bank.entity.Address;
 import de.othr.sw.bank.entity.Customer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,8 @@ public interface CustomerServiceIF {
 
 
     List<Account> getAccountsForUser(long id);
+
+    ResponseEntity<Address> updateAddressForUser(long id, Address address);
 
     Optional<Customer> getCustomerByUsername(String username);
 

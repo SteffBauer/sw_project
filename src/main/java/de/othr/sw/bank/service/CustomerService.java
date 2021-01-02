@@ -4,6 +4,7 @@ import de.othr.sw.bank.entity.*;
 import de.othr.sw.bank.repo.AddressRepositoryIF;
 import de.othr.sw.bank.repo.CustomerRepositoryIF;
 import de.othr.sw.bank.utils.StringUtils;
+import org.apache.catalina.util.CustomObjectInputStream;
 import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -148,5 +149,39 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
     public List<Account> getAccountsForUser(long id) {
         List<Account> accounts = customerRepositoryIF.findById(id).get().getAccounts();
         return accounts;
+    }
+
+    @Override
+    public ResponseEntity<Address> updateAddressForUser(long id, Address address) {
+        ResponseEntity responseEntity = getCustomerById(id);
+        if(responseEntity.getStatusCode() != HttpStatus.OK || responseEntity.getBody() == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        Customer customer = (Customer) responseEntity.getBody();
+
+        // Remove Customer from old address
+        Address oldAddress = addressRepositoryIF.findById(customer.getAddress().getId()).orElse(null);
+        if(oldAddress != null){
+            oldAddress.removeResident(customer);
+            customer.setAddress(null);
+        }
+
+
+        // Check if address already exists
+        Iterable<Address> addresses = addressRepositoryIF.findByCountryAndCityAndZipCodeAndStreetAndHouseNr(address.getCountry(), address.getCity(), address.getZipCode(), address.getStreet(), address.getHouseNr());
+        if (addresses.iterator().hasNext())
+            address = addresses.iterator().next();
+        else
+            address = addressRepositoryIF.save(address);
+
+
+        // Set the address of the customer
+        customer.setAddress(address);
+        address.addResident(customer);
+
+        customerRepositoryIF.save(customer);
+        addressRepositoryIF.save(address);
+
+        return new ResponseEntity<>(address,HttpStatus.OK);
     }
 }

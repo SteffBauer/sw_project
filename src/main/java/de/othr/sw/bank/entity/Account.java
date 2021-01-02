@@ -79,8 +79,8 @@ public class Account extends BaseEntity implements Serializable {
     }
 
     public void createIban() {
-        String country = customer.getAddress().getCountry().substring(0, 2).toUpperCase();
+        //String country = customer.getAddress().getCountry().substring(0, 2).toUpperCase();
         String account = String.format("%010d", this.getId());
-        setIban(country + getBlz() + account);
+        setIban("DE" + getBlz() + account);
     }
 }

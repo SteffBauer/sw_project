@@ -3,10 +3,17 @@
 <head>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
@@ -16,9 +23,54 @@
 <body>
 <div th:replace="fragments/header :: navLogout"/>
 
-<h1>Welcome to The Bank of your Trust</h1>
-<h3>Login Success</h3>
-<p>Today is <span th:text="${today}"/></p>
-<p>Todo: bearbeiten der Kundenadresse ... </p>
+
+<div style="max-width: 1000px; margin: 100px auto auto;">
+    <form th:action="@{'/mgmt/customers/'+${customerId}+'/address'}" th:object="${address}" method="post">
+        <div class="form-row justify-content-center" style="max-width: 100%">
+            <div class="form-group col-md-4">
+                <label for="inputStreet">Street</label>
+                <input type="text" th:field="*{street}" class="form-control" id="inputStreet" required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputHouseNr">House Number</label>
+                <input type="number" th:field="*{houseNr}" class="form-control" id="inputHouseNr" required>
+            </div>
+        </div>
+        <div class="form-row justify-content-center" style="max-width: 100%">
+            <div class="form-group col-md-2">
+                <label for="inputZip">Zip</label>
+                <input type="text" th:field="*{zipCode}" class="form-control" id="inputZip" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputCity">City</label>
+                <input type="text" th:field="*{city}" class="form-control" id="inputCity" required>
+            </div>
+        </div>
+        <div class="form-row justify-content-center" style="max-width: 100%">
+            <div class="form-group col-md-4">
+                <label for="inputCountry">Country</label>
+                <input type="text" th:field="*{country}" class="form-control" id="inputCountry" required>
+            </div>
+
+            <div class="form-group col-md-2"></div>
+        </div>
+
+        <div class="form-row justify-content-center" style="max-width: 100%">
+            <button class="btn" onclick="goBack()">Cancel</button>
+            <button type="submit" class="btn btn-primary" th:href="@{'/mgmt/customers/'+${customerId}+'/address'}">
+                Update
+            </button>
+        </div>
+
+    </form>
+</div>
+
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
 </body>
 </html>

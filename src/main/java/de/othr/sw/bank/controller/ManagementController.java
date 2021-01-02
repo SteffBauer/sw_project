@@ -1,9 +1,6 @@
 package de.othr.sw.bank.controller;
 
-import de.othr.sw.bank.entity.Account;
-import de.othr.sw.bank.entity.Customer;
-import de.othr.sw.bank.entity.WebsiteMessage;
-import de.othr.sw.bank.entity.WebsiteMessageType;
+import de.othr.sw.bank.entity.*;
 import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.CustomerServiceIF;
 import org.hibernate.cfg.NotYetImplementedException;
@@ -15,9 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -56,6 +51,36 @@ public class ManagementController {
         // todo logical delete account
         //  still money on account? Tell employee -> Requirements
         throw new NotYetImplementedException();
+    }
+
+    @GetMapping( "/customers/{id}/address")
+    public String getAddressView(Model model, @PathVariable long id) {
+
+        ResponseEntity<Customer> responseEntity = customerService.getCustomerById(id);
+        if(responseEntity.getStatusCode() ==  HttpStatus.OK && responseEntity.getBody() != null) {
+            model.addAttribute("address", responseEntity.getBody().getAddress());
+            model.addAttribute("customerId", id);
+            return "/employee/address";
+        }
+
+        WebsiteMessage message= new WebsiteMessage(WebsiteMessageType.Danger,"Unable to get address for customer","Error trying to get address for the customer with the id '" + id + "'.");
+        model.addAttribute("message", message);
+        return "messages";
+    }
+
+    @PostMapping( "/customers/{id}/address")
+    public String updateAddress(Model model, @PathVariable long id, @ModelAttribute Address address) {
+
+        ResponseEntity responseEntity = customerService.updateAddressForUser(id,address);
+
+        if(responseEntity.getStatusCode() == HttpStatus.OK){
+            String redirectString = "redirect:/customers/" + id + "/";
+            return redirectString;
+        }
+        // error case
+        WebsiteMessage message= new WebsiteMessage(WebsiteMessageType.Danger,"Unable to update address for customer","Error trying to update address for the customer with the id '" + id + "'.");
+        model.addAttribute("message", message);
+        return "messages";
     }
 
 }

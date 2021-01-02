@@ -43,7 +43,7 @@
 
     <div class="col-md-8 mx-auto">
         <div class="btn-toolbar">
-            <form style="margin-bottom: 10px; margin-right: 10px" th:action="@{/customers/{id}/address(id=${customer.getId()})}" method="get">
+            <form style="margin-bottom: 10px; margin-right: 10px" th:action="@{/mgmt/customers/{id}/address(id=${customer.getId()})}" method="get">
                 <button type="submit" class="btn btn-secondary">
                     <i class="fa fa-road" style="margin-right: 10px"></i> Edit address
                 </button>
