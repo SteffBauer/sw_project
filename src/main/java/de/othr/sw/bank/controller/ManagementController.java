@@ -3,6 +3,7 @@ package de.othr.sw.bank.controller;
 import de.othr.sw.bank.entity.*;
 import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.CustomerServiceIF;
+import de.othr.sw.bank.utils.WebsiteMessageUtils;
 import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,14 +46,6 @@ public class ManagementController {
         return "messages";
     }
 
-    @PostMapping( "/accounts/delete/{id}")
-    public String deleteAccount(Model model, @PathVariable long id) {
-
-        // todo logical delete account
-        //  still money on account? Tell employee -> Requirements
-        throw new NotYetImplementedException();
-    }
-
     @GetMapping( "/customers/{id}/address")
     public String getAddressView(Model model, @PathVariable long id) {
 
@@ -81,6 +74,27 @@ public class ManagementController {
         WebsiteMessage message= new WebsiteMessage(WebsiteMessageType.Danger,"Unable to update address for customer","Error trying to update address for the customer with the id '" + id + "'.");
         model.addAttribute("message", message);
         return "messages";
+    }
+
+    @PostMapping("/accounts/{id}/delete")
+    public String deleteAccount(Model model, @PathVariable long id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        ResponseEntity<Account> optionalAccount = bankingService.getAccountById(id);
+
+        if (optionalAccount.getStatusCode() != HttpStatus.OK)
+            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Wrong account", "Not able to delete the account with the id '" + id + "'.");
+        Account account = optionalAccount.getBody();
+
+
+        // Authenticated User has to be a Employee or the owner of the account
+        if (authentication.getPrincipal() instanceof Customer && ((Customer) authentication.getPrincipal()).getId() != account.getCustomer().getId())
+            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Access denied", "You are not allowed to delete the account.");
+
+        // todo logical delete account
+        //  still money on account? Tell employee -> Requirements
+        return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Success, "Account deleted", "Successfully deleted the account with the iban '" + account.getIban() + "'.");
+
     }
 
 }

@@ -196,25 +196,4 @@ public class AccountController {
 
     }
 
-    @DeleteMapping("/{id}/delete")
-    public String deleteAccount(Model model, @PathVariable long id) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        ResponseEntity<Account> optionalAccount = bankingService.getAccountById(id);
-
-        if (optionalAccount.getStatusCode() != HttpStatus.OK)
-            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Wrong account", "Not able to delete the account with the id '" + id + "'.");
-        Account account = optionalAccount.getBody();
-
-
-        // Authenticated User has to be a Employee or the owner of the account
-        if (authentication.getPrincipal() instanceof Customer && ((Customer) authentication.getPrincipal()).getId() != account.getCustomer().getId())
-            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Access denied", "You are not allowed to delete the account.");
-
-
-        //todo check balance, delete..
-        return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Success, "Account deleted", "Successfully deleted the account with the iban '" + account.getIban() + "'.");
-
-    }
-
 }

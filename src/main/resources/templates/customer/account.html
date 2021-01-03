@@ -57,13 +57,19 @@
 </div>
 
 <div class="col-md-8 mx-auto" style="margin-top: 50px; "/>
-<div class="btn-toolbar" th:if="${not isEmployee}">
-    <form th:action="@{/accounts/{accountId}/transfers/new(accountId=${account.id})}" method="GET">
+<div class="btn-toolbar">
+    <form th:action="@{/accounts/{accountId}/transfers/new(accountId=${account.id})}" method="GET" th:if="${not isEmployee}">
         <button type="submit" class="btn btn-primary" th:name="action" th:value="transfer">
             <i class="fa fa-exchange" style="margin-right: 10px"></i>Transfer
         </button>
         <button type="submit" class="btn btn-secondary" th:name="action" th:value="mandate">
             <i class="fa fa-exchange" style="margin-right: 10px"></i>Mandate
+        </button>
+    </form>
+
+    <form th:action="@{/mgmt/accounts/{accountId}/delete(accountId=${account.id})}" method="POST" th:if="${isEmployee}">
+        <button type="submit" class="btn btn-danger">
+            <i class="fa fa-trash" style="margin-right: 10px"></i> Delete account
         </button>
     </form>
 </div>
