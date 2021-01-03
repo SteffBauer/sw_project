@@ -56,9 +56,8 @@
 
 </div>
 
-<!-- todo buttons je nachdem, ob customer oder employee daher kommt -->
 <div class="col-md-8 mx-auto" style="margin-top: 50px; "/>
-<div class="btn-toolbar">
+<div class="btn-toolbar" th:if="${not isEmployee}">
     <form th:action="@{/accounts/{accountId}/transfers/new(accountId=${account.id})}" method="GET">
         <button type="submit" class="btn btn-primary" th:name="action" th:value="transfer">
             <i class="fa fa-exchange" style="margin-right: 10px"></i>Transfer

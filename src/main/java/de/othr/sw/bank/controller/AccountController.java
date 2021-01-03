@@ -88,7 +88,6 @@ public class AccountController {
         ResponseEntity<List<Transfer>> responseEntityTransfers = bankingService.getTransfersByAccountId(account.getId());
 
 
-
         if (responseEntityTransfers.getStatusCode() == HttpStatus.OK) {
             List<Transfer> transfers = responseEntityTransfers.getBody();
 
@@ -109,7 +108,10 @@ public class AccountController {
             model.addAttribute("transfersPast", transfersPast);
             model.addAttribute("transfersUpcoming", transfersUpcoming);
         }
-            model.addAttribute("account", account);
+        model.addAttribute("account", account);
+
+        boolean isEmployee = authentication.getPrincipal() instanceof Employee;
+        model.addAttribute("isEmployee",isEmployee);
 
         return "/customer/account";
 
@@ -164,7 +166,6 @@ public class AccountController {
 
         transferRequest.setIban(account.getIban());
         transferRequest.setDate(DateUtils.formatDate(transferRequest.getDate()));
-
 
 
         ResponseEntity responseEntity = null;
