@@ -3,13 +3,19 @@
 <head>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
 
 
     <meta charset="UTF-8">
@@ -25,7 +31,18 @@
         <h1>Welcome to The Bank of your Trust</h1>
         <h2>You are viewing details of the customer <span
                 th:text="${customer.getForename() + ' '+ customer.getSurname()}"/></h2>
-
+        <div>
+            <h4>Address of Customer</h4>
+            <span th:text="${customer.address.street}"/>
+            <span> </span>
+            <span th:text="${customer.address.houseNr}"/>
+            <br/>
+            <span th:text="${customer.address.zipCode}"/>
+            <span> </span>
+            <span th:text="${customer.address.city}"/>
+            <br/>
+            <span th:text="${customer.address.country}"/>
+        </div>
         <div style="clear: both">
             <h3 th:if="${#lists.isEmpty(accounts)}" style="float: left">The customer has no accounts yet.</h3>
             <h3 style="color: forestgreen; float: left" th:if="${info}" th:text="${info}"></h3>
@@ -43,7 +60,8 @@
 
     <div class="col-md-8 mx-auto">
         <div class="btn-toolbar">
-            <form style="margin-bottom: 10px; margin-right: 10px" th:action="@{/mgmt/customers/{id}/address(id=${customer.getId()})}" method="get">
+            <form style="margin-bottom: 10px; margin-right: 10px"
+                  th:action="@{/mgmt/customers/{id}/address(id=${customer.getId()})}" method="get">
                 <button type="submit" class="btn btn-secondary">
                     <i class="fa fa-road" style="margin-right: 10px"></i> Edit address
                 </button>
