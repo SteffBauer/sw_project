@@ -22,7 +22,7 @@ public interface CustomerServiceIF {
 
     ResponseEntity<Customer> getCustomerById(long id);
 
-    ResponseEntity<Customer> findCustomer(String taxnumber);
+    ResponseEntity<Customer> findCustomer(String taxNumber);
 
     ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) throws UsernameAlreadyInUserException, TaxNumberAlreadyRegisteredException;
 

@@ -118,9 +118,11 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
     }
 
     @Override
-    public ResponseEntity<Customer> findCustomer(String taxnumber) {
-        //todo implement;
-        throw new NotYetImplementedException();
+    public ResponseEntity<Customer> findCustomer(String taxNumber) {
+        Optional<Customer> customer = customerRepositoryIF.findCustomerByTaxNumber(taxNumber);
+        if (customer.isEmpty())
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<Customer>(customer.get(), HttpStatus.OK);
     }
 
     @Override
