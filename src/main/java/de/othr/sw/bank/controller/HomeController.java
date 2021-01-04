@@ -29,23 +29,19 @@ public class HomeController {
 
     @RequestMapping("/")
     public String showStartPage(Model model) {
-        model.addAttribute("today", new Date().toString());
         return "index";
-
-
     }
 
     @RequestMapping("/dashboard")
     public String showDashboard(Model model,
                                 @RequestParam(value = "error", required = false) String error,
                                 @RequestParam(value = "info", required = false) String info) {
-        model.addAttribute("today", new Date().toString());
-
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication instanceof AnonymousAuthenticationToken) {
             return "login";
         }
+
         // Handle notifications for the dashboard
         if (error != null)
             model.addAttribute("error", error);
