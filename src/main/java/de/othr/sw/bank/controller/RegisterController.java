@@ -17,20 +17,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
+@RequestMapping("/register")
 public class RegisterController {
+
     @Autowired
     CustomerServiceIF customerServiceIF;
 
-    @RequestMapping("/register")
+    @RequestMapping
     public String showRegisterPage(Model model) {
-        Customer c = new Customer();
-        model.addAttribute("customer", c);
+        model.addAttribute("customer", new Customer());
         return "register";
     }
 
-    @PostMapping("/register")
-    public String registerCustomer(Model model,@ModelAttribute Customer customer) {
-        ResponseEntity responseEntity = null;
+    @PostMapping
+    public String registerCustomer(Model model, @ModelAttribute Customer customer) {
+        ResponseEntity responseEntity;
         try {
             responseEntity = customerServiceIF.createCustomer(customer);
 
@@ -44,15 +45,14 @@ public class RegisterController {
             return "register";
         }
 
-        if(responseEntity.getStatusCode() == HttpStatus.CREATED) {
-            WebsiteMessage message= new WebsiteMessage(WebsiteMessageType.Success,"Successfully registered","You are registered and can log in now.");
-            model.addAttribute("message", message);
-            return "messages";
-        }
-        else {
-            WebsiteMessage message= new WebsiteMessage(WebsiteMessageType.Danger,"Registration Error","There occurred an error while trying to registrate the user.");
-            model.addAttribute("message", message);
-            return "messages";
-        }
+        WebsiteMessage message;
+
+        if (responseEntity.getStatusCode() == HttpStatus.CREATED)
+            message = new WebsiteMessage(WebsiteMessageType.Success, "Successfully registered", "You are registered and can log in now.");
+        else
+            message = new WebsiteMessage(WebsiteMessageType.Danger, "Registration Error", "There occurred an error while trying to registrate the user.");
+
+        model.addAttribute("message", message);
+        return "messages";
     }
 }
