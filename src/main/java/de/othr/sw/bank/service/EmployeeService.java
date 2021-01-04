@@ -43,7 +43,7 @@ public class EmployeeService implements EmployeeServiceIF, UserDetailsService {
 
     @Override
     public Employee getEmployeeForCustomerSupport() {
-        List<Employee> employees = employeeRepository.getEmployeeByDesignation(EmployeeDesignation.ACCOUNT_MANAGER.getDesignation());
+        List<Employee> employees = employeeRepository.findEmployeeByDesignation(EmployeeDesignation.ACCOUNT_MANAGER.getDesignation());
         Optional<Employee> employee = employees.stream().min(Comparator.comparingInt(x -> x.getCustomers().size()));
         return !employee.isEmpty() ? employee.get() : null;
     }

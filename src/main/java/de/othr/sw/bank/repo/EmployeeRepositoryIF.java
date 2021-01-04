@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface EmployeeRepositoryIF extends CrudRepository<Employee,Long> {
     Optional<Employee> findDistinctByUsername(String username);
-    List<Employee> getEmployeeByDesignation(String designation);
+    List<Employee> findEmployeeByDesignation(String designation);
 }
