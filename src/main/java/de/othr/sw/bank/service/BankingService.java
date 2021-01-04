@@ -5,7 +5,6 @@ import de.othr.sw.bank.repo.AccountRepositoryIF;
 import de.othr.sw.bank.repo.TransferRepositoryIF;
 import de.othr.sw.bank.utils.DateUtils;
 import de.othr.sw.bank.utils.StringUtils;
-import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +54,14 @@ public class BankingService implements BankingServiceIF {
 
     @Override
     public ResponseEntity<Long> getAccountValue(AccountRequest accountRequest) {
-        throw new NotYetImplementedException();
+        if (accountRequest == null || StringUtils.isNullOrEmpty(accountRequest.getIban()))
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        Account account = accountRepository.findDistinctByIban(accountRequest.getIban());
+        if (account == null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(account.getBalance(), HttpStatus.OK);
     }
 
     @Override
@@ -68,6 +74,28 @@ public class BankingService implements BankingServiceIF {
     public ResponseEntity<TransferRequest> mandateMoney(TransferRequest transferRequest) throws AccountNotFoundException {
         return makeTransfer(transferRequest, true);
     }
+
+    @Override
+    public ResponseEntity<Account> getAccountById(long id) {
+        Optional<Account> account = accountRepository.findById(id);
+
+        if (account.isEmpty())
+            return new ResponseEntity(account.get(), HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity(account.get(), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<Transfer>> getTransfersByAccountId(long id) {
+        try {
+            List<Transfer> transfers = transferRepository.findTransfersByPayerAccountIdOrReceiverAccountIdOrderByDateCreatedDescDateDesc(id, id);
+            return new ResponseEntity(transfers, HttpStatus.OK);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
     private ResponseEntity<TransferRequest> makeTransfer(TransferRequest transferRequest, boolean isMandated) throws AccountNotFoundException {
         if (StringUtils.isNullOrEmpty(transferRequest.getReceiverSurname()) ||
@@ -97,27 +125,6 @@ public class BankingService implements BankingServiceIF {
         accountRepository.save(receiverAccount);
 
         return new ResponseEntity<>(transferRequest, HttpStatus.CREATED);
-    }
-
-    @Override
-    public ResponseEntity<Account> getAccountById(long id) {
-        Optional<Account> account = accountRepository.findById(id);
-
-        if (account.isEmpty())
-            return new ResponseEntity(account.get(), HttpStatus.NOT_FOUND);
-
-        return new ResponseEntity(account.get(), HttpStatus.OK);
-    }
-
-    @Override
-    public ResponseEntity<List<Transfer>> getTransfersByAccountId(long id) {
-        try {
-            List<Transfer> transfers = transferRepository.findTransfersByPayerAccountIdOrReceiverAccountIdOrderByDateCreatedDescDateDesc(id, id);
-            return new ResponseEntity(transfers, HttpStatus.OK);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
     }
 
 
