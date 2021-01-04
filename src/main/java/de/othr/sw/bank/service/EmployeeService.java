@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,12 +26,11 @@ public class EmployeeService implements EmployeeServiceIF, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Employee employee = getEmployeeByUsername(username)
+        return getEmployeeByUsername(username)
                 .orElseThrow(() -> {
                             throw new UsernameNotFoundException("Customer with name " + username + " not found.");
                         }
                 );
-        return employee;
     }
 
     @Override
@@ -45,7 +42,7 @@ public class EmployeeService implements EmployeeServiceIF, UserDetailsService {
     public Employee getEmployeeForCustomerSupport() {
         List<Employee> employees = employeeRepository.findEmployeeByDesignation(EmployeeDesignation.ACCOUNT_MANAGER.getDesignation());
         Optional<Employee> employee = employees.stream().min(Comparator.comparingInt(x -> x.getCustomers().size()));
-        return !employee.isEmpty() ? employee.get() : null;
+        return employee.isPresent() ? employee.get() : null;
     }
 
     @Override
