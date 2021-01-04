@@ -18,11 +18,11 @@ public class LoginController {
 
         model.addAttribute("customer", new Customer());
 
-        if (!StringUtils.isNullOrEmpty(error))
+        if (error != null)
             model.addAttribute("error", "Your username or password is invalid.");
-        else if (!StringUtils.isNullOrEmpty(logout))
+        else if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
-        else if (!StringUtils.isNullOrEmpty(registered))
+        else if (registered != null)
             model.addAttribute("message", "Your registration was successful.");
 
         return "login";
