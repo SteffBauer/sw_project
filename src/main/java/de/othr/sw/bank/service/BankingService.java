@@ -44,11 +44,11 @@ public class BankingService implements BankingServiceIF {
 
             accountRequest.setIban(account.getIban());
 
-            return new ResponseEntity(accountRequest, HttpStatus.CREATED);
+            return new ResponseEntity<>(accountRequest, HttpStatus.CREATED);
         } catch (Exception ex) {
             System.out.println(ex);
 
-            return new ResponseEntity(accountRequest, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(accountRequest, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -80,19 +80,19 @@ public class BankingService implements BankingServiceIF {
         Optional<Account> account = accountRepository.findById(id);
 
         if (account.isEmpty())
-            return new ResponseEntity(account.get(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(account.get(), HttpStatus.NOT_FOUND);
 
-        return new ResponseEntity(account.get(), HttpStatus.OK);
+        return new ResponseEntity<>(account.get(), HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<List<Transfer>> getTransfersByAccountId(long id) {
         try {
             List<Transfer> transfers = transferRepository.findTransfersByPayerAccountIdOrReceiverAccountIdOrderByDateCreatedDescDateDesc(id, id);
-            return new ResponseEntity(transfers, HttpStatus.OK);
+            return new ResponseEntity<>(transfers, HttpStatus.OK);
         } catch (Exception ex) {
             ex.printStackTrace();
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
