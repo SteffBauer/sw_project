@@ -30,9 +30,3 @@ public abstract class BaseEntity {
     }
 
 }
-
-/*
-@MappedSuperclass
-GeneratedIdEntity
-+ getID() : Long
-* */

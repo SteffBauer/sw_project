@@ -59,10 +59,6 @@
             <h3 th:if="${customer && not #lists.isEmpty(accounts) && totalBalance lt 0}" style="color: red; float: right">
                 <span th:text="${#numbers.formatDecimal(totalBalance/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Amount</span><span> €</span>
             </h3>
-            <!--
-            <h3 style="float: right" th:if="${customer && not #lists.isEmpty(accounts)}"
-                th:text="${#numbers.formatDecimal(totalBalance/100, 1, 'DEFAULT', 2, 'DEFAULT')}"></h3>
-                -->
         </div>
     </div>
 
