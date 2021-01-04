@@ -13,15 +13,59 @@
 
     <meta charset="UTF-8">
     <title>Banking Service</title>
+
+    <style>
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+
+        .top {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+
+    </style>
+
 </head>
 <body>
 
 <div th:replace="fragments/header :: navRegisterLogin"/>
 
+<div class="container">
+    <div class="row bg-faded mt-2">
+        <div class="col-4 mx-auto d-flex justify-content-center flex-wrap" style="color: white;">
+            <img th:src="@{images/money_plant.jpg}"  style="max-height: 80%;">
+            <div class="top">
+                <h1>Welcome to the Bank of your Trust</h1>
+            </div>
+            <div class="centered">
+                <h3>Build your empire with us </h3>
+            </div>
+        </div>
+
+    </div>
+    <!--
+    <div class="row">
+        <div class="col-lg-12">
+            <img th:src="@{images/money_plant.jpg}" class="img-responsive center-block d-block mx-auto">
+            <div class="top">
+                <h1>Welcome to The Bank of your Trust</h1>
+            </div>
+            <div class="centered">
+                <h3>Build your empire with us </h3>
+            </div>
+        </div>
+    </div>
+    -->
+</div>
 
 
-<h1>Welcome to The Bank of your Trust</h1>
-    <p>Today is <span th:text="${today}"/></p>
-    <p>Todo: Werbung, Angebote, ... </p>
 </body>
 </html>
