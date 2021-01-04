@@ -1,11 +1,11 @@
 package de.othr.sw.bank.controller;
 
 import de.othr.sw.bank.entity.Customer;
+import de.othr.sw.bank.utils.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LoginController {
@@ -15,18 +15,14 @@ public class LoginController {
                                 @RequestParam(value = "error", required = false) String error,
                                 @RequestParam(value = "logout", required = false) String logout,
                                 @RequestParam(value = "registered", required = false) String registered) {
-        model.addAttribute("today", new Date().toString());
 
+        model.addAttribute("customer", new Customer());
 
-
-        Customer c = new Customer();
-        model.addAttribute("customer", c);
-
-        if (error != null)
+        if (!StringUtils.isNullOrEmpty(error))
             model.addAttribute("error", "Your username or password is invalid.");
-        else if(logout != null)
+        else if (!StringUtils.isNullOrEmpty(logout))
             model.addAttribute("message", "You have been logged out successfully.");
-        else if(registered != null)
+        else if (!StringUtils.isNullOrEmpty(registered))
             model.addAttribute("message", "Your registration was successful.");
 
         return "login";
