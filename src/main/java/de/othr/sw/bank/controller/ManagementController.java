@@ -31,7 +31,12 @@ public class ManagementController {
     @PostMapping( "/customers/delete/{cid}")
     public String deleteCustomer(Model model, @PathVariable long cid) {
 
-        // todo check no open accounts -> Requirements
+        if(customerService.getActiveAccountsForUser(cid).size()>0){
+            WebsiteMessage message= new WebsiteMessage(WebsiteMessageType.Danger,"Unable to delete customer","Error trying to delete customer with the id '" + cid + "'. \n Close all active accounts first.");
+            model.addAttribute("message", message);
+            return "messages";
+        }
+
         ResponseEntity<Customer> responseEntity = customerService.deleteCustomerById(cid);
         if (responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.getBody() != null) {
             Customer customer = responseEntity.getBody();
