@@ -62,7 +62,6 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
         // Check if customer is older than 12 years
         if(!DateUtils.isOldEnough(newCustomer.getBirthDate()))
             throw new PersonTooYoungException("Customer is too young. Customer has to be at least 12 years old");
-        // todo User older than 12 years? -> Requirements
 
         // Check if address already exists
         Address address = newCustomer.getAddress();
