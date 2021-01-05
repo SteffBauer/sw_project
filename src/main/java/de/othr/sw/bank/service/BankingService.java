@@ -36,6 +36,9 @@ public class BankingService implements BankingServiceIF {
             if (customer.isEmpty())
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
+
+            // Future calls into the "SCHUFA"-System possible
+
             Account account = new Account(customer.get());
 
             account = accountRepository.save(account);
