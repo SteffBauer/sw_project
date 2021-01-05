@@ -23,7 +23,7 @@ public interface CustomerServiceIF {
 
     ResponseEntity<Customer> findCustomer(String taxNumber);
 
-    ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) throws UsernameAlreadyInUserException, TaxNumberAlreadyRegisteredException;
+    ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) throws UsernameAlreadyInUseException, TaxNumberAlreadyRegisteredException;
 
     ResponseEntity<AccountRequest> createAccount(@RequestBody AccountRequest accountRequest);
 

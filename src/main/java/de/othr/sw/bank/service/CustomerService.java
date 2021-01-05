@@ -40,7 +40,7 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
     @Override
     @PostMapping()
     @Transactional
-    public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) throws UsernameAlreadyInUserException, TaxNumberAlreadyRegisteredException {
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) throws UsernameAlreadyInUseException, TaxNumberAlreadyRegisteredException {
 
         // Check required attributes
         if (StringUtils.isNullOrEmpty(newCustomer.getForename()) ||
@@ -54,7 +54,7 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
 
         // Check if username is already in use
         if (!customerRepositoryIF.findCustomerByUsername(newCustomer.getUsername()).isEmpty())
-            throw new UsernameAlreadyInUserException("Username '" + newCustomer.getUsername() + "' already in use.");
+            throw new UsernameAlreadyInUseException("Username '" + newCustomer.getUsername() + "' already in use.");
         // Check if customer is already registered (taxnumber)
         if (!customerRepositoryIF.findCustomerByTaxNumber(newCustomer.getTaxNumber()).isEmpty())
             throw new TaxNumberAlreadyRegisteredException("User with taxnumber '" + newCustomer.getTaxNumber() + "' already registered.");

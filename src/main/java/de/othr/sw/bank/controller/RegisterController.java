@@ -5,7 +5,7 @@ import de.othr.sw.bank.entity.WebsiteMessage;
 import de.othr.sw.bank.entity.WebsiteMessageType;
 import de.othr.sw.bank.service.CustomerServiceIF;
 import de.othr.sw.bank.service.TaxNumberAlreadyRegisteredException;
-import de.othr.sw.bank.service.UsernameAlreadyInUserException;
+import de.othr.sw.bank.service.UsernameAlreadyInUseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +35,7 @@ public class RegisterController {
         try {
             responseEntity = customerServiceIF.createCustomer(customer);
 
-        } catch (UsernameAlreadyInUserException e) {
+        } catch (UsernameAlreadyInUseException e) {
             model.addAttribute("customer", customer);
             model.addAttribute("invalidUsername", customer.getUsername());
             return "register";
