@@ -1,5 +1,6 @@
 package de.othr.sw.bank.entity;
 
+import de.othr.sw.bank.utils.DateUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -28,7 +29,7 @@ public abstract class Person extends BaseEntity implements Serializable, UserDet
         this.forename = forename;
         this.surname = surname;
         this.username = username;
-        this.birthDate = birthDate;
+        this.birthDate = DateUtils.formatDate(birthDate);
         this.password = password;
     }
 

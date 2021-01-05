@@ -3,6 +3,7 @@ package de.othr.sw.bank.service;
 import de.othr.sw.bank.entity.*;
 import de.othr.sw.bank.repo.AddressRepositoryIF;
 import de.othr.sw.bank.repo.CustomerRepositoryIF;
+import de.othr.sw.bank.utils.DateUtils;
 import de.othr.sw.bank.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -40,7 +41,7 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
     @Override
     @PostMapping()
     @Transactional
-    public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) throws UsernameAlreadyInUseException, TaxNumberAlreadyRegisteredException {
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) throws UsernameAlreadyInUseException, TaxNumberAlreadyRegisteredException, PersonTooYoungException {
 
         // Check required attributes
         if (StringUtils.isNullOrEmpty(newCustomer.getForename()) ||
@@ -57,7 +58,10 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
             throw new UsernameAlreadyInUseException("Username '" + newCustomer.getUsername() + "' already in use.");
         // Check if customer is already registered (taxnumber)
         if (!customerRepositoryIF.findCustomerByTaxNumber(newCustomer.getTaxNumber()).isEmpty())
-            throw new TaxNumberAlreadyRegisteredException("User with taxnumber '" + newCustomer.getTaxNumber() + "' already registered.");
+            throw new TaxNumberAlreadyRegisteredException("Customer with taxnumber '" + newCustomer.getTaxNumber() + "' already registered.");
+        // Check if customer is older than 12 years
+        if(!DateUtils.isOldEnough(newCustomer.getBirthDate()))
+            throw new PersonTooYoungException("Customer is too young. Customer has to be at least 12 years old");
         // todo User older than 12 years? -> Requirements
 
         // Check if address already exists

@@ -2,6 +2,8 @@ package de.othr.sw.bank.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtils {
@@ -25,5 +27,13 @@ public class DateUtils {
         } catch (ParseException e) {
             return date;
         }
+    }
+
+    public static boolean isOldEnough(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.YEAR, -12);
+        Date dateBefore = formatDate(cal.getTime());
+       return isBefore(date,dateBefore);
     }
 }

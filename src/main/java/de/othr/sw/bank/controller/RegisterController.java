@@ -4,6 +4,7 @@ import de.othr.sw.bank.entity.Customer;
 import de.othr.sw.bank.entity.WebsiteMessage;
 import de.othr.sw.bank.entity.WebsiteMessageType;
 import de.othr.sw.bank.service.CustomerServiceIF;
+import de.othr.sw.bank.service.PersonTooYoungException;
 import de.othr.sw.bank.service.TaxNumberAlreadyRegisteredException;
 import de.othr.sw.bank.service.UsernameAlreadyInUseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,10 @@ public class RegisterController {
         } catch (TaxNumberAlreadyRegisteredException e) {
             model.addAttribute("customer", customer);
             model.addAttribute("invalidTaxNr", customer.getTaxNumber());
+            return "register";
+        } catch (PersonTooYoungException e) {
+            model.addAttribute("customer", customer);
+            model.addAttribute("invalidAge", customer.getBirthDate());
             return "register";
         }
 

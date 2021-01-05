@@ -37,6 +37,7 @@
             <div class="form-group col-md-2">
                 <label for="inputBirthDate">Date of Birth</label>
                 <input type="date" th:field="*{birthDate}" class="form-control" id="inputBirthDate" required>
+                <div class="text-danger" th:if="${invalidAge != null}">Customer has to be at least 12 years old.</div>
             </div>
         </div>
         <div class="form-row justify-content-center"  style="max-width: 100%">
