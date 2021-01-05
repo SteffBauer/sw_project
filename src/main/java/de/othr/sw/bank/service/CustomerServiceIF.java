@@ -5,7 +5,6 @@ import de.othr.sw.bank.entity.AccountRequest;
 import de.othr.sw.bank.entity.Address;
 import de.othr.sw.bank.entity.Customer;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;

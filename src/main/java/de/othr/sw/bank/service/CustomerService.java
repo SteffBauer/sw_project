@@ -4,8 +4,6 @@ import de.othr.sw.bank.entity.*;
 import de.othr.sw.bank.repo.AddressRepositoryIF;
 import de.othr.sw.bank.repo.CustomerRepositoryIF;
 import de.othr.sw.bank.utils.StringUtils;
-import org.apache.catalina.util.CustomObjectInputStream;
-import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -14,7 +12,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
