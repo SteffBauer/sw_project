@@ -20,10 +20,12 @@ public class Account extends BaseEntity implements Serializable {
     private List<Transfer> receivers;
 
     private long balance;
+    private boolean isActive;
 
     public Account() {
         // Set default balance to 1.000,00 €
         this.balance = 100000L;
+        this.isActive = true;
     }
 
     public Account(Customer customer) {
@@ -82,5 +84,13 @@ public class Account extends BaseEntity implements Serializable {
         //String country = customer.getAddress().getCountry().substring(0, 2).toUpperCase();
         String account = String.format("%010d", this.getId());
         setIban("DE" + getBlz() + account);
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

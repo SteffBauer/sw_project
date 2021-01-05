@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity(name = "customer")
 public class Customer extends Person {
@@ -54,6 +55,10 @@ public class Customer extends Person {
         return Collections.unmodifiableList(accounts);
     }
 
+    public List<Account> getActiveAccounts() {
+        return accounts.stream().filter(x -> x.isActive()).collect(Collectors.toUnmodifiableList());
+    }
+
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
     }
@@ -98,5 +103,15 @@ public class Customer extends Person {
 
     public String getFullName(){
         return getSurname()+" "+getUsername();
+    }
+
+
+    public void addAccounts(Account a) {
+        if (!this.accounts.contains(a))
+            this.accounts.add(a);
+    }
+
+    public void removeAccount(Account a){
+        this.accounts.remove(a);
     }
 }

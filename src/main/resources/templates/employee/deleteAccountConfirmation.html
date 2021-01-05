@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <meta charset="UTF-8">
+    <title>Delete Account</title>
+
+    <style>
+        hr.message-inner-separator {
+            clear: both;
+            margin-top: 10px;
+            margin-bottom: 13px;
+            border: 0;
+            height: 1px;
+            background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+            background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+            background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+            background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+        }
+    </style>
+</head>
+<body>
+
+
+<div th:replace="fragments/header :: navLogout"/>
+
+<div class="container" style="margin-top: 250px">
+    <div class="row align-items-center justify-content-center">
+        <div class="alert alert-warning">
+            <span class="glyphicon glyphicon-record"></span>
+            <strong>Account with the iban: </strong>
+            <strong th:text="${account.iban}"></strong>
+            <hr class="message-inner-separator">
+            <span>The account you want do delete has still </span>
+            <span th:text="${#numbers.formatDecimal(account.balance/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Betrag</span>
+            <span> €.</span>
+            <br/>
+            <span>If you want do delete the account anyway, please make sure to get the </span>
+            <br/>
+            <b>"Delete account form"</b>
+            <span>, signed by the customer.</span>
+        </div>
+    </div>
+    <div class="row align-items-center justify-content-center" style="margin-top: 10px">
+
+        <div class="btn-toolbar">
+            <form th:action="@{/accounts/{accountId}(accountId=${account.id})}" method="GET">
+                <button type="submit" class="btn btn-secondary">Cancel</button>
+            </form>
+            <form th:action="@{/mgmt/accounts/{accountId}/delete/confirmed(accountId=${account.id})}" method="POST">
+                <button type="submit" class="btn btn-danger">
+                    <i class="fa fa-trash" style="margin-right: 10px"></i> Delete account
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

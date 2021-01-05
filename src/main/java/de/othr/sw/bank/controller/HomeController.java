@@ -7,7 +7,6 @@ import de.othr.sw.bank.service.CustomerServiceIF;
 import de.othr.sw.bank.service.EmployeeServiceIF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -54,7 +52,7 @@ public class HomeController {
             model.addAttribute("customer",true);
             model.addAttribute("name", customer.getForename());
 
-            List<Account> accounts = customerServiceIF.getAccountsForUser(customer.getId());
+            List<Account> accounts = customerServiceIF.getActiveAccountsForUser(customer.getId());
             model.addAttribute("accounts", accounts);
 
             long sum = 0L;

@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface CustomerServiceIF {
 
 
-    List<Account> getAccountsForUser(long id);
+    List<Account> getActiveAccountsForUser(long id);
 
     ResponseEntity<Address> updateAddressForUser(long id, Address address);
 

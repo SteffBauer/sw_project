@@ -86,6 +86,22 @@ public class BankingService implements BankingServiceIF {
     }
 
     @Override
+    public ResponseEntity<Account> deleteAccount(long id) {
+        Optional<Account> optionalAccount = accountRepository.findById(id);
+
+
+        if (optionalAccount.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        Account account = optionalAccount.get();
+
+        account.setActive(false);
+        account = accountRepository.save(account);
+
+        return new ResponseEntity<>(account,HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<List<Transfer>> getTransfersByAccountId(long id) {
         try {
             List<Transfer> transfers = transferRepository.findTransfersByPayerAccountIdOrReceiverAccountIdOrderByDateCreatedDescDateDesc(id, id);

@@ -91,10 +91,50 @@ public class ManagementController {
         if (authentication.getPrincipal() instanceof Customer && ((Customer) authentication.getPrincipal()).getId() != account.getCustomer().getId())
             return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Access denied", "You are not allowed to delete the account.");
 
-        // todo logical delete account
-        //  still money on account? Tell employee -> Requirements
-        return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Success, "Account deleted", "Successfully deleted the account with the iban '" + account.getIban() + "'.");
+
+        if(account.getBalance() != 0){
+            return "redirect:/mgmt/accounts/"+account.getId()+"/delete/confirmation";
+        }
+
+
+        return deleteAccount(model, account);
+    }
+
+    @GetMapping("/accounts/{id}/delete/confirmation")
+    public String deleteAccountConfirmation(Model model, @PathVariable long id) {
+        ResponseEntity<Account> optionalAccount = bankingService.getAccountById(id);
+        if (optionalAccount.getStatusCode() != HttpStatus.OK)
+            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Wrong account", "Not able to delete the account with the id '" + id + "'.");
+        Account account = optionalAccount.getBody();
+        model.addAttribute("account", account);
+        return "/employee/deleteAccountConfirmation";
+    }
+
+    @PostMapping("/accounts/{id}/delete/confirmed")
+    public String deleteAccountConfirmed(Model model, @PathVariable long id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        ResponseEntity<Account> optionalAccount = bankingService.getAccountById(id);
+
+        if (optionalAccount.getStatusCode() != HttpStatus.OK)
+            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Wrong account", "Not able to delete the account with the id '" + id + "'.");
+        Account account = optionalAccount.getBody();
+
+        // Authenticated User has to be a Employee or the owner of the account
+        if (authentication.getPrincipal() instanceof Customer && ((Customer) authentication.getPrincipal()).getId() != account.getCustomer().getId())
+            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Access denied", "You are not allowed to delete the account.");
+
+        return deleteAccount(model, account);
 
     }
 
+
+
+    private String deleteAccount(Model model, Account account) {
+        ResponseEntity<Account> responseEntity = bankingService.deleteAccount(account.getId());
+        if(responseEntity.getStatusCode()!= HttpStatus.OK)
+            return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Failed to delete account", "Something went wrong, while trying to delete the account with the id '"+account.getId()+"'.");
+
+        return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Success, "Account deleted", "Successfully deleted the account with the iban '" + account.getIban() + "'.");
+    }
 }

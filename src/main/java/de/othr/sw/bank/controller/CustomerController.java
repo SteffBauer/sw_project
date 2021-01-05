@@ -43,7 +43,7 @@ public class CustomerController {
         if (optionalCustomer.getStatusCode() == HttpStatus.OK && optionalCustomer.getBody() != null) {
             Customer customer = optionalCustomer.getBody();
 
-            List<Account> accounts = customerService.getAccountsForUser(customer.getId());
+            List<Account> accounts = customerService.getActiveAccountsForUser(customer.getId());
             model.addAttribute("accounts", accounts);
 
             long sum = 0L;

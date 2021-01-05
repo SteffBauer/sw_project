@@ -99,7 +99,7 @@
                 <td th:text="${c.surname}" style="text-align: left;">Surname</td>
                 <td th:text="${c.forename}" style="text-align: left;">Forename</td>
                 <td th:text="${c.taxNumber}" style="text-align: right;">Taxnumber</td>
-                <td th:text="${c.accounts.size()}" style="text-align: right;">Accounts</td>
+                <td th:text="${c.getActiveAccounts().size()}" style="text-align: right;">Accounts</td>
             </tr>
         </table>
 

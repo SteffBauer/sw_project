@@ -148,8 +148,8 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
     }
 
     @Override
-    public List<Account> getAccountsForUser(long id) {
-        List<Account> accounts = customerRepositoryIF.findById(id).get().getAccounts();
+    public List<Account> getActiveAccountsForUser(long id) {
+        List<Account> accounts = customerRepositoryIF.findById(id).get().getActiveAccounts();
         return accounts;
     }
 
