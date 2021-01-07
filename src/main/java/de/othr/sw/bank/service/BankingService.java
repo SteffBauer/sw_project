@@ -60,7 +60,7 @@ public class BankingService implements BankingServiceIF {
         if (accountRequest == null || StringUtils.isNullOrEmpty(accountRequest.getIban()))
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-        Account account = accountRepository.findDistinctByIban(accountRequest.getIban());
+        Account account = accountRepository.findDistinctByIbanAAndActiveIsTrue(accountRequest.getIban());
         if (account == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else
@@ -126,8 +126,8 @@ public class BankingService implements BankingServiceIF {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        Account payerAccount = isMandated ? accountRepository.findDistinctByIban(transferRequest.getReceiverIban()) : accountRepository.findDistinctByIban(transferRequest.getIban());
-        Account receiverAccount = isMandated ? accountRepository.findDistinctByIban(transferRequest.getIban()) : accountRepository.findDistinctByIban(transferRequest.getReceiverIban());
+        Account payerAccount = isMandated ? accountRepository.findDistinctByIbanAAndActiveIsTrue(transferRequest.getReceiverIban()) : accountRepository.findDistinctByIbanAAndActiveIsTrue(transferRequest.getIban());
+        Account receiverAccount = isMandated ? accountRepository.findDistinctByIbanAAndActiveIsTrue(transferRequest.getIban()) : accountRepository.findDistinctByIbanAAndActiveIsTrue(transferRequest.getReceiverIban());
 
         if (payerAccount == null)
             throw new AccountNotFoundException(transferRequest.getIban());
