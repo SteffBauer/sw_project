@@ -20,12 +20,14 @@ public class Account extends BaseEntity implements Serializable {
     private List<Transfer> receivers;
 
     private long balance;
-    private boolean isActive;
+
+    @Column(columnDefinition = "boolean default true")
+    private boolean active;
 
     public Account() {
         // Set default balance to 1.000,00 €
         this.balance = 100000L;
-        this.isActive = true;
+        this.active = true;
     }
 
     public Account(Customer customer) {
@@ -87,10 +89,10 @@ public class Account extends BaseEntity implements Serializable {
     }
 
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        this.active = active;
     }
 }

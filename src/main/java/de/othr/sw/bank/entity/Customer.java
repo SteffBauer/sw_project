@@ -66,7 +66,7 @@ public class Customer extends Person {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<>();
-        for(PersonAuthority authority : this.personAuthorities) {
+        for (PersonAuthority authority : this.personAuthorities) {
             authorities.add(new Authority(authority.getRight().getPrivilegeName()));
         }
         return authorities;
@@ -74,22 +74,22 @@ public class Customer extends Person {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return isActive();
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return isActive();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return isActive();
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isActive();
     }
 
 
@@ -101,8 +101,8 @@ public class Customer extends Person {
         this.attendant = attendant;
     }
 
-    public String getFullName(){
-        return getSurname()+" "+getUsername();
+    public String getFullName() {
+        return getSurname() + " " + getUsername();
     }
 
 
@@ -111,7 +111,7 @@ public class Customer extends Person {
             this.accounts.add(a);
     }
 
-    public void removeAccount(Account a){
+    public void removeAccount(Account a) {
         this.accounts.remove(a);
     }
 }

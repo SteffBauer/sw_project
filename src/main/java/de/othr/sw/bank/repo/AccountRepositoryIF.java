@@ -4,5 +4,5 @@ import de.othr.sw.bank.entity.Account;
 import org.springframework.data.repository.CrudRepository;
 
 public interface AccountRepositoryIF extends CrudRepository<Account,Long> {
-    Account findDistinctByIbanAAndActiveIsTrue(String iban);
+    Account findDistinctByIbanAndActiveIsTrue(String iban);
 }
