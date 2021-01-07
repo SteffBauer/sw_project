@@ -18,14 +18,17 @@ public abstract class Person extends BaseEntity implements Serializable, UserDet
     @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Date birthDate;
     private String password;
+    private boolean isActive;
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     protected Set<PersonAuthority> personAuthorities;
 
     public Person() {
+        this.isActive=true;
     }
 
     public Person(String forename, String surname, String username, Date birthDate, String password) {
+        this();
         this.forename = forename;
         this.surname = surname;
         this.username = username;
@@ -71,5 +74,13 @@ public abstract class Person extends BaseEntity implements Serializable, UserDet
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

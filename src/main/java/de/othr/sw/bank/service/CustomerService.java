@@ -143,7 +143,8 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
         employeeService.removeCustomerFromEmployee(c);
 
 
-        customerRepositoryIF.delete(c);
+        c.setActive(false);
+        c = customerRepositoryIF.save(c);
         return new ResponseEntity<Customer>(c, HttpStatus.OK);
     }
 

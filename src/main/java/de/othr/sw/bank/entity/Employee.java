@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity(name = "employee")
 public class Employee extends Person {
@@ -71,8 +72,9 @@ public class Employee extends Person {
         return true;
     }
 
-    public List<Customer> getCustomers() {
-        return Collections.unmodifiableList(this.customers);
+    public List<Customer> getActiveCustomers() {
+
+        return this.customers.stream().filter(x -> x.isActive()).collect(Collectors.toUnmodifiableList());
     }
 
     public void setCustomers(List<Customer> customers) {

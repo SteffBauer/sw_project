@@ -17,7 +17,7 @@ public class Customer extends Person {
     private Address address;
 
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Account> accounts;
 
     @ManyToOne

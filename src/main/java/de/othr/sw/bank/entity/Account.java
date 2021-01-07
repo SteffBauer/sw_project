@@ -13,10 +13,10 @@ public class Account extends BaseEntity implements Serializable {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "payerAccount")
+    @OneToMany(mappedBy = "payerAccount", cascade = CascadeType.REMOVE)
     private List<Transfer> payers;
 
-    @OneToMany(mappedBy = "receiverAccount")
+    @OneToMany(mappedBy = "receiverAccount", cascade = CascadeType.REMOVE)
     private List<Transfer> receivers;
 
     private long balance;

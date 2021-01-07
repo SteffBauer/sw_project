@@ -72,7 +72,7 @@ public class HomeController {
             model.addAttribute("customer",false);
             model.addAttribute("name", employee.getForename());
 
-            List<Customer> customers = employee.getCustomers();
+            List<Customer> customers = employee.getActiveCustomers();
             model.addAttribute("customers", customers);
         }
 
