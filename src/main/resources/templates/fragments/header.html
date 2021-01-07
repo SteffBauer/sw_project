@@ -25,7 +25,12 @@
     <nav class="navbar navbar-dark bg-dark">
         <div class="navbar-header mr-auto">
             <a class="navbar-brand" th:href="@{/dashboard}">The Bank of Trust</a>
-        </div>
+        </div>        <div class="navbar-nav my-2 my-lg-0">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/support}"><i class="fa fa-comments"></i> Support</a>
+        </li>
+    </div>
+        <div style="height:100%; width:2em; clear:both;"></div>
         <div class="navbar-nav my-2 my-lg-0">
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/logout}"><i class="fa fa-sign-out"></i> Logout</a>
