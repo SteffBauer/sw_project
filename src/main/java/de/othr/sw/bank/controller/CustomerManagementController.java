@@ -59,7 +59,12 @@ public class CustomerManagementController {
     }
 
     @PostMapping( "/customers/{id}/address")
-    public String updateAddress(Model model, @PathVariable long id, @ModelAttribute Address address) {
+    public String updateAddress(Model model, @PathVariable long id, @ModelAttribute Address address,
+                                @RequestParam(value="action") String action) {
+
+        if (action.equals("cancel"))
+            return "redirect:/customers/" + id + "/";
+
         ResponseEntity responseEntity = customerService.updateAddressForUser(id,address);
 
         if(responseEntity.getStatusCode() == HttpStatus.OK){
