@@ -43,7 +43,7 @@ public class AccountController {
         AccountRequest accountRequest = new AccountRequest();
         model.addAttribute("accountRequest", accountRequest);
 
-        return "/customer/account_apply";
+        return "/customer/accountApply";
     }
 
     @PostMapping
@@ -143,12 +143,12 @@ public class AccountController {
             model.addAttribute("action", action);
 
         //todo z.B. überweisung nur bis 500 € im Minus möglich?
-        return "/customer/account_transfer";
+        return "/customer/accountTransfer";
 
     }
 
     @PostMapping("/{id}/transfers")
-    public String getTransferView(Model model, @PathVariable long id, @RequestParam(name = "action") String action, @ModelAttribute TransferRequest transferRequest) {
+    public String makeTransfer(Model model, @PathVariable long id, @RequestParam(name = "action") String action, @ModelAttribute TransferRequest transferRequest) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         ResponseEntity<Account> optionalAccount = bankingService.getAccountById(id);
@@ -180,7 +180,7 @@ public class AccountController {
             model.addAttribute("transfer", transferRequest);
             model.addAttribute("accountId", id);
             model.addAttribute("action", action);
-            return "/customer/account_transfer";
+            return "/customer/accountTransfer";
         }
 
 
