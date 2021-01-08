@@ -24,8 +24,18 @@
 <body>
 <div th:replace="fragments/header :: navLogout"/>
 
-<!-- todo add chat view for more requests (only current session and customers you're responsible for) -->
-<!-- https://bootsnipp.com/snippets/1ea0N -->
 
+<div class="container" style="max-width: 1000px;">
+    <div class="row justify-content-md-center">
+
+        <div class="col col-lg-2">
+            <div th:replace="fragments/chat :: openChatsView"/>
+        </div>
+
+        <div class="col-md-auto" style="max-width: 60%">
+            <div th:replace="fragments/chat :: chatView"/>
+        </div>
+    </div>
+</div>
 </body>
 </html>
