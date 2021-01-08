@@ -24,7 +24,36 @@
 <body>
 <div th:replace="fragments/header :: navLogout"/>
 
-<!-- todo add simple chat view for session -->
+
+<div class="container" style="max-width: 1000px; margin: 100px auto auto;">
+    <div style="max-width: 100%; height:70%; overflow-y: scroll;">
+        <table style="width: 100%">
+            <tr th:each="msg : ${messages}">
+
+                    <div class="card" style="width: 60%;margin: 1em; padding: 1em" th:classappend="${#strings.substring(msg.author.username,0,3).equals('cus')} ? 'float-right' : 'float-left'">
+                                <h5 class="card-title" th:text="${'Absender - ' + msg.author.username}">Sender</h5>
+                                <p class="card-text" th:text="${msg.text}">Text</p>
+                                <p class="card-text" th:text="${msg.timestamp}">Zeit</p>
+                    </div>
+
+
+            </tr>
+        </table>
+    </div>
+
+
+
+
+
+    <form action="#" class="row justify-content-center" style="height: 10%" th:action="@{/supportChat/message/new}" method="post">
+    <textarea class="form-control me-2" name="message" placeholder="Write your question..."
+               autofocus></textarea>
+        <input type="hidden" name="chat">
+        <button class="btn btn-primary align-self-center" type="submit" value="submit">Send</button>
+    </form>
+
+</div>
+
 
 </body>
 </html>
