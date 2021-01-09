@@ -60,7 +60,7 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
         if (!customerRepositoryIF.findCustomerByTaxNumber(newCustomer.getTaxNumber()).isEmpty())
             throw new TaxNumberAlreadyRegisteredException("Customer with taxnumber '" + newCustomer.getTaxNumber() + "' already registered.");
         // Check if customer is older than 12 years
-        if(!DateUtils.isOldEnough(newCustomer.getBirthDate()))
+        if (!DateUtils.isOldEnough(newCustomer.getBirthDate()))
             throw new PersonTooYoungException("Customer is too young. Customer has to be at least 12 years old");
 
         // Check if address already exists
@@ -157,14 +157,14 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
     @Override
     public ResponseEntity<Address> updateAddressForUser(long id, Address address) {
         ResponseEntity responseEntity = getCustomerById(id);
-        if(responseEntity.getStatusCode() != HttpStatus.OK || responseEntity.getBody() == null)
+        if (responseEntity.getStatusCode() != HttpStatus.OK || responseEntity.getBody() == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         Customer customer = (Customer) responseEntity.getBody();
 
         // Remove Customer from old address
         Address oldAddress = addressRepositoryIF.findById(customer.getAddress().getId()).orElse(null);
-        if(oldAddress != null){
+        if (oldAddress != null) {
             oldAddress.removeResident(customer);
             customer.setAddress(null);
         }
@@ -185,6 +185,6 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
         customerRepositoryIF.save(customer);
         addressRepositoryIF.save(address);
 
-        return new ResponseEntity<>(address,HttpStatus.OK);
+        return new ResponseEntity<>(address, HttpStatus.OK);
     }
 }
