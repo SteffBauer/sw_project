@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("accounts")
-public class AccountController {
+public class BankingController {
 
     @Autowired
     CustomerServiceIF customerService;

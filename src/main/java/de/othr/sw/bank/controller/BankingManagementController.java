@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("mgmt")
+@RequestMapping("mgmt/accounts")
 public class BankingManagementController {
 
     @Autowired
     BankingServiceIF bankingService;
 
-    @PostMapping("/accounts/{id}/delete")
+    @PostMapping("/{id}/delete")
     public String deleteAccount(Model model, @PathVariable long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -45,7 +45,7 @@ public class BankingManagementController {
         return deleteAccount(model, account);
     }
 
-    @GetMapping("/accounts/{id}/delete/confirmation")
+    @GetMapping("/{id}/delete/confirmation")
     public String deleteAccountConfirmation(Model model, @PathVariable long id) {
         ResponseEntity<Account> optionalAccount = bankingService.getAccountById(id);
 
@@ -58,7 +58,7 @@ public class BankingManagementController {
         return "/employee/deleteAccountConfirmation";
     }
 
-    @PostMapping("/accounts/{id}/delete/confirmed")
+    @PostMapping("/{id}/delete/confirmed")
     public String deleteAccountConfirmed(Model model, @PathVariable long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
