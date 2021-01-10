@@ -13,8 +13,8 @@ public interface BankingServiceIF {
     ResponseEntity<AccountRequest> createAccount(AccountRequest accountRequest);
     ResponseEntity<Long> getAccountValue(AccountRequest accountRequest);
     ResponseEntity<List<Transfer>> getTransfersByAccountId(long id);
-    ResponseEntity<TransferRequest> transferMoney(TransferRequest transferRequest) throws AccountNotFoundException;
-    ResponseEntity<TransferRequest> mandateMoney(TransferRequest transferRequest) throws AccountNotFoundException;
+    ResponseEntity<TransferRequest> transferMoney(TransferRequest transferRequest) throws AccountNotFoundException, InvalidTransferException;
+    ResponseEntity<TransferRequest> mandateMoney(TransferRequest transferRequest) throws AccountNotFoundException, InvalidTransferException;
     ResponseEntity<Account> getAccountById(long id);
     ResponseEntity<Account> deleteAccount(long id);
 

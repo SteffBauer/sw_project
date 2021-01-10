@@ -66,12 +66,12 @@ public class BankingService implements BankingServiceIF {
 
     @Override
     @Transactional
-    public ResponseEntity<TransferRequest> transferMoney(TransferRequest transferRequest) throws AccountNotFoundException {
+    public ResponseEntity<TransferRequest> transferMoney(TransferRequest transferRequest) throws AccountNotFoundException, InvalidTransferException {
         return makeTransfer(transferRequest, false);
     }
 
     @Override
-    public ResponseEntity<TransferRequest> mandateMoney(TransferRequest transferRequest) throws AccountNotFoundException {
+    public ResponseEntity<TransferRequest> mandateMoney(TransferRequest transferRequest) throws AccountNotFoundException, InvalidTransferException {
         return makeTransfer(transferRequest, true);
     }
 
@@ -113,7 +113,7 @@ public class BankingService implements BankingServiceIF {
     }
 
 
-    private ResponseEntity<TransferRequest> makeTransfer(TransferRequest transferRequest, boolean isMandated) throws AccountNotFoundException {
+    private ResponseEntity<TransferRequest> makeTransfer(TransferRequest transferRequest, boolean isMandated) throws AccountNotFoundException, InvalidTransferException {
         if (StringUtils.isNullOrEmpty(transferRequest.getReceiverSurname()) ||
                 StringUtils.isNullOrEmpty(transferRequest.getReceiverForename()) ||
                 StringUtils.isNullOrEmpty(transferRequest.getReceiverIban()) ||
@@ -130,6 +130,8 @@ public class BankingService implements BankingServiceIF {
             throw new AccountNotFoundException(transferRequest.getIban());
         if (receiverAccount == null)
             throw new AccountNotFoundException(transferRequest.getReceiverIban());
+        if(payerAccount.equals(receiverAccount))
+            throw new InvalidTransferException(payerAccount,receiverAccount);
 
 
         Transfer transfer = new Transfer(transferRequest.getDate(), transferRequest.getAmount(), transferRequest.getDescription(), payerAccount, receiverAccount);

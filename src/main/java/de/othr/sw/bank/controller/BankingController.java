@@ -4,6 +4,7 @@ import de.othr.sw.bank.entity.*;
 import de.othr.sw.bank.service.AccountNotFoundException;
 import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.CustomerServiceIF;
+import de.othr.sw.bank.service.InvalidTransferException;
 import de.othr.sw.bank.utils.DateUtils;
 import de.othr.sw.bank.utils.StringUtils;
 import de.othr.sw.bank.utils.WebsiteMessageUtils;
@@ -177,6 +178,12 @@ public class BankingController {
         } catch (AccountNotFoundException e) {
             if (!account.getIban().equals(e.getIban()))
                 model.addAttribute("invalidIban", e.getIban());
+            model.addAttribute("transfer", transferRequest);
+            model.addAttribute("accountId", id);
+            model.addAttribute("action", action);
+            return "/customer/accountTransfer";
+        } catch (InvalidTransferException e) {
+            model.addAttribute("sameAccount", true);
             model.addAttribute("transfer", transferRequest);
             model.addAttribute("accountId", id);
             model.addAttribute("action", action);

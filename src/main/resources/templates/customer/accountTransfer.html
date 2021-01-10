@@ -26,10 +26,17 @@
 <div style="max-width: 1000px; margin: 100px auto auto;">
 
     <div class="form-row justify-content-center" style="max-width: 100%">
-    <h1>Please fill in the transfer form</h1>
+        <h1>Please fill in the transfer form</h1>
     </div>
 
-    <form th:action="@{'/accounts/'+${accountId}+'/transfers?action='+${action}}" th:object="${transfer}" method="post" style="margin-top: 20px">
+    <!-- show notification on error -->
+    <div class="text-danger form-row justify-content-center" style="max-width: 100%" th:if="${sameAccount == true}">
+        <p th:text="'Payer account and receiver account have to be different'"/>
+    </div>
+
+
+    <form th:action="@{'/accounts/'+${accountId}+'/transfers?action='+${action}}" th:object="${transfer}" method="post"
+          style="margin-top: 20px">
         <div class="form-row justify-content-center" style="max-width: 100%">
             <div class="form-group col-md-3">
                 <label for="inputForename">Forename</label>
@@ -96,7 +103,6 @@
     today = yyyy + '-' + mm + '-' + dd;
     document.getElementById("inputDate").setAttribute("min", today);
     document.getElementById("inputDate").setAttribute("value", today);
-
 
 
     var inAmount = document.getElementById('inputAmount');
