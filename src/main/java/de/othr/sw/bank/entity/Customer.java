@@ -12,7 +12,7 @@ public class Customer extends Person {
     @Column(unique = true)
     private String taxNumber;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
     private Address address;
 
