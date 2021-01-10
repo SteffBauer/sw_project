@@ -69,9 +69,6 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
         Iterable<Address> addresses = addressRepository.findByCountryAndCityAndZipCodeAndStreetAndHouseNr(address.getCountry(), address.getCity(), address.getZipCode(), address.getStreet(), address.getHouseNr());
         if (addresses.iterator().hasNext())
             address = addresses.iterator().next();
-        //else
-        //    address = addressRepository.save(address);
-
 
         // Set the address of the customer
         newCustomer.setAddress(address);
@@ -175,8 +172,6 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
         Iterable<Address> addresses = addressRepository.findByCountryAndCityAndZipCodeAndStreetAndHouseNr(address.getCountry(), address.getCity(), address.getZipCode(), address.getStreet(), address.getHouseNr());
         if (addresses.iterator().hasNext())
             address = addresses.iterator().next();
-        else
-            address = addressRepository.save(address);
 
 
         // Set the address of the customer
@@ -184,7 +179,6 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
         address.addResident(customer);
 
         customerRepository.save(customer);
-        addressRepository.save(address);
 
         return new ResponseEntity<>(address, HttpStatus.OK);
     }
