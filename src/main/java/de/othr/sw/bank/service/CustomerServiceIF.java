@@ -4,6 +4,7 @@ import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.AccountRequest;
 import de.othr.sw.bank.entity.Address;
 import de.othr.sw.bank.entity.Customer;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -22,6 +23,8 @@ public interface CustomerServiceIF {
     ResponseEntity<Customer> getCustomerById(long id);
 
     ResponseEntity<Customer> findCustomer(String taxNumber);
+
+    ResponseEntity<List<Customer>> queryCustomers(String queryString, Pageable pageable);
 
     ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) throws UsernameAlreadyInUseException, TaxNumberAlreadyRegisteredException, PersonTooYoungException;
 

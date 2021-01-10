@@ -7,6 +7,7 @@ import de.othr.sw.bank.utils.DateUtils;
 import de.othr.sw.bank.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -40,7 +41,6 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
 
 
     @Override
-    @PostMapping()
     @Transactional
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) throws UsernameAlreadyInUseException, TaxNumberAlreadyRegisteredException, PersonTooYoungException {
 
@@ -124,7 +124,15 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
     }
 
     @Override
-    @PostMapping("/account")
+    public ResponseEntity<List<Customer>> queryCustomers(String queryString, Pageable pageable) {
+        List<Customer> customers = customerRepository.findCustomerByForenameContainingIgnoreCaseOrSurnameContainingIgnoreCaseOrUsernameContainingIgnoreCase(queryString,queryString,queryString,pageable);
+
+        if(customers == null || customers.size() == 0)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(customers, HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<AccountRequest> createAccount(@RequestBody AccountRequest accountRequest) {
         return bankingService.createAccount(accountRequest);
     }

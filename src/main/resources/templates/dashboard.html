@@ -43,7 +43,7 @@
 <div th:replace="fragments/header :: navLogout"/>
 
 
-<div class="row" style="max-width: 100%; margin-top: 20px;">
+<div-- class="row" style="max-width: 100%; margin-top: 20px;">
     <div class="col-md-8 mx-auto">
         <h1>Welcome to The Bank of your Trust</h1>
         <h2 th:if="${name}">Hello <span th:text="${name}"/>, have a nice day! </h2>
@@ -68,13 +68,33 @@
     </div>
 
 
-    <div class="col-md-8 mx-auto" th:if="${not customer}">
+
+    <!--div class="col-md-8 mx-auto" th:if="${not customer}">
         <div class="form-group float-right"
              th:if="${not #lists.isEmpty(customers) || not #lists.isEmpty(accounts)}">
             <input type="text" class="search form-control" placeholder="Searching..">
         </div>
         <span class="counter float-right"></span>
+    </div-->
+
+
+
+
+    <div class="col-md-8 mx-auto" th:if="${not customer}">
+        <div class="form-group float-right">
+            <input type="text" class="search form-control" placeholder="Searching..">
+
+            <form th:action="@{/mgmt/customers/search}" method="get">
+                <input type="test" class="search form-control" th:name="queryString" th:placeholder="Searching.." />
+                    <button type="submit" hidden>Reset</button>
+            </form>
+
+        </div>
+        <span class="counter float-right"></span>
     </div>
+
+
+
 
     <div class="col-md-8 mx-auto" th:if="${not customer}">
         <table class="table table-hover results" style="margin-top: 50px; width: 100%"
@@ -125,7 +145,7 @@
 </div>
 
 
-<script>
+<!--script>
     $(document).ready(function () {
         $(".search").keyup(function () {
             var searchTerm = $(".search").val();
@@ -157,7 +177,7 @@
             }
         });
     });
-</script>
+</script-->
 
 
 </body>
