@@ -1,13 +1,14 @@
 package de.othr.sw.bank.service;
 
 import de.othr.sw.bank.entity.Message;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@RestController
+@Service
 public class SupportService implements SupportServiceIF {
 
     // todo remove

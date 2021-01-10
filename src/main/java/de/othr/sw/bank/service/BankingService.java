@@ -8,21 +8,18 @@ import de.othr.sw.bank.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-@RestController()
-@RequestMapping("api/banking")
+@Service
 public class BankingService implements BankingServiceIF {
+
     @Autowired
-    private CustomerServiceIF customerServiceIF;
-
-
+    private CustomerServiceIF customerService;
     @Autowired
     private AccountRepositoryIF accountRepository;
     @Autowired
@@ -31,7 +28,7 @@ public class BankingService implements BankingServiceIF {
     @Override
     public ResponseEntity<AccountRequest> createAccount(AccountRequest accountRequest) {
         try {
-            Optional<Customer> customer = customerServiceIF.getCustomerByUsername(accountRequest.getUsername());
+            Optional<Customer> customer = customerService.getCustomerByUsername(accountRequest.getUsername());
 
             if (customer.isEmpty())
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,22 +21,22 @@ import java.util.List;
 import java.util.Optional;
 
 
-@RestController()
-@RequestMapping("api/customers")
+@Service
 @Qualifier("customerUserDetailsService")
 public class CustomerService implements CustomerServiceIF, UserDetailsService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
     @Autowired
-    private BankingServiceIF bankingServiceIF;
+    private BankingServiceIF bankingService;
     @Autowired
     private EmployeeServiceIF employeeService;
 
     @Autowired
-    private CustomerRepositoryIF customerRepositoryIF;
+    private CustomerRepositoryIF customerRepository;
     @Autowired
-    private AddressRepositoryIF addressRepositoryIF;
+    private AddressRepositoryIF addressRepository;
 
 
     @Override
@@ -54,10 +55,10 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
         }
 
         // Check if username is already in use
-        if (!customerRepositoryIF.findCustomerByUsername(newCustomer.getUsername()).isEmpty())
+        if (!customerRepository.findCustomerByUsername(newCustomer.getUsername()).isEmpty())
             throw new UsernameAlreadyInUseException("Username '" + newCustomer.getUsername() + "' already in use.");
         // Check if customer is already registered (taxnumber)
-        if (!customerRepositoryIF.findCustomerByTaxNumber(newCustomer.getTaxNumber()).isEmpty())
+        if (!customerRepository.findCustomerByTaxNumber(newCustomer.getTaxNumber()).isEmpty())
             throw new TaxNumberAlreadyRegisteredException("Customer with taxnumber '" + newCustomer.getTaxNumber() + "' already registered.");
         // Check if customer is older than 12 years
         if (!DateUtils.isOldEnough(newCustomer.getBirthDate()))
@@ -65,11 +66,11 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
 
         // Check if address already exists
         Address address = newCustomer.getAddress();
-        Iterable<Address> addresses = addressRepositoryIF.findByCountryAndCityAndZipCodeAndStreetAndHouseNr(address.getCountry(), address.getCity(), address.getZipCode(), address.getStreet(), address.getHouseNr());
+        Iterable<Address> addresses = addressRepository.findByCountryAndCityAndZipCodeAndStreetAndHouseNr(address.getCountry(), address.getCity(), address.getZipCode(), address.getStreet(), address.getHouseNr());
         if (addresses.iterator().hasNext())
             address = addresses.iterator().next();
         else
-            address = addressRepositoryIF.save(address);
+            address = addressRepository.save(address);
 
 
         // Set the address of the customer
@@ -84,7 +85,7 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
             employee.addCustomer(newCustomer);
         }
         // Save the customer
-        newCustomer = customerRepositoryIF.save(newCustomer);
+        newCustomer = customerRepository.save(newCustomer);
 
 
         // Do not return the residents for the customer address
@@ -106,12 +107,12 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
 
     @Override
     public Optional<Customer> getCustomerByUsername(String username) {
-        return customerRepositoryIF.findCustomerByUsername(username);
+        return customerRepository.findCustomerByUsername(username);
     }
 
     @Override
     public ResponseEntity<Customer> getCustomerById(long id) {
-        Optional<Customer> customer = customerRepositoryIF.findById(id);
+        Optional<Customer> customer = customerRepository.findById(id);
         if (customer.isEmpty())
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         return new ResponseEntity<Customer>(customer.get(), HttpStatus.OK);
@@ -119,7 +120,7 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
 
     @Override
     public ResponseEntity<Customer> findCustomer(String taxNumber) {
-        Optional<Customer> customer = customerRepositoryIF.findCustomerByTaxNumber(taxNumber);
+        Optional<Customer> customer = customerRepository.findCustomerByTaxNumber(taxNumber);
         if (customer.isEmpty())
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         return new ResponseEntity<Customer>(customer.get(), HttpStatus.OK);
@@ -128,12 +129,12 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
     @Override
     @PostMapping("/account")
     public ResponseEntity<AccountRequest> createAccount(@RequestBody AccountRequest accountRequest) {
-        return bankingServiceIF.createAccount(accountRequest);
+        return bankingService.createAccount(accountRequest);
     }
 
     @Override
     public ResponseEntity<Customer> deleteCustomerById(long cid) {
-        Optional<Customer> customer = customerRepositoryIF.findById(cid);
+        Optional<Customer> customer = customerRepository.findById(cid);
         if (customer.isEmpty())
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
@@ -144,13 +145,13 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
 
 
         c.setActive(false);
-        c = customerRepositoryIF.save(c);
+        c = customerRepository.save(c);
         return new ResponseEntity<Customer>(c, HttpStatus.OK);
     }
 
     @Override
     public List<Account> getActiveAccountsForUser(long id) {
-        List<Account> accounts = customerRepositoryIF.findById(id).get().getActiveAccounts();
+        List<Account> accounts = customerRepository.findById(id).get().getActiveAccounts();
         return accounts;
     }
 
@@ -163,7 +164,7 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
         Customer customer = (Customer) responseEntity.getBody();
 
         // Remove Customer from old address
-        Address oldAddress = addressRepositoryIF.findById(customer.getAddress().getId()).orElse(null);
+        Address oldAddress = addressRepository.findById(customer.getAddress().getId()).orElse(null);
         if (oldAddress != null) {
             oldAddress.removeResident(customer);
             customer.setAddress(null);
@@ -171,19 +172,19 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
 
 
         // Check if address already exists
-        Iterable<Address> addresses = addressRepositoryIF.findByCountryAndCityAndZipCodeAndStreetAndHouseNr(address.getCountry(), address.getCity(), address.getZipCode(), address.getStreet(), address.getHouseNr());
+        Iterable<Address> addresses = addressRepository.findByCountryAndCityAndZipCodeAndStreetAndHouseNr(address.getCountry(), address.getCity(), address.getZipCode(), address.getStreet(), address.getHouseNr());
         if (addresses.iterator().hasNext())
             address = addresses.iterator().next();
         else
-            address = addressRepositoryIF.save(address);
+            address = addressRepository.save(address);
 
 
         // Set the address of the customer
         customer.setAddress(address);
         address.addResident(customer);
 
-        customerRepositoryIF.save(customer);
-        addressRepositoryIF.save(address);
+        customerRepository.save(customer);
+        addressRepository.save(address);
 
         return new ResponseEntity<>(address, HttpStatus.OK);
     }
