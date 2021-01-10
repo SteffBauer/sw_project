@@ -17,7 +17,7 @@ public abstract class BaseEntity {
 
     @Override
     public boolean equals(Object o) {
-        if(!o.getClass().equals(BaseEntity.class))
+        if(!(o  instanceof BaseEntity))
             return false;
         BaseEntity other=(BaseEntity) o;
 
