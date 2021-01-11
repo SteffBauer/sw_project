@@ -49,3 +49,18 @@ For each banking request, you have to provide a valid session, which is not olde
 ## Links
 [HTTP Status Codes](https://de.wikipedia.org/wiki/HTTP-Statuscode) \
 [HTTP Methods Explained](https://restfulapi.net/http-methods/#delete)
+
+## Deployment
+The prerequisite for this is the use of vpn access.
+
+### Commands
+
+1. Connect to server: `ssh sw_stefan_bauer@im-codd`
+1. Password: `NDS-Account-Id`
+1. Generate JAR
+1. Copy JAR: `scp "C:\Workspace\sw_project\target\bank-0.0.1-SNAPSHOT.jar" sw_stefan_bauer@im-codd:`
+1. Check copied file: `ls -l`
+1. Start as daemon process: `java -jar bank-0.0.1-SNAPSHOT.jar > server.log 2> error.log &`
+1. Show running processes: `ps -f`
+1. Kill process:  `kill <PID>`
+1. Exit Secure Shell: `exit`
