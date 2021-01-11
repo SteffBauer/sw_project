@@ -25,18 +25,18 @@ public class BankingRestController {
         return bankingServiceIF.getAccountValue(accountRequest);
     }
 
-    @PostMapping("/accounts/transfers/transfer")
+    @PostMapping("/transfers/transfer")
     public ResponseEntity<TransferRequest> transferMoney(@RequestBody TransferRequest transferRequest) {
         try {
             return bankingServiceIF.transferMoney(transferRequest);
         } catch (AccountNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (InvalidTransferException e) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }
 
-    @PostMapping("/accounts/transfers/mandate")
+    @PostMapping("/transfers/mandate")
     public ResponseEntity<TransferRequest> mandateMoney(@RequestBody TransferRequest transferRequest) {
         try {
             return bankingServiceIF.mandateMoney(transferRequest);
