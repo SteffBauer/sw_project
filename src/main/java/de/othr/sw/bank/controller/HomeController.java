@@ -76,7 +76,7 @@ public class HomeController {
             model.addAttribute("customers", customers);
         }
 
-        return "/dashboard";
+        return "dashboard";
 
     }
 
