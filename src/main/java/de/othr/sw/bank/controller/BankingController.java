@@ -44,7 +44,6 @@ public class BankingController {
         AccountRequest accountRequest = new AccountRequest();
         model.addAttribute("accountRequest", accountRequest);
 
-        // todo check deployment without beginning slash
         return "customer/accountApply";
     }
 
