@@ -42,13 +42,13 @@ public class SupportController {
             if(employee != null)
                 model.addAttribute("customers", employee.get().getActiveCustomers());
 
-            return "/employee/supportChat.html";
+           return "employee/supportChat.html";
         }
 
 
         model.addAttribute("isEmployee", false);
         //return "/customer/supportChat.html";
-        return "/employee/supportChat.html";
+       return "employee/supportChat.html";
 
 
     }

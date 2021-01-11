@@ -54,7 +54,7 @@ public class CustomerController {
             model.addAttribute("totalBalance", sum);
 
             model.addAttribute("customer", customer);
-            return "/employee/customer";
+           return "employee/customer";
         }
         return WebsiteMessageUtils.showWebsiteMessage(model, WebsiteMessageType.Danger, "Unable to view customer", "Error trying to get view for customer '" + cid + "'.");
 

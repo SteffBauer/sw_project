@@ -55,7 +55,7 @@ public class BankingManagementController {
         Account account = optionalAccount.getBody();
         model.addAttribute("account", account);
 
-        return "/employee/deleteAccountConfirmation";
+       return "employee/deleteAccountConfirmation";
     }
 
     @PostMapping("/{id}/delete/confirmed")

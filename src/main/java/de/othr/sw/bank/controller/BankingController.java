@@ -45,7 +45,7 @@ public class BankingController {
         model.addAttribute("accountRequest", accountRequest);
 
         // todo check deployment without beginning slash
-        return "/customer/accountApply";
+        return "customer/accountApply";
     }
 
     @PostMapping
@@ -113,7 +113,7 @@ public class BankingController {
         boolean isEmployee = authentication.getPrincipal() instanceof Employee;
         model.addAttribute("isEmployee",isEmployee);
 
-        return "/customer/account";
+        return "customer/account";
 
 
     }
@@ -145,7 +145,7 @@ public class BankingController {
             model.addAttribute("action", action);
 
         //todo z.B. überweisung nur bis 500 € im Minus möglich?
-        return "/customer/accountTransfer";
+        return "customer/accountTransfer";
 
     }
 
@@ -182,13 +182,13 @@ public class BankingController {
             model.addAttribute("transfer", transferRequest);
             model.addAttribute("accountId", id);
             model.addAttribute("action", action);
-            return "/customer/accountTransfer";
+            return "customer/accountTransfer";
         } catch (InvalidTransferException e) {
             model.addAttribute("sameAccount", true);
             model.addAttribute("transfer", transferRequest);
             model.addAttribute("accountId", id);
             model.addAttribute("action", action);
-            return "/customer/accountTransfer";
+            return "customer/accountTransfer";
         }
 
 

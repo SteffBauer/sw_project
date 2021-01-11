@@ -56,7 +56,7 @@ public class CustomerManagementController {
 
             model.addAttribute("address", responseEntity.getBody().getAddress());
             model.addAttribute("customerId", id);
-            return "/employee/address";
+           return "employee/address";
         }
 
         WebsiteMessage message = new WebsiteMessage(WebsiteMessageType.Danger, "Unable to get address for customer", "Error trying to get address for the customer with the id '" + id + "'.");
