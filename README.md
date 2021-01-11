@@ -57,7 +57,7 @@ The password is always the "NDS-Account-Id".
 ### Commands
 
 1. Generate JAR
-1. Copy JAR: `scp "C:\Workspace\sw_project\target\bank-0.0.1-SNAPSHOT.jar" sw_stefan_bauer@im-codd:`
+1. Copy JAR: `scp C:\Workspace\sw_project\target\bank-0.0.1-SNAPSHOT.jar sw_stefan_bauer@im-codd:`
 1. Connect to server: `ssh sw_stefan_bauer@im-codd`
 1. Check copied file: `ls -l`
 1. Start as daemon process: `java -jar bank-0.0.1-SNAPSHOT.jar > server.log 2> error.log &`
