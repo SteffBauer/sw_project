@@ -7,6 +7,7 @@ import de.othr.sw.bank.utils.DateUtils;
 import de.othr.sw.bank.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -124,10 +125,10 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
     }
 
     @Override
-    public ResponseEntity<List<Customer>> queryCustomers(String queryString, Pageable pageable) {
-        List<Customer> customers = customerRepository.findCustomerByForenameContainingIgnoreCaseOrSurnameContainingIgnoreCaseOrUsernameContainingIgnoreCase(queryString,queryString,queryString,pageable);
+    public ResponseEntity<Page<Customer>> queryCustomers(String queryString, Pageable pageable) {
+        Page<Customer> customers = customerRepository.findCustomerByForenameContainingIgnoreCaseOrSurnameContainingIgnoreCaseOrUsernameContainingIgnoreCase(queryString,queryString,queryString,pageable);
 
-        if(customers == null || customers.size() == 0)
+        if(customers == null || customers.isEmpty())
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }

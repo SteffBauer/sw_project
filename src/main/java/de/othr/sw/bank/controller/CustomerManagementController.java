@@ -5,6 +5,7 @@ import de.othr.sw.bank.entity.*;
 import de.othr.sw.bank.service.CustomerServiceIF;
 import org.hibernate.metamodel.model.domain.ManagedDomainType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -87,18 +88,22 @@ public class CustomerManagementController {
                                  @RequestParam(name = "page", defaultValue = "1") int page,
                                  @RequestParam(name = "number", defaultValue = "5") int number) {
         Pageable pageable = PageRequest.of(page-1,number, Sort.by("surname").ascending());
-        ResponseEntity<List<Customer>> responseEntity = customerService.queryCustomers(queryString,pageable);
+        ResponseEntity<Page<Customer>> responseEntity = customerService.queryCustomers(queryString,pageable);
 
         if(responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.getBody() != null){
-            model.addAttribute("customers", responseEntity.getBody());
+            Page<Customer> customersPage = responseEntity.getBody();
+            model.addAttribute("customers", customersPage.getContent());
             model.addAttribute("customer",false);
+
+            model.addAttribute("queryCustomers",true);
+            model.addAttribute("queryString",queryString);
+            model.addAttribute("currentPage",page);
+            model.addAttribute("totalPages",customersPage.getTotalPages());
 
 
             Employee employee = (Employee) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("name", employee.getForename());
-            // todo implement pagination
-            // https://examples.javacodegeeks.com/spring-boot-pagination-with-thymeleaf-tutorial/
-            // https://getbootstrap.com/docs/4.0/components/pagination/
+
             return "dashboard";
         }
 
