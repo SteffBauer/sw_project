@@ -1,22 +1,17 @@
-# Register customer
+# Find customer
 
-Register customer to have access to bank accounts
+Find customer by providing a tax number.
 
-**URL** : `/api/customers/{id}`
+**URL** : `/api/customers`
 
 **Method** : `GET`
 
-**Authentication required** : No
-
-**Registration required** : NO
-
-**Data constraints**
-
-`/api/customers/[valid user id]`
 
 **Data example**
 
-`/api/customers/234235`
+```json
+1234567890
+```
 
 ## Success Response
 
@@ -26,13 +21,13 @@ Register customer to have access to bank accounts
 
 ```json
 {
-  "customerId": 123,
+  "id": 123,
   "forename": "Max",
   "surname": "Muster",
   "taxNumber": "123456",
   "address":
   {
-    "addressId": 321,
+    "id": 321,
     "street": "Examplestreet",
     "houseNr": 5,
     "zipCode": 1234,
@@ -44,8 +39,8 @@ Register customer to have access to bank accounts
 
 ## Error Response
 
-**Condition** : The id is not valid.
+**Condition** : There is no registered customer with the provided tax number.
 
-**Code** : `400 BAD REQUEST`
+**Code** : `404 Not Found`
 
 **Content** : No content provided.
