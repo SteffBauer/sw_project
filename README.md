@@ -21,7 +21,11 @@ The password is always the "NDS-Account-Id".
 1. Check copied file: `ls -l`
 1. Start as daemon process: `java -jar bank-0.0.1-SNAPSHOT.jar > server.log 2> error.log &`
 1. Show running processes: `ps -f`
-1. Kill process:  `kill <PID>`
+1. Kill process:
+    1. In case you know the PID: `kill <PID>`
+    1. The mor common case:
+        1. Get PID: `netstat -an --tcp --program`
+        1. Then kill it.
 1. Exit Secure Shell: `exit`
 
 
