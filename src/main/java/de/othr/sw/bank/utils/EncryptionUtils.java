@@ -12,7 +12,7 @@ public class EncryptionUtils {
     private static final int STRENGTH = 15;
 
     @Value("${user-password-salt}")
-    private  String salt;
+    private String salt;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
