@@ -34,7 +34,7 @@ public class MultiSecurityConfiguration {
 
         private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
         private static final String[] ALLOW_ACCESS_WITHOUT_AUTHENTICATION = {
-                "/css/**", "/js/**", "/images/**", "/fonts/**", "/login", "/forgotPassword", "/register","/"};
+                "/css/**", "/js/**", "/images/**", "/fonts/**", "/login", "/forgotPassword", "/register","/", "/api/**"};
         private static final String[] ALLOW_ACCESS_FOR_STAFF = {
                 "/employee/**", "/mgmt/**"};
 
