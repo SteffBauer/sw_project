@@ -2,15 +2,17 @@
 
 Find customer by providing a tax number.
 
-**URL** : `/api/customers`
+**URL** : `/api/customers/{taxNumber}`
 
 **Method** : `GET`
 
+**Required Header** : `access-token`
 
-**Data example**
+
+**Example call**
 
 ```json
-1234567890
+/api/customers/1234567890
 ```
 
 ## Success Response
@@ -38,6 +40,14 @@ Find customer by providing a tax number.
 ```
 
 ## Error Response
+
+**Condition** : The access token is not valid.
+
+**Code** : `401 Unauthorized`
+
+**Content** : No content provided.
+
+
 
 **Condition** : There is no registered customer with the provided tax number.
 
