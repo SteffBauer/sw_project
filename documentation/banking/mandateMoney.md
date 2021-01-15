@@ -15,7 +15,8 @@ Mandate Money of another bank account.
   "receiverIban": "DE12345678902345",
   "iban": "DE126789098767876",
   "date": "2021-01-12",
-  "description": "Concert tickets"
+  "description": "Concert tickets",
+  "amount": 1000
 }
 ```
 
@@ -32,7 +33,8 @@ Mandate Money of another bank account.
   "receiverIban": "DE12345678902345",
   "iban": "DE126789098767876",
   "date": "2021-01-12",
-  "description": "Concert tickets"
+  "description": "Concert tickets",
+  "amount": 1000
 }
 ```
 
