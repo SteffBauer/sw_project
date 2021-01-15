@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -36,7 +36,8 @@
 <body>
 
 
-<div th:replace="fragments/header :: navLogout"/>
+<div th:replace="fragments/header :: navLogout" sec:authorize="isAuthenticated()"/>
+<div th:replace="fragments/header :: navRegisterLogin" sec:authorize="isAnonymous()"/>
 
 <div class="container" style="margin-top: 250px">
     <div class="row align-items-center justify-content-center">
