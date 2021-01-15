@@ -5,13 +5,12 @@ import de.othr.sw.bank.entity.TransferRequest;
 import de.othr.sw.bank.service.AccountNotFoundException;
 import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.InvalidTransferException;
+import de.othr.sw.bank.utils.AuthenticationUtils;
+import de.othr.sw.bank.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/banking")
@@ -19,14 +18,20 @@ public class BankingRestController {
 
     @Autowired
     private BankingServiceIF bankingServiceIF;
+    @Autowired
+    private AuthenticationUtils authenticationUtils;
 
     @RequestMapping("/accounts")
-    public ResponseEntity<Long> getAccountValue(@RequestBody AccountRequest accountRequest) {
+    public ResponseEntity<Long> getAccountValue(@RequestBody AccountRequest accountRequest, @RequestHeader("access-token") String accessToken) {
+        if(!isAuthenticated(accessToken))
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         return bankingServiceIF.getAccountValue(accountRequest);
     }
 
     @PostMapping("/transfers/transfer")
-    public ResponseEntity<TransferRequest> transferMoney(@RequestBody TransferRequest transferRequest) {
+    public ResponseEntity<TransferRequest> transferMoney(@RequestBody TransferRequest transferRequest, @RequestHeader("access-token") String accessToken) {
+        if(!isAuthenticated(accessToken))
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         try {
             return bankingServiceIF.transferMoney(transferRequest);
         } catch (AccountNotFoundException e) {
@@ -37,7 +42,9 @@ public class BankingRestController {
     }
 
     @PostMapping("/transfers/mandate")
-    public ResponseEntity<TransferRequest> mandateMoney(@RequestBody TransferRequest transferRequest) {
+    public ResponseEntity<TransferRequest> mandateMoney(@RequestBody TransferRequest transferRequest, @RequestHeader("access-token") String accessToken) {
+        if(!isAuthenticated(accessToken))
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         try {
             return bankingServiceIF.mandateMoney(transferRequest);
         } catch (AccountNotFoundException e) {
@@ -45,5 +52,9 @@ public class BankingRestController {
         } catch (InvalidTransferException e) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
+    }
+
+    private boolean isAuthenticated(String accessToken){
+        return !StringUtils.isNullOrEmpty(accessToken) || authenticationUtils.equalsTokenVigoPay(accessToken);
     }
 }
