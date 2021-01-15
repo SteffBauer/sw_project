@@ -121,7 +121,9 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
         Optional<Customer> customer = customerRepository.findCustomerByTaxNumber(taxNumber);
         if (customer.isEmpty())
             return new ResponseEntity(HttpStatus.NOT_FOUND);
-        return new ResponseEntity<Customer>(customer.get(), HttpStatus.OK);
+        Customer c = customer.get();
+        c.getAddress().setResidents(null);
+        return new ResponseEntity<Customer>(c, HttpStatus.OK);
     }
 
     @Override
