@@ -118,7 +118,7 @@ public class BankingService implements BankingServiceIF {
                 StringUtils.isNullOrEmpty(transferRequest.getReceiverForename()) ||
                 StringUtils.isNullOrEmpty(transferRequest.getReceiverIban()) ||
                 StringUtils.isNullOrEmpty(transferRequest.getIban()) ||
-                Long.valueOf(0).equals(transferRequest.getAmount()) ||
+                transferRequest.getAmount() <= 0L ||
                 DateUtils.isBefore(transferRequest.getDate(), new Date())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
