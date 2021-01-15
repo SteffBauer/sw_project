@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class SupportService implements SupportServiceIF {
-
+    // todo implement exception handling for api calls
     // todo remove
     List<Message> messageList;
 
