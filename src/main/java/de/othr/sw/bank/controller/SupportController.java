@@ -7,13 +7,13 @@ import de.othr.sw.bank.entity.Message;
 import de.othr.sw.bank.entity.Person;
 import de.othr.sw.bank.service.EmployeeServiceIF;
 import de.othr.sw.bank.service.SupportServiceIF;
+import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -51,5 +51,10 @@ public class SupportController {
        return "employee/supportChat.html";
 
 
+    }
+
+    @PostMapping("{id}/messages/new")
+    public String sendMessage(Model model, @PathVariable("id") long chatId, @RequestBody Message message){
+        throw new NotYetImplementedException();
     }
 }
