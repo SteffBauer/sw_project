@@ -4,18 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AuthenticationUtils {
 
-    private String tokenVigoPay;
-    // todo load all tokens beginning with token- from app properties in list
+    private List<String> authenticationTokens;
 
     @Autowired
-    public AuthenticationUtils(@Value("${token-vigo-pay}") String tokenVigoPay) {
-        this.tokenVigoPay = tokenVigoPay;
+    public AuthenticationUtils(@Value("#{'${authentication-tokens}'.split(',')}") List<String> authenticationTokens) {
+        this.authenticationTokens = authenticationTokens;
     }
 
-    public boolean equalsTokenVigoPay(String token){
-        return token.equals(tokenVigoPay);
+    public boolean isValidToken(String token){
+        return !StringUtils.isNullOrEmpty(token) && authenticationTokens.contains(token);
     }
 }
