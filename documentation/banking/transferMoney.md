@@ -6,6 +6,8 @@ Transfer Money from one bank account to another.
 
 **Method** : `POST`
 
+**Required Header** : `access-token`
+
 **Data example**
 
 ```json
@@ -39,6 +41,10 @@ Transfer Money from one bank account to another.
 ```
 
 ## Error Response
+
+**Condition** : The access token is not valid.
+
+**Code** : `401 Unauthorized`
 
 **Condition** : The given iban is not in the system.
 
