@@ -53,11 +53,11 @@ public class BankingService implements BankingServiceIF {
     }
 
     @Override
-    public ResponseEntity<Long> getAccountValue(AccountRequest accountRequest) {
-        if (accountRequest == null || StringUtils.isNullOrEmpty(accountRequest.getIban()))
+    public ResponseEntity<Long> getAccountValue(String iban) {
+        if (StringUtils.isNullOrEmpty(iban))
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-        Account account = accountRepository.findDistinctByIbanAndActiveIsTrue(accountRequest.getIban());
+        Account account = accountRepository.findDistinctByIbanAndActiveIsTrue(iban);
         if (account == null)
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         else

@@ -21,16 +21,16 @@ public class BankingRestController {
     @Autowired
     private AuthenticationUtils authenticationUtils;
 
-    @RequestMapping("/accounts")
-    public ResponseEntity<Long> getAccountValue(@RequestBody AccountRequest accountRequest, @RequestHeader("access-token") String accessToken) {
-        if(!isAuthenticated(accessToken))
+    @RequestMapping("/accounts/{iban}")
+    public ResponseEntity<Long> getAccountValue(@PathVariable("iban") String iban, @RequestHeader("access-token") String accessToken) {
+        if(!authenticationUtils.isValidToken(accessToken))
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        return bankingServiceIF.getAccountValue(accountRequest);
+        return bankingServiceIF.getAccountValue(iban);
     }
 
     @PostMapping("/transfers/transfer")
     public ResponseEntity<TransferRequest> transferMoney(@RequestBody TransferRequest transferRequest, @RequestHeader("access-token") String accessToken) {
-        if(!isAuthenticated(accessToken))
+        if(!authenticationUtils.isValidToken(accessToken))
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         try {
             return bankingServiceIF.transferMoney(transferRequest);
@@ -43,7 +43,7 @@ public class BankingRestController {
 
     @PostMapping("/transfers/mandate")
     public ResponseEntity<TransferRequest> mandateMoney(@RequestBody TransferRequest transferRequest, @RequestHeader("access-token") String accessToken) {
-        if(!isAuthenticated(accessToken))
+        if(!authenticationUtils.isValidToken(accessToken))
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         try {
             return bankingServiceIF.mandateMoney(transferRequest);
@@ -54,7 +54,4 @@ public class BankingRestController {
         }
     }
 
-    private boolean isAuthenticated(String accessToken){
-        return !StringUtils.isNullOrEmpty(accessToken) || authenticationUtils.equalsTokenVigoPay(accessToken);
-    }
 }
