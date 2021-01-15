@@ -6,6 +6,8 @@ Mandate Money of another bank account.
 
 **Method** : `POST`
 
+**Required Header** : `access-token`
+
 **Data example**
 
 ```json
@@ -39,6 +41,10 @@ Mandate Money of another bank account.
 ```
 
 ## Error Response
+
+**Condition** : The access token is not valid.
+
+**Code** : `401 Unauthorized`
 
 **Condition** : The given iban is not in the system.
 
