@@ -2,16 +2,17 @@
 
 Get the value of a bank account.
 
-**URL** : `/api/banking/accounts`
+**URL** : `/api/banking/accounts/{iban}`
 
 **Method** : `GET`
 
-**Data example**
+**Required Header** : `access-token`
+
+
+**Example call**
 
 ```json
-{
-  "iban": "DE1234567890100000002"
-}
+/api/banking/accounts/DE12345678903456
 ```
 
 ## Success Response
@@ -32,6 +33,10 @@ The value divided by 100 is the amount in euros.
 **Condition** : The submitted iban is null or empty
 
 **Code** : `400 Bad Request`
+
+**Condition** : The access token is not valid.
+
+**Code** : `401 Unauthorized`
 
 **Condition** : The given iban is not in the system.
 
