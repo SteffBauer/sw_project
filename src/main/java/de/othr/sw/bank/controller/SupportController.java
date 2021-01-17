@@ -7,6 +7,7 @@ import de.othr.sw.bank.service.SupportServiceException;
 import de.othr.sw.bank.service.SupportServiceIF;
 import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ public class SupportController {
     private SupportServiceIF supportService;
     @Autowired
     private EmployeeServiceIF employeeService;
+
+    @Value("${authentication-token-chat-service}")
+    private String authenticationToken;
 
     @GetMapping
     public String getSupportChatView(Model model) {
