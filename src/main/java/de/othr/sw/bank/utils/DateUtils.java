@@ -20,7 +20,6 @@ public class DateUtils {
         }
     }
 
-    // todo bei speichern von Datum (Geburtstag, Ausführung, ..) aufrufen
     public static Date formatDate(Date date){
         try {
             return dateFormatter.parse(dateFormatter.format(date));
