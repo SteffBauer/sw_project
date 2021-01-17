@@ -3,7 +3,7 @@ package de.othr.sw.bank.entity;
 import java.util.Date;
 import java.util.List;
 
-// todo delete and use class from chat-service
+// todo delete and use class of chat-service
 public class Message {
     private String text;
     private Date timestamp;

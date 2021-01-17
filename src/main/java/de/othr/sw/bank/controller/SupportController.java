@@ -1,11 +1,9 @@
 package de.othr.sw.bank.controller;
 
 
-import de.othr.sw.bank.entity.Customer;
-import de.othr.sw.bank.entity.Employee;
-import de.othr.sw.bank.entity.Message;
-import de.othr.sw.bank.entity.Person;
+import de.othr.sw.bank.entity.*;
 import de.othr.sw.bank.service.EmployeeServiceIF;
+import de.othr.sw.bank.service.SupportServiceException;
 import de.othr.sw.bank.service.SupportServiceIF;
 import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,11 +28,20 @@ public class SupportController {
 
     @GetMapping
     public String getSupportChatView(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        long id = ((Person) authentication.getPrincipal()).getId();
-        List<Message> messages = supportService.pullMessages("ServiceToken");
+        List<Message> messages;
+        try {
+            messages = supportService.pullMessages("ServiceToken");
+        }
+        catch (SupportServiceException ex){
+            WebsiteMessage message = new WebsiteMessage(WebsiteMessageType.Danger, "Support Service Error", ex.getMessage());
+            model.addAttribute("message", message);
+            return "messages";
+        }
+
         model.addAttribute("messages", messages);
 
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication.getPrincipal() instanceof Employee) {
             model.addAttribute("isEmployee", true);
 
@@ -47,14 +55,13 @@ public class SupportController {
 
 
         model.addAttribute("isEmployee", false);
-        //return "/customer/supportChat.html";
-       return "employee/supportChat.html";
-
-
+        return "customer/supportChat.html";
     }
 
     @PostMapping("{id}/messages/new")
     public String sendMessage(Model model, @PathVariable("id") long chatId, @RequestBody Message message){
+        // todo call associate API
+        // todo retrieve messages of chat and return supportChat.html (depending on emp/cust login)
         throw new NotYetImplementedException();
     }
 }
