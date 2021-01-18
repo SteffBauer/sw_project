@@ -42,6 +42,7 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
 
 
     @Override
+    // todo check requirements
     @Transactional
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) throws UsernameAlreadyInUseException, TaxNumberAlreadyRegisteredException, PersonTooYoungException {
 

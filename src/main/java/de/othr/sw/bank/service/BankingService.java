@@ -66,6 +66,7 @@ public class BankingService implements BankingServiceIF {
     }
 
     @Override
+    // todo check requirements
     @Transactional
     public ResponseEntity<TransferRequest> transferMoney(TransferRequest transferRequest) throws AccountNotFoundException, InvalidTransferException {
         return makeTransfer(transferRequest, false);
