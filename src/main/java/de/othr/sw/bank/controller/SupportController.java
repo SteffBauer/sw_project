@@ -27,8 +27,8 @@ public class SupportController {
     @Autowired
     private EmployeeServiceIF employeeService;
 
-    @Value("${authentication-token-chat-service}")
-    private String authenticationToken;
+    //@Value("${authentication-token-chat-service}")
+    //private String authenticationToken;
 
     @GetMapping
     public String getSupportChatView(Model model) {
