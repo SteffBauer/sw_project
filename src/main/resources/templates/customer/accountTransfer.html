@@ -29,10 +29,15 @@
         <h1>Please fill in the transfer form</h1>
     </div>
 
-    <!-- show notification on error -->
+    <!-- show notification on sameAccount Error -->
     <div class="text-danger form-row justify-content-center" style="max-width: 100%" th:if="${sameAccount == true}">
         <p th:text="'Payer account and receiver account have to be different'"/>
     </div>
+    <!-- show notification on notEnoughMoney Error -->
+    <div class="text-danger form-row justify-content-center" style="max-width: 100%" th:if="${notEnoughMoney == true}">
+        <p th:text="'The payer account is not sufficiently funded'"/>
+    </div>
+
 
 
     <form th:action="@{'/accounts/'+${accountId}+'/transfers?action='+${action}}" th:object="${transfer}" method="post"

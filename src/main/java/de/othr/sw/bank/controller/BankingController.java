@@ -1,10 +1,7 @@
 package de.othr.sw.bank.controller;
 
 import de.othr.sw.bank.entity.*;
-import de.othr.sw.bank.service.AccountNotFoundException;
-import de.othr.sw.bank.service.BankingServiceIF;
-import de.othr.sw.bank.service.CustomerServiceIF;
-import de.othr.sw.bank.service.InvalidTransferException;
+import de.othr.sw.bank.service.*;
 import de.othr.sw.bank.utils.DateUtils;
 import de.othr.sw.bank.utils.StringUtils;
 import de.othr.sw.bank.utils.WebsiteMessageUtils;
@@ -144,7 +141,6 @@ public class BankingController {
         if (!StringUtils.isNullOrEmpty(action))
             model.addAttribute("action", action);
 
-        //todo z.B. überweisung nur bis 500 € im Minus möglich?
         return "customer/accountTransfer";
 
     }
@@ -179,6 +175,12 @@ public class BankingController {
         } catch (AccountNotFoundException e) {
             if (!account.getIban().equals(e.getIban()))
                 model.addAttribute("invalidIban", e.getIban());
+            model.addAttribute("transfer", transferRequest);
+            model.addAttribute("accountId", id);
+            model.addAttribute("action", action);
+            return "customer/accountTransfer";
+        } catch (NotEnoughMoneyException e) {
+            model.addAttribute("notEnoughMoney", true);
             model.addAttribute("transfer", transferRequest);
             model.addAttribute("accountId", id);
             model.addAttribute("action", action);

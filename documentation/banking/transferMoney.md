@@ -48,6 +48,12 @@ Transfer Money from one bank account to another.
 **Code** : `401 Unauthorized`
 
 ---
+**Condition** : The payer account is not sufficiently funded.
+
+**Code** : `402 Payment Required`
+
+
+---
 **Condition** : The given iban is not in the system.
 
 **Code** : `404 Not Found`

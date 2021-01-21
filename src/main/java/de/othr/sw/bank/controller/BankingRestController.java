@@ -5,6 +5,7 @@ import de.othr.sw.bank.entity.TransferRequest;
 import de.othr.sw.bank.service.AccountNotFoundException;
 import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.InvalidTransferException;
+import de.othr.sw.bank.service.NotEnoughMoneyException;
 import de.othr.sw.bank.utils.AuthenticationUtils;
 import de.othr.sw.bank.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,8 @@ public class BankingRestController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         try {
             return bankingServiceIF.transferMoney(transferRequest);
+        } catch (NotEnoughMoneyException e) {
+            return new ResponseEntity<>(HttpStatus.PAYMENT_REQUIRED);
         } catch (AccountNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (InvalidTransferException e) {
@@ -47,6 +50,8 @@ public class BankingRestController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         try {
             return bankingServiceIF.mandateMoney(transferRequest);
+        } catch (NotEnoughMoneyException e) {
+            return new ResponseEntity<>(HttpStatus.PAYMENT_REQUIRED);
         } catch (AccountNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (InvalidTransferException e) {

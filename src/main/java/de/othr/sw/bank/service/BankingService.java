@@ -19,6 +19,8 @@ import java.util.Optional;
 public class BankingService implements BankingServiceIF {
     // todo annotate transaction types
 
+    private static long maxOverDraft = -50000;
+
     @Autowired
     private CustomerServiceIF customerService;
     @Autowired
@@ -68,12 +70,12 @@ public class BankingService implements BankingServiceIF {
     @Override
     // todo check requirements
     @Transactional
-    public ResponseEntity<TransferRequest> transferMoney(TransferRequest transferRequest) throws AccountNotFoundException, InvalidTransferException {
+    public ResponseEntity<TransferRequest> transferMoney(TransferRequest transferRequest) throws AccountNotFoundException, InvalidTransferException, NotEnoughMoneyException {
         return makeTransfer(transferRequest, false);
     }
 
     @Override
-    public ResponseEntity<TransferRequest> mandateMoney(TransferRequest transferRequest) throws AccountNotFoundException, InvalidTransferException {
+    public ResponseEntity<TransferRequest> mandateMoney(TransferRequest transferRequest) throws AccountNotFoundException, InvalidTransferException, NotEnoughMoneyException {
         return makeTransfer(transferRequest, true);
     }
 
@@ -115,7 +117,7 @@ public class BankingService implements BankingServiceIF {
     }
 
 
-    private ResponseEntity<TransferRequest> makeTransfer(TransferRequest transferRequest, boolean isMandated) throws AccountNotFoundException, InvalidTransferException {
+    private ResponseEntity<TransferRequest> makeTransfer(TransferRequest transferRequest, boolean isMandated) throws AccountNotFoundException, InvalidTransferException, NotEnoughMoneyException {
         if (StringUtils.isNullOrEmpty(transferRequest.getReceiverSurname()) ||
                 StringUtils.isNullOrEmpty(transferRequest.getReceiverForename()) ||
                 StringUtils.isNullOrEmpty(transferRequest.getReceiverIban()) ||
@@ -134,6 +136,8 @@ public class BankingService implements BankingServiceIF {
             throw new AccountNotFoundException(transferRequest.getReceiverIban());
         if(payerAccount.equals(receiverAccount))
             throw new InvalidTransferException(payerAccount,receiverAccount);
+        if(payerAccount.getBalance()-transferRequest.getAmount() < maxOverDraft)
+            throw new NotEnoughMoneyException();
 
 
         Transfer transfer = new Transfer(transferRequest.getDate(), transferRequest.getAmount(), transferRequest.getDescription(), payerAccount, receiverAccount);
