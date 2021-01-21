@@ -16,14 +16,23 @@ If you want to use the api, please refer to the section
 
 ## Testing
 
-### Employee accounts
+### Predefined employee accounts
 
 | Username | Password |
-| ------ | ----------- |
-| max | admin |
-| thomas | admin |
+| -------- | -------- |
+| max      | admin    |
+| thomas   | admin    |
 
 > **_NOTE:_**  The registration of new employee accounts was not part of the defined requirements.
+
+### Attendant assignment
+
+To assign an employee to a new customer, the employee with the fewest amount
+of customers is taken an assigned to the new customer.
+
+### Subsequent modifications
+
+> **_NOTE:_** EmployeeService, additional attributes, ... 
 
 ## Notes
 
