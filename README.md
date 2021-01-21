@@ -1,5 +1,6 @@
 # Softwaredevelopment project
-Project for the course 'Softwaredevelopment' at OTH Regensburg
+Project for the course 'Softwaredevelopment' at OTH Regensburg \
+[Link to Header](#links)
 
 ## API documentation
 
@@ -15,7 +16,7 @@ The password is always the "NDS-Account-Id".
 
 ### Commands
 
-1. Generate JAR
+1. Run `Generate JAR` in IDE
 1. Copy JAR: `scp C:\Workspace\sw_project\target\bank-0.0.1-SNAPSHOT.jar sw_stefan_bauer@im-codd:`
 1. Connect to server: `ssh sw_stefan_bauer@im-codd`
 1. In case of changed environment variables: `export $(cat .env | xargs)`
