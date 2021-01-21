@@ -2,7 +2,7 @@
 
 Mandate Money of another bank account.
 
-**URL** : `/api/banking/transfers/transfer`
+**URL** : `/api/banking/transfers/mandate`
 
 **Method** : `POST`
 
