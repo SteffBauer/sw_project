@@ -32,7 +32,7 @@ of customers is taken an assigned to the new customer.
 
 ### Subsequent modifications
 
-> **_NOTE:_** EmployeeService, additional attributes, ... 
+> **_NOTE:_** EmployeeService, additional attributes, external IF ... 
 
 ## Notes
 

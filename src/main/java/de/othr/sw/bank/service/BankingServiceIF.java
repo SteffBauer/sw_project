@@ -8,17 +8,13 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface BankingServiceIF {
+public interface BankingServiceIF extends BankingServiceExternalIF {
 
     ResponseEntity<AccountRequest> createAccount(AccountRequest accountRequest);
 
     ResponseEntity<Long> getAccountValue(String iban);
 
     ResponseEntity<List<Transfer>> getTransfersByAccountId(long id);
-
-    ResponseEntity<TransferRequest> transferMoney(TransferRequest transferRequest) throws AccountNotFoundException, InvalidTransferException, NotEnoughMoneyException;
-
-    ResponseEntity<TransferRequest> mandateMoney(TransferRequest transferRequest) throws AccountNotFoundException, InvalidTransferException, NotEnoughMoneyException;
 
     ResponseEntity<Account> getAccountById(long id);
 
