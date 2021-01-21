@@ -41,14 +41,14 @@ Find customer by providing a tax number.
 
 ## Error Response
 
+---
 **Condition** : The access token is not valid.
 
 **Code** : `401 Unauthorized`
 
 **Content** : No content provided.
 
-
-
+---
 **Condition** : There is no registered customer with the provided tax number.
 
 **Code** : `404 Not Found`

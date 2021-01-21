@@ -30,15 +30,17 @@ The value divided by 100 is the amount in euros.
 
 ## Error Response
 
+---
 **Condition** : The submitted iban is null or empty
 
 **Code** : `400 Bad Request`
 
+---
 **Condition** : The access token is not valid.
 
 **Code** : `401 Unauthorized`
 
+---
 **Condition** : The given iban is not in the system.
 
 **Code** : `404 Not Found`
-

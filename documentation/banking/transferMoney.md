@@ -42,15 +42,17 @@ Transfer Money from one bank account to another.
 
 ## Error Response
 
+---
 **Condition** : The access token is not valid.
 
 **Code** : `401 Unauthorized`
 
+---
 **Condition** : The given iban is not in the system.
 
 **Code** : `404 Not Found`
 
+---
 **Condition** : The requested transfer has the same payer and receiver iban.
 
 **Code** : `409 Conflict`
-
