@@ -1,6 +1,5 @@
 package de.othr.sw.bank.utils;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +10,7 @@ public class AuthenticationUtils {
 
     private List<String> authenticationTokens;
 
-    @Autowired
+
     public AuthenticationUtils(@Value("#{'${authentication-tokens}'.split(',')}") List<String> authenticationTokens) {
         this.authenticationTokens = authenticationTokens;
     }
