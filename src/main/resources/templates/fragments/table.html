@@ -20,7 +20,7 @@
             </td>
             <td th:if="${account.balance lt 0}" style="text-align: right; color: red;">
                             <span
-                                    th:text="'-' + ${#numbers.formatDecimal(account.balance/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Amount</span><span> €</span>
+                                    th:text="${#numbers.formatDecimal(account.balance/100, 1, 'DEFAULT', 2, 'DEFAULT')}">Amount</span><span> €</span>
             </td>
             </td>
         </tr>
