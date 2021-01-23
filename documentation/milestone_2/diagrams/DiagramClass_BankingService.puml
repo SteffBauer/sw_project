@@ -1,0 +1,67 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam monochrome true
+
+
+class Account{
+  - id: long
+  - iban: String
+  - balance: long
+}
+
+class Address{
+  - id: long
+  - street: String
+  - houseNr: int
+  - zipCode: long
+  - city: String
+  - country: String
+  '+ getResidents(): List<Customer>
+  '+ addResident(customer: Customer): void
+}
+
+class Person{
+  - id: long
+  - forename: String
+  - surname: String
+  - username: String
+  - birthDate: Date
+  - password: String
+}
+
+class Employee{
+   - designation: String
+   - salary: long
+}
+
+class Customer{
+  - taxNumber: String
+}
+
+
+class Transfer{
+  - id: long
+  - amount: long
+  - date: Date
+  - description: String
+}
+
+
+' Declare relationship of classes
+Customer "1\n\t\taccountOwner" *--- "accounts\n\t0..*" Account
+Address "\t1\naddress" <-- "residents\n\t1..*" Customer
+Transfer "0..*" --> "payer\n\n\t1" Account
+Transfer "0..*" --> "receiver\n\t1" Account
+Customer "0..*\ncustomers\t  " --- "attendant\n         1" Employee
+
+
+Person <|-- Employee
+Person <|-privilege-- Customer
+
+Address -[hidden]-> Customer
+Address -[hidden]-> Transfer
+Account -[hidden]> Transfer
+'Transfer -[hidden]> Account
+
+@enduml

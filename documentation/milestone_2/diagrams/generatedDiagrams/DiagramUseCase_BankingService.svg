@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="506px" preserveAspectRatio="none" style="width:673px;height:506px;" version="1.1" viewBox="0 0 673 506" width="673px" zoomAndPan="magnify"><defs><filter height="300%" id="f1657ezhq4exls" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[88ca6809156eb879dc8ea75d9b4ec4d1]
+cluster Banking--><rect fill="#FFFFFF" filter="url(#f1657ezhq4exls)" height="422" style="stroke: #000000; stroke-width: 1.5;" width="390" x="168" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="115" x="305.5" y="23.5332">Banking Service</text><ellipse cx="465.3716" cy="128.1743" fill="#F8F8F8" filter="url(#f1657ezhq4exls)" rx="68.8716" ry="16.1743" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="416.3716" y="133.479">Create Account</text><ellipse cx="256.0337" cy="125.8067" fill="#F8F8F8" filter="url(#f1657ezhq4exls)" rx="67.0337" ry="15.8067" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="93" x="209.5337" y="131.1114">Find Customer</text><ellipse cx="255.8989" cy="193.7798" fill="#F8F8F8" filter="url(#f1657ezhq4exls)" rx="71.8989" ry="16.7798" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="106" x="202.8989" y="199.0845">Delete Customer</text><ellipse cx="255.8614" cy="261.9517" fill="#F8F8F8" filter="url(#f1657ezhq4exls)" rx="58.8614" ry="15.4517" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="79" x="216.3614" y="267.2564">Get Address</text><ellipse cx="255.9949" cy="328.899" fill="#F8F8F8" filter="url(#f1657ezhq4exls)" rx="69.9949" ry="16.399" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="101" x="205.4949" y="334.2037">Update Address</text><ellipse cx="256.1311" cy="397.0262" fill="#F8F8F8" filter="url(#f1657ezhq4exls)" rx="68.1311" ry="16.0262" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="96" x="208.1311" y="402.3309">Delete Account</text><ellipse cx="465.397" cy="396.9517" fill="#F8F8F8" filter="url(#f1657ezhq4exls)" rx="62.397" ry="15.4517" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="423.397" y="402.2564">Login Person</text><ellipse cx="256.1543" cy="58.9517" fill="#F8F8F8" filter="url(#f1657ezhq4exls)" rx="58.1543" ry="15.4517" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="78" x="217.1543" y="64.2564">Use Support</text><ellipse cx="465.6715" cy="261.2343" fill="#F8F8F8" filter="url(#f1657ezhq4exls)" rx="66.6715" ry="15.7343" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="92" x="419.6715" y="266.539">Make Transfer</text><ellipse cx="465.397" cy="194.9517" fill="#F8F8F8" filter="url(#f1657ezhq4exls)" rx="62.397" ry="15.4517" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="84" x="423.397" y="200.2564">View Account</text><ellipse cx="465.6143" cy="329.2229" fill="#F8F8F8" filter="url(#f1657ezhq4exls)" rx="76.6143" ry="17.7229" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="406.6143" y="334.5275">Register Customer</text><!--MD5=[be5750da26e06623bc49653cefaf97c7]
+entity p--><ellipse cx="635.5" cy="365" fill="#F8F8F8" filter="url(#f1657ezhq4exls)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><path d="M635.5,373 L635.5,400 M622.5,381 L648.5,381 M635.5,400 L622.5,415 M635.5,400 L648.5,415 " fill="none" filter="url(#f1657ezhq4exls)" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="45" x="613" y="435.0332">Person</text><!--MD5=[8e9b2d9d80e066cced8e5d90e9bdea61]
+entity c--><ellipse cx="635.5" cy="199" fill="#F8F8F8" filter="url(#f1657ezhq4exls)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><path d="M635.5,207 L635.5,234 M622.5,215 L648.5,215 M635.5,234 L622.5,249 M635.5,234 L648.5,249 " fill="none" filter="url(#f1657ezhq4exls)" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="61" x="605" y="269.0332">Customer</text><!--MD5=[e32773a0da76c445e84e5885468a4484]
+entity e--><ellipse cx="37" cy="230" fill="#F8F8F8" filter="url(#f1657ezhq4exls)" rx="8" ry="8" style="stroke: #383838; stroke-width: 1.5;"/><path d="M37,238 L37,265 M24,246 L50,246 M37,265 L24,280 M37,265 L50,280 " fill="none" filter="url(#f1657ezhq4exls)" style="stroke: #383838; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="62" x="6" y="300.0332">Employee</text><!--MD5=[0d6d85696ed3172d039ea06242f93228]
+link c to p--><path d="M635.5,272.72 C635.5,293.44 635.5,314.16 635.5,334.89 " fill="none" id="c-to-p" style="stroke: #383838; stroke-width: 1.0;"/><polygon fill="none" points="642.5,335.18,635.5,355.18,628.5,335.18,642.5,335.18" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[c4367ad9f45d960972e7542a6a912add]
+link e to p--><path d="M53.6,303.84 C71.81,345.47 106.44,406.32 160,429 C326.16,499.38 389.85,468.12 566,429 C575.69,426.85 585.62,423.18 594.82,419.08 " fill="none" id="e-to-p" style="stroke: #383838; stroke-width: 1.0;"/><polygon fill="none" points="591.83,412.75,612.86,410.11,598.07,425.28,591.83,412.75" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[0750bae649bba517013f6d2ddc00b20a]
+reverse link uc11 to c--><path d="M518.93,140.94 C534.75,146.13 551.7,153.05 566,162 C580.17,170.87 593.62,183.2 604.79,194.98 " fill="none" id="uc11-backto-c" style="stroke: #383838; stroke-width: 1.0;"/><polygon fill="#383838" points="514.06,139.39,521.4106,145.9451,518.8216,140.9154,523.8513,138.3265,514.06,139.39" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[74af7b9beac97157247d54ba03b4303d]
+link e to uc12--><path d="M68.25,230.4 C77.51,221.24 87.92,211.44 98,203 C123.91,181.31 129.96,174.48 160,159 C174.64,151.46 191.39,144.99 206.71,139.84 " fill="none" id="e-to-uc12" style="stroke: #383838; stroke-width: 1.0;"/><polygon fill="#383838" points="211.84,138.14,202.0387,137.1736,207.0937,139.7126,204.5548,144.7676,211.84,138.14" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[01f852f723579516bb24f51b3c7cae60]
+link e to uc13--><path d="M68.18,247.89 C77.61,243.76 88.14,239.44 98,236 C130.74,224.6 168.23,214.46 198.36,207.01 " fill="none" id="e-to-uc13" style="stroke: #383838; stroke-width: 1.0;"/><polygon fill="#383838" points="203.51,205.74,193.8133,204.0154,198.6559,206.9392,195.7321,211.7819,203.51,205.74" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[874f875b7411d5015c8041a196a73f46]
+link e to uc14--><path d="M68.17,262 C99.94,262 150.88,262 191.55,262 " fill="none" id="e-to-uc14" style="stroke: #383838; stroke-width: 1.0;"/><polygon fill="#383838" points="196.96,262,187.96,258,191.96,262,187.96,266,196.96,262" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[3dd15030e115705e631dc42ba8291197]
+link e to uc15--><path d="M68.17,271.32 C104.39,282.5 165.55,301.38 207.98,314.48 " fill="none" id="e-to-uc15" style="stroke: #383838; stroke-width: 1.0;"/><polygon fill="#383838" points="212.8,315.97,205.3961,309.4752,208.0261,314.4835,203.0177,317.1135,212.8,315.97" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[877e6b803e7c8512c543cff1734550b7]
+link e to uc17--><path d="M68.35,292.29 C91.77,314.31 125.83,343.55 160,363 C174.22,371.1 190.72,377.82 205.94,383.08 " fill="none" id="e-to-uc17" style="stroke: #383838; stroke-width: 1.0;"/><polygon fill="#383838" points="211.04,384.81,203.815,378.1168,206.3081,383.1946,201.2303,385.6878,211.04,384.81" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[9d4a18223205fc3e4df912268a709246]
+reverse link uc21 to p--><path d="M533.34,397 C561.59,397 592.54,397 612.67,397 " fill="none" id="uc21-backto-p" style="stroke: #383838; stroke-width: 1.0;"/><polygon fill="#383838" points="528.1,397,537.1,401,533.1,397,537.1,393,528.1,397" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[ccf5115888626c19bdf9395eb3cffc68]
+reverse link uc31 to c--><path d="M311.21,50.56 C377.5,43.27 490.2,41.03 566,94 C597.93,116.32 615.75,157.96 625.15,189.5 " fill="none" id="uc31-backto-c" style="stroke: #383838; stroke-width: 1.0;"/><polygon fill="#383838" points="306.13,51.14,315.5204,54.1098,311.0987,50.5816,314.6269,46.1598,306.13,51.14" style="stroke: #383838; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="23" x="454" y="27.4951">Ask</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="439.5" y="43.8467">Question</text><!--MD5=[2788e32d678298093f8e0b0bebbd177d]
+link e to uc31--><path d="M56.59,220.45 C76.44,181.04 111.7,123.34 160,92 C174.2,82.79 191.28,75.82 207.01,70.72 " fill="none" id="e-to-uc31" style="stroke: #383838; stroke-width: 1.0;"/><polygon fill="#383838" points="211.84,69.19,202.0547,68.0732,207.0701,70.6895,204.4539,75.705,211.84,69.19" style="stroke: #383838; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="43" x="103.5" y="79.4951">Answer</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="52" x="99" y="95.8467">Question</text><!--MD5=[7e5d90e345fffe4640844c8dff94e79c]
+reverse link uc41 to c--><path d="M523.77,250.78 C551,245.91 582.42,240.3 604.81,236.3 " fill="none" id="uc41-backto-c" style="stroke: #383838; stroke-width: 1.0;"/><polygon fill="#383838" points="518.74,251.68,528.3056,254.025,523.6612,250.7956,526.8906,246.1512,518.74,251.68" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[9c85be515a50f0533800359627e7fff6]
+reverse link uc42 to c--><path d="M518.53,206.15 C546.9,212.23 581,219.54 604.85,224.65 " fill="none" id="uc42-backto-c" style="stroke: #383838; stroke-width: 1.0;"/><polygon fill="#383838" points="513.3,205.03,521.2667,210.8206,518.1898,206.0737,522.9367,202.9969,513.3,205.03" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[9b84724ed79cf4350ad9e775071c2505]
+reverse link uc44 to c--><path d="M521.4,314.13 C536.42,308.9 552.32,302.22 566,294 C579.99,285.6 593.6,274.02 604.96,263.08 " fill="none" id="uc44-backto-c" style="stroke: #383838; stroke-width: 1.0;"/><polygon fill="#383838" points="516.35,315.85,526.1597,316.7278,521.0819,314.2346,523.575,309.1568,516.35,315.85" style="stroke: #383838; stroke-width: 1.0;"/><!--MD5=[c3a3d96c5bb8c4165937b77fc9add315]
+link uc12 to uc11--><!--MD5=[61b7eb3eaa336b4d889c5453e02e9f77]
+link uc13 to uc42--><!--MD5=[5b5830557e369c89f0a7aaca25feb317]
+link uc14 to uc41--><!--MD5=[879285181986a8fda2a091007b4cd925]
+link uc21 to uc41--><!--MD5=[71940278fbeb50e5258cc9d382751926]
+link uc17 to uc44--><!--MD5=[f9fbd44f7fe9bb86ab3cb359beea241d]
+@startuml
+
+left to privilege direction
+skinparam monochrome true
+
+actor "Person" as p
+actor "Customer" as c
+actor "Employee" as e
+
+c -|> p
+p <|-up- e
+
+rectangle "Banking Service" as Banking {
+
+  usecase "Create Account" as uc11
+  usecase "Find Customer" as uc12
+  usecase "Delete Customer" as uc13
+  usecase "Get Address" as uc14
+  usecase "Update Address" as uc15
+  usecase "Delete Account" as uc17
+
+  usecase "Login Person" as uc21
+
+  usecase "Use Support" as uc31
+
+  usecase "Make Transfer" as uc41
+  usecase "View Account" as uc42
+  usecase "Register Customer" as uc44
+}
+
+' Customer Service
+uc11 <- - c
+
+e - -> uc12
+e - -> uc13
+e - -> uc14
+e - -> uc15
+e - -> uc17
+
+
+' Session Service
+uc21 <- p
+
+
+' Support Service
+'uc31 - -> chat
+uc31 <- c : Ask\nQuestion
+e - -> uc31 : Answer\nQuestion
+
+
+' Banking Service
+uc41 <- - c
+uc42 <- - c
+uc44 <- - c
+
+' Layout
+uc12 -[hidden]-> uc11
+uc13 -[hidden]-> uc42
+uc14 -[hidden]-> uc41
+uc21 -[hidden]> uc41
+uc17 -[hidden]-> uc44
+'uc12 -[hidden]-> uc21
+'uc31 -[hidden]> uc21
+
+@enduml
+
+@startuml
+
+left to privilege direction
+skinparam monochrome true
+
+actor "Person" as p
+actor "Customer" as c
+actor "Employee" as e
+
+c -|> p
+p <|-up- e
+
+rectangle "Banking Service" as Banking {
+
+  usecase "Create Account" as uc11
+  usecase "Find Customer" as uc12
+  usecase "Delete Customer" as uc13
+  usecase "Get Address" as uc14
+  usecase "Update Address" as uc15
+  usecase "Delete Account" as uc17
+
+  usecase "Login Person" as uc21
+
+  usecase "Use Support" as uc31
+
+  usecase "Make Transfer" as uc41
+  usecase "View Account" as uc42
+  usecase "Register Customer" as uc44
+}
+
+uc11 <- - c
+
+e - -> uc12
+e - -> uc13
+e - -> uc14
+e - -> uc15
+e - -> uc17
+
+
+uc21 <- p
+
+
+uc31 <- c : Ask\nQuestion
+e - -> uc31 : Answer\nQuestion
+
+
+uc41 <- - c
+uc42 <- - c
+uc44 <- - c
+
+uc12 -[hidden]-> uc11
+uc13 -[hidden]-> uc42
+uc14 -[hidden]-> uc41
+uc21 -[hidden]> uc41
+uc17 -[hidden]-> uc44
+
+@enduml
+
+PlantUML version 1.2020.19(Mon Oct 12 17:10:01 CEST 2020)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: de
+Country: DE
+--></g></svg>
