@@ -56,7 +56,7 @@ public class CustomerManagementController {
 
             model.addAttribute("address", responseEntity.getBody().getAddress());
             model.addAttribute("customerId", id);
-           return "employee/address";
+            return "employee/address";
         }
 
         WebsiteMessage message = new WebsiteMessage(WebsiteMessageType.Danger, "Unable to get address for customer", "Error trying to get address for the customer with the id '" + id + "'.");
@@ -87,18 +87,18 @@ public class CustomerManagementController {
     public String queryCustomers(Model model, @RequestParam(name = "queryString") String queryString,
                                  @RequestParam(name = "page", defaultValue = "1") int page,
                                  @RequestParam(name = "number", defaultValue = "5") int number) {
-        Pageable pageable = PageRequest.of(page-1,number, Sort.by("surname").ascending());
-        ResponseEntity<Page<Customer>> responseEntity = customerService.queryCustomers(queryString,pageable);
+        Pageable pageable = PageRequest.of(page - 1, number, Sort.by("surname").ascending());
+        ResponseEntity<Page<Customer>> responseEntity = customerService.queryCustomers(queryString, pageable);
 
-        if(responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.getBody() != null){
+        if (responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.getBody() != null) {
             Page<Customer> customersPage = responseEntity.getBody();
             model.addAttribute("customers", customersPage.getContent());
-            model.addAttribute("customer",false);
+            model.addAttribute("customer", false);
 
-            model.addAttribute("queryCustomers",true);
-            model.addAttribute("queryString",queryString);
-            model.addAttribute("currentPage",page);
-            model.addAttribute("totalPages",customersPage.getTotalPages());
+            model.addAttribute("queryCustomers", true);
+            model.addAttribute("queryString", queryString);
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", customersPage.getTotalPages());
 
 
             Employee employee = (Employee) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
