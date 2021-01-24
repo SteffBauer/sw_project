@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,6 +47,7 @@ public class EmployeeService implements EmployeeServiceIF, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public void removeCustomerFromEmployee(Customer customer) {
         Optional<Employee> optionalEmployee = employeeRepository.findById(customer.getAttendant().getId());
         optionalEmployee.ifPresent(e -> {
