@@ -26,6 +26,7 @@ public class EmployeeService implements EmployeeServiceIF, UserDetailsService {
     private EmployeeRepositoryIF employeeRepository;
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return getEmployeeByUsername(username)
                 .orElseThrow(() -> {
@@ -35,11 +36,13 @@ public class EmployeeService implements EmployeeServiceIF, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public Optional<Employee> getEmployeeByUsername(String username) {
         return employeeRepository.findDistinctByUsername(username);
     }
 
     @Override
+    @Transactional
     public Employee getEmployeeForCustomerSupport() {
         List<Employee> employees = employeeRepository.findEmployeeByDesignation(EmployeeDesignation.ACCOUNT_MANAGER.getDesignation());
         Optional<Employee> employee = employees.stream().min(Comparator.comparingInt(x -> x.getActiveCustomers().size()));
