@@ -2,7 +2,6 @@ package de.othr.sw.bank.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 

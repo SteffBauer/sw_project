@@ -6,7 +6,6 @@ import de.othr.sw.bank.repo.TransferRepositoryIF;
 import de.othr.sw.bank.utils.DateUtils;
 import de.othr.sw.bank.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

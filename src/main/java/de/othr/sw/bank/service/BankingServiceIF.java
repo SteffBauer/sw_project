@@ -3,7 +3,6 @@ package de.othr.sw.bank.service;
 import de.othr.sw.bank.entity.Account;
 import de.othr.sw.bank.entity.AccountRequest;
 import de.othr.sw.bank.entity.Transfer;
-import de.othr.sw.bank.entity.TransferRequest;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

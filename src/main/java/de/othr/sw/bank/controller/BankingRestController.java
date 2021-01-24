@@ -1,13 +1,11 @@
 package de.othr.sw.bank.controller;
 
-import de.othr.sw.bank.entity.AccountRequest;
 import de.othr.sw.bank.entity.TransferRequest;
 import de.othr.sw.bank.service.AccountNotFoundException;
 import de.othr.sw.bank.service.BankingServiceIF;
 import de.othr.sw.bank.service.InvalidTransferException;
 import de.othr.sw.bank.service.NotEnoughMoneyException;
 import de.othr.sw.bank.utils.AuthenticationUtils;
-import de.othr.sw.bank.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
