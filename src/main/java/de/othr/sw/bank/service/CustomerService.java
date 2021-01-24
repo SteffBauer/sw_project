@@ -42,7 +42,6 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
 
 
     @Override
-    // todo check requirements
     @Transactional
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer newCustomer) throws UsernameAlreadyInUseException, TaxNumberAlreadyRegisteredException, PersonTooYoungException {
 
@@ -95,6 +94,7 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
 
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Customer customer = getCustomerByUsername(username)
                 .orElseThrow(() -> {
@@ -105,11 +105,13 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public Optional<Customer> getCustomerByUsername(String username) {
         return customerRepository.findCustomerByUsername(username);
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Customer> getCustomerById(long id) {
         Optional<Customer> customer = customerRepository.findById(id);
         if (customer.isEmpty())
@@ -118,6 +120,7 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Customer> findCustomer(String taxNumber) {
         Optional<Customer> customer = customerRepository.findCustomerByTaxNumber(taxNumber);
         if (customer.isEmpty())
@@ -128,6 +131,7 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Page<Customer>> queryCustomers(String queryString, Pageable pageable) {
         Page<Customer> customers = customerRepository.findCustomerByForenameContainingIgnoreCaseOrSurnameContainingIgnoreCaseOrUsernameContainingIgnoreCase(queryString,queryString,queryString,pageable);
 
@@ -142,6 +146,7 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Customer> deleteCustomerById(long cid) {
         Optional<Customer> customer = customerRepository.findById(cid);
         if (customer.isEmpty())
@@ -159,12 +164,14 @@ public class CustomerService implements CustomerServiceIF, UserDetailsService {
     }
 
     @Override
+    @Transactional
     public List<Account> getActiveAccountsForUser(long id) {
         List<Account> accounts = customerRepository.findById(id).get().getActiveAccounts();
         return accounts;
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Address> updateAddressForUser(long id, Address address) {
         ResponseEntity responseEntity = getCustomerById(id);
         if (responseEntity.getStatusCode() != HttpStatus.OK || responseEntity.getBody() == null)

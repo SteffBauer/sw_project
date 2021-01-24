@@ -6,6 +6,7 @@ import de.othr.sw.bank.repo.TransferRepositoryIF;
 import de.othr.sw.bank.utils.DateUtils;
 import de.othr.sw.bank.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,6 @@ import java.util.Optional;
 
 @Service
 public class BankingService implements BankingServiceIF {
-    // todo annotate transaction types
 
     private static long maxOverDraft = -50000;
 
@@ -29,6 +29,7 @@ public class BankingService implements BankingServiceIF {
     private TransferRepositoryIF transferRepository;
 
     @Override
+    @Transactional
     public ResponseEntity<AccountRequest> createAccount(AccountRequest accountRequest) {
         try {
             Optional<Customer> customer = customerService.getCustomerByUsername(accountRequest.getUsername());
@@ -56,6 +57,7 @@ public class BankingService implements BankingServiceIF {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Long> getAccountValue(String iban) {
         if (StringUtils.isNullOrEmpty(iban))
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -68,18 +70,19 @@ public class BankingService implements BankingServiceIF {
     }
 
     @Override
-    // todo check requirements
     @Transactional
     public ResponseEntity<TransferRequest> transferMoney(TransferRequest transferRequest) throws AccountNotFoundException, InvalidTransferException, NotEnoughMoneyException {
         return makeTransfer(transferRequest, false);
     }
 
     @Override
+    @Transactional
     public ResponseEntity<TransferRequest> mandateMoney(TransferRequest transferRequest) throws AccountNotFoundException, InvalidTransferException, NotEnoughMoneyException {
         return makeTransfer(transferRequest, true);
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Account> getAccountById(long id) {
         Optional<Account> account = accountRepository.findById(id);
 
@@ -90,9 +93,9 @@ public class BankingService implements BankingServiceIF {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<Account> deleteAccount(long id) {
         Optional<Account> optionalAccount = accountRepository.findById(id);
-
 
         if (optionalAccount.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -106,6 +109,7 @@ public class BankingService implements BankingServiceIF {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<List<Transfer>> getTransfersByAccountId(long id) {
         try {
             List<Transfer> transfers = transferRepository.findTransfersByPayerAccountIdOrReceiverAccountIdOrderByDateCreatedDescDateDesc(id, id);
