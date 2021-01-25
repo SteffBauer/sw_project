@@ -48,8 +48,8 @@
         <th:block th:each="transfer, rowStat: ${transfers}">
             <tr data-toggle="collapse" th:attr="data-target='#accordion_'+${transfer.id}" class="clickable">
                 <td th:text="${{#dates.format(transfer.getDate(), 'dd.MM.yyyy')}}"></td>
-                <td th:text="${transfer.receiverAccount.customer.getFullName()}"></td>
                 <td th:text="${transfer.payerAccount.customer.getFullName()}"></td>
+                <td th:text="${transfer.receiverAccount.customer.getFullName()}"></td>
                 <div th:switch="${transfer.receiverAccount.getId()}">
                     <td th:case="${account.id}" style="text-align: right; color: forestgreen">
 							<span
