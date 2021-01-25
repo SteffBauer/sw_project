@@ -61,6 +61,14 @@ The prerequisite for this is the use of vpn access. The password is always the "
         1. Then kill it.
 1. Exit Secure Shell: `exit`
 
+### Useful commans
+
+#### Generating jar file for associate projects \
+> **_NOTE:_** Has to be executed in the folder `target/classes`
+
+`jar cf banking_lib.jar de/othr/sw/bank/entity/TransferRequest.class de/othr/sw/bank/service/BankingServiceExternalIF.class de/othr/sw/bank/service/AccountNotFoundException.class de/othr/sw/bank/service/InvalidTransferException.class de/othr/sw/bank/service/NotEnoughMoneyException.class de/othr/sw/bank/utils/DateUtils.class de/othr/sw/bank/utils/StringUtils.class`
+
+
 ### Useful links
 
 [Spring: Guides](https://spring.io/guides) \
