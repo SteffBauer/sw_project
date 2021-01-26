@@ -1,6 +1,7 @@
-package de.othr.sw.bank.service;
+package de.othr.sw.bank.associate;
 
-import de.othr.sw.bank.entity.Message;
+import de.othr.sw.bank.associate.Message;
+import de.othr.sw.bank.service.SupportServiceException;
 
 import java.util.List;
 

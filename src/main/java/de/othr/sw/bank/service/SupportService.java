@@ -1,6 +1,7 @@
 package de.othr.sw.bank.service;
 
-import de.othr.sw.bank.entity.Message;
+import de.othr.sw.bank.associate.Message;
+import de.othr.sw.bank.associate.SupportServiceIF;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.http.HttpStatus;

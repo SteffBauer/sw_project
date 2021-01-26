@@ -1,4 +1,4 @@
-package de.othr.sw.bank.entity;
+package de.othr.sw.bank.associate;
 
 import java.util.Date;
 import java.util.List;
