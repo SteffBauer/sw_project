@@ -28,15 +28,23 @@ If you want to use the api, please refer to the section
 ### Attendant assignment
 
 To assign an employee to a new customer, the employee with the fewest amount
-of customers is taken an assigned to the new customer.
+of customers is assigned to the new customer.
 
 ### Subsequent modifications
 
-> **_NOTE:_** EmployeeService, additional attributes, external IF ... 
+#### EmployeeServiceIF
+The EmployeeService and its interface was added after the requirements of milestone one.
+
+#### BankingServiceExternalIF
+Also, the interface for the associate project is a specific one, because of other internal needed methods in the BankingServiceIF.
+So the decision was made to have an extra interface for external needs.
+Please keep in mind, that the BankingServiceIF implements the methods of the BankingServiceExternalIF.
+
 
 ### Not used
 
-> **_NOTE:_** Orphan Removal
+There was no use case for using 'Orphan Removal', because customers and accounts are not actually deleted, they are just set inactive.
+This decision was made, because deleting accounts or customers and their dependencies would cause unwanted displays to other users, that have made transfers to the respective users.
 
 
 ## Notes
