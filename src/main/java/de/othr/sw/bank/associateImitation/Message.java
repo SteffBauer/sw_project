@@ -1,4 +1,4 @@
-package de.othr.sw.bank.associate;
+package de.othr.sw.bank.associateImitation;
 
 import java.util.Date;
 import java.util.List;

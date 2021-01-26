@@ -1,11 +1,11 @@
 package de.othr.sw.bank.controller;
 
 
-import de.othr.sw.bank.associate.Message;
+import de.othr.sw.bank.associateImitation.Message;
 import de.othr.sw.bank.entity.*;
 import de.othr.sw.bank.service.EmployeeServiceIF;
 import de.othr.sw.bank.service.SupportServiceException;
-import de.othr.sw.bank.associate.SupportServiceIF;
+import de.othr.sw.bank.associateImitation.SupportServiceIF;
 import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

@@ -1,6 +1,5 @@
-package de.othr.sw.bank.associate;
+package de.othr.sw.bank.associateImitation;
 
-import de.othr.sw.bank.associate.Message;
 import de.othr.sw.bank.service.SupportServiceException;
 
 import java.util.List;

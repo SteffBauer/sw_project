@@ -1,4 +1,4 @@
-package de.othr.sw.bank.associate;
+package de.othr.sw.bank.associateImitation;
 
 
 //import de.othr.bib48218.chat.entity.Message;
