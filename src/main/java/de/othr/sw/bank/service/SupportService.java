@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
-// todo implement if of associate project
+// todo implement IF of associate project
 public class SupportService implements SupportServiceIF {
     // todo test exception handling for api calls
 
