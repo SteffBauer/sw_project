@@ -27,21 +27,20 @@ public class SupportService implements IFSendMessage {
 
         try {
             responseEntity = restTemplate.getForEntity(path, User.class);
-        }catch (Exception e){
+        } catch (Exception e) {
             //throw new SupportServiceException(e.getMessage());
             return null;
         }
 
         if (responseEntity.getStatusCode().is4xxClientError() || responseEntity.getStatusCode().is5xxServerError())
             return null;
-            //throw new SupportServiceException("Error trying to find user.");
+        //throw new SupportServiceException("Error trying to find user.");
 
-        // todo adjust HTTP Status Code and Error handling
-        if (responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.hasBody())
+        if (responseEntity.getStatusCode().is2xxSuccessful() && responseEntity.hasBody())
             return responseEntity.getBody();
         else
             return null;
-            //throw new SupportServiceException("Error interpreting found user from support service.");
+        //throw new SupportServiceException("Error interpreting found user from support service.");
     }
 
     @Override
@@ -52,7 +51,7 @@ public class SupportService implements IFSendMessage {
 
         try {
             responseEntity = restTemplate.getForEntity(path, Chat.class);
-        }catch (Exception e){
+        } catch (Exception e) {
             //throw new SupportServiceException(e.getMessage());
             return null;
         }
@@ -61,8 +60,7 @@ public class SupportService implements IFSendMessage {
             return null;
         //throw new SupportServiceException("Error trying to find user.");
 
-        // todo adjust HTTP Status Code and Error handling
-        if (responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.hasBody())
+        if (responseEntity.getStatusCode().is2xxSuccessful() && responseEntity.hasBody())
             return responseEntity.getBody();
         else
             return null;
@@ -89,19 +87,14 @@ public class SupportService implements IFSendMessage {
             //throw new SupportServiceException("Error trying to send message.");
         }
 
-        // todo adjust HTTP Status Code and Error handling
-        if (responseEntity.getStatusCode() == HttpStatus.CREATED)
-            return;
-        else
-            return;
     }
 
     @Override
     public Collection<Message> pullMessages(Chat chat, LocalDateTime dateTime) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Message[]> responseEntity;
-        // todo adjust path
-        String path = baseUrl + "messages";
+
+        String path = baseUrl + "messages/" + chat.getId() + "?since=" + dateTime;
 
         try {
             responseEntity = restTemplate.getForEntity(path, Message[].class);
@@ -117,7 +110,7 @@ public class SupportService implements IFSendMessage {
             //throw new SupportServiceException("Error trying to get conversation between the participants.");
         }
 
-        if (responseEntity.hasBody()) {
+        if (responseEntity.getStatusCode().is2xxSuccessful() && responseEntity.hasBody()) {
             List<Message> messages = Arrays.asList(responseEntity.getBody());
             return messages;
         }
