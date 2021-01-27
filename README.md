@@ -16,6 +16,8 @@ If you want to use the api, please refer to the section
 
 ## Testing
 
+> **_NOTE:_** In case of starting the application, please take care of the notes in the section [Commands for the deployment](#commands-for-the-deployment), especially for the command to export the environment variables!
+
 ### Predefined employee accounts
 
 | Username | Password |
