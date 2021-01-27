@@ -18,6 +18,10 @@ public class Customer extends Person {
 
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    // ,orphanRemoval = true)
+    // Potential use case for "orphanRemoval", which is not useful,
+    // because the transfers of this account would also lose this reference
+    // -> The history would be lost
     private List<Account> accounts;
 
     @ManyToOne

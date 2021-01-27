@@ -41,12 +41,6 @@ So the decision was made to have an extra interface for external needs.
 Please keep in mind, that the BankingServiceIF implements the methods of the BankingServiceExternalIF.
 
 
-### Not used
-
-There was no use case for using 'Orphan Removal', because customers and accounts are not actually deleted, they are just set inactive.
-This decision was made, because deleting accounts or customers and their dependencies would cause unwanted displays to other users, that have made transfers to the respective users.
-
-
 ## Notes
 
 The prerequisite for this is the use of vpn access. The password is always the "NDS-Account-Id".

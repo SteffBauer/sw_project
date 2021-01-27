@@ -14,9 +14,14 @@ public class Account extends BaseEntity implements Serializable {
     private Customer customer;
 
     @OneToMany(mappedBy = "payerAccount", cascade = CascadeType.REMOVE)
+    // ,orphanRemoval = true)
+    // Potential use case for "orphanRemoval", which is not useful,
+    // because the other account would also lose this TransferObject
+    // -> The history would be lost (same issue with field "receivers")
     private List<Transfer> payers;
 
     @OneToMany(mappedBy = "receiverAccount", cascade = CascadeType.REMOVE)
+    // ,orphanRemoval = true)
     private List<Transfer> receivers;
 
     private long balance;
