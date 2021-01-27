@@ -1,7 +1,9 @@
 package de.othr.sw.bank.service;
 
-import de.othr.sw.bank.associateImitation.Message;
-import de.othr.sw.bank.associateImitation.SupportServiceIF;
+import de.othr.bib48218.chat.entity.Chat;
+import de.othr.bib48218.chat.entity.User;
+import de.othr.bib48218.chat.service.IFSendMessage;
+import de.othr.bib48218.chat.entity.Message;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.http.HttpStatus;
@@ -9,29 +11,93 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Service
-@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
-// todo implement IF of associate project
-public class SupportService implements SupportServiceIF {
-    // todo test exception handling for api calls
-
+public class SupportService implements IFSendMessage {
     // todo add to application.properties
-    private String baseUrl = "http://im-codd:8941/api/";
-    // todo date to get messages from
-    private Date creationTime;
-
-    public SupportService() {
-        creationTime = new Date();
-    }
-
+    private String baseUrl = "http://im-codd:8941/webapi/v1/";
 
     @Override
-    public List<Message> pullMessages(String token) throws SupportServiceException {
+    public User getUser(String username) {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<User> responseEntity;
+        String path = baseUrl + "persons/" + username;
+
+        try {
+            responseEntity = restTemplate.getForEntity(path, User.class);
+        }catch (Exception e){
+            //throw new SupportServiceException(e.getMessage());
+            return null;
+        }
+
+        if (responseEntity.getStatusCode().is4xxClientError() || responseEntity.getStatusCode().is5xxServerError())
+            return null;
+            //throw new SupportServiceException("Error trying to find user.");
+
+        // todo adjust HTTP Status Code and Error handling
+        if (responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.hasBody())
+            return responseEntity.getBody();
+        else
+            return null;
+            //throw new SupportServiceException("Error interpreting found user from support service.");
+    }
+
+    @Override
+    public Chat getChatWithUserByUsername(String username) {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Chat> responseEntity;
+        String path = baseUrl + "persons/" + username + "/chat";
+
+        try {
+            responseEntity = restTemplate.getForEntity(path, Chat.class);
+        }catch (Exception e){
+            //throw new SupportServiceException(e.getMessage());
+            return null;
+        }
+
+        if (responseEntity.getStatusCode().is4xxClientError() || responseEntity.getStatusCode().is5xxServerError())
+            return null;
+        //throw new SupportServiceException("Error trying to find user.");
+
+        // todo adjust HTTP Status Code and Error handling
+        if (responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.hasBody())
+            return responseEntity.getBody();
+        else
+            return null;
+        //throw new SupportServiceException("Error interpreting found user from support service.");
+    }
+
+    @Override
+    public void sendMessage(Message message) {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Message[]> responseEntity;
+        String path = baseUrl + "messages";
+
+        try {
+            responseEntity = restTemplate.postForEntity(path, message, Message[].class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return;
+            //throw new SupportServiceException(e.getMessage());
+        }
+
+        if (responseEntity.getStatusCode().is4xxClientError() || responseEntity.getStatusCode().is5xxServerError()) {
+            System.out.println(responseEntity.getStatusCode().value() + " - " + responseEntity.getStatusCode().getReasonPhrase());
+            return;
+            //throw new SupportServiceException("Error trying to send message.");
+        }
+
+        // todo adjust HTTP Status Code and Error handling
+        if (responseEntity.getStatusCode() == HttpStatus.CREATED)
+            return;
+        else
+            return;
+    }
+
+    @Override
+    public Collection<Message> pullMessages(Chat chat, LocalDateTime dateTime) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Message[]> responseEntity;
         // todo adjust path
@@ -40,11 +106,16 @@ public class SupportService implements SupportServiceIF {
         try {
             responseEntity = restTemplate.getForEntity(path, Message[].class);
         } catch (Exception e) {
-            throw new SupportServiceException(e.getMessage());
+            System.out.println(e.getMessage());
+            return null;
+            //throw new SupportServiceException(e.getMessage());
         }
 
-        if (responseEntity.getStatusCode().is4xxClientError() || responseEntity.getStatusCode().is5xxServerError())
-            throw new SupportServiceException("Error trying to get conversation between the participants.");
+        if (responseEntity.getStatusCode().is4xxClientError() || responseEntity.getStatusCode().is5xxServerError()) {
+            System.out.println(responseEntity.getStatusCode().value() + " - " + responseEntity.getStatusCode().getReasonPhrase());
+            return null;
+            //throw new SupportServiceException("Error trying to get conversation between the participants.");
+        }
 
         if (responseEntity.hasBody()) {
             List<Message> messages = Arrays.asList(responseEntity.getBody());
@@ -54,49 +125,4 @@ public class SupportService implements SupportServiceIF {
         return new LinkedList<>();
     }
 
-    @Override
-    public boolean sendMessage(Message message, Message.User user, String token) throws SupportServiceException {
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Message[]> responseEntity;
-        // todo adjust path
-        String path = baseUrl + "messages/new";
-
-        try {
-            responseEntity = restTemplate.postForEntity(path, message, Message[].class);
-        } catch (Exception e) {
-            throw new SupportServiceException(e.getMessage());
-        }
-
-        if (responseEntity.getStatusCode().is4xxClientError() || responseEntity.getStatusCode().is5xxServerError())
-            throw new SupportServiceException("Error trying to send message.");
-
-        // todo adjust HTTP Status Code and Error handling
-        if (responseEntity.getStatusCode() == HttpStatus.CREATED)
-            return true;
-        else
-            return false;
-    }
-
-    @Override
-    public Message.User findUserByUsername(String username, String token) throws SupportServiceException {
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Message.User> responseEntity;
-        // todo adjust path
-        String path = baseUrl + "users/" + username;
-
-        try {
-            responseEntity = restTemplate.getForEntity(path, Message.User.class);
-        }catch (Exception e){
-            throw new SupportServiceException(e.getMessage());
-        }
-
-        if (responseEntity.getStatusCode().is4xxClientError() || responseEntity.getStatusCode().is5xxServerError())
-            throw new SupportServiceException("Error trying to find user.");
-
-        // todo adjust HTTP Status Code and Error handling
-        if (responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.hasBody())
-            return responseEntity.getBody();
-        else
-            throw new SupportServiceException("Error interpreting found user from support service.");
-    }
 }

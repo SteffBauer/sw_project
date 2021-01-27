@@ -1,41 +1,63 @@
 package de.othr.sw.bank.controller;
 
 
-import de.othr.sw.bank.associateImitation.Message;
+import de.othr.bib48218.chat.entity.Chat;
+import de.othr.bib48218.chat.entity.Message;
+import de.othr.bib48218.chat.service.IFSendMessage;
 import de.othr.sw.bank.entity.*;
 import de.othr.sw.bank.service.EmployeeServiceIF;
 import de.othr.sw.bank.service.SupportServiceException;
-import de.othr.sw.bank.associateImitation.SupportServiceIF;
 import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/support")
+@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class SupportController {
 
     @Autowired
-    private SupportServiceIF supportService;
+    private IFSendMessage supportService;
     @Autowired
     private EmployeeServiceIF employeeService;
 
     //@Value("${authentication-token-chat-service}")
     //private String authenticationToken;
 
+    // For handling support service messages in the session scope
+    private LocalDateTime creationTime;
+
+    public SupportController() {
+        creationTime = LocalDateTime.now();
+    }
+
     @GetMapping
     public String getSupportChatView(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+
         List<Message> messages;
+        Chat chat;
         try {
-            messages = supportService.pullMessages("ServiceToken");
+            chat = supportService.getChatWithUserByUsername(currentUserName);
+            if (chat == null)
+                throw new SupportServiceException("Chat cannot be loaded from associate system.");
+
+            messages = (List<Message>) supportService.pullMessages(chat,creationTime);
+            if(messages==null)
+                throw new SupportServiceException("Chat cannot be loaded from associate system.");
         }
-        catch (SupportServiceException ex){
+        catch (Exception ex){
             WebsiteMessage message = new WebsiteMessage(WebsiteMessageType.Danger, "Support Service Error", ex.getMessage());
             model.addAttribute("message", message);
             return "messages";
@@ -43,8 +65,11 @@ public class SupportController {
 
         model.addAttribute("messages", messages);
 
+        Message message = new Message();
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        message.setChat(chat);
+        model.addAttribute("message",new Message());
+
         if (authentication.getPrincipal() instanceof Employee) {
             model.addAttribute("isEmployee", true);
 
@@ -61,10 +86,17 @@ public class SupportController {
         return "customer/supportChat.html";
     }
 
-    @PostMapping("{id}/messages/new")
+    @PostMapping("/messages/new")
     public String sendMessage(Model model, @PathVariable("id") long chatId, @RequestBody Message message){
-        // todo call associate API
-        // todo retrieve messages of chat and return supportChat.html (depending on emp/cust login)
-        throw new NotYetImplementedException();
+        message.setTimestamp(LocalDateTime.now());
+
+        try {
+            supportService.sendMessage(message);
+        }catch (Exception ex){
+            WebsiteMessage msg = new WebsiteMessage(WebsiteMessageType.Danger, "Support Service Error", "The support service is currently unavailable, please try again later.");
+            model.addAttribute("message", msg);
+            return "messages";
+        }
+        return "redirect:/support";
     }
 }
