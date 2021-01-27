@@ -6,7 +6,7 @@
         <table style="width: 100%">
             <tr th:each="msg : ${messages}">
                 <div class="card" style="width: 60%;margin: 1em; padding: 1em"
-                     th:classappend="${#strings.substring(msg.author.username,0,3).equals('cus')} ? 'float-right' : 'float-left'">
+                     th:classappend="${msg.author.username.equals(username)} ? 'float-right' : 'float-left'">
                     <h6 class="card-title" th:text="${'Absender: ' + msg.author.username}">Sender</h6>
                     <p class="card-text" th:text="${msg.text}">Text</p>
                     <p class="card-text" th:text="${msg.timestamp}">Zeit</p>

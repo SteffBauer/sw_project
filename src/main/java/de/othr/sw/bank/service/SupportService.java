@@ -1,29 +1,32 @@
 package de.othr.sw.bank.service;
 
 import de.othr.bib48218.chat.entity.Chat;
+import de.othr.bib48218.chat.entity.Message;
 import de.othr.bib48218.chat.entity.User;
 import de.othr.bib48218.chat.service.IFSendMessage;
-import de.othr.bib48218.chat.entity.Message;
 import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 @Service
+@Scope(value = "session")
 public class SupportService implements IFSendMessage {
-    // todo add to application.properties
+
     private String baseUrl = "http://im-codd:8941/webapi/v1/";
+
 
     @Override
     public User getUser(String username) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<User> responseEntity;
-        String path = baseUrl + "persons/" + username;
+        String path = baseUrl + "people/" + username;
 
         try {
             responseEntity = restTemplate.getForEntity(path, User.class);
@@ -47,7 +50,7 @@ public class SupportService implements IFSendMessage {
     public Chat getChatWithUserByUsername(String username) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Chat> responseEntity;
-        String path = baseUrl + "persons/" + username + "/chat";
+        String path = baseUrl + "people/" + username + "/chat";
 
         try {
             responseEntity = restTemplate.getForEntity(path, Chat.class);
@@ -69,12 +72,22 @@ public class SupportService implements IFSendMessage {
 
     @Override
     public void sendMessage(Message message) {
+        String username = message.getAuthor().getUsername();
+        //User user = getUser(username);
+        Chat chat = getChatWithUserByUsername(username);
+
+        User user = chat.getMemberships().stream().filter(x->x.getUser().getUsername().equals(username)).findAny().get().getUser();
+
+        message.setChat(chat);
+        message.setAuthor(user);
+
+
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Message[]> responseEntity;
+        ResponseEntity<Message> responseEntity;
         String path = baseUrl + "messages";
 
         try {
-            responseEntity = restTemplate.postForEntity(path, message, Message[].class);
+            responseEntity = restTemplate.postForEntity(path, message, Message.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return;

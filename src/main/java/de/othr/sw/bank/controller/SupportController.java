@@ -3,11 +3,15 @@ package de.othr.sw.bank.controller;
 
 import de.othr.bib48218.chat.entity.Chat;
 import de.othr.bib48218.chat.entity.Message;
+import de.othr.bib48218.chat.entity.Person;
+import de.othr.bib48218.chat.entity.User;
 import de.othr.bib48218.chat.service.IFSendMessage;
-import de.othr.sw.bank.entity.*;
+import de.othr.sw.bank.entity.Customer;
+import de.othr.sw.bank.entity.Employee;
+import de.othr.sw.bank.entity.WebsiteMessage;
+import de.othr.sw.bank.entity.WebsiteMessageType;
 import de.othr.sw.bank.service.EmployeeServiceIF;
 import de.othr.sw.bank.service.SupportServiceException;
-import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -30,9 +34,6 @@ public class SupportController {
     private IFSendMessage supportService;
     @Autowired
     private EmployeeServiceIF employeeService;
-
-    //@Value("${authentication-token-chat-service}")
-    //private String authenticationToken;
 
     // For handling support service messages in the session scope
     private LocalDateTime creationTime;
@@ -67,6 +68,7 @@ public class SupportController {
         }
 
         model.addAttribute("messages", messages);
+        model.addAttribute("username", username);
 
         Message message = new Message();
 
@@ -90,7 +92,14 @@ public class SupportController {
     }
 
     @PostMapping("/messages/new")
-    public String sendMessage(Model model, @RequestBody Message message) {
+    public String sendMessage(Model model, @ModelAttribute Message message) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+
+        User user = new Person();
+        user.setUsername(currentUserName);
+
+        message.setAuthor(user);
         message.setTimestamp(LocalDateTime.now());
 
         try {
