@@ -46,18 +46,21 @@ public class SupportController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUserName = authentication.getName();
 
+        return getMessagesForUser(model, authentication, currentUserName);
+    }
+
+    private String getMessagesForUser(Model model, Authentication authentication, String username) {
         List<Message> messages;
         Chat chat;
         try {
-            chat = supportService.getChatWithUserByUsername(currentUserName);
+            chat = supportService.getChatWithUserByUsername(username);
             if (chat == null)
                 throw new SupportServiceException("Chat cannot be loaded from associate system.");
 
-            messages = (List<Message>) supportService.pullMessages(chat,creationTime);
-            if(messages==null)
+            messages = (List<Message>) supportService.pullMessages(chat, creationTime);
+            if (messages == null)
                 throw new SupportServiceException("Chat cannot be loaded from associate system.");
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             WebsiteMessage message = new WebsiteMessage(WebsiteMessageType.Danger, "Support Service Error", ex.getMessage());
             model.addAttribute("message", message);
             return "messages";
@@ -68,17 +71,17 @@ public class SupportController {
         Message message = new Message();
 
         message.setChat(chat);
-        model.addAttribute("message",new Message());
+        model.addAttribute("message", new Message());
 
         if (authentication.getPrincipal() instanceof Employee) {
             model.addAttribute("isEmployee", true);
 
             Optional<Employee> employee = employeeService.getEmployeeByUsername(((Employee) authentication.getPrincipal()).getUsername());
 
-            if(employee != null)
+            if (employee != null)
                 model.addAttribute("customers", employee.get().getActiveCustomers());
 
-           return "employee/supportChat.html";
+            return "employee/supportChat.html";
         }
 
 
@@ -87,16 +90,37 @@ public class SupportController {
     }
 
     @PostMapping("/messages/new")
-    public String sendMessage(Model model, @PathVariable("id") long chatId, @RequestBody Message message){
+    public String sendMessage(Model model, @RequestBody Message message) {
         message.setTimestamp(LocalDateTime.now());
 
         try {
             supportService.sendMessage(message);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             WebsiteMessage msg = new WebsiteMessage(WebsiteMessageType.Danger, "Support Service Error", "The support service is currently unavailable, please try again later.");
             model.addAttribute("message", msg);
             return "messages";
         }
         return "redirect:/support";
     }
+
+    @GetMapping("/{cid}")
+    public String getSupportChatViewForEmployee(Model model, @PathVariable("cid") long cId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+
+        Employee employee = employeeService.getEmployeeByUsername(currentUserName).get();
+        Customer customer = employee.getActiveCustomers().stream()
+                .filter(c -> cId == c.getId())
+                .findAny()
+                .orElse(null);
+        if (customer != null) {
+            return getMessagesForUser(model,authentication,customer.getUsername());
+
+        }
+
+        WebsiteMessage msg = new WebsiteMessage(WebsiteMessageType.Danger, "Support Service Error", "Error trying to get chat between customer and employee.");
+        model.addAttribute("message", msg);
+        return "messages";
+    }
+
 }
