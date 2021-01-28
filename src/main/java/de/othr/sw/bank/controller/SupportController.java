@@ -12,7 +12,6 @@ import de.othr.sw.bank.entity.WebsiteMessage;
 import de.othr.sw.bank.entity.WebsiteMessageType;
 import de.othr.sw.bank.service.CustomerServiceIF;
 import de.othr.sw.bank.service.EmployeeServiceIF;
-import de.othr.sw.bank.service.SupportServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -61,7 +60,7 @@ public class SupportController {
         // Handling customer and employee message requests
         if (authentication.getPrincipal() instanceof Employee)
             user.setUsername("bank_service");
-        else{
+        else {
             String currentUserName = authentication.getName();
             user.setUsername(currentUserName);
         }
@@ -71,14 +70,14 @@ public class SupportController {
         // Get chat of the customer with the id
         Optional<Customer> optionalCustomer = customerService.getCustomerByUsername(customerUsername);
 
-        if(optionalCustomer.isEmpty())
-            return showSupportServiceError(model);
+        if (optionalCustomer.isEmpty())
+            return showSupportServiceError(model, "The support service is currently unavailable, please try again later.");
 
         Customer customer = optionalCustomer.get();
 
         Chat chat = supportService.getChatWithUserByUsername(customer.getUsername());
-        if(chat == null)
-            return showSupportServiceError(model);
+        if (chat == null)
+            return showSupportServiceError(model, "The support service is currently unavailable, please try again later.");
 
         message.setChat(chat);
         // minusSeconds(5) necessary because of "past or present"-constraint at the target system
@@ -89,14 +88,14 @@ public class SupportController {
         try {
             sent = supportService.sendMessage(message);
         } catch (Exception ex) {
-            return showSupportServiceError(model);
+            return showSupportServiceError(model, "The support service is currently unavailable, please try again later.");
         }
 
-        if(!sent)
-            return showSupportServiceError(model);
+        if (!sent)
+            return showSupportServiceError(model, "The support service is currently unavailable, please try again later.");
 
         if (authentication.getPrincipal() instanceof Employee)
-            return "redirect:/support/"+customer.getId();
+            return "redirect:/support/" + customer.getId();
         else
             return "redirect:/support";
     }
@@ -112,31 +111,22 @@ public class SupportController {
                 .findAny()
                 .orElse(null);
         if (customer != null) {
-            return getMessagesForUser(model,authentication,customer.getUsername());
+            return getMessagesForUser(model, authentication, customer.getUsername());
 
         }
 
-        WebsiteMessage msg = new WebsiteMessage(WebsiteMessageType.Danger, "Support Service Error", "Error trying to get chat between customer and employee.");
-        model.addAttribute("message", msg);
-        return "messages";
+        return showSupportServiceError(model, "Error trying to get chat between customer and employee.");
     }
 
     private String getMessagesForUser(Model model, Authentication authentication, String username) {
-        List<Message> messages;
-        Chat chat;
-        try {
-            chat = supportService.getChatWithUserByUsername(username);
-            if (chat == null)
-                throw new SupportServiceException("Chat cannot be loaded from associate system.");
+        Chat chat = supportService.getChatWithUserByUsername(username);
+        if (chat == null)
+            return showSupportServiceError(model, "Chat cannot be loaded from associate system.");
 
-            messages = (List<Message>) supportService.pullMessages(chat, creationTime);
-            if (messages == null)
-                throw new SupportServiceException("Chat cannot be loaded from associate system.");
-        } catch (Exception ex) {
-            WebsiteMessage message = new WebsiteMessage(WebsiteMessageType.Danger, "Support Service Error", ex.getMessage());
-            model.addAttribute("message", message);
-            return "messages";
-        }
+        List<Message> messages = (List<Message>) supportService.pullMessages(chat, creationTime);
+        if (messages == null)
+            return showSupportServiceError(model, "Chat cannot be loaded from associate system.");
+
 
         model.addAttribute("messages", messages);
         model.addAttribute("username", username);
@@ -162,8 +152,8 @@ public class SupportController {
         return "customer/supportChat.html";
     }
 
-    private String showSupportServiceError(Model model) {
-        WebsiteMessage msg = new WebsiteMessage(WebsiteMessageType.Danger, "Support Service Error", "The support service is currently unavailable, please try again later.");
+    private String showSupportServiceError(Model model, String message) {
+        WebsiteMessage msg = new WebsiteMessage(WebsiteMessageType.Danger, "Support Service Error", message);
         model.addAttribute("message", msg);
         return "messages";
     }
