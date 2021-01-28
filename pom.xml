@@ -10,7 +10,7 @@
     </parent>
     <groupId>de.othr.sw</groupId>
     <artifactId>bank</artifactId>
-    <version>0.0.1-SNAPSHOT</version> <!-- todo move to 1.0 before deployment-->
+    <version>1.0.0</version>
     <name>bank</name>
     <description>Project for the course 'Softwaredevelopment' at OTH Regensburg</description>
 

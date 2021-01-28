@@ -70,20 +70,94 @@ public class SupportService implements IFSendMessage {
         //throw new SupportServiceException("Error interpreting found user from support service.");
     }
 
+    /* todo
     @Override
-    public void sendMessage(Message message) {
+    public boolean sendMessage(Message message) {
         String username = message.getAuthor().getUsername();
-        //User user = getUser(username);
-        Chat chat = getChatWithUserByUsername(username);
 
-        User user = chat.getMemberships().stream().filter(x->x.getUser().getUsername().equals(username)).findAny().get().getUser();
+        Chat chat;
+        User user;
+
+        try {
+            chat = getChatWithUserByUsername(username);
+        } catch (Exception ex) {
+            return false;
+        }
+
+        if (chat == null)
+            return false;
+
+        try {
+            user = chat.getMemberships().stream().filter(x -> x.getUser().getUsername().equals(username)).findAny().get().getUser();
+        } catch (Exception ex) {
+            return false;
+        }
+
+        if (user == null)
+            return false;
 
         message.setChat(chat);
         message.setAuthor(user);
 
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Message> responseEntity;
+
+        String path = baseUrl + "messages";
+
+        try {
+            responseEntity = restTemplate.postForEntity(path, message, Message.class);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+            //throw new SupportServiceException(e.getMessage());
+        }
+
+        if (responseEntity.getStatusCode().is4xxClientError() || responseEntity.getStatusCode().is5xxServerError()) {
+            System.out.println(responseEntity.getStatusCode().value() + " - " + responseEntity.getStatusCode().getReasonPhrase());
+            return false;
+            //throw new SupportServiceException("Error trying to send message.");
+        }
+
+        if(responseEntity.getStatusCode().is2xxSuccessful())
+            return true;
+
+        return false;
+    }
+
+     */
+
+
+    @Override
+    public void sendMessage(Message message) {
+        String username = message.getAuthor().getUsername();
+
+        Chat chat;
+        User user;
+
+        try {
+            chat = getChatWithUserByUsername(username);
+        } catch (Exception ex) {
+            return;
+        }
+
+        if (chat == null)
+            return;
+
+        try {
+            user = chat.getMemberships().stream().filter(x -> x.getUser().getUsername().equals(username)).findAny().get().getUser();
+        } catch (Exception ex) {
+            return;
+        }
+
+        if (user == null)
+            return;
+
+        message.setChat(chat);
+        message.setAuthor(user);
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Message> responseEntity;
+
         String path = baseUrl + "messages";
 
         try {
@@ -100,6 +174,8 @@ public class SupportService implements IFSendMessage {
             //throw new SupportServiceException("Error trying to send message.");
         }
 
+        if(responseEntity.getStatusCode().is2xxSuccessful())
+            return;
     }
 
     @Override
