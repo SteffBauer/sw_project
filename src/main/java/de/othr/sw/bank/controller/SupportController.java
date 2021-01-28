@@ -55,15 +55,13 @@ public class SupportController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = new Person();
 
-
-
+        // Handling customer and employee message requests
         if (authentication.getPrincipal() instanceof Employee)
             user.setUsername("bank_service");
         else{
             String currentUserName = authentication.getName();
             user.setUsername(currentUserName);
         }
-
 
         message.setAuthor(user);
         message.setTimestamp(LocalDateTime.now());
