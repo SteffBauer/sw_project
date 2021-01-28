@@ -1,1 +1,0 @@
-java -jar plantuml.jar "./*.puml" -o "./generatedDiagrams/" -tsvg
