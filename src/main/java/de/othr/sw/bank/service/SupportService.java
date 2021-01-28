@@ -123,7 +123,7 @@ public class SupportService implements IFSendMessage {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Message[]> responseEntity;
 
-        String path = baseUrl + "messages/" + chat.getId() + "?since=" + dateTime;
+        String path = baseUrl + "messages/" + chat.getId() + "?dateTime=" + dateTime;
 
         try {
             responseEntity = restTemplate.getForEntity(path, Message[].class);
