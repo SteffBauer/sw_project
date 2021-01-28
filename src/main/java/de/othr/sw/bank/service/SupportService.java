@@ -1,5 +1,8 @@
 package de.othr.sw.bank.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import de.othr.bib48218.chat.entity.Chat;
 import de.othr.bib48218.chat.entity.Message;
 import de.othr.bib48218.chat.entity.User;
@@ -70,9 +73,9 @@ public class SupportService implements IFSendMessage {
         //throw new SupportServiceException("Error interpreting found user from support service.");
     }
 
-    /* todo
+
     @Override
-    public boolean sendMessage(Message message) {
+    public Boolean sendMessage(Message message) {
         String username = message.getAuthor().getUsername();
 
         Chat chat;
@@ -100,12 +103,12 @@ public class SupportService implements IFSendMessage {
         message.setAuthor(user);
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Message> responseEntity;
+        ResponseEntity<Boolean> responseEntity;
 
         String path = baseUrl + "messages";
 
         try {
-            responseEntity = restTemplate.postForEntity(path, message, Message.class);
+            responseEntity = restTemplate.postForEntity(path, message, Boolean.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
@@ -118,65 +121,12 @@ public class SupportService implements IFSendMessage {
             //throw new SupportServiceException("Error trying to send message.");
         }
 
-        if(responseEntity.getStatusCode().is2xxSuccessful())
-            return true;
+        if(responseEntity.getStatusCode().is2xxSuccessful() && responseEntity.getBody() != null)
+            return responseEntity.getBody();
 
         return false;
     }
 
-     */
-
-
-    @Override
-    public void sendMessage(Message message) {
-        String username = message.getAuthor().getUsername();
-
-        Chat chat;
-        User user;
-
-        try {
-            chat = getChatWithUserByUsername(username);
-        } catch (Exception ex) {
-            return;
-        }
-
-        if (chat == null)
-            return;
-
-        try {
-            user = chat.getMemberships().stream().filter(x -> x.getUser().getUsername().equals(username)).findAny().get().getUser();
-        } catch (Exception ex) {
-            return;
-        }
-
-        if (user == null)
-            return;
-
-        message.setChat(chat);
-        message.setAuthor(user);
-
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Message> responseEntity;
-
-        String path = baseUrl + "messages";
-
-        try {
-            responseEntity = restTemplate.postForEntity(path, message, Message.class);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return;
-            //throw new SupportServiceException(e.getMessage());
-        }
-
-        if (responseEntity.getStatusCode().is4xxClientError() || responseEntity.getStatusCode().is5xxServerError()) {
-            System.out.println(responseEntity.getStatusCode().value() + " - " + responseEntity.getStatusCode().getReasonPhrase());
-            return;
-            //throw new SupportServiceException("Error trying to send message.");
-        }
-
-        if(responseEntity.getStatusCode().is2xxSuccessful())
-            return;
-    }
 
     @Override
     public Collection<Message> pullMessages(Chat chat, LocalDateTime dateTime) {

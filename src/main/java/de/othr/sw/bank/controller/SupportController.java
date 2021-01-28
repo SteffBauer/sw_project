@@ -1,6 +1,9 @@
 package de.othr.sw.bank.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import de.othr.bib48218.chat.entity.Chat;
 import de.othr.bib48218.chat.entity.Message;
 import de.othr.bib48218.chat.entity.Person;
@@ -64,8 +67,7 @@ public class SupportController {
         boolean sent = false;
 
         try {
-            //sent =
-            supportService.sendMessage(message);
+            sent = supportService.sendMessage(message);
         } catch (Exception ex) {
             return showSupportServiceError(model);
         }
