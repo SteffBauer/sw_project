@@ -15,7 +15,7 @@
         </table>
     </div>
 
-    <form style="max-width: 100%; height: 10%" th:action="@{/support/messages/new}"  th:object="${message}"
+    <form style="max-width: 100%; height: 10%" th:action="@{/support/{username}/messages/new(username=${username})}"  th:object="${message}"
           method="post">
         <div class="form-row justify-content-center" style="max-width: 100%">
 

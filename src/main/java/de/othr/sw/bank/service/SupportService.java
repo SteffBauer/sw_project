@@ -1,8 +1,5 @@
 package de.othr.sw.bank.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import de.othr.bib48218.chat.entity.Chat;
 import de.othr.bib48218.chat.entity.Message;
 import de.othr.bib48218.chat.entity.User;
@@ -77,15 +74,8 @@ public class SupportService implements IFSendMessage {
     @Override
     public Boolean sendMessage(Message message) {
         String username = message.getAuthor().getUsername();
-
-        Chat chat;
+        Chat chat = message.getChat();
         User user;
-
-        try {
-            chat = getChatWithUserByUsername(username);
-        } catch (Exception ex) {
-            return false;
-        }
 
         if (chat == null)
             return false;

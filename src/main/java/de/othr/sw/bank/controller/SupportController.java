@@ -1,15 +1,16 @@
 package de.othr.sw.bank.controller;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import de.othr.bib48218.chat.entity.*;
+import de.othr.bib48218.chat.entity.Chat;
+import de.othr.bib48218.chat.entity.Message;
+import de.othr.bib48218.chat.entity.Person;
+import de.othr.bib48218.chat.entity.User;
 import de.othr.bib48218.chat.service.IFSendMessage;
 import de.othr.sw.bank.entity.Customer;
 import de.othr.sw.bank.entity.Employee;
 import de.othr.sw.bank.entity.WebsiteMessage;
 import de.othr.sw.bank.entity.WebsiteMessageType;
+import de.othr.sw.bank.service.CustomerServiceIF;
 import de.othr.sw.bank.service.EmployeeServiceIF;
 import de.othr.sw.bank.service.SupportServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,8 @@ public class SupportController {
     private IFSendMessage supportService;
     @Autowired
     private EmployeeServiceIF employeeService;
+    @Autowired
+    private CustomerServiceIF customerService;
 
     // For handling support service messages in the session scope
     private LocalDateTime creationTime;
@@ -50,8 +53,8 @@ public class SupportController {
         return getMessagesForUser(model, authentication, currentUserName);
     }
 
-    @PostMapping("/messages/new")
-    public String sendMessage(Model model, @ModelAttribute Message message) {
+    @PostMapping("{username}/messages/new")
+    public String sendMessage(Model model, @ModelAttribute Message message, @PathVariable("username") String customerUsername) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = new Person();
 
@@ -62,9 +65,24 @@ public class SupportController {
             String currentUserName = authentication.getName();
             user.setUsername(currentUserName);
         }
-
         message.setAuthor(user);
-        message.setTimestamp(LocalDateTime.now());
+
+
+        // Get chat of the customer with the id
+        Optional<Customer> optionalCustomer = customerService.getCustomerByUsername(customerUsername);
+
+        if(optionalCustomer.isEmpty())
+            return showSupportServiceError(model);
+
+        Customer customer = optionalCustomer.get();
+
+        Chat chat = supportService.getChatWithUserByUsername(customer.getUsername());
+        if(chat == null)
+            return showSupportServiceError(model);
+
+        message.setChat(chat);
+        // minusSeconds(5) necessary because of "past or present"-constraint at the target system
+        message.setTimestamp(LocalDateTime.now().minusSeconds(5));
 
         boolean sent;
 
@@ -77,7 +95,10 @@ public class SupportController {
         if(!sent)
             return showSupportServiceError(model);
 
-        return "redirect:/support";
+        if (authentication.getPrincipal() instanceof Employee)
+            return "redirect:/support/"+customer.getId();
+        else
+            return "redirect:/support";
     }
 
     @GetMapping("/{cid}")
