@@ -65,7 +65,7 @@ The prerequisite for this is the use of vpn access. The password is always the "
         1. Then kill it.
 1. Exit Secure Shell: `exit`
 
-### Useful commans
+### Useful commands
 
 #### Generating jar file for associate projects \
 > **_NOTE:_** Has to be executed in the folder `target/classes`
