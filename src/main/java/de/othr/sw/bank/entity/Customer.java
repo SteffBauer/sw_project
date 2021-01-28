@@ -106,7 +106,7 @@ public class Customer extends Person {
     }
 
     public String getFullName() {
-        return getSurname() + " " + getUsername();
+        return getSurname() + " " + getForename();
     }
 
 

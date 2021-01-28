@@ -50,6 +50,52 @@ public class SupportController {
         return getMessagesForUser(model, authentication, currentUserName);
     }
 
+    @PostMapping("/messages/new")
+    public String sendMessage(Model model, @ModelAttribute Message message) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+
+        User user = new Person();
+        user.setUsername(currentUserName);
+
+        message.setAuthor(user);
+        message.setTimestamp(LocalDateTime.now());
+
+        boolean sent = false;
+
+        try {
+            //sent =
+            supportService.sendMessage(message);
+        } catch (Exception ex) {
+            return showSupportServiceError(model);
+        }
+
+        if(!sent)
+            return showSupportServiceError(model);
+
+        return "redirect:/support";
+    }
+
+    @GetMapping("/{cid}")
+    public String getSupportChatViewForEmployee(Model model, @PathVariable("cid") long cId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+
+        Employee employee = employeeService.getEmployeeByUsername(currentUserName).get();
+        Customer customer = employee.getActiveCustomers().stream()
+                .filter(c -> cId == c.getId())
+                .findAny()
+                .orElse(null);
+        if (customer != null) {
+            return getMessagesForUser(model,authentication,customer.getUsername());
+
+        }
+
+        WebsiteMessage msg = new WebsiteMessage(WebsiteMessageType.Danger, "Support Service Error", "Error trying to get chat between customer and employee.");
+        model.addAttribute("message", msg);
+        return "messages";
+    }
+
     private String getMessagesForUser(Model model, Authentication authentication, String username) {
         List<Message> messages;
         Chat chat;
@@ -91,43 +137,8 @@ public class SupportController {
         return "customer/supportChat.html";
     }
 
-    @PostMapping("/messages/new")
-    public String sendMessage(Model model, @ModelAttribute Message message) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName = authentication.getName();
-
-        User user = new Person();
-        user.setUsername(currentUserName);
-
-        message.setAuthor(user);
-        message.setTimestamp(LocalDateTime.now());
-
-        try {
-            supportService.sendMessage(message);
-        } catch (Exception ex) {
-            WebsiteMessage msg = new WebsiteMessage(WebsiteMessageType.Danger, "Support Service Error", "The support service is currently unavailable, please try again later.");
-            model.addAttribute("message", msg);
-            return "messages";
-        }
-        return "redirect:/support";
-    }
-
-    @GetMapping("/{cid}")
-    public String getSupportChatViewForEmployee(Model model, @PathVariable("cid") long cId) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName = authentication.getName();
-
-        Employee employee = employeeService.getEmployeeByUsername(currentUserName).get();
-        Customer customer = employee.getActiveCustomers().stream()
-                .filter(c -> cId == c.getId())
-                .findAny()
-                .orElse(null);
-        if (customer != null) {
-            return getMessagesForUser(model,authentication,customer.getUsername());
-
-        }
-
-        WebsiteMessage msg = new WebsiteMessage(WebsiteMessageType.Danger, "Support Service Error", "Error trying to get chat between customer and employee.");
+    private String showSupportServiceError(Model model) {
+        WebsiteMessage msg = new WebsiteMessage(WebsiteMessageType.Danger, "Support Service Error", "The support service is currently unavailable, please try again later.");
         model.addAttribute("message", msg);
         return "messages";
     }
