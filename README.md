@@ -52,11 +52,11 @@ The prerequisite for this is the use of vpn access. The password is always the "
 The prerequisite for this is the use of vpn access. The password is always the "NDS-Account-Id".
 
 1. Run `Generate JAR` in IDE
-1. Copy JAR: `scp C:\Workspace\sw_project\target\bank-0.0.1-SNAPSHOT.jar sw_stefan_bauer@im-codd:`
+1. Copy JAR: `scp C:\Workspace\sw_project\target\bank-1.0.0.jar sw_stefan_bauer@im-codd:`
 1. Connect to server: `ssh sw_stefan_bauer@im-codd`
 1. In case of changed environment variables: `export $(cat .env | xargs)`
 1. Check copied file: `ls -l`
-1. Start as daemon process: `java -jar bank-0.0.1-SNAPSHOT.jar > server.log 2> error.log &`
+1. Start as daemon process: `java -jar bank-1.0.0.jar > server.log 2> error.log &`
 1. Show running processes: `ps -f`
 1. Kill process:
     1. In case you know the PID: `kill <PID>`
