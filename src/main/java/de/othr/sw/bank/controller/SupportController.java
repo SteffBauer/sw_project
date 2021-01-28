@@ -4,10 +4,7 @@ package de.othr.sw.bank.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import de.othr.bib48218.chat.entity.Chat;
-import de.othr.bib48218.chat.entity.Message;
-import de.othr.bib48218.chat.entity.Person;
-import de.othr.bib48218.chat.entity.User;
+import de.othr.bib48218.chat.entity.*;
 import de.othr.bib48218.chat.service.IFSendMessage;
 import de.othr.sw.bank.entity.Customer;
 import de.othr.sw.bank.entity.Employee;
@@ -56,15 +53,22 @@ public class SupportController {
     @PostMapping("/messages/new")
     public String sendMessage(Model model, @ModelAttribute Message message) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName = authentication.getName();
-
         User user = new Person();
-        user.setUsername(currentUserName);
+
+
+
+        if (authentication.getPrincipal() instanceof Employee)
+            user.setUsername("bank_service");
+        else{
+            String currentUserName = authentication.getName();
+            user.setUsername(currentUserName);
+        }
+
 
         message.setAuthor(user);
         message.setTimestamp(LocalDateTime.now());
 
-        boolean sent = false;
+        boolean sent;
 
         try {
             sent = supportService.sendMessage(message);
